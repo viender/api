@@ -80,7 +80,6 @@
             @endif
 
             <div class="content" id="app">
-                <example></example>
                 <div class="title m-b-md">
                     Laravel
                 </div>
