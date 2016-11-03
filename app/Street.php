@@ -22,11 +22,11 @@ class Street extends Model
 
     public function state() 
     {
-        return $this->belongsTo('App\State');
+        return $this->city()->state();
     }
 
     public function country() 
     {
-        return $this->belongsTo('App\Country');
+        return $this->state()->country();
     }
 }

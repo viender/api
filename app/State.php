@@ -14,4 +14,19 @@ class State extends Model
     protected $fillable = [
         'country_id', 'name',
     ];
+
+    public function streets()
+    {
+        //
+    }
+
+    public function cities() 
+    {
+        return $this->hasMany('App\City');
+    }
+
+    public function country() 
+    {
+        return $this->belongsTo('App\Country');
+    }
 }
