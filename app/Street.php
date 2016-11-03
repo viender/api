@@ -14,4 +14,19 @@ class Street extends Model
     protected $fillable = [
         'city_id', 'name',
     ];
+
+    public function city() 
+    {
+        return $this->belongsTo('App\City');
+    }
+
+    public function state() 
+    {
+        return $this->belongsTo('App\State');
+    }
+
+    public function country() 
+    {
+        return $this->belongsTo('App\Country');
+    }
 }
