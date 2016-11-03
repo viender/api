@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuestionsTable extends Migration
+class CreateBidsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreateQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('bids', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('body');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('auction_id')->unsigned();
+            $table->foreign('auction_id')->references('id')->on('auctions')->onDelete('cascade');
+            $table->string('title');
+            $table->text('body');
+            $table->integer('offered_price');
+            $table->boolean('deal')->default(false);
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ class CreateQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('bids');
     }
 }
