@@ -4,6 +4,43 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    public $tables = [
+        'addresses',
+        'streets',
+        'cities',
+        'states',
+        'countries',
+        'stars',
+        'downvotes',
+        'upvotes',
+        'comments',
+        'users_follows_tags',
+        'taggables',
+        'tags',
+        'bids',
+        'auctions',
+        'answers',
+        'questions',
+        'password_resets',
+        'users',
+    ];
+
+    public $seeders = [
+        UsersTableSeeder::class,
+        QuestionsTableSeeder::class,
+        AnswersTableSeeder::class,
+        AuctionsTableSeeder::class,
+        BidsTableSeeder::class,
+        TagsTableSeeder::class,
+        CommentsTableSeeder::class,
+        StarsTableSeeder::class,
+        CountriesTableSeeder::class,
+        StatesTableSeeder::class,
+        CitiesTableSeeder::class,
+        StreetsTableSeeder::class,
+        AddressesTableSeeder::class,
+    ];
+
     /**
      * Run the database seeds.
      *
@@ -11,6 +48,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->truncateTables($this->tables);
+
+        $this->callSeeder($this->seeders);
+    }
+
+    public function callSeeder($seeders) 
+    {
+        foreach ($seeders as $seeder) {
+            echo 'calling ' . $seeder . '... ';
+            $this->call($seeder);
+        }
+    }
+
+    public function truncateTables($tables)
+    {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        
+        foreach ($tables as $table) {
+            echo 'truncating ' . $table . '...';
+            DB::table($table)->truncate();
+            echo ' (done)' . PHP_EOL;
+        }
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
