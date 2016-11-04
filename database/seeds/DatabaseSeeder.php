@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         'downvotes',
         'upvotes',
         'comments',
-        'users_follows_tags',
+        'tag_user',
         'taggables',
         'tags',
         'bids',

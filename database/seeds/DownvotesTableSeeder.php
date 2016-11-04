@@ -11,6 +11,6 @@ class DownvotesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Downvote::class, 1)->create();
+        factory(App\Downvote::class, 100)->create();
     }
 }

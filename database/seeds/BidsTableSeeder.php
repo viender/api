@@ -11,6 +11,6 @@ class BidsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Bid::class, 1)->create();
+        factory(App\Bid::class, 100)->create();
     }
 }
