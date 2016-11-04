@@ -32,6 +32,6 @@ class City extends Model
 
     public function country() 
     {
-        return $this->state()->country();
+        return $this->state()->first()->country();
     }
 }

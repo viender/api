@@ -27,11 +27,11 @@ class Street extends Model
 
     public function state() 
     {
-        return $this->city()->state();
+        return $this->city()->first()->state();
     }
 
     public function country() 
     {
-        return $this->state()->country();
+        return $this->state()->first()->country();
     }
 }
