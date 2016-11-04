@@ -14,4 +14,19 @@ class Auction extends Model
     protected $fillable = [
         'title', 'body', 'price', 'status',
     ];
+
+    public function user() 
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function bids() 
+    {
+        return $this->hasMany('App\Bid');
+    }
+
+    public function tags() 
+    {
+        return $this->morphToMany('App\Tag', 'taggable');
+    }
 }

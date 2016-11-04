@@ -14,4 +14,14 @@ class Star extends Model
     protected $fillable = [
         'starable_id', 'starable_type', 'count',
     ];
+
+    public function user() 
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function starable()
+    {
+        return $this->morphTo();
+    }
 }

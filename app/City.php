@@ -15,6 +15,11 @@ class City extends Model
         'state_id', 'name',
     ];
 
+    public function addresses()
+    {
+        return $this->hasMany('App\Address');
+    }
+
     public function streets()
     {
         return $this->hasMany('App\Steet');

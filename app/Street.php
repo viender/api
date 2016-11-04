@@ -15,6 +15,11 @@ class Street extends Model
         'city_id', 'name',
     ];
 
+    public function addresses()
+    {
+        return $this->hasMany('App\Address');
+    }
+    
     public function city() 
     {
         return $this->belongsTo('App\City');

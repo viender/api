@@ -38,8 +38,43 @@ class User extends Authenticatable
         return $this->hasMany('App\Answer');
     }
 
-    public function followedTags() 
+    public function tags()
     {
         return $this->belongsToMany('App\Tag');
+    }
+
+    public function auctions() 
+    {
+        return $this->hasMany('App\Auction');
+    }
+
+    public function bids() 
+    {
+        return $this->hasMany('App\Bid');
+    }
+
+    public function comments() 
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+    public function upvotes() 
+    {
+        return hasMany('App\Upvote');
+    }
+
+    public function downvotes() 
+    {
+        return hasMany('App\Downvote');
+    }
+
+    public function stars() 
+    {
+        return $this->morphMany('App\Star', 'starable');
+    }
+
+    public function stared() 
+    {
+        return $this->hasMany('App\Star');
     }
 }

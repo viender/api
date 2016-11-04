@@ -15,14 +15,19 @@ class Country extends Model
         'name',
     ];
 
+    public function addresses()
+    {
+        return $this->hasMany('App\Address');
+    }
+
     public function streets()
     {
-        //
+        $this->hasManyThrough('App\City', 'App\State')->hasManyThrough('App\Street', 'App\City');
     }
 
     public function cities() 
     {
-        //
+        return $this->hasManyThrough('App\City', 'App\State');
     }
 
     public function states() 

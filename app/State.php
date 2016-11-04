@@ -15,9 +15,14 @@ class State extends Model
         'country_id', 'name',
     ];
 
+    public function addresses()
+    {
+        return $this->hasMany('App\Address');
+    }
+
     public function streets()
     {
-        //
+        return $this->hasManyThrough('App\Street', 'App\City');
     }
 
     public function cities() 

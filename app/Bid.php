@@ -14,4 +14,9 @@ class Bid extends Model
     protected $fillable = [
         'auction_id', 'title', 'body', 'offered_price',
     ];
+
+    public function user() 
+    {
+        return $this->belongsTo('App\User');
+    }    
 }

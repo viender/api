@@ -14,4 +14,24 @@ class Tag extends Model
     protected $fillable = [
         'name', 'description',
     ];
+
+    public function users() 
+    {
+        return $this->belongsToMany('App\User');
+    }
+
+    public function questions() 
+    {
+        return $this->morphedByMany('App\Question', 'taggable');
+    }
+
+    public function answers() 
+    {
+        return $this->morphedByMany('App\Answer', 'taggable');
+    }
+
+    public function auctions() 
+    {
+        return $this->morphedByMany('App\Auction', 'taggable');
+    }
 }
