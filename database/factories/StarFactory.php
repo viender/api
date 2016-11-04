@@ -24,6 +24,7 @@ $factory->define(App\Star::class, function (Faker\Generator $faker) {
         'user_id' => $faker->randomElement($users),
         'starable_type' => $faker->randomElement($starables),
         'starable_id' => function(array $me) {
+            $faker = Faker\Factory::create();
             return $faker->randomElement($me['starable_type']::all()->pluck('id')->toArray());
         },
         'count' => rand(1, 5),

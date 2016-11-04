@@ -18,13 +18,15 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
     
     $commentables = [
         'App\Question',
-        'App\Answer'
+        'App\Answer',
+        'App\Comment',
     ];
 
     return [
         'user_id' => $faker->randomElement($users),
         'commentable_type' => $faker->randomElement($commentables),
         'commentable_id' =>  function(array $me) {
+            $faker = Faker\Factory::create();
             return $faker->randomElement($me['commentable_type']::all()->pluck('id')->toArray());
         },
         'body' => implode(" ", $faker->paragraphs(3)),

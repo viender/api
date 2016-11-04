@@ -21,13 +21,13 @@ $factory->define(App\Address::class, function (Faker\Generator $faker) {
         'user_id' => $faker->randomElement($users),
         'street_id' => $faker->randomElement($streets),
         'city_id' => function(array $me) {
-            return App\Street::where('id', $me['street_id'])->first()->city()->id;
+            return App\Street::where('id', $me['street_id'])->first()->city()->first()->id;
         },
         'state_id' => function(array $me) {
-            return App\Street::where('id', $me['street_id'])->first()->state()->id;
+            return App\Street::where('id', $me['street_id'])->first()->state()->first()->id;
         },
         'country_id' => function(array $me) {
-            return App\Street::where('id', $me['street_id'])->first()->country()->id;
+            return App\Street::where('id', $me['street_id'])->first()->country()->first()->id;
         },
         'active' => $faker->randomElement([true, false]),
     ];

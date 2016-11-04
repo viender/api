@@ -26,6 +26,7 @@ $factory->define(App\Upvote::class, function (Faker\Generator $faker) {
         'user_id' => $faker->randomElement($users),
         'upvotable_type' => $faker->randomElement($upvotables),
         'upvotable_id' => function(array $me) {
+            $faker = Faker\Factory::create();
             return $faker->randomElement($me['upvotable_type']::all()->pluck('id')->toArray());
         },
     ];

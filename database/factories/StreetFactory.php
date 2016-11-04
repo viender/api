@@ -18,6 +18,6 @@ $factory->define(App\Street::class, function (Faker\Generator $faker) {
 
     return [
         'city_id' => $faker->randomElement($cities),
-        'name' => $faker->street,
+        'name' => $faker->streetAddress,
     ];
 });

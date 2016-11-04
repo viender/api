@@ -26,6 +26,7 @@ $factory->define(App\Downvote::class, function (Faker\Generator $faker) {
         'user_id' => $faker->randomElement($users),
         'downvotable_type' => $faker->randomElement($downvotables),
         'downvotable_id' => function(array $me) {
+            $faker = Faker\Factory::create();
             return $faker->randomElement($me['downvotable_type']::all()->pluck('id')->toArray());
         },
     ];

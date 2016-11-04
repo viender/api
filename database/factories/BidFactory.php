@@ -15,11 +15,11 @@
 $factory->define(App\Bid::class, function (Faker\Generator $faker) {
     
     $users = App\User::all()->pluck('id')->toArray();
-    $questions = App\Question::all()->pluck('id')->toArray();
+    $auctions = App\Auction::all()->pluck('id')->toArray();
 
     return [
         'user_id' => $faker->randomElement($users),
-        'question_id' => $faker->randomElement($questions),
+        'auction_id' => $faker->randomElement($auctions),
         'title' => $faker->sentence(),
         'body' => implode(" ", $faker->paragraphs(3)),
         'offered_price' => rand(50000, 500000),
