@@ -25,11 +25,6 @@ class Tag extends Model
         return $this->morphedByMany('App\Question', 'taggable');
     }
 
-    public function answers() 
-    {
-        return $this->morphedByMany('App\Answer', 'taggable');
-    }
-
     public function auctions() 
     {
         return $this->morphedByMany('App\Auction', 'taggable');
