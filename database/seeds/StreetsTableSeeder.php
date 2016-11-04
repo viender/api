@@ -11,6 +11,6 @@ class StreetsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Street::class, 1)->create();
     }
 }

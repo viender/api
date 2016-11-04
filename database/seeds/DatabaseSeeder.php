@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
         BidsTableSeeder::class,
         TagsTableSeeder::class,
         CommentsTableSeeder::class,
+        UpvotesTableSeeder::class,
+        DownvotesTableSeeder::class,
         StarsTableSeeder::class,
         CountriesTableSeeder::class,
         StatesTableSeeder::class,

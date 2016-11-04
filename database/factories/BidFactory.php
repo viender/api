@@ -13,12 +13,16 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Bid::class, function (Faker\Generator $faker) {
+    
+    $users = App\User::all()->pluck('id')->toArray();
+    $questions = App\Question::all()->pluck('id')->toArray();
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'gender' => $faker->randomElement($genders),
-        'remember_token' => str_random(10),
+        'user_id' => $faker->randomElement($users),
+        'question_id' => $faker->randomElement($questions),
+        'title' => $faker->sentence(),
+        'body' => implode(" ", $faker->paragraphs(3)),
+        'offered_price' => rand(50000, 500000),
+        'deal' => true,
     ];
 });

@@ -13,12 +13,20 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Comment::class, function (Faker\Generator $faker) {
+    
+    $users = App\User::all()->pluck('id')->toArray();
+    
+    $commentables = [
+        'App\Question',
+        'App\Answer'
+    ];
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'gender' => $faker->randomElement($genders),
-        'remember_token' => str_random(10),
+        'user_id' => $faker->randomElement($users),
+        'commentable_type' => $faker->randomElement($commentables),
+        'commentable_id' =>  function(array $me) {
+            return $faker->randomElement($me['commentable_type']::all()->pluck('id')->toArray());
+        },
+        'body' => implode(" ", $faker->paragraphs(3)),
     ];
 });

@@ -11,6 +11,6 @@ class AuctionsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Auction::class, 1)->create();
     }
 }

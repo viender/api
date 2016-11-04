@@ -25,7 +25,7 @@ class Address extends Model
         return $this->belongsTo('App\City');
     }
 
-    public function state()
+    public function state() 
     {
         return $this->belongsTo('App\State');
     }

@@ -13,10 +13,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Address::class, function (Faker\Generator $faker) {
+    
     $users = App\User::all()->pluck('id')->toArray();
-    $countries = App\Country::all()->pluck('id')->toArray();
-    $states = App\State::all()->pluck('id')->toArray();
-    $cities = App\City::all()->pluck('id')->toArray();
     $streets = App\Street::all()->pluck('id')->toArray();
 
     return [

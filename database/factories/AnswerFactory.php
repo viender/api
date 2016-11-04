@@ -13,12 +13,14 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Answer::class, function (Faker\Generator $faker) {
+    
+    $users = App\User::all()->pluck('id')->toArray();
+    $questions = App\Question::all()->pluck('id')->toArray();
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'gender' => $faker->randomElement($genders),
-        'remember_token' => str_random(10),
+        'user_id' => $faker->randomElement($users),
+        'question_id' => $faker->randomElement($questions),
+        'title' => '',
+        'body' => implode(" ", $faker->paragraphs(3)),
     ];
 });

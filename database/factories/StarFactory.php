@@ -14,11 +14,18 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Star::class, function (Faker\Generator $faker) {
 
+    $users = App\User::all()->pluck('id')->toArray();
+
+    $starables = [
+        'App\User',
+    ];
+
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'gender' => $faker->randomElement($genders),
-        'remember_token' => str_random(10),
+        'user_id' => $faker->randomElement($users),
+        'starable_type' => $faker->randomElement($starables),
+        'starable_id' => function(array $me) {
+            return $faker->randomElement($me['starable_type']::all()->pluck('id')->toArray());
+        },
+        'count' => rand(1, 5),
     ];
 });
