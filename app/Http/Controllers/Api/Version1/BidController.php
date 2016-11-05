@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Version1;
 
 use Illuminate\Http\Request;
 
-class AuctionController extends Controller
+class BidController extends ApiController
 {
     /**
      * Display a listing of the resource.

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Version1;
 
 use Illuminate\Http\Request;
 
-class StarController extends Controller
+class DownvoteController extends ApiController
 {
     /**
      * Display a listing of the resource.
