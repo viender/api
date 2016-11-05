@@ -27,11 +27,11 @@ class DatabaseSeeder extends Seeder
 
     public $seeders = [
         UsersTableSeeder::class,
+        TagsTableSeeder::class,
         QuestionsTableSeeder::class,
         AnswersTableSeeder::class,
         AuctionsTableSeeder::class,
         BidsTableSeeder::class,
-        TagsTableSeeder::class,
         CommentsTableSeeder::class,
         UpvotesTableSeeder::class,
         DownvotesTableSeeder::class,
@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         CountriesTableSeeder::class,
         StatesTableSeeder::class,
         CitiesTableSeeder::class,
-        StreetsTableSeeder::class,
+        // StreetsTableSeeder::class,
         AddressesTableSeeder::class,
     ];
 
