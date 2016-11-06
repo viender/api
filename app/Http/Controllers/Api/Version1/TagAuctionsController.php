@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api\Version1;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class BidController extends ApiController
+class TagAuctionsController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -5,75 +5,76 @@ use Illuminate\Http\Request;
 Route::group(['namespace' => 'Api\Version1', 'middleware' => 'auth:api'], function() {
 
     // Models
-    Route::resource('users', 'UserController');
-    Route::resource('stars', 'StarController');
-    Route::resource('addresses', 'AddressController');
-    Route::resource('countries', 'CountryController');
-    Route::resource('states', 'StateController');
-    Route::resource('cities', 'CityController');
-    Route::resource('streets', 'StreetController');
-    Route::resource('answers', 'AnswerController');
-    Route::resource('questions', 'QuestionController');
-    Route::resource('auctions', 'AuctionController');
-    Route::resource('bids', 'BidController');
-    Route::resource('comments', 'CommentController');
-    Route::resource('tags', 'TagController');
-    Route::resource('upvotes', 'UpvoteController');
-    Route::resource('downvotes', 'DownvoteController');
+    Route::resource('users', 'UsersController');
+    Route::resource('stars', 'StarsController');
+    Route::resource('addresses', 'AddressesController');
+    Route::resource('countries', 'CountriesController');
+    Route::resource('states', 'StatesController');
+    Route::resource('cities', 'CitiesController');
+    Route::resource('streets', 'StreetsController');
+    Route::resource('answers', 'AnswersController');
+    Route::resource('questions', 'QuestionsController');
+    Route::resource('auctions', 'AuctionsController');
+    Route::resource('bids', 'BidsController');
+    Route::resource('comments', 'CommentsController');
+    Route::resource('tags', 'TagsController');
+    Route::resource('upvotes', 'UpvotesController');
+    Route::resource('downvotes', 'DownvotesController');
 
 
     // Relationships
     // Relationships - Ask
-    Route::resource('users/{user}/questions', 'QuestionController');
-    Route::resource('users/{user}/answers', 'AnswerController');
-    Route::resource('questions/{question}/answers', 'AnswerController');
+    Route::resource('users.questions', 'UserQuestionsController');
+    Route::resource('users.answers', 'UserAnswersController');
+    Route::resource('questions.answers', 'QuestionAnswersController');
 
 
     // Relationships - Tag
-    Route::resource('users/{user}/tags', 'TagController');
-    Route::resource('questions/{question}/tags', 'TagController');
-    Route::resource('auctions/{auction}/tags', 'TagController');
-    Route::resource('tags/{tag}/users', 'UserController');
-    Route::resource('tags/{tag}/questions', 'QuestionController');
-    Route::resource('tags/{tag}/auctions', 'AuctionController');
+    Route::resource('users.tags', 'UserTagsController');
+    Route::resource('questions.tags', 'QuestionTagsController');
+    Route::resource('auctions.tags', 'AuctionTagsController');
+    
+    Route::resource('tags.users', 'TagUsersController');
+    Route::resource('tags.questions', 'TagQuestionsController');
+    Route::resource('tags.auctions', 'TagAuctionsController');
 
 
     // Relationships - Comment
-    Route::resource('users/{user}/comments', 'CommentController');
-    Route::resource('questions/{question}/comments', 'CommentController');
-    Route::resource('answers/{answer}/comments', 'CommentController');
-    Route::resource('comments/{comment_id}/comments', 'CommentController');
+    Route::resource('users.comments', 'UserCommentsController');
+    Route::resource('questions.comments', 'QuestionCommentsController');
+    Route::resource('answers.comments', 'AnswerCommentsController');
+    Route::resource('comments/{id}/comments', 'CommentCommentsController');
 
 
     // Relationships - Vote
-    Route::resource('users/{user}/upvotes', 'UpvoteController');
-    Route::resource('questions/{question}/upvotes', 'UpvoteController');
-    Route::resource('answers/{answer}/upvotes', 'UpvoteController');
-    Route::resource('comments/{comment}/upvotes', 'UpvoteController');
+    Route::resource('users.upvotes', 'UserUpvotesController');
+    Route::resource('questions.upvotes', 'QuestionUpvotesController');
+    Route::resource('answers.upvotes', 'AnswerUpvotesController');
+    Route::resource('comments.upvotes', 'CommentUpvotesController');
 
-    Route::resource('users/{user}/downvotes', 'DownvoteController');
-    Route::resource('questions/{question}/downvotes', 'DownvoteController');
-    Route::resource('answers/{answer}/downvotes', 'DownvoteController');
-    Route::resource('comments/{comment}/downvotes', 'DownvoteController');
+    Route::resource('users.downvotes', 'UserDownvotesController');
+    Route::resource('questions.downvotes', 'QuestionDownvotesController');
+    Route::resource('answers.downvotes', 'AnswerDownvotesController');
+    Route::resource('comments.downvotes', 'CommentDownvotesController');
 
 
     // Relationships - Tutor seeker
-    Route::resource('users/{user}/auctions', 'AuctionController');
-    Route::resource('users/{user}/bids', 'BidController');
-    Route::resource('auctions/{auction}/bids', 'BidController');
+    Route::resource('users.auctions', 'UserAuctionsController');
+    Route::resource('users.bids', 'UserBidsController');
+    Route::resource('auctions.bids', 'AuctionBidsController');
 
 
     // Relationships - Tutor rating
-    Route::resource('users/{user}/stars', 'StarController');
+    Route::resource('users.stars', 'UserStarsController');
 
 
     // Relationships - User address
-    Route::resource('users/{user}/addresses', 'AddressController');
-    Route::resource('countries/{country}/addresses', 'AddressController');
-    Route::resource('countries/{country}/states', 'StateController');
-    Route::resource('states/{state}/addresses', 'AddressController');
-    Route::resource('states/{state}/cities', 'CityController');
-    Route::resource('cities/{city}/addresses', 'AddressController');
-    Route::resource('cities/{city}/streets', 'StreetController');
-    Route::resource('streets/{street}/addresses', 'AddressController');
+    Route::resource('users.addresses', 'UserAddressesController');
+    Route::resource('countries.addresses', 'CountryAddressesController');
+    Route::resource('countries.states', 'CountryStatesController');
+    Route::resource('states.addresses', 'StateAddressesController');
+    Route::resource('states.cities', 'StateCitiesController');
+    Route::resource('cities.addresses', 'CityAddressesController');
+    Route::resource('cities.streets', 'CityStreetsController');
+    Route::resource('streets.addresses', 'StreetAddressesController');
 });

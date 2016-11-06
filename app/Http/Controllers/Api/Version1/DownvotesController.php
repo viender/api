@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Version1;
 
 use Illuminate\Http\Request;
 
-class StreetController extends ApiController
+class DownvotesController extends ApiController
 {
     /**
      * Display a listing of the resource.

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api\Version1;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class CityController extends ApiController
+class UserAddressesController extends Controller
 {
     /**
      * Display a listing of the resource.

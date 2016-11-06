@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api\Version1;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class StateController extends ApiController
+class QuestionTagsController extends Controller
 {
     /**
      * Display a listing of the resource.
