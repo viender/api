@@ -19,6 +19,9 @@ $factory->define(App\Question::class, function (Faker\Generator $faker) {
     return [
         'user_id' => $faker->randomElement($users),
         'title' => trim($faker->sentence(), '.').'?',
+        'slug' => function(array $me) {
+            return  App\Viender\Utilities\Text::clean($me['title']);
+        },
         'body' => implode(" ", $faker->paragraphs(3)),
     ];
 });
