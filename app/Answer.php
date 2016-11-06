@@ -14,16 +14,6 @@ class Answer extends Model
     protected $fillable = [
         'question_id', 'title', 'body',
     ];
-
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
     
     public function user() 
     {
