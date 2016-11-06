@@ -18,6 +18,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->name,
+        'username' => function(array $me) {
+            return App\Viender\Utilities\Text::clean($me['name']);
+        },
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'gender' => $faker->randomElement($genders),
