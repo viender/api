@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Api\Version1;
 use App\Answer;
 use App\Comment;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class AnswerCommentsController extends Controller
+class AnswerCommentsController extends ApiController
 {
     /**
      * Display a listing of the resource.

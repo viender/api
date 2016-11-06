@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Api\Version1;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class CommentCommentsController extends Controller
+class CommentCommentsController extends ApiController
 {
     /**
      * Display a listing of the resource.
