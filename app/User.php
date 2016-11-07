@@ -20,6 +20,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
