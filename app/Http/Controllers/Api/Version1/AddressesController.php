@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Address;
 use Illuminate\Http\Request;
 
 class AddressesController extends ApiController
@@ -13,7 +14,7 @@ class AddressesController extends ApiController
      */
     public function index()
     {
-        //
+        return Address::all();
     }
 
     /**
@@ -24,7 +25,9 @@ class AddressesController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        $address = Address::create($request->all());
+
+        return 'success';
     }
 
     /**
@@ -33,9 +36,11 @@ class AddressesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Address $address)
     {
-        //
+        return [
+            'data' => $address,
+        ];
     }
 
     /**
@@ -45,9 +50,13 @@ class AddressesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Address $address)
     {
-        //
+        return [
+            'message' => 'this is update',
+            'data' => $address,
+            'request' => $request->all(),
+        ];
     }
 
     /**
@@ -56,8 +65,12 @@ class AddressesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Address $address)
     {
-        //
+        return [
+            'message' => 'this is destroy',
+            'data' => $address,
+            'request' => $request->all(),
+        ];
     }
 }

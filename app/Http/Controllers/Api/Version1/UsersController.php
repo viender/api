@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class UsersController extends ApiController
@@ -13,7 +14,7 @@ class UsersController extends ApiController
      */
     public function index()
     {
-        //
+        return User::all();
     }
 
     /**
@@ -33,9 +34,9 @@ class UsersController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return $user;
     }
 
     /**
