@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Street;
 use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
@@ -22,7 +23,9 @@ class Country extends Model
 
     public function streets()
     {
-        $this->hasManyThrough('App\City', 'App\State')->hasManyThrough('App\Street', 'App\City');
+        return Street::whereHas('city', function($q) { 
+            $q->where('id', $this->id);
+        });
     }
 
     public function cities() 
