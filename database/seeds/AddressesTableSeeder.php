@@ -23,10 +23,6 @@ class AddressesTableSeeder extends Seeder
             App\Address::create([
                 'user_id' => $user->id,
                 'street_id' => $street->id,
-                'city_id' => $street->city_id,
-                'state_id' => $street->state()->first()->id,
-                'country_id' => $street->country()->first()->id,
-                'active' => $faker->randomElement([true, false]),
             ]);
         }
         // factory(App\Address::class, 1000)->create();
