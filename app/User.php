@@ -77,4 +77,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Star');
     }
+
+    public function address() 
+    {
+        return $this->hasOne('App\Address');
+    }
 }

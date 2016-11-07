@@ -15,6 +15,11 @@ class Address extends Model
         'country_id', 'state_id', 'city_id', 'street_id'
     ];
 
+    public function user() 
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function street() 
     {
         return $this->belongsTo('App\Street');
@@ -22,16 +27,16 @@ class Address extends Model
 
     public function city() 
     {
-        return $this->belongsTo('App\City');
+        return $this->street()->first()->city();
     }
 
     public function state() 
     {
-        return $this->belongsTo('App\State');
+        return $this->city()->first()->state();
     }
 
     public function country() 
     {
-        return $this->belongsTo('App\Country');
+        return $this->state()->first()->country();
     }
 }
