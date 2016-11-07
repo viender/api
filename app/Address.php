@@ -12,7 +12,7 @@ class Address extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'street_id',
+        'user_id', 'street_id', 'city_id', 'state_id', 'country_id',
     ];
 
     public function user() 
@@ -27,16 +27,16 @@ class Address extends Model
 
     public function city() 
     {
-        return $this->street()->first()->city();
+        return $this->street->city();
     }
 
     public function state() 
     {
-        return $this->city()->first()->state();
+        return $this->street->city->state();
     }
 
     public function country() 
     {
-        return $this->state()->first()->country();
+        return $this->street->city->state->country();
     }
 }
