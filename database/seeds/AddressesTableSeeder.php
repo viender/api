@@ -20,13 +20,14 @@ class AddressesTableSeeder extends Seeder
                 'name' => $faker->streetAddress,    
             ]);
 
-            $address = new App\Address;
-            $address->user_id = $user->id;
-            $address->street_id = $street->id;
-            $address->city_id = $street->city->id;
-            $address->state_id = $street->state->id;
-            $address->country_id = $street->country->id;
-            $address->save();
+            $address = [];
+            $address['user_id'] = $user->id;
+            $address['street_id'] = $street->id;
+            // $address['city_id'] = $street->city->id;
+            // $address['state_id'] = $street->state->id;
+            // $address['country_id'] = $street->country->id;
+
+            App\Address::create($address);
         }
         // factory(App\Address::class, 1000)->create();
     }
