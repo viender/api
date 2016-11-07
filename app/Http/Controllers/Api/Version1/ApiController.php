@@ -20,6 +20,7 @@ class ApiController extends Controller
 
     public function __construct()
     {
+        $this->middleware('auth:api')->except('index', 'show');
         $this->fractal  = new Manager();
     }
 
@@ -49,14 +50,15 @@ class ApiController extends Controller
 
     public function respond($resource, $header = []) 
     {
-        $data = $this->fractal->createData($resource)->toArray();
+        $data = is_array($resource) ? $resource :  $this->fractal->createData($resource)->toArray();
+
         return Response::json($data, $this->getStatusCode(), $header);
     }
 
-    public function respondWithError($message) 
+    public function respondWithMessage($title, $message) 
     {
         return $this->respond([
-            'error' => [
+            $title => [
                 'message' => $message,
                 'status_code' => $this->getStatusCode(),
             ]
@@ -65,7 +67,12 @@ class ApiController extends Controller
 
     public function respondNotFound($message = "Not found!") 
     {
-        return $this->setStatusCode(404)->respondWithError($message);
+        return $this->setStatusCode(404)->respondWithMessage('error', $message);
+    }
+
+    public function respondCreated($message = "Created!") 
+    {
+        return $this->setStatusCode(201)->respondWithMessage('success', $message);
     }
 
     public function respondWithPagination($paginator, $transformer) 

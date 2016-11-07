@@ -2,9 +2,19 @@
 
 use Illuminate\Http\Request;
 
-Route::group(['namespace' => 'Api\Version1', 'middleware' => 'auth:api'], function() {
+Route::group(['namespace' => 'Api\Version1'], function() {
 
     // Models
+    
+    /**
+     * @api {GET} /users Fetch users
+     * @apiName UserIndex
+     * @apiGroup User
+     * 
+     * @apiExample {curl} Example usage:
+     *     curl -i http://api.viender.dev/users
+     *    
+     */
     Route::resource('users', 'UsersController', ['except' => ['create', 'edit']]);
     Route::resource('stars', 'StarsController', ['except' => ['create', 'edit']]);
     Route::resource('addresses', 'AddressesController', ['except' => ['create', 'edit']]);
