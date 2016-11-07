@@ -22,7 +22,7 @@ class City extends Model
 
     public function streets()
     {
-        return $this->hasMany('App\Steet');
+        return $this->hasMany('App\Street');
     }
 
     public function state() 
