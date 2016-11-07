@@ -47,8 +47,9 @@ class ApiController extends Controller
         return $this;
     }
 
-    public function respond($data, $header = []) 
+    public function respond($resource, $header = []) 
     {
+        $data = $this->fractal->createData($resource)->toArray();
         return Response::json($data, $this->getStatusCode(), $header);
     }
 
@@ -73,7 +74,7 @@ class ApiController extends Controller
         $resource = new Collection($items, $transformer);
         $resource->setPaginator(new IlluminatePaginatorAdapter($paginator));
 
-        return $this->respond($this->fractal->createData($resource)->toArray());
+        return $this->respond($resource);
     }
 
 }
