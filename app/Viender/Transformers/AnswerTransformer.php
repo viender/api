@@ -26,7 +26,6 @@ class AnswerTransformer extends TransformerAbstract
      */
     public function transform(Answer $answer)
     {
-
         return [
             'id'        => (int) $answer->id,
             'title'     => $answer->title,
