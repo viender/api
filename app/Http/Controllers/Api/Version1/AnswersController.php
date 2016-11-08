@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Answer;
 use Illuminate\Http\Request;
+use App\Viender\Transformers\AnswerTransformer;
 
 class AnswersController extends ApiController
 {
@@ -13,7 +15,8 @@ class AnswersController extends ApiController
      */
     public function index()
     {
-        //
+        $paginator = Answer::paginate();
+        return $this->respondWithPagination($paginator, new AnswerTransformer);
     }
 
     /**
@@ -24,7 +27,8 @@ class AnswersController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        Answer::create($request->all());
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +37,9 @@ class AnswersController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Answer $answer)
     {
-        //
+        return $this->respond(new Item($answer, new AddressTransformer));
     }
 
     /**
@@ -45,9 +49,10 @@ class AnswersController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Answer $answer)
     {
-        //
+        $answer->update($request->all());
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +61,9 @@ class AnswersController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Answer $answer)
     {
-        //
+        $answer->delete();
+        return $this->respondDeleted();
     }
 }
