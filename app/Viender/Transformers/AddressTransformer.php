@@ -7,6 +7,11 @@ use League\Fractal\TransformerAbstract;
 
 class AddressTransformer extends TransformerAbstract
 {
+    /**
+     * Turn this item object into a generic array
+     *
+     * @return array
+     */
     public function transform(Address $address)
     {
         return [
