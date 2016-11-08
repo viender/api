@@ -39,4 +39,12 @@ class Address extends Model
     {
         return $this->street->city->state->country();
     }
+
+    public static function createWithStreet(array $request) 
+    {
+        $street = Street::create($request);
+        $address = new Address($request);
+        $address->street_id = $street->id;
+        $address->save();
+    }
 }
