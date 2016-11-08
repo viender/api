@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Viender\Transformers\Traits;
+namespace App\Viender\Transformers\Version1\Traits;
 
 use App\Viender\Transformers\UserTransformer;
 

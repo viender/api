@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Viender\Transformers;
+namespace App\Viender\Transformers\Version1;
 
 use App\Auction;
 use App\Viender\Transformers\Traits\AuthorIncludable;
