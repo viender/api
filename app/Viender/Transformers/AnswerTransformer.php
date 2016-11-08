@@ -4,9 +4,12 @@ namespace App\Viender\Transformers;
 
 use App\Answer;
 use League\Fractal\TransformerAbstract;
+use App\Viender\Transformers\Traits\AuthorIncludable;
 
 class AnswerTransformer extends TransformerAbstract
 {
+    use AuthorIncludable;
+
     /**
      * List of resources possible to include
      *
@@ -44,17 +47,4 @@ class AnswerTransformer extends TransformerAbstract
             ],
         ];
     }
-
-    /**
-     * Include Author
-     *
-     * @return League\Fractal\ItemResource
-     */
-    public function includeAuthor(Answer $answer)
-    {
-        $author = $answer->user;
-
-        return $this->item($author, new UserTransformer);
-    }
-
 }
