@@ -26,12 +26,12 @@ class BidTransformer extends Transformer
     public function transform(Bid $bid)
     {
         return [
-            'id'        => (int) $bid->id,
-            'title'     => $bid->title,
-            'body'      => $bid->body,
-            'price'     => $bid->price, 
-            'status'    => $bid->status,
-            'links'   => [
+            'id'            => (int) $bid->id,
+            'title'         => $bid->title,
+            'body'          => $bid->body,
+            'offered_price' => (int) $bid->offered_price, 
+            'deal'          => (boolean) $bid->deal,
+            'links'         => [
                 [
                     'rel' => 'self',
                     'uri' => url('/bids') . '/' . $bid->id,
@@ -39,6 +39,10 @@ class BidTransformer extends Transformer
                 [
                     'rel' => 'author',
                     'uri' => url('/users') . '/' . $bid->user->username,
+                ],
+                [
+                    'rel' => 'auction',
+                    'uri' => url('/auctions') . '/' . $bid->auction->slug,
                 ],
             ],
         ];
