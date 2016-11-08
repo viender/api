@@ -2,7 +2,7 @@
 
 namespace App\Viender\Transformers\Version1\Traits;
 
-use App\Viender\Transformers\UserTransformer;
+use App\Viender\Transformers\Version1\UserTransformer;
 
 trait AuthorIncludable
 {

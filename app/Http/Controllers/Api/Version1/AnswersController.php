@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api\Version1;
 
 use App\Answer;
 use Illuminate\Http\Request;
-use App\Viender\Transformers\AnswerTransformer;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\AnswerTransformer;
 
 class AnswersController extends ApiController
 {
@@ -39,7 +40,7 @@ class AnswersController extends ApiController
      */
     public function show(Answer $answer)
     {
-        return $this->respond(new Item($answer, new AddressTransformer));
+        return $this->respond(new Item($answer, new AnswerTransformer));
     }
 
     /**

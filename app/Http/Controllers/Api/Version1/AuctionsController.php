@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Version1;
 use App\Auction;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use App\Viender\Transformers\AuctionTransformer;
+use App\Viender\Transformers\Version1\AuctionTransformer;
 
 class AuctionsController extends ApiController
 {
