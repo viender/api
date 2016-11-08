@@ -32,7 +32,7 @@ class AddressesController extends ApiController
      */
     public function index()
     {
-        $paginator = Address::with('street.city.state.country')->paginate();
+        $paginator = Address::paginate();
         return $this->respondWithPagination($paginator, new AddressTransformer);
     }
 
