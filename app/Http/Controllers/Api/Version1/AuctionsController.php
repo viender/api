@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\Version1;
 
 use App\Auction;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\AuctionTransformer;
 
 class AuctionsController extends ApiController
 {
@@ -38,7 +40,7 @@ class AuctionsController extends ApiController
      */
     public function show(Auction $auction)
     {
-        return $this->respond(new Item($auction, new AddressTransformer));
+        return $this->respond(new Item($auction, new AuctionTransformer));
     }
 
     /**
