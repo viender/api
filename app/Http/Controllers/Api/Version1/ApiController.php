@@ -55,24 +55,32 @@ class ApiController extends Controller
         return Response::json($data, $this->getStatusCode(), $header);
     }
 
-    public function respondWithMessage($title, $message) 
+    public function respondWithMessage($message) 
     {
         return $this->respond([
-            $title => [
-                'message' => $message,
-                'status_code' => $this->getStatusCode(),
-            ]
+            'message' => $message,
+            'status_code' => $this->getStatusCode(),
         ]);
     }
 
     public function respondNotFound($message = "Not found!") 
     {
-        return $this->setStatusCode(404)->respondWithMessage('error', $message);
+        return $this->setStatusCode(404)->respondWithMessage($message);
     }
 
     public function respondCreated($message = "Created!") 
     {
-        return $this->setStatusCode(201)->respondWithMessage('success', $message);
+        return $this->respondWithMessage($message);
+    }
+
+    public function respondUpdated($message = "Updated!") 
+    {
+        return $this->respondWithMessage($message);
+    }
+
+    public function respondDeleted($message = "Deleted!") 
+    {
+        return $this->respondWithMessage($message);
     }
 
     public function respondWithPagination($paginator, $transformer) 
