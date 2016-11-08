@@ -2,11 +2,10 @@
 
 namespace App\Viender\Transformers;
 
-use App\Answer;
-use League\Fractal\TransformerAbstract;
+use App\Auction;
 use App\Viender\Transformers\Traits\AuthorIncludable;
 
-class AnswerTransformer extends TransformerAbstract
+class AuctionTransformer extends Transformer
 {
     use AuthorIncludable;
 
@@ -24,24 +23,22 @@ class AnswerTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transform(Answer $answer)
+    public function transform(Auction $auction)
     {
         return [
-            'id'        => (int) $answer->id,
-            'title'     => $answer->title,
-            'body'      => $answer->body,
+            'id'        => (int) $auction->id,
+            'title'     => $auction->title,
+            'body'      => $auction->body,
+            'price'     => $auction->price, 
+            'status'    => $auction->status,
             'links'   => [
                 [
                     'rel' => 'self',
-                    'uri' => url('/answers') . '/' . $answer->id,
+                    'uri' => url('/auctions') . '/' . $auction->slug,
                 ],
                 [
                     'rel' => 'author',
-                    'uri' => url('/users') . '/' . $answer->user->username,
-                ],
-                [
-                    'rel' => 'question',
-                    'uri' => url('/questions') . '/' . $answer->question->slug,
+                    'uri' => url('/users') . '/' . $auction->user->username,
                 ],
             ],
         ];

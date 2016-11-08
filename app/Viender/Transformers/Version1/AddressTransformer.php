@@ -3,9 +3,8 @@
 namespace App\Viender\Transformers;
 
 use App\Address;
-use League\Fractal\TransformerAbstract;
 
-class AddressTransformer extends TransformerAbstract
+class AddressTransformer extends Transformer
 {
     /**
      * Turn this item object into a generic array

@@ -13,7 +13,8 @@ class BidsController extends ApiController
      */
     public function index()
     {
-        //
+        $paginator = Bid::paginate();
+        return $this->respondWithPagination($paginator, new BidTransformer);
     }
 
     /**
@@ -24,7 +25,8 @@ class BidsController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        Bid::create($request->all());
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +35,9 @@ class BidsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Bid $bid)
     {
-        //
+        return $this->respond(new Item($bid, new BidTransformer));
     }
 
     /**
@@ -45,9 +47,10 @@ class BidsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Bid $bid)
     {
-        //
+        $bid->update($request->all());
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +59,9 @@ class BidsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Bid $bid)
     {
-        //
+        $bid->delete();
+        return $this->respondDeleted();
     }
 }
