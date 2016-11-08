@@ -18,5 +18,10 @@ class Bid extends Model
     public function user() 
     {
         return $this->belongsTo('App\User');
-    }    
+    }
+
+    public function Auction() 
+    {
+        return $this->belongsTo('App\Auction');
+    }
 }
