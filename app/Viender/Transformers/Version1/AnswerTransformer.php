@@ -3,7 +3,7 @@
 namespace App\Viender\Transformers\Version1;
 
 use App\Answer;
-use App\Viender\Transformers\Traits\AuthorIncludable;
+use App\Viender\Transformers\Version1\Traits\AuthorIncludable;
 
 class AnswerTransformer extends Transformer
 {
