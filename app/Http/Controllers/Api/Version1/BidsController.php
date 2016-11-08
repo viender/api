@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Bid;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\BidTransformer;
 
 class BidsController extends ApiController
 {
