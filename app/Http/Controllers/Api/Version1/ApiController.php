@@ -22,6 +22,9 @@ class ApiController extends Controller
     {
         $this->middleware('auth:api')->except('index', 'show');
         $this->fractal  = new Manager();
+        if (isset($_GET['with'])) {
+            $this->fractal->parseIncludes($_GET['with']);
+        }
     }
 
     /**
@@ -51,7 +54,6 @@ class ApiController extends Controller
     public function respond($resource, $header = []) 
     {
         $data = is_array($resource) ? $resource :  $this->fractal->createData($resource)->toArray();
-
         return Response::json($data, $this->getStatusCode(), $header);
     }
 
