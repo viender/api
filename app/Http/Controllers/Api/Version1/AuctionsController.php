@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Auction;
 use Illuminate\Http\Request;
 
 class AuctionsController extends ApiController
@@ -13,7 +14,8 @@ class AuctionsController extends ApiController
      */
     public function index()
     {
-        //
+        $paginator = Auction::paginate();
+        return $this->respondWithPagination($paginator, new AuctionTransformer);
     }
 
     /**
@@ -24,7 +26,8 @@ class AuctionsController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        Auction::create($request->all());
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +36,9 @@ class AuctionsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Auction $auction)
     {
-        //
+        return $this->respond(new Item($auction, new AddressTransformer));
     }
 
     /**
@@ -45,9 +48,10 @@ class AuctionsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Auction $auction)
     {
-        //
+        $auction->update($request->all());
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +60,9 @@ class AuctionsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Auction $auction)
     {
-        //
+        $auction->delete();
+        return $this->respondDeleted();
     }
 }
