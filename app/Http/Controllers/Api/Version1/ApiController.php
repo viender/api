@@ -7,6 +7,7 @@ use League\Fractal\Manager;
 use App\Http\Controllers\Controller;
 use League\Fractal\Resource\Collection;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use League\Fractal\Serializer\ArraySerializer;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -24,6 +25,7 @@ class ApiController extends Controller
     {
         $this->middleware('auth:api')->except('index', 'show');
         $this->fractal  = new Manager();
+        $this->fractal->setSerializer(new ArraySerializer());
         if (isset($_GET['with'])) {
             $this->fractal->parseIncludes($_GET['with']);
         }
