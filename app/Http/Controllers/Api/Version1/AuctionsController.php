@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Viender\Transformers\Version1\AuctionTransformer;
 use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
-class CitiesController extends ApiController
+class AuctionsController extends ApiController
 {
     public function __construct()
     {
