@@ -4,11 +4,17 @@ namespace App\Http\Controllers\Api\Version1;
 
 use App\Auction;
 use Illuminate\Http\Request;
-use League\Fractal\Resource\Item;
 use App\Viender\Transformers\Version1\AuctionTransformer;
+use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
-class AuctionsController extends ApiController
+class CitiesController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->handler = new BasicHandler($this, Auction::class, AuctionTransformer::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +22,7 @@ class AuctionsController extends ApiController
      */
     public function index()
     {
-        $paginator = Auction::paginate();
-        return $this->respondWithPagination($paginator, new AuctionTransformer);
+        return $this->handler->index();
     }
 
     /**
@@ -28,8 +33,7 @@ class AuctionsController extends ApiController
      */
     public function store(Request $request)
     {
-        Auction::create($request->all());
-        return $this->respondCreated();
+        return $this->handler->store($request);
     }
 
     /**
@@ -40,7 +44,7 @@ class AuctionsController extends ApiController
      */
     public function show(Auction $auction)
     {
-        return $this->respond(new Item($auction, new AuctionTransformer));
+        return $this->handler->show($auction);
     }
 
     /**
@@ -52,8 +56,7 @@ class AuctionsController extends ApiController
      */
     public function update(Request $request, Auction $auction)
     {
-        $auction->update($request->all());
-        return $this->respondUpdated();
+        return $this->handler->update($request, $auction);
     }
 
     /**
@@ -64,7 +67,6 @@ class AuctionsController extends ApiController
      */
     public function destroy(Auction $auction)
     {
-        $auction->delete();
-        return $this->respondDeleted();
+        return $this->handler->destroy($auction);
     }
 }

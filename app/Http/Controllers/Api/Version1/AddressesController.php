@@ -4,11 +4,17 @@ namespace App\Http\Controllers\Api\Version1;
 
 use App\Address;
 use Illuminate\Http\Request;
-use League\Fractal\Resource\Item;
 use App\Viender\Transformers\Version1\AddressTransformer;
+use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
 class AddressesController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->handler = new BasicHandler($this, Address::class, AddressTransformer::class);
+    }
+
     /** 
      * @api {get} /addresses Get Addresses
      * @apiName AddressIndex
@@ -32,8 +38,7 @@ class AddressesController extends ApiController
      */
     public function index()
     {
-        $paginator = Address::paginate();
-        return $this->respondWithPagination($paginator, new AddressTransformer);
+        return $this->handler->index();
     }
 
     /**
@@ -88,7 +93,7 @@ class AddressesController extends ApiController
      */
     public function show(Address $address)
     {
-        return $this->respond(new Item($address, new AddressTransformer));
+        return $this->handler->show($address);
     }
 
     /**
@@ -115,8 +120,7 @@ class AddressesController extends ApiController
      */
     public function update(Request $request, Address $address)
     {
-        $address->update($request->all());
-        return $this->respondUpdated();
+        return $this->handler->update($request, $address);
     }
 
     /**
@@ -138,7 +142,6 @@ class AddressesController extends ApiController
      */
     public function destroy(Address $address)
     {
-        $address->delete();
-        return $this->respondDeleted();
+        return $this->handler->destroy($address);
     }
 }

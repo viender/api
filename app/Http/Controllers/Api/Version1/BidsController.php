@@ -4,11 +4,17 @@ namespace App\Http\Controllers\Api\Version1;
 
 use App\Bid;
 use Illuminate\Http\Request;
-use League\Fractal\Resource\Item;
 use App\Viender\Transformers\Version1\BidTransformer;
+use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
-class BidsController extends ApiController
+class CitiesController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->handler = new BasicHandler($this, Bid::class, BidTransformer::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +22,7 @@ class BidsController extends ApiController
      */
     public function index()
     {
-        $paginator = Bid::paginate();
-        return $this->respondWithPagination($paginator, new BidTransformer);
+        return $this->handler->index();
     }
 
     /**
@@ -28,8 +33,7 @@ class BidsController extends ApiController
      */
     public function store(Request $request)
     {
-        Bid::create($request->all());
-        return $this->respondCreated();
+        return $this->handler->store($request);
     }
 
     /**
@@ -40,7 +44,7 @@ class BidsController extends ApiController
      */
     public function show(Bid $bid)
     {
-        return $this->respond(new Item($bid, new BidTransformer));
+        return $this->handler->show($bid);
     }
 
     /**
@@ -52,8 +56,7 @@ class BidsController extends ApiController
      */
     public function update(Request $request, Bid $bid)
     {
-        $bid->update($request->all());
-        return $this->respondUpdated();
+        return $this->handler->update($request, $bid);
     }
 
     /**
@@ -64,7 +67,6 @@ class BidsController extends ApiController
      */
     public function destroy(Bid $bid)
     {
-        $bid->delete();
-        return $this->respondDeleted();
+        return $this->handler->destroy($bid);
     }
 }

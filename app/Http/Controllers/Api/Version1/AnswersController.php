@@ -4,11 +4,17 @@ namespace App\Http\Controllers\Api\Version1;
 
 use App\Answer;
 use Illuminate\Http\Request;
-use League\Fractal\Resource\Item;
 use App\Viender\Transformers\Version1\AnswerTransformer;
+use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
-class AnswersController extends ApiController
+class CitiesController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->handler = new BasicHandler($this, Answer::class, AnswerTransformer::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +22,7 @@ class AnswersController extends ApiController
      */
     public function index()
     {
-        $paginator = Answer::paginate();
-        return $this->respondWithPagination($paginator, new AnswerTransformer);
+        return $this->handler->index();
     }
 
     /**
@@ -28,8 +33,7 @@ class AnswersController extends ApiController
      */
     public function store(Request $request)
     {
-        Answer::create($request->all());
-        return $this->respondCreated();
+        return $this->handler->store($request);
     }
 
     /**
@@ -40,7 +44,7 @@ class AnswersController extends ApiController
      */
     public function show(Answer $answer)
     {
-        return $this->respond(new Item($answer, new AnswerTransformer));
+        return $this->handler->show($answer);
     }
 
     /**
@@ -52,8 +56,7 @@ class AnswersController extends ApiController
      */
     public function update(Request $request, Answer $answer)
     {
-        $answer->update($request->all());
-        return $this->respondUpdated();
+        return $this->handler->update($request, $answer);
     }
 
     /**
@@ -64,7 +67,6 @@ class AnswersController extends ApiController
      */
     public function destroy(Answer $answer)
     {
-        $answer->delete();
-        return $this->respondDeleted();
+        return $this->handler->destroy($answer);
     }
 }
