@@ -2,47 +2,43 @@
 
 namespace App\Viender\Transformers\Version1;
 
-use App\Answer;
+use App\Question;
 use App\Viender\Transformers\Version1\Traits\OwnerIncludable;
 
-class AnswerTransformer extends Transformer
+class QuestionTransformer extends Transformer
 {
     use OwnerIncludable;
-
+    
     /**
      * List of resources possible to include
      *
      * @var array
      */
     protected $availableIncludes = [
-        'owner'
+        'owner',
     ];
-
+    
     /**
      * Turn this item object into a generic array
      *
      * @return array
      */
-    public function transform(Answer $answer)
+    public function transform(Question $question)
     {
         return [
-            'id'        => (int) $answer->id,
-            'title'     => $answer->title,
-            'body'      => $answer->body,
+            'id'        => (int) $question->id,
+            'title'     => $question->title,
+            'body'      => $question->body,
             'links'   => [
                 [
                     'rel' => 'self',
-                    'uri' => url('/answers') . '/' . $answer->id,
+                    'uri' => url('/questions') . '/' . $question->slug,
                 ],
                 [
                     'rel' => 'author',
-                    'uri' => url('/users') . '/' . $answer->user->username,
+                    'uri' => url('/users') . '/' . $question->user->username,
                 ],
-                [
-                    'rel' => 'question',
-                    'uri' => url('/questions') . '/' . $answer->question->slug,
-                ],
-            ],
+            ]            
         ];
     }
 }

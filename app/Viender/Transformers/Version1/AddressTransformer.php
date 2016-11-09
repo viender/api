@@ -3,9 +3,21 @@
 namespace App\Viender\Transformers\Version1;
 
 use App\Address;
+use App\Viender\Transformers\Version1\Traits\OwnerIncludable;
 
 class AddressTransformer extends Transformer
 {
+    use OwnerIncludable;
+    
+    /**
+     * List of resources possible to include
+     *
+     * @var array
+     */
+    protected $availableIncludes = [
+        'owner'
+    ];
+    
     /**
      * Turn this item object into a generic array
      *

@@ -22,7 +22,7 @@ class UserTransformer extends Transformer
             'links'     => [
                 [
                     'rel' => 'self',
-                    'uri' => url('/users') . '/' . $user->id,
+                    'uri' => url('/users') . '/' . $user->username,
                 ]
             ],
         ];

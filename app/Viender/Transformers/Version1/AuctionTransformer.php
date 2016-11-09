@@ -3,11 +3,11 @@
 namespace App\Viender\Transformers\Version1;
 
 use App\Auction;
-use App\Viender\Transformers\Version1\Traits\AuthorIncludable;
+use App\Viender\Transformers\Version1\Traits\OwnerIncludable;
 
 class AuctionTransformer extends Transformer
 {
-    use AuthorIncludable;
+    use OwnerIncludable;
 
     /**
      * List of resources possible to include
@@ -15,7 +15,7 @@ class AuctionTransformer extends Transformer
      * @var array
      */
     protected $availableIncludes = [
-        'author'
+        'owner'
     ];
 
     /**

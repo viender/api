@@ -4,17 +4,17 @@ namespace App\Viender\Transformers\Version1\Traits;
 
 use App\Viender\Transformers\Version1\UserTransformer;
 
-trait AuthorIncludable
+trait OwnerIncludable
 {
     /**
-     * Include Author
+     * Include Owner
      *
      * @return League\Fractal\ItemResource
      */
-    public function includeAuthor($item)
+    public function includeOwner($item)
     {
-        $author = $item->user;
+        $owner = $item->user;
 
-        return $this->item($author, new UserTransformer);
+        return $this->item($owner, new UserTransformer);
     }
 }
