@@ -14,6 +14,8 @@ use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class ApiController extends Controller
 {
+    protected $handler;
+    
     protected $statusCode = 200;
 
     protected $fractal;
