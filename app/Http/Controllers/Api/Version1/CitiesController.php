@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\City;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\CityTransformer;
 
 class CitiesController extends ApiController
 {
@@ -13,7 +16,8 @@ class CitiesController extends ApiController
      */
     public function index()
     {
-        //
+        $paginator = City::paginate();
+        return $this->respondWithPagination($paginator, new CityTransformer);
     }
 
     /**
@@ -24,7 +28,8 @@ class CitiesController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        City::create($request->all());
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +38,9 @@ class CitiesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(City $city)
     {
-        //
+        return $this->respond(new Item($city, new CityTransformer));
     }
 
     /**
@@ -45,9 +50,10 @@ class CitiesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, City $city)
     {
-        //
+        $city->update($request->all());
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +62,9 @@ class CitiesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(City $city)
     {
-        //
+        $city->delete();
+        return $this->respondDeleted();
     }
 }
