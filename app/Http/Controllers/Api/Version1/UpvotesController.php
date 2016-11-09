@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Upvote;
 use Illuminate\Http\Request;
+use App\Viender\Transformers\Version1\UpvoteTransformer;
+use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
 class UpvotesController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->handler = new BasicHandler($this, Upvote::class, UpvoteTransformer::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,7 @@ class UpvotesController extends ApiController
      */
     public function index()
     {
-        //
+        return $this->handler->index();
     }
 
     /**
@@ -24,7 +33,7 @@ class UpvotesController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        return $this->handler->store($request);
     }
 
     /**
@@ -33,9 +42,9 @@ class UpvotesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Upvote $upvote)
     {
-        //
+        return $this->handler->show($upvote);
     }
 
     /**
@@ -45,9 +54,9 @@ class UpvotesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Upvote $upvote)
     {
-        //
+        return $this->handler->update($request, $upvote);
     }
 
     /**
@@ -56,8 +65,8 @@ class UpvotesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Upvote $upvote)
     {
-        //
+        return $this->handler->destroy($upvote);
     }
 }

@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Question;
 use Illuminate\Http\Request;
+use App\Viender\Transformers\Version1\QuestionTransformer;
+use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
 class QuestionsController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->handler = new BasicHandler($this, Question::class, QuestionTransformer::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,7 @@ class QuestionsController extends ApiController
      */
     public function index()
     {
-        //
+        return $this->handler->index();
     }
 
     /**
@@ -24,7 +33,7 @@ class QuestionsController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        return $this->handler->store($request);
     }
 
     /**
@@ -33,9 +42,9 @@ class QuestionsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Question $question)
     {
-        //
+        return $this->handler->show($question);
     }
 
     /**
@@ -45,9 +54,9 @@ class QuestionsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question)
     {
-        //
+        return $this->handler->update($request, $question);
     }
 
     /**
@@ -56,8 +65,8 @@ class QuestionsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question)
     {
-        //
+        return $this->handler->destroy($question);
     }
 }

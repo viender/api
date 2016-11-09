@@ -4,9 +4,17 @@ namespace App\Http\Controllers\Api\Version1;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Viender\Transformers\Version1\UserTransformer;
+use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
 class UsersController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->handler = new BasicHandler($this, User::class, UserTransformer::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,7 @@ class UsersController extends ApiController
      */
     public function index()
     {
-        return User::all();
+        return $this->handler->index();
     }
 
     /**
@@ -25,7 +33,7 @@ class UsersController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        return $this->handler->store($request);
     }
 
     /**
@@ -36,7 +44,7 @@ class UsersController extends ApiController
      */
     public function show(User $user)
     {
-        return $user;
+        return $this->handler->show($user);
     }
 
     /**
@@ -46,9 +54,9 @@ class UsersController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        return $this->handler->update($request, $user);
     }
 
     /**
@@ -57,8 +65,8 @@ class UsersController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        return $this->handler->destroy($user);
     }
 }

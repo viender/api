@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Street;
 use Illuminate\Http\Request;
+use App\Viender\Transformers\Version1\StreetTransformer;
+use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
 class StreetsController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->handler = new BasicHandler($this, Street::class, StreetTransformer::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,7 @@ class StreetsController extends ApiController
      */
     public function index()
     {
-        //
+        return $this->handler->index();
     }
 
     /**
@@ -24,7 +33,7 @@ class StreetsController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        return $this->handler->store($request);
     }
 
     /**
@@ -33,9 +42,9 @@ class StreetsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Street $street)
     {
-        //
+        return $this->handler->show($street);
     }
 
     /**
@@ -45,9 +54,9 @@ class StreetsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Street $street)
     {
-        //
+        return $this->handler->update($request, $street);
     }
 
     /**
@@ -56,8 +65,8 @@ class StreetsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Street $street)
     {
-        //
+        return $this->handler->destroy($street);
     }
 }

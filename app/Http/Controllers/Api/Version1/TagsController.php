@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Tag;
 use Illuminate\Http\Request;
+use App\Viender\Transformers\Version1\TagTransformer;
+use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
 class TagsController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->handler = new BasicHandler($this, Tag::class, TagTransformer::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,7 @@ class TagsController extends ApiController
      */
     public function index()
     {
-        //
+        return $this->handler->index();
     }
 
     /**
@@ -24,7 +33,7 @@ class TagsController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        return $this->handler->store($request);
     }
 
     /**
@@ -33,9 +42,9 @@ class TagsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tag $tag)
     {
-        //
+        return $this->handler->show($tag);
     }
 
     /**
@@ -45,9 +54,9 @@ class TagsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tag $tag)
     {
-        //
+        return $this->handler->update($request, $tag);
     }
 
     /**
@@ -56,8 +65,8 @@ class TagsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        //
+        return $this->handler->destroy($tag);
     }
 }

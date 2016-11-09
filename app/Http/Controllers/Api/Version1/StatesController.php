@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\State;
 use Illuminate\Http\Request;
+use App\Viender\Transformers\Version1\StateTransformer;
+use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
 class StatesController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->handler = new BasicHandler($this, State::class, StateTransformer::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,7 @@ class StatesController extends ApiController
      */
     public function index()
     {
-        //
+        return $this->handler->index();
     }
 
     /**
@@ -24,7 +33,7 @@ class StatesController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        return $this->handler->store($request);
     }
 
     /**
@@ -33,9 +42,9 @@ class StatesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(State $state)
     {
-        //
+        return $this->handler->show($state);
     }
 
     /**
@@ -45,9 +54,9 @@ class StatesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, State $state)
     {
-        //
+        return $this->handler->update($request, $state);
     }
 
     /**
@@ -56,8 +65,8 @@ class StatesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(State $state)
     {
-        //
+        return $this->handler->destroy($state);
     }
 }

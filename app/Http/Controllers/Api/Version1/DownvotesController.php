@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Downvote;
 use Illuminate\Http\Request;
+use App\Viender\Transformers\Version1\DownvoteTransformer;
+use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
 class DownvotesController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->handler = new BasicHandler($this, Downvote::class, DownvoteTransformer::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,7 @@ class DownvotesController extends ApiController
      */
     public function index()
     {
-        //
+        return $this->handler->index();
     }
 
     /**
@@ -24,7 +33,7 @@ class DownvotesController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        return $this->handler->store($request);
     }
 
     /**
@@ -33,9 +42,9 @@ class DownvotesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Downvote $downvote)
     {
-        //
+        return $this->handler->show($downvote);
     }
 
     /**
@@ -45,9 +54,9 @@ class DownvotesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Downvote $downvote)
     {
-        //
+        return $this->handler->update($request, $downvote);
     }
 
     /**
@@ -56,8 +65,8 @@ class DownvotesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Downvote $downvote)
     {
-        //
+        return $this->handler->destroy($downvote);
     }
 }
