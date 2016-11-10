@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\City;
+use App\Address;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\AddressTransformer;
 
 class CityAddressesController extends ApiController
 {
@@ -11,9 +15,10 @@ class CityAddressesController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(City $city)
     {
-        //
+        $paginator = $city->addresses()->paginate();
+        return $this->respondWithPagination($paginator, new AddressTransformer);
     }
 
     /**
@@ -22,9 +27,10 @@ class CityAddressesController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, City $city)
     {
-        //
+        $city->addresses()->save(new Address($request->all()));
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +39,10 @@ class CityAddressesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(City $city, $address)
     {
-        //
+        $address = $city->addresses()->findOrFail($address);
+        return $this->respond(new Item($address, new AddressTransformer));
     }
 
     /**
@@ -45,9 +52,11 @@ class CityAddressesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, City $city, $address)
     {
-        //
+        $address = $city->addresses()->findOrFail($address);
+        $address->update($request->all());
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +65,10 @@ class CityAddressesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(City $city, $address)
     {
-        //
+        $address = $city->addresses()->findOrFail($address);
+        $address->delete();
+        return $this->respondDeleted();
     }
 }
