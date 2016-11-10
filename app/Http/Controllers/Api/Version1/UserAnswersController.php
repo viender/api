@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\User;
+use App\Answer;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\AnswerTransformer;
 
 class UserAnswersController extends ApiController
 {
@@ -11,9 +15,11 @@ class UserAnswersController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        //
+        $paginator = $user->answers()->paginate();
+
+        return $this->respondWithPagination($paginator, new AnswerTransformer);
     }
 
     /**
@@ -22,9 +28,11 @@ class UserAnswersController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
-        //
+        $user->answers()->save(new Answer($request->all()));
+
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +41,11 @@ class UserAnswersController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user, $answer)
     {
-        //
+        $answer = $user->answers()->findOrFail($answer);
+
+        return $this->respond(new Item($answer, new AnswerTransformer));
     }
 
     /**
@@ -45,9 +55,13 @@ class UserAnswersController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user, $answer)
     {
-        //
+        $answer = $user->answers()->findOrFail($answer);
+
+        $answer->update($request->all());
+
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +70,12 @@ class UserAnswersController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user, $answer)
     {
-        //
+        $answer = $user->answers()->findOrFail($answer);
+        
+        $answer->delete();
+
+        return $this->respondDeleted();
     }
 }
