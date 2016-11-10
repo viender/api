@@ -27,7 +27,9 @@ class AddressTransformer extends Transformer
     {
         return [
             'id'      => (int) $address->id,
-            'street'   => $address->street->name,
+            'street'   => $address->street,
+            'street_line2'   => $address->street_line2,
+            'zip_code'   => $address->zipCode->code,
             'city'    => $address->city->name,
             'state'    => $address->state->name,
             'country'    => $address->country->name,
