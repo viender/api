@@ -41,7 +41,7 @@ class AnswerCommentsController extends ApiController
      */
     public function show(Answer $answer, $comment)
     {
-        $comment = $answer->comments()->find($comment);
+        $comment = $answer->comments()->findOrFail($comment);
         return $this->respond(new Item($comment, new CommentTransformer));
     }
 
@@ -54,7 +54,7 @@ class AnswerCommentsController extends ApiController
      */
     public function update(Request $request, Answer $answer, $comment)
     {
-        $comment = $answer->comments()->find($comment);
+        $comment = $answer->comments()->findOrFail($comment);
         $comment->update($request->all());
         return $this->respondUpdated();
     }
@@ -67,7 +67,7 @@ class AnswerCommentsController extends ApiController
      */
     public function destroy(Answer $answer, $comment)
     {
-        $comment = $answer->comments()->find($comment);
+        $comment = $answer->comments()->findOrFail($comment);
         $comment->delete();
         return $this->respondDeleted();
     }
