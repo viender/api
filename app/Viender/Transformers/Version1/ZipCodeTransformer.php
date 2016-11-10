@@ -11,11 +11,11 @@ class ZipCodeTransformer extends Transformer
      *
      * @return array
      */
-    public function transform(ZipCode $street)
+    public function transform(ZipCode $zipCode)
     {
         return [
-            'id'      => (int) $street->id,
-            'name'    => $street->name,
+            'id'      => (int) $zipCode->id,
+            'code'    => $zipCode->code,
         ];
     }
 }

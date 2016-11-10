@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\ZipCode;
+use App\Address;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\AddressTransformer;
 
 class ZipCodeAddressesController extends ApiController
 {
@@ -11,9 +15,11 @@ class ZipCodeAddressesController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ZipCode $zipcode)
     {
-        //
+        $paginator = $zipcode->addresses()->paginate();
+
+        return $this->respondWithPagination($paginator, new AddressTransformer);
     }
 
     /**
@@ -22,9 +28,11 @@ class ZipCodeAddressesController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, ZipCode $zipcode)
     {
-        //
+        $zipcode->addresses()->save(new Address($request->all()));
+
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +41,11 @@ class ZipCodeAddressesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ZipCode $zipcode, $address)
     {
-        //
+        $address = $zipcode->addresses()->findOrFail($address);
+
+        return $this->respond(new Item($address, new AddressTransformer));
     }
 
     /**
@@ -45,9 +55,13 @@ class ZipCodeAddressesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ZipCode $zipcode, $address)
     {
-        //
+        $address = $zipcode->addresses()->findOrFail($address);
+
+        $address->update($request->all());
+
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +70,12 @@ class ZipCodeAddressesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ZipCode $zipcode, $address)
     {
-        //
+        $address = $zipcode->addresses()->findOrFail($address);
+        
+        $address->delete();
+
+        return $this->respondDeleted();
     }
 }
