@@ -12,6 +12,7 @@ trait DownvotableIncludable
     public function includeDownvotable($item)
     {
         $downvotable = $item->downvotable;
+        
         $downvotableTransformer = '\App\Viender\Transformers\Version1\\' . explode('\\', $item->downvotable_type)[1] . 'Transformer';
 
         return $this->item($downvotable, new $downvotableTransformer);
