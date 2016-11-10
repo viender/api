@@ -43,7 +43,7 @@ Route::group(['namespace' => 'Api\Version1'], function() {
     Route::resource('users.comments', 'UserCommentsController', ['except' => ['create', 'edit']]);
     Route::resource('questions.comments', 'QuestionCommentsController', ['except' => ['create', 'edit']]);
     Route::resource('answers.comments', 'AnswerCommentsController', ['except' => ['create', 'edit']]);
-    Route::resource('comments/{id}/comments', 'CommentCommentsController', ['except' => ['create', 'edit']]);
+    Route::resource('comments/{$commentable_comment}/comments', 'CommentCommentsController', ['except' => ['create', 'edit']]);
 
 
     // Relationships - Vote
