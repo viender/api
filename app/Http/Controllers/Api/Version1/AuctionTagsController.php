@@ -70,7 +70,7 @@ class AuctionTagsController extends ApiController
      */
     public function destroy(Auction $auction, $tag)
     {
-        $auction->tags()->detach(Tag::findOrFail($tag));
+        $auction->tags()->detach($auction->tags()->findOrFail($tag));
 
         return $this->respondDeleted();
     }
