@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Question;
+use App\Tag;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\TagTransformer;
 
 class QuestionTagsController extends ApiController
 {
@@ -11,9 +15,11 @@ class QuestionTagsController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Question $question)
     {
-        //
+        $paginator = $question->tags()->paginate();
+
+        return $this->respondWithPagination($paginator, new TagTransformer);
     }
 
     /**
@@ -22,9 +28,11 @@ class QuestionTagsController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Question $question)
     {
-        //
+        $question->tags()->save(new Tag($request->all()));
+
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +41,11 @@ class QuestionTagsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Question $question, $tag)
     {
-        //
+        $tag = $question->tags()->findOrFail($tag);
+
+        return $this->respond(new Item($tag, new TagTransformer));
     }
 
     /**
@@ -45,9 +55,13 @@ class QuestionTagsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question, $tag)
     {
-        //
+        $tag = $question->tags()->findOrFail($tag);
+
+        $tag->update($request->all());
+
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +70,12 @@ class QuestionTagsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question, $tag)
     {
-        //
+        $tag = $question->tags()->findOrFail($tag);
+        
+        $tag->delete();
+
+        return $this->respondDeleted();
     }
 }
