@@ -35,6 +35,11 @@ class Question extends Model
         return $this->morphToMany('App\Tag', 'taggable');
     }
 
+    public function answers() 
+    {
+        return $this->hasMany('App\Answer');
+    }
+
     public function comments() 
     {
         return $this->morphMany('App\Comment', 'commentable');
