@@ -41,11 +41,11 @@ class CityZipCodesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(City $city, $zipCodes)
+    public function show(City $city, $zipCode)
     {
-        $zipCodes = $city->zipCodes()->findOrFail($zipCodes);
+        $zipCode = $city->zipCodes()->findOrFail($zipCode);
 
-        return $this->respond(new Item($zipCodes, new ZipCodeTransformer));
+        return $this->respond(new Item($zipCode, new ZipCodeTransformer));
     }
 
     /**
@@ -55,11 +55,11 @@ class CityZipCodesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, City $city, $zipCodes)
+    public function update(Request $request, City $city, $zipCode)
     {
-        $zipCodes = $city->zipCodes()->findOrFail($zipCodes);
+        $zipCode = $city->zipCodes()->findOrFail($zipCode);
 
-        $zipCodes->update($request->all());
+        $zipCode->update($request->all());
 
         return $this->respondUpdated();
     }
@@ -70,11 +70,11 @@ class CityZipCodesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city, $zipCodes)
+    public function destroy(City $city, $zipCode)
     {
-        $zipCodes = $city->zipCodes()->findOrFail($zipCodes);
+        $zipCode = $city->zipCodes()->findOrFail($zipCode);
         
-        $zipCodes->delete();
+        $zipCode->delete();
 
         return $this->respondDeleted();
     }
