@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Auction;
+use App\Tag;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\TagTransformer;
 
 class AuctionTagsController extends ApiController
 {
@@ -11,9 +15,11 @@ class AuctionTagsController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Auction $auction)
     {
-        //
+        $paginator = $auction->tags()->paginate();
+
+        return $this->respondWithPagination($paginator, new TagTransformer);
     }
 
     /**
@@ -22,9 +28,13 @@ class AuctionTagsController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Auction $auction)
     {
-        //
+        if( ! $auction->tags()->find($request->tag_id)) {
+            $auction->tags()->attach(Tag::findOrFail($request->tag_id));
+        }
+
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +43,11 @@ class AuctionTagsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Auction $auction, $tag)
     {
-        //
+        $tag = $auction->tags()->findOrFail($tag);
+
+        return $this->respond(new Item($tag, new TagTransformer));
     }
 
     /**
@@ -45,9 +57,9 @@ class AuctionTagsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Auction $auction, $tag)
     {
-        //
+        abort(405);
     }
 
     /**
@@ -56,8 +68,10 @@ class AuctionTagsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Auction $auction, $tag)
     {
-        //
+        $auction->tags()->detach(Tag::findOrFail($tag));
+
+        return $this->respondDeleted();
     }
 }
