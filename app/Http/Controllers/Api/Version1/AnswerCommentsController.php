@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\Version1;
 use App\Answer;
 use App\Comment;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\CommentTransformer;
 
 class AnswerCommentsController extends ApiController
 {
@@ -13,9 +15,10 @@ class AnswerCommentsController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Answer $answer)
     {
-        //
+        $paginator = $answer->comments()->paginate();
+        return $this->respondWithPagination($paginator, new CommentTransformer);
     }
 
     /**
@@ -24,9 +27,10 @@ class AnswerCommentsController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Answer $answer)
     {
-        //
+        $answer->comments()->save(new Comment($request->all()));
+        return $this->respondCreated();
     }
 
     /**
@@ -35,9 +39,10 @@ class AnswerCommentsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Answer $answer, $comment)
     {
-        //
+        $comment = $answer->comments()->find($comment);
+        return $this->respond(new Item($comment, new CommentTransformer));
     }
 
     /**
@@ -47,9 +52,11 @@ class AnswerCommentsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Answer $answer, $comment)
     {
-        //
+        $comment = $answer->comments()->find($comment);
+        $comment->update($request->all());
+        return $this->respondUpdated();
     }
 
     /**
@@ -58,8 +65,10 @@ class AnswerCommentsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Answer $answer, $comment)
     {
-        //
+        $comment = $answer->comments()->find($comment);
+        $comment->delete();
+        return $this->respondDeleted();
     }
 }
