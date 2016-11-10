@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\User;
+use App\Auction;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\AuctionTransformer;
 
 class UserAuctionsController extends ApiController
 {
@@ -11,9 +15,11 @@ class UserAuctionsController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        //
+        $paginator = $user->auctions()->paginate();
+
+        return $this->respondWithPagination($paginator, new AuctionTransformer);
     }
 
     /**
@@ -22,9 +28,11 @@ class UserAuctionsController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
-        //
+        $user->auctions()->save(new Auction($request->all()));
+
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +41,11 @@ class UserAuctionsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user, $auction)
     {
-        //
+        $auction = $user->auctions()->findOrFail($auction);
+
+        return $this->respond(new Item($auction, new AuctionTransformer));
     }
 
     /**
@@ -45,9 +55,13 @@ class UserAuctionsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user, $auction)
     {
-        //
+        $auction = $user->auctions()->findOrFail($auction);
+
+        $auction->update($request->all());
+
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +70,12 @@ class UserAuctionsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user, $auction)
     {
-        //
+        $auction = $user->auctions()->findOrFail($auction);
+        
+        $auction->delete();
+
+        return $this->respondDeleted();
     }
 }
