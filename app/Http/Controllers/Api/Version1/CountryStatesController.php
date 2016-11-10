@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Country;
+use App\State;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\StateTransformer;
 
 class CountryStatesController extends ApiController
 {
@@ -11,9 +15,11 @@ class CountryStatesController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Country $country)
     {
-        //
+        $paginator = $country->states()->paginate();
+
+        return $this->respondWithPagination($paginator, new StateTransformer);
     }
 
     /**
@@ -22,9 +28,11 @@ class CountryStatesController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Country $country)
     {
-        //
+        $country->states()->save(new State($request->all()));
+
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +41,11 @@ class CountryStatesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Country $country, $state)
     {
-        //
+        $state = $country->states()->findOrFail($state);
+
+        return $this->respond(new Item($state, new StateTransformer));
     }
 
     /**
@@ -45,9 +55,13 @@ class CountryStatesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Country $country, $state)
     {
-        //
+        $state = $country->states()->findOrFail($state);
+
+        $state->update($request->all());
+
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +70,12 @@ class CountryStatesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Country $country, $state)
     {
-        //
+        $state = $country->states()->findOrFail($state);
+        
+        $state->delete();
+
+        return $this->respondDeleted();
     }
 }
