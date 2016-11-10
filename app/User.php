@@ -70,12 +70,12 @@ class User extends Authenticatable
 
     public function upvotes() 
     {
-        return hasMany('App\Upvote');
+        return $this->hasMany('App\Upvote');
     }
 
     public function downvotes() 
     {
-        return hasMany('App\Downvote');
+        return $this->hasMany('App\Downvote');
     }
 
     public function stars() 
