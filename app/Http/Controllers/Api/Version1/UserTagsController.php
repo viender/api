@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\User;
+use App\Tag;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\TagTransformer;
 
 class UserTagsController extends ApiController
 {
@@ -11,9 +15,11 @@ class UserTagsController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        //
+        $paginator = $user->tags()->paginate();
+
+        return $this->respondWithPagination($paginator, new TagTransformer);
     }
 
     /**
@@ -22,9 +28,11 @@ class UserTagsController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
-        //
+        $user->tags()->save(new Tag($request->all()));
+
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +41,11 @@ class UserTagsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user, $tag)
     {
-        //
+        $tag = $user->tags()->findOrFail($tag);
+
+        return $this->respond(new Item($tag, new TagTransformer));
     }
 
     /**
@@ -45,9 +55,13 @@ class UserTagsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user, $tag)
     {
-        //
+        $tag = $user->tags()->findOrFail($tag);
+
+        $tag->update($request->all());
+
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +70,12 @@ class UserTagsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user, $tag)
     {
-        //
+        $tag = $user->tags()->findOrFail($tag);
+        
+        $tag->delete();
+
+        return $this->respondDeleted();
     }
 }
