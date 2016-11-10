@@ -4,6 +4,8 @@ namespace App\Viender\Transformers\Version1\Traits;
 
 trait CommentableIncludable
 {
+    use TransformerTrait;
+
     /**
      * Include Commentable
      *
@@ -12,7 +14,8 @@ trait CommentableIncludable
     public function includeCommentable($item)
     {
         $commentable = $item->commentable;
-        $commentableTransformer = '\App\Viender\Transformers\Version1\\' . explode('\\', $item->commentable_type)[1] . 'Transformer';
+
+        $commentableTransformer = $this->getTransformer($item->commentable_type);
 
         return $this->item($commentable, new $commentableTransformer);
     }
