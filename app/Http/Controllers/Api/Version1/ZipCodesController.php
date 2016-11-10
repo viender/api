@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
-use App\Street;
+use App\ZipCode;
 use Illuminate\Http\Request;
-use App\Viender\Transformers\Version1\StreetTransformer;
+use App\Viender\Transformers\Version1\ZipCodeTransformer;
 use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
 class ZipCodesController extends ApiController
@@ -12,7 +12,7 @@ class ZipCodesController extends ApiController
     public function __construct()
     {
         parent::__construct();
-        $this->handler = new BasicHandler($this, Street::class, StreetTransformer::class);
+        $this->handler = new BasicHandler($this, ZipCode::class, ZipCodeTransformer::class);
     }
 
     /**
@@ -42,9 +42,9 @@ class ZipCodesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Street $street)
+    public function show(ZipCode $zipCode)
     {
-        return $this->handler->show($street);
+        return $this->handler->show($zipCode);
     }
 
     /**
@@ -54,9 +54,9 @@ class ZipCodesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Street $street)
+    public function update(Request $request, ZipCode $zipCode)
     {
-        return $this->handler->update($request, $street);
+        return $this->handler->update($request, $zipCode);
     }
 
     /**
@@ -65,8 +65,8 @@ class ZipCodesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Street $street)
+    public function destroy(ZipCode $zipCode)
     {
-        return $this->handler->destroy($street);
+        return $this->handler->destroy($zipCode);
     }
 }
