@@ -17,4 +17,19 @@ trait OwnerIncludable
 
         return $this->item($owner, new UserTransformer);
     }
+
+    public function includeUser($item)
+    {
+        return $this->includeOwner($item);
+    }
+
+    public function includeActor($item)
+    {
+        return $this->includeOwner($item);
+    }
+
+    public function includeAuthor($item)
+    {
+        return $this->includeOwner($item);
+    }
 }
