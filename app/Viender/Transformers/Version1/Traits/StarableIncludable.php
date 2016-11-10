@@ -4,6 +4,8 @@ namespace App\Viender\Transformers\Version1\Traits;
 
 trait StarableIncludable
 {
+    use TransformerTrait;
+
     /**
      * Include Starable
      *
@@ -12,8 +14,8 @@ trait StarableIncludable
     public function includeStarable($item)
     {
         $starable = $item->starable;
-        
-        $starableTransformer = '\App\Viender\Transformers\Version1\\' . explode('\\', $item->starable_type)[1] . 'Transformer';
+
+        $starableTransformer = $this->getTransformer($item->starable_type);
 
         return $this->item($starable, new $starableTransformer);
     }
