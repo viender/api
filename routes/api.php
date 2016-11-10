@@ -11,7 +11,7 @@ Route::group(['namespace' => 'Api\Version1'], function() {
     Route::resource('countries', 'CountriesController', ['except' => ['create', 'edit']]);
     Route::resource('states', 'StatesController', ['except' => ['create', 'edit']]);
     Route::resource('cities', 'CitiesController', ['except' => ['create', 'edit']]);
-    Route::resource('zipCodes', 'ZipCodesController', ['except' => ['create', 'edit']]);
+    Route::resource('zipcodes', 'ZipCodesController', ['except' => ['create', 'edit']]);
     Route::resource('answers', 'AnswersController', ['except' => ['create', 'edit']]);
     Route::resource('questions', 'QuestionsController', ['except' => ['create', 'edit']]);
     Route::resource('auctions', 'AuctionsController', ['except' => ['create', 'edit']]);
@@ -75,6 +75,6 @@ Route::group(['namespace' => 'Api\Version1'], function() {
     Route::resource('states.addresses', 'StateAddressesController', ['except' => ['create', 'edit']]);
     Route::resource('states.cities', 'StateCitiesController', ['except' => ['create', 'edit']]);
     Route::resource('cities.addresses', 'CityAddressesController', ['except' => ['create', 'edit']]);
-    Route::resource('cities.zipCodes', 'CityZipCodesController', ['except' => ['create', 'edit']]);
-    Route::resource('zipCodes.addresses', 'ZipCodeAddressesController', ['except' => ['create', 'edit']]);
+    Route::resource('cities.zipcodes', 'CityZipCodesController', ['except' => ['create', 'edit']]);
+    Route::resource('zipcodes.addresses', 'ZipCodeAddressesController', ['except' => ['create', 'edit']]);
 });
