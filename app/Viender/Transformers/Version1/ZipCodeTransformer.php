@@ -2,7 +2,7 @@
 
 namespace App\Viender\Transformers\Version1;
 
-use App\Street;
+use App\ZipCode;
 
 class ZipCodeTransformer extends Transformer
 {
@@ -11,7 +11,7 @@ class ZipCodeTransformer extends Transformer
      *
      * @return array
      */
-    public function transform(Street $street)
+    public function transform(ZipCode $street)
     {
         return [
             'id'      => (int) $street->id,
