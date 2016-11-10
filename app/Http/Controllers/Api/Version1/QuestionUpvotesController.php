@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Question;
+use App\Upvote;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\UpvoteTransformer;
 
 class QuestionUpvotesController extends ApiController
 {
@@ -11,9 +15,11 @@ class QuestionUpvotesController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Question $question)
     {
-        //
+        $paginator = $question->upvotes()->paginate();
+
+        return $this->respondWithPagination($paginator, new UpvoteTransformer);
     }
 
     /**
@@ -22,9 +28,11 @@ class QuestionUpvotesController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Question $question)
     {
-        //
+        $question->upvotes()->save(new Upvote($request->all()));
+
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +41,11 @@ class QuestionUpvotesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Question $question, $upvote)
     {
-        //
+        $upvote = $question->upvotes()->findOrFail($upvote);
+
+        return $this->respond(new Item($upvote, new UpvoteTransformer));
     }
 
     /**
@@ -45,9 +55,13 @@ class QuestionUpvotesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question, $upvote)
     {
-        //
+        $upvote = $question->upvotes()->findOrFail($upvote);
+
+        $upvote->update($request->all());
+
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +70,12 @@ class QuestionUpvotesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question, $upvote)
     {
-        //
+        $upvote = $question->upvotes()->findOrFail($upvote);
+        
+        $upvote->delete();
+
+        return $this->respondDeleted();
     }
 }
