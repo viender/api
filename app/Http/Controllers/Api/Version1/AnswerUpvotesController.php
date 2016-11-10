@@ -18,6 +18,7 @@ class AnswerUpvotesController extends ApiController
     public function index(Answer $answer)
     {
         $paginator = $answer->upvotes()->paginate();
+
         return $this->respondWithPagination($paginator, new UpvoteTransformer);
     }
 
@@ -30,6 +31,7 @@ class AnswerUpvotesController extends ApiController
     public function store(Request $request, Answer $answer)
     {
         $answer->upvotes()->save(new Upvote($request->all()));
+
         return $this->respondCreated();
     }
 
@@ -42,6 +44,7 @@ class AnswerUpvotesController extends ApiController
     public function show(Answer $answer, $upvotes)
     {
         $upvotes = $answer->upvotes()->findOrFail($upvotes);
+
         return $this->respond(new Item($upvotes, new UpvoteTransformer));
     }
 
@@ -55,7 +58,9 @@ class AnswerUpvotesController extends ApiController
     public function update(Request $request, Answer $answer, $upvotes)
     {
         $upvotes = $answer->upvotes()->findOrFail($upvotes);
+        
         $upvotes->update($request->all());
+
         return $this->respondUpdated();
     }
 
@@ -68,7 +73,9 @@ class AnswerUpvotesController extends ApiController
     public function destroy(Answer $answer, $upvotes)
     {
         $upvotes = $answer->upvotes()->findOrFail($upvotes);
+
         $upvotes->delete();
+
         return $this->respondDeleted();
     }
 }

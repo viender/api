@@ -18,6 +18,7 @@ class AnswerCommentsController extends ApiController
     public function index(Answer $answer)
     {
         $paginator = $answer->comments()->paginate();
+
         return $this->respondWithPagination($paginator, new CommentTransformer);
     }
 
@@ -30,6 +31,7 @@ class AnswerCommentsController extends ApiController
     public function store(Request $request, Answer $answer)
     {
         $answer->comments()->save(new Comment($request->all()));
+
         return $this->respondCreated();
     }
 
@@ -42,6 +44,7 @@ class AnswerCommentsController extends ApiController
     public function show(Answer $answer, $comment)
     {
         $comment = $answer->comments()->findOrFail($comment);
+
         return $this->respond(new Item($comment, new CommentTransformer));
     }
 
@@ -55,7 +58,9 @@ class AnswerCommentsController extends ApiController
     public function update(Request $request, Answer $answer, $comment)
     {
         $comment = $answer->comments()->findOrFail($comment);
+
         $comment->update($request->all());
+
         return $this->respondUpdated();
     }
 
@@ -68,7 +73,9 @@ class AnswerCommentsController extends ApiController
     public function destroy(Answer $answer, $comment)
     {
         $comment = $answer->comments()->findOrFail($comment);
+
         $comment->delete();
+        
         return $this->respondDeleted();
     }
 }

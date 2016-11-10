@@ -18,6 +18,7 @@ class CityAddressesController extends ApiController
     public function index(City $city)
     {
         $paginator = $city->addresses()->paginate();
+
         return $this->respondWithPagination($paginator, new AddressTransformer);
     }
 
@@ -30,6 +31,7 @@ class CityAddressesController extends ApiController
     public function store(Request $request, City $city)
     {
         $city->addresses()->save(new Address($request->all()));
+
         return $this->respondCreated();
     }
 
@@ -42,6 +44,7 @@ class CityAddressesController extends ApiController
     public function show(City $city, $address)
     {
         $address = $city->addresses()->findOrFail($address);
+
         return $this->respond(new Item($address, new AddressTransformer));
     }
 
@@ -55,7 +58,9 @@ class CityAddressesController extends ApiController
     public function update(Request $request, City $city, $address)
     {
         $address = $city->addresses()->findOrFail($address);
+
         $address->update($request->all());
+
         return $this->respondUpdated();
     }
 
@@ -68,7 +73,9 @@ class CityAddressesController extends ApiController
     public function destroy(City $city, $address)
     {
         $address = $city->addresses()->findOrFail($address);
+        
         $address->delete();
+
         return $this->respondDeleted();
     }
 }

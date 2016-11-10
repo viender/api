@@ -18,6 +18,7 @@ class AuctionBidsController extends ApiController
     public function index(Auction $auction)
     {
         $paginator = $auction->bids()->paginate();
+
         return $this->respondWithPagination($paginator, new BidTransformer);
     }
 
@@ -30,6 +31,7 @@ class AuctionBidsController extends ApiController
     public function store(Request $request, Auction $auction)
     {
         $auction->bids()->save(new Bid($request->all()));
+
         return $this->respondCreated();
     }
 
@@ -42,6 +44,7 @@ class AuctionBidsController extends ApiController
     public function show(Auction $auction, $bid)
     {
         $bid = $auction->bids()->findOrFail($bid);
+
         return $this->respond(new Item($bid, new BidTransformer));
     }
 
@@ -55,7 +58,9 @@ class AuctionBidsController extends ApiController
     public function update(Request $request, Auction $auction, $bid)
     {
         $bid = $auction->bids()->findOrFail($bid);
+        
         $bid->update($request->all());
+
         return $this->respondUpdated();
     }
 
@@ -68,7 +73,9 @@ class AuctionBidsController extends ApiController
     public function destroy(Auction $auction, $bid)
     {
         $bid = $auction->bids()->findOrFail($bid);
+
         $bid->delete();
+
         return $this->respondDeleted();
     }
 }
