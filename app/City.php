@@ -12,7 +12,7 @@ class City extends Model
      * @var array
      */
     protected $fillable = [
-        'state_id', 'name',
+        'country_id', 'state_id', 'name',
     ];
 
     public function addresses()
@@ -20,9 +20,9 @@ class City extends Model
         return $this->hasMany('App\Address');
     }
 
-    public function streets()
+    public function zipCodes()
     {
-        return $this->hasMany('App\Street');
+        return $this->hasMany('App\ZipCode');
     }
 
     public function state() 
@@ -32,6 +32,6 @@ class City extends Model
 
     public function country() 
     {
-        return $this->state()->first()->country();
+        return $this->belongsTo('App\Country');
     }
 }

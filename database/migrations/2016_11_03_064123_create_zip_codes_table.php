@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStreetsTable extends Migration
+class CreateZipCodesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateStreetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('streets', function (Blueprint $table) {
+        Schema::create('zip_codes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
-            $table->string('name');
+            $table->integer('state_id')->unsigned();
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
+            $table->integer('country_id')->unsigned();
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->string('code');
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ class CreateStreetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('streets');
+        Schema::dropIfExists('zip_codes');
     }
 }

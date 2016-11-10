@@ -20,24 +20,24 @@ class Address extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function street() 
+    public function zipCode() 
     {
-        return $this->belongsTo('App\Street');
+        return $this->belongsTo('App\ZipCode');
     }
 
     public function city() 
     {
-        return $this->street->city();
+        return $this->belongsTo('App\City');
     }
 
     public function state() 
     {
-        return $this->street->city->state();
+        return $this->belongsTo('App\State');
     }
 
     public function country() 
     {
-        return $this->street->city->state->country();
+        return $this->belongsTo('App\Country');
     }
 
     public static function createWithStreet(array $request) 

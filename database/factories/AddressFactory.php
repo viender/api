@@ -15,20 +15,21 @@
 $factory->define(App\Address::class, function (Faker\Generator $faker) {
     
     $users = App\User::all()->pluck('id')->toArray();
-    $streets = App\Street::all()->pluck('id')->toArray();
+    $zipCodes = App\ZipCode::all()->pluck('id')->toArray();
 
     return [
         'user_id' => $faker->randomElement($users),
-        'street_id' => $faker->randomElement($streets),
+        'zip_code_id' => $faker->randomElement($zipCodes),
         'city_id' => function(array $me) {
-            return App\Street::where('id', $me['street_id'])->first()->city()->first()->id;
+            return App\ZipCode::where('id', $me['zip_code_id'])->first()->city()->first()->id;
         },
         'state_id' => function(array $me) {
-            return App\Street::where('id', $me['street_id'])->first()->state()->first()->id;
+            return App\ZipCode::where('id', $me['zip_code_id'])->first()->state()->first()->id;
         },
         'country_id' => function(array $me) {
-            return App\Street::where('id', $me['street_id'])->first()->country()->first()->id;
+            return App\ZipCode::where('id', $me['zip_code_id'])->first()->country()->first()->id;
         },
-        'active' => $faker->randomElement([true, false]),
+        'active' => true,
+        'street' => $faker->streetName,
     ];
 });

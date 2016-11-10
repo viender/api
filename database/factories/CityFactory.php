@@ -18,6 +18,9 @@ $factory->define(App\City::class, function (Faker\Generator $faker) {
 
     return [
         'state_id' => $faker->randomElement($states),
+        'country_id' => function(array $me) {
+            return App\State::where('id', $me['state_id'])->first()->country()->first()->id;
+        },
         'name' => $faker->city,
     ];
 });

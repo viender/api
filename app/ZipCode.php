@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Street extends Model
+class ZipCode extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Street extends Model
      * @var array
      */
     protected $fillable = [
-        'city_id', 'name',
+        'country_id', 'state_id', 'city_id', 'code',
     ];
 
     public function addresses()
@@ -27,11 +27,11 @@ class Street extends Model
 
     public function state() 
     {
-        return $this->city()->first()->state();
+        return $this->belongsTo('App\State');
     }
 
     public function country() 
     {
-        return $this->state()->first()->country();
+        return $this->belongsTo('App\Country');
     }
 }

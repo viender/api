@@ -20,9 +20,9 @@ class State extends Model
         return $this->hasMany('App\Address');
     }
 
-    public function streets()
+    public function zipCodes()
     {
-        return $this->hasManyThrough('App\Street', 'App\City');
+        return $this->hasMany('App\ZipCode');
     }
 
     public function cities() 

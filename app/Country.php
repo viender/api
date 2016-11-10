@@ -21,16 +21,14 @@ class Country extends Model
         return $this->hasMany('App\Address');
     }
 
-    public function streets()
+    public function zipCodes()
     {
-        return Street::whereHas('city', function($q) { 
-            $q->where('id', $this->id);
-        });
+        return $this->hasMany('App\ZipCode');
     }
 
     public function cities() 
     {
-        return $this->hasManyThrough('App\City', 'App\State');
+        return $this->hasMany('App\City');
     }
 
     public function states() 

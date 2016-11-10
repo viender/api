@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class StreetsTableSeeder extends Seeder
+class ZipCodesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class StreetsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Street::class, 10)->create();
+        factory(App\ZipCode::class, 10)->create();
     }
 }

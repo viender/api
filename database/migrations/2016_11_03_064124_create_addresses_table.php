@@ -17,9 +17,17 @@ class CreateAddressesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('street_id')->unsigned();
-            $table->foreign('street_id')->references('id')->on('streets')->onDelete('cascade');
+            $table->integer('zip_code_id')->unsigned();
+            $table->foreign('zip_code_id')->references('id')->on('zip_codes')->onDelete('cascade');
+            $table->integer('city_id')->unsigned();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->integer('state_id')->unsigned();
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
+            $table->integer('country_id')->unsigned();
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->boolean('active')->default(true);
+            $table->string('street');
+            $table->string('street_line2')->default('');
             $table->timestamps();
         });
     }

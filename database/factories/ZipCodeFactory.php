@@ -12,12 +12,18 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Street::class, function (Faker\Generator $faker) {
+$factory->define(App\ZipCode::class, function (Faker\Generator $faker) {
 
     $cities = App\City::all()->pluck('id')->toArray();
 
     return [
         'city_id' => $faker->randomElement($cities),
-        'name' => $faker->streetAddress,
+        'state_id' => function(array $me) {
+            return App\City::where('id', $me['city_id'])->first()->state()->first()->id;
+        },
+        'country_id' => function(array $me) {
+            return App\City::where('id', $me['city_id'])->first()->country()->first()->id;
+        },
+        'code' => $faker->postcode,
     ];
 });

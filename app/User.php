@@ -88,8 +88,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Star');
     }
 
-    public function address() 
+    public function addresses() 
     {
-        return $this->hasOne('App\Address');
+        return $this->hasMany('App\Address');
     }
 }

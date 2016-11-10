@@ -6,7 +6,7 @@ class DatabaseSeeder extends Seeder
 {
     public $tables = [
         'addresses',
-        'streets',
+        'zip_codes',
         'cities',
         'states',
         'countries',
@@ -26,6 +26,11 @@ class DatabaseSeeder extends Seeder
     ];
 
     public $seeders = [
+        CountriesTableSeeder::class,
+        StatesTableSeeder::class,
+        CitiesTableSeeder::class,
+        ZipCodesTableSeeder::class,
+        // AddressesTableSeeder::class,
         UsersTableSeeder::class,
         TagsTableSeeder::class,
         QuestionsTableSeeder::class,
@@ -36,11 +41,6 @@ class DatabaseSeeder extends Seeder
         UpvotesTableSeeder::class,
         DownvotesTableSeeder::class,
         StarsTableSeeder::class,
-        CountriesTableSeeder::class,
-        StatesTableSeeder::class,
-        CitiesTableSeeder::class,
-        // StreetsTableSeeder::class,
-        AddressesTableSeeder::class,
     ];
 
     /**
