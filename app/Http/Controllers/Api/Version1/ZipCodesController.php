@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Viender\Transformers\Version1\StreetTransformer;
 use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
-class StreetsController extends ApiController
+class ZipCodesController extends ApiController
 {
     public function __construct()
     {

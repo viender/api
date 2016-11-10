@@ -4,7 +4,7 @@ namespace App\Viender\Transformers\Version1;
 
 use App\Street;
 
-class StreetTransformer extends Transformer
+class ZipCodeTransformer extends Transformer
 {
     /**
      * Turn this item object into a generic array
