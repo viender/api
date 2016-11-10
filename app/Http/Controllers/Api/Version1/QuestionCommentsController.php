@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Question;
+use App\Comment;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\CommentTransformer;
 
 class QuestionCommentsController extends ApiController
 {
@@ -11,9 +15,11 @@ class QuestionCommentsController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Question $question)
     {
-        //
+        $paginator = $question->comments()->paginate();
+
+        return $this->respondWithPagination($paginator, new CommentTransformer);
     }
 
     /**
@@ -22,9 +28,11 @@ class QuestionCommentsController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Question $question)
     {
-        //
+        $question->comments()->save(new Comment($request->all()));
+
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +41,11 @@ class QuestionCommentsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Question $question, $comment)
     {
-        //
+        $comment = $question->comments()->findOrFail($comment);
+
+        return $this->respond(new Item($comment, new CommentTransformer));
     }
 
     /**
@@ -45,9 +55,13 @@ class QuestionCommentsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question, $comment)
     {
-        //
+        $comment = $question->comments()->findOrFail($comment);
+
+        $comment->update($request->all());
+
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +70,12 @@ class QuestionCommentsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question, $comment)
     {
-        //
+        $comment = $question->comments()->findOrFail($comment);
+        
+        $comment->delete();
+
+        return $this->respondDeleted();
     }
 }
