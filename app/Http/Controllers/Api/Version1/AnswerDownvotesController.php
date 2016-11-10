@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\Answer;
+use App\Downvote;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\DownvoteTransformer;
 
 class AnswerDownvotesController extends ApiController
 {
@@ -11,9 +15,10 @@ class AnswerDownvotesController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Answer $answer)
     {
-        //
+        $paginator = $answer->downvotes()->paginate();
+        return $this->respondWithPagination($paginator, new DownvoteTransformer);
     }
 
     /**
@@ -22,9 +27,10 @@ class AnswerDownvotesController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Answer $answer)
     {
-        //
+        $answer->downvotes()->save(new Downvote($request->all()));
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +39,10 @@ class AnswerDownvotesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Answer $answer, $downvote)
     {
-        //
+        $downvote = $answer->downvotes()->findOrFail($downvote);
+        return $this->respond(new Item($downvote, new DownvoteTransformer));
     }
 
     /**
@@ -45,9 +52,11 @@ class AnswerDownvotesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Answer $answer, $downvote)
     {
-        //
+        $downvote = $answer->downvotes()->findOrFail($downvote);
+        $downvote->update($request->all());
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +65,10 @@ class AnswerDownvotesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Answer $answer, $downvote)
     {
-        //
+        $downvote = $answer->downvotes()->findOrFail($downvote);
+        $downvote->delete();
+        return $this->respondDeleted();
     }
 }
