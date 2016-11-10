@@ -4,6 +4,8 @@ namespace App\Viender\Transformers\Version1\Traits;
 
 trait DownvotableIncludable
 {
+    use TransformerTrait;
+    
     /**
      * Include Downvotable
      *
@@ -12,8 +14,8 @@ trait DownvotableIncludable
     public function includeDownvotable($item)
     {
         $downvotable = $item->downvotable;
-        
-        $downvotableTransformer = '\App\Viender\Transformers\Version1\\' . explode('\\', $item->downvotable_type)[1] . 'Transformer';
+
+        $downvotableTransformer = $this->getTransformer($item->downvotable_type);
 
         return $this->item($downvotable, new $downvotableTransformer);
     }
