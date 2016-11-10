@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
+use App\User;
+use App\Bid;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Viender\Transformers\Version1\BidTransformer;
 
 class UserBidsController extends ApiController
 {
@@ -11,9 +15,11 @@ class UserBidsController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        //
+        $paginator = $user->bids()->paginate();
+
+        return $this->respondWithPagination($paginator, new BidTransformer);
     }
 
     /**
@@ -22,9 +28,11 @@ class UserBidsController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
-        //
+        $user->bids()->save(new Bid($request->all()));
+
+        return $this->respondCreated();
     }
 
     /**
@@ -33,9 +41,11 @@ class UserBidsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user, $bids)
     {
-        //
+        $bids = $user->bids()->findOrFail($bids);
+
+        return $this->respond(new Item($bids, new BidTransformer));
     }
 
     /**
@@ -45,9 +55,13 @@ class UserBidsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user, $bids)
     {
-        //
+        $bids = $user->bids()->findOrFail($bids);
+
+        $bids->update($request->all());
+
+        return $this->respondUpdated();
     }
 
     /**
@@ -56,8 +70,12 @@ class UserBidsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user, $bids)
     {
-        //
+        $bids = $user->bids()->findOrFail($bids);
+        
+        $bids->delete();
+
+        return $this->respondDeleted();
     }
 }
