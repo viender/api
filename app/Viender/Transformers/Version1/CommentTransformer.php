@@ -3,12 +3,12 @@
 namespace App\Viender\Transformers\Version1;
 
 use App\Comment;
-use App\Viender\Transformers\Version1\Traits\OwnerIncludable;
+use App\Viender\Transformers\Version1\Traits\UserIncludable;
 use App\Viender\Transformers\Version1\Traits\CommentableIncludable;
 
 class CommentTransformer extends Transformer
 {
-    use OwnerIncludable, CommentableIncludable;
+    use UserIncludable, CommentableIncludable;
     
     /**
      * List of resources possible to include

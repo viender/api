@@ -3,12 +3,12 @@
 namespace App\Viender\Transformers\Version1;
 
 use App\Downvote;
-use App\Viender\Transformers\Version1\Traits\OwnerIncludable;
+use App\Viender\Transformers\Version1\Traits\UserIncludable;
 use App\Viender\Transformers\Version1\Traits\DownvotableIncludable;
 
 class DownvoteTransformer extends Transformer
 {
-    use OwnerIncludable, DownvotableIncludable;
+    use UserIncludable, DownvotableIncludable;
     
     /**
      * List of resources possible to include

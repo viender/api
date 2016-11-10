@@ -4,7 +4,7 @@ namespace App\Viender\Transformers\Version1\Traits;
 
 use App\Viender\Transformers\Version1\UserTransformer;
 
-trait OwnerIncludable
+trait UserIncludable
 {
     /**
      * Include Owner

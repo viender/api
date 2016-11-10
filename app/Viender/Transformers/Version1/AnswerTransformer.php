@@ -3,11 +3,11 @@
 namespace App\Viender\Transformers\Version1;
 
 use App\Answer;
-use App\Viender\Transformers\Version1\Traits\OwnerIncludable;
+use App\Viender\Transformers\Version1\Traits\UserIncludable;
 
 class AnswerTransformer extends Transformer
 {
-    use OwnerIncludable;
+    use UserIncludable;
 
     /**
      * List of resources possible to include
