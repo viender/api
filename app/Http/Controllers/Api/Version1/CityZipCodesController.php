@@ -11,7 +11,7 @@ use App\Viender\Transformers\Version1\ZipCodeTransformer;
 class CityZipCodesController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /cities/:id/zipcodes Get City ZipCodes
      * @apiName CityZipCodesIndex
      * @apiGroup City
      * @apiVersion 1.0.0
@@ -39,7 +39,7 @@ class CityZipCodesController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /cities/:id/zipcodes Create City ZipCode
      * @apiName CityZipCodesStore
      * @apiGroup City
      * @apiVersion 1.0.0
@@ -66,7 +66,7 @@ class CityZipCodesController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /cities/:id/zipcodes/:id Get City ZipCode
      * @apiName CityZipCodesShow
      * @apiGroup City
      * @apiVersion 1.0.0
@@ -97,7 +97,7 @@ class CityZipCodesController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /cities/:id/zipcodes/:id Update City ZipCode
      * @apiName CityZipCodesUpdate
      * @apiGroup City
      * @apiVersion 1.0.0
@@ -128,7 +128,7 @@ class CityZipCodesController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /cities/:id/zipcodes/:id Delete City ZipCode
      * @apiName CityZipCodesDelete
      * @apiGroup City
      * @apiVersion 1.0.0

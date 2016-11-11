@@ -11,7 +11,7 @@ use App\Viender\Transformers\Version1\TagTransformer;
 class AuctionTagsController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /auctions/:slug/tags Get Auction Tags
      * @apiName AuctionTagsIndex
      * @apiGroup Auction
      * @apiVersion 1.0.0
@@ -39,7 +39,7 @@ class AuctionTagsController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /auctions/:slug/tags Create Auction Tag
      * @apiName AuctionTagsStore
      * @apiGroup Auction
      * @apiVersion 1.0.0
@@ -68,7 +68,7 @@ class AuctionTagsController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /auctions/:slug/tags/:id Get Auction Tag
      * @apiName AuctionTagsShow
      * @apiGroup Auction
      * @apiVersion 1.0.0
@@ -99,7 +99,7 @@ class AuctionTagsController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /auctions/:slug/tags/:id Update Auction Tag
      * @apiName AuctionTagsUpdate
      * @apiGroup Auction
      * @apiVersion 1.0.0
@@ -126,7 +126,7 @@ class AuctionTagsController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /auctions/:slug/tags/:id Delete Auction Tag
      * @apiName AuctionTagsDelete
      * @apiGroup Auction
      * @apiVersion 1.0.0

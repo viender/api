@@ -16,7 +16,7 @@ class BidsController extends ApiController
     }
 
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /bids Get Bids
      * @apiName BidsIndex
      * @apiGroup Bid
      * @apiVersion 1.0.0
@@ -42,7 +42,7 @@ class BidsController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /bids Create Bids
      * @apiName BidsStore
      * @apiGroup Bid
      * @apiVersion 1.0.0
@@ -67,7 +67,7 @@ class BidsController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /bids/:id Get Bid
      * @apiName BidsShow
      * @apiGroup Bid
      * @apiVersion 1.0.0
@@ -96,7 +96,7 @@ class BidsController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /bids/:id Update Bid
      * @apiName BidsUpdate
      * @apiGroup Bid
      * @apiVersion 1.0.0
@@ -123,7 +123,7 @@ class BidsController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /bids/:id Delete Bid
      * @apiName BidsDelete
      * @apiGroup Bid
      * @apiVersion 1.0.0

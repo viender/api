@@ -16,7 +16,7 @@ class StarsController extends ApiController
     }
 
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /stars Get Stars
      * @apiName StarsIndex
      * @apiGroup Star
      * @apiVersion 1.0.0
@@ -42,7 +42,7 @@ class StarsController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /stars Create Star
      * @apiName StarsStore
      * @apiGroup Star
      * @apiVersion 1.0.0
@@ -67,7 +67,7 @@ class StarsController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /stars/:id Get Star
      * @apiName StarsShow
      * @apiGroup Star
      * @apiVersion 1.0.0
@@ -96,7 +96,7 @@ class StarsController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /stars/:id Update Star
      * @apiName StarsUpdate
      * @apiGroup Star
      * @apiVersion 1.0.0
@@ -123,7 +123,7 @@ class StarsController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /stars/:id Delete Star
      * @apiName StarsDelete
      * @apiGroup Star
      * @apiVersion 1.0.0

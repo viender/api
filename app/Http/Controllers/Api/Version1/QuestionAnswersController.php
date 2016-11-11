@@ -11,7 +11,7 @@ use App\Viender\Transformers\Version1\AnswerTransformer;
 class QuestionAnswersController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /questions/:slug/answers Get Question Answers
      * @apiName QuestionAnswersIndex
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -39,7 +39,7 @@ class QuestionAnswersController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /questions/:slug/answers Create Question Answer
      * @apiName QuestionAnswersStore
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -66,7 +66,7 @@ class QuestionAnswersController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /questions/:slug/answers/:id Get Question Answer
      * @apiName QuestionAnswersShow
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -97,7 +97,7 @@ class QuestionAnswersController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /questions/:slug/answers/:id Update Quesiton Answer
      * @apiName QuestionAnswersUpdate
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -128,7 +128,7 @@ class QuestionAnswersController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /questions/:slug/answers/:id Delete Question Answer
      * @apiName QuestionAnswersDelete
      * @apiGroup Question
      * @apiVersion 1.0.0

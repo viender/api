@@ -11,7 +11,7 @@ use App\Viender\Transformers\Version1\UpvoteTransformer;
 class QuestionUpvotesController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /questions/:slug/upvotes Get Question Upvotes
      * @apiName QuestionUpvotesIndex
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -39,7 +39,7 @@ class QuestionUpvotesController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /questions/:slug/upvotes Create Question Upvote
      * @apiName QuestionUpvotesStore
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -66,7 +66,7 @@ class QuestionUpvotesController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /questions/:slug/upvotes/:id Get Question Upvote
      * @apiName QuestionUpvotesShow
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -97,7 +97,7 @@ class QuestionUpvotesController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /questions/:slug/upvotes/:id Update Question Upvote
      * @apiName QuestionUpvotesUpdate
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -128,7 +128,7 @@ class QuestionUpvotesController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /questions/:slug/upvotes/:id Delete Question Upvote
      * @apiName QuestionUpvotesDelete
      * @apiGroup Question
      * @apiVersion 1.0.0

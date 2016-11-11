@@ -11,7 +11,7 @@ use App\Viender\Transformers\Version1\DownvoteTransformer;
 class CommentDownvotesController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /comments/:id/downvotes Get Comment Downvotes
      * @apiName CommentDownvotesIndex
      * @apiGroup Comment
      * @apiVersion 1.0.0
@@ -39,7 +39,7 @@ class CommentDownvotesController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /comments/:id/downvotes Create Comment Downvote
      * @apiName CommentDownvotesStore
      * @apiGroup Comment
      * @apiVersion 1.0.0
@@ -66,7 +66,7 @@ class CommentDownvotesController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /comments/:id/downvotes/:id Get Comment Downvote
      * @apiName CommentDownvotesShow
      * @apiGroup Comment
      * @apiVersion 1.0.0
@@ -97,7 +97,7 @@ class CommentDownvotesController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /comments/:id/downvotes/:id Update Comment Downvote
      * @apiName CommentDownvotesUpdate
      * @apiGroup Comment
      * @apiVersion 1.0.0
@@ -128,7 +128,7 @@ class CommentDownvotesController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /comments/:id/downvotes/:id Delete Comment Downvote
      * @apiName CommentDownvotesDelete
      * @apiGroup Comment
      * @apiVersion 1.0.0

@@ -11,7 +11,7 @@ use App\Viender\Transformers\Version1\TagTransformer;
 class QuestionTagsController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /questions/:slug/tags Get Question Tags
      * @apiName QuestinTagsIndex
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -39,7 +39,7 @@ class QuestionTagsController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /questions/:slug/tags Create Question Tag
      * @apiName QuestinTagsStore
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -68,7 +68,7 @@ class QuestionTagsController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /questions/:slug/tags/:id Get Question Tag
      * @apiName QuestinTagsShow
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -99,7 +99,7 @@ class QuestionTagsController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /questions/:slug/tags/:id Update Question Tag
      * @apiName QuestinTagsUpdate
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -130,7 +130,7 @@ class QuestionTagsController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /questions/:slug/tags/:id Delete Question Tag
      * @apiName QuestinTagsDelete
      * @apiGroup Question
      * @apiVersion 1.0.0

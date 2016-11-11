@@ -16,7 +16,7 @@ class CountriesController extends ApiController
     }
 
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /countries Get Countries
      * @apiName CountriesIndex
      * @apiGroup Country
      * @apiVersion 1.0.0
@@ -42,7 +42,7 @@ class CountriesController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /countries Create Country
      * @apiName CountriesStore
      * @apiGroup Country
      * @apiVersion 1.0.0
@@ -67,7 +67,7 @@ class CountriesController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /countries/:id Get Country
      * @apiName CountriesShow
      * @apiGroup Country
      * @apiVersion 1.0.0
@@ -96,7 +96,7 @@ class CountriesController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /countries/:id Update Country
      * @apiName CountriesUpdate
      * @apiGroup Country
      * @apiVersion 1.0.0
@@ -123,7 +123,7 @@ class CountriesController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /countries/:id Delete Country
      * @apiName CountriesDelete
      * @apiGroup Country
      * @apiVersion 1.0.0

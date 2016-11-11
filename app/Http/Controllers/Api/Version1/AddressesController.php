@@ -23,16 +23,8 @@ class AddressesController extends ApiController
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
-     * 
-     * @apiSuccess {Object[]} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     *
+     * @apiUse AddressIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */

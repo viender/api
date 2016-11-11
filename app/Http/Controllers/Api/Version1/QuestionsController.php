@@ -16,7 +16,7 @@ class QuestionsController extends ApiController
     }
 
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /questions Get Questions
      * @apiName QuestionsIndex
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -42,7 +42,7 @@ class QuestionsController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /questions Create Question
      * @apiName QuestionsStore
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -67,7 +67,7 @@ class QuestionsController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /questions/:slug Get Question
      * @apiName QuestionsShow
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -96,7 +96,7 @@ class QuestionsController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /questions/:slug Update Question
      * @apiName QuestionsUpdate
      * @apiGroup Question
      * @apiVersion 1.0.0
@@ -123,7 +123,7 @@ class QuestionsController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /questions/:slug Delete Question
      * @apiName QuestionsDelete
      * @apiGroup Question
      * @apiVersion 1.0.0

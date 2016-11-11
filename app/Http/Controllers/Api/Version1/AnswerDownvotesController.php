@@ -11,7 +11,7 @@ use App\Viender\Transformers\Version1\DownvoteTransformer;
 class AnswerDownvotesController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /answers/:id/downvotes Get Answer Downvotes
      * @apiName AnswerDownvotesIndex
      * @apiGroup Answer
      * @apiVersion 1.0.0
@@ -39,7 +39,7 @@ class AnswerDownvotesController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /answers/:id/downvotes Create Answer Downvote
      * @apiName AnswerDownvotesStore
      * @apiGroup Answer
      * @apiVersion 1.0.0
@@ -66,7 +66,7 @@ class AnswerDownvotesController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /answers/:id/downvotes/:id Get Answer Downvote
      * @apiName AnswerDownvotesShow
      * @apiGroup Answer
      * @apiVersion 1.0.0
@@ -97,7 +97,7 @@ class AnswerDownvotesController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /answers/:id/downvotes/:id Update Answer Downvote
      * @apiName AnswerDownvotesUpdate
      * @apiGroup Answer
      * @apiVersion 1.0.0
@@ -128,7 +128,7 @@ class AnswerDownvotesController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /answers/:id/downvotes/:id Delete Answer Downvote
      * @apiName AnswerDownvotesDelete
      * @apiGroup Answer
      * @apiVersion 1.0.0

@@ -11,7 +11,7 @@ use App\Viender\Transformers\Version1\BidTransformer;
 class AuctionBidsController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /auctions/:id/bids Get Auction Bids
      * @apiName AuctionBidsIndex
      * @apiGroup Auction
      * @apiVersion 1.0.0
@@ -39,7 +39,7 @@ class AuctionBidsController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /auctions/:id/bids Create Auction Bid
      * @apiName AuctionBidsStore
      * @apiGroup Auction
      * @apiVersion 1.0.0
@@ -66,7 +66,7 @@ class AuctionBidsController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /auctions/:id/bids/:id Get Auction Bid
      * @apiName AuctionBidsShow
      * @apiGroup Auction
      * @apiVersion 1.0.0
@@ -97,7 +97,7 @@ class AuctionBidsController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /auctions/:id/bids/:id Update Auction Bid
      * @apiName AuctionBidsUpdate
      * @apiGroup Auction
      * @apiVersion 1.0.0
@@ -128,7 +128,7 @@ class AuctionBidsController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /auctions/:id/bids/:id Delete Auction Bid
      * @apiName AuctionBidsDelete
      * @apiGroup Auction
      * @apiVersion 1.0.0

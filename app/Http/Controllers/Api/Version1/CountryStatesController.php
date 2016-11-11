@@ -11,8 +11,8 @@ use App\Viender\Transformers\Version1\StateTransformer;
 class CountryStatesController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
-     * @apiName CountriesIndex
+     * @api {get} /countries/:id/states Get Country States
+     * @apiName countryStatesIndex
      * @apiGroup Country
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
@@ -39,8 +39,8 @@ class CountryStatesController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
-     * @apiName CountriesStore
+     * @api {post} /countries/:id/states Create Cuntry State
+     * @apiName countryStatesStore
      * @apiGroup Country
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
@@ -66,8 +66,8 @@ class CountryStatesController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
-     * @apiName CountriesShow
+     * @api {get} /countries/:id/states/:id Get Country State
+     * @apiName countryStatesShow
      * @apiGroup Country
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
@@ -97,8 +97,8 @@ class CountryStatesController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
-     * @apiName CountriesUpdate
+     * @api {put} /countries/:id/states/:id Update Country State
+     * @apiName countryStatesUpdate
      * @apiGroup Country
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
@@ -128,8 +128,8 @@ class CountryStatesController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
-     * @apiName CountriesDelete
+     * @api {delete} /countries/:id/states/:id Delete Country State
+     * @apiName countryStatesDelete
      * @apiGroup Country
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses

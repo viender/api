@@ -10,7 +10,7 @@ use App\Viender\Transformers\Version1\CommentTransformer;
 class CommentCommentsController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /comments/:id/comments Get Comment Comments
      * @apiName CommentCommentsIndex
      * @apiGroup Address
      * @apiVersion 1.0.0
@@ -38,7 +38,7 @@ class CommentCommentsController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /comments/:id/comments Create Comment Comment
      * @apiName CommentCommentsStore
      * @apiGroup Address
      * @apiVersion 1.0.0
@@ -65,7 +65,7 @@ class CommentCommentsController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /comments/:id/comments/:id Get Comment Comment
      * @apiName CommentCommentsShow
      * @apiGroup Address
      * @apiVersion 1.0.0
@@ -96,7 +96,7 @@ class CommentCommentsController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /comments/:id/comments/:id Update Comment Comment
      * @apiName CommentCommentsUpdate
      * @apiGroup Address
      * @apiVersion 1.0.0
@@ -127,7 +127,7 @@ class CommentCommentsController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /comments/:id/comments/:id Delete Comment Comment
      * @apiName CommentCommentsDelete
      * @apiGroup Address
      * @apiVersion 1.0.0

@@ -16,7 +16,7 @@ class CitiesController extends ApiController
     }
 
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /cities Get Cities
      * @apiName CitiesIndex
      * @apiGroup City
      * @apiVersion 1.0.0
@@ -42,7 +42,7 @@ class CitiesController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /cities Create City
      * @apiName CitiesStore
      * @apiGroup City
      * @apiVersion 1.0.0
@@ -67,7 +67,7 @@ class CitiesController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /cities/:id Get City
      * @apiName CitiesShow
      * @apiGroup City
      * @apiVersion 1.0.0
@@ -96,7 +96,7 @@ class CitiesController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /cities/:id Update City
      * @apiName CitiesUpdate
      * @apiGroup City
      * @apiVersion 1.0.0
@@ -123,7 +123,7 @@ class CitiesController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /cities/:id Delete City
      * @apiName CitiesDelete
      * @apiGroup City
      * @apiVersion 1.0.0

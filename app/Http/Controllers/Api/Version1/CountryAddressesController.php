@@ -11,7 +11,7 @@ use App\Viender\Transformers\Version1\AddressTransformer;
 class CountryAddressesController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /countries/:id/addresses Get Country Addresses
      * @apiName CountryAddressesIndex
      * @apiGroup Country
      * @apiVersion 1.0.0
@@ -39,7 +39,7 @@ class CountryAddressesController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /countries/:id/addresses Create Country Address
      * @apiName CountryAddressesStore
      * @apiGroup Country
      * @apiVersion 1.0.0
@@ -66,7 +66,7 @@ class CountryAddressesController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /countries/:id/addresses/:id Get Country Address
      * @apiName CountryAddressesShow
      * @apiGroup Country
      * @apiVersion 1.0.0
@@ -97,7 +97,7 @@ class CountryAddressesController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /countries/:id/addresses/:id Update Country Address
      * @apiName CountryAddressesUpdate
      * @apiGroup Country
      * @apiVersion 1.0.0
@@ -128,7 +128,7 @@ class CountryAddressesController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /countries/:id/addresses/:id Delete Country Address
      * @apiName CountryAddressesDelete
      * @apiGroup Country
      * @apiVersion 1.0.0

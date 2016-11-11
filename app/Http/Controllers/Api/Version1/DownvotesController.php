@@ -16,7 +16,7 @@ class DownvotesController extends ApiController
     }
 
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /downvotes Get Downvotes
      * @apiName DownvotesIndex
      * @apiGroup Downvote
      * @apiVersion 1.0.0
@@ -42,7 +42,7 @@ class DownvotesController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /downvotes Create Downvote
      * @apiName DownvotesStore
      * @apiGroup Downvote
      * @apiVersion 1.0.0
@@ -67,7 +67,7 @@ class DownvotesController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /downvotes/:id Get Downvote
      * @apiName DownvotesShow
      * @apiGroup Downvote
      * @apiVersion 1.0.0
@@ -96,7 +96,7 @@ class DownvotesController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /downvotes/:id Update Downvote
      * @apiName DownvotesUpdate
      * @apiGroup Downvote
      * @apiVersion 1.0.0
@@ -123,7 +123,7 @@ class DownvotesController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /downvotes/:id Delete Downvote
      * @apiName DownvotesDelete
      * @apiGroup Downvote
      * @apiVersion 1.0.0

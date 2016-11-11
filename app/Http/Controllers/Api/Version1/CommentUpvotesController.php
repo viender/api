@@ -11,7 +11,7 @@ use App\Viender\Transformers\Version1\UpvoteTransformer;
 class CommentUpvotesController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /comments/:id/upvotes Get Comment Upvotes
      * @apiName CommentUpvotesIndex
      * @apiGroup Comment
      * @apiVersion 1.0.0
@@ -39,7 +39,7 @@ class CommentUpvotesController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /comments/:id/upvotes Create Comment Upvote
      * @apiName CommentUpvotesStore
      * @apiGroup Comment
      * @apiVersion 1.0.0
@@ -66,7 +66,7 @@ class CommentUpvotesController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /comments/:id/upvotes/:id Get Comment Upvote
      * @apiName CommentUpvotesShow
      * @apiGroup Comment
      * @apiVersion 1.0.0
@@ -97,7 +97,7 @@ class CommentUpvotesController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /comments/:id/upvotes/:id Update Comment Upvote
      * @apiName CommentUpvotesUpdate
      * @apiGroup Comment
      * @apiVersion 1.0.0
@@ -128,7 +128,7 @@ class CommentUpvotesController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /comments/:id/upvotes/:id Delete Comment Upvote
      * @apiName CommentUpvotesDelete
      * @apiGroup Comment
      * @apiVersion 1.0.0

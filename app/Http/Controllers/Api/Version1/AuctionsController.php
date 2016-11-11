@@ -16,7 +16,7 @@ class AuctionsController extends ApiController
     }
 
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /auctions Get Auctions
      * @apiName AuctionsIndex
      * @apiGroup Auction
      * @apiVersion 1.0.0
@@ -42,7 +42,7 @@ class AuctionsController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /auctions Create Auction
      * @apiName AuctionsStore
      * @apiGroup Auction
      * @apiVersion 1.0.0
@@ -67,7 +67,7 @@ class AuctionsController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /auctions/:slug Get Auction
      * @apiName AuctionsShow
      * @apiGroup Auction
      * @apiVersion 1.0.0
@@ -96,7 +96,7 @@ class AuctionsController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /auctions/:slug Update Auction
      * @apiName AuctionsUpdate
      * @apiGroup Auction
      * @apiVersion 1.0.0
@@ -123,7 +123,7 @@ class AuctionsController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /auctions/:slug Delete Auction
      * @apiName AuctionsDelete
      * @apiGroup Auction
      * @apiVersion 1.0.0
