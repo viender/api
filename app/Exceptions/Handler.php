@@ -48,6 +48,10 @@ class Handler extends ExceptionHandler
             if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
                 return response()->json(["message" => "Not Found", "status_code" => 404], 404);
             }
+
+            if ($exception instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException) {
+                return response()->json(["message" => "Method Not Allowed", "status_code" => 405], 405);
+            }
         }
 
         return parent::render($request, $exception);
