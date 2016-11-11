@@ -65,22 +65,22 @@ class ApiController extends Controller
         ]);
     }
 
-    public function respondNotFound($message = "Not found!") 
+    public function respondNotFound($message = "Not Found") 
     {
         return $this->setStatusCode(404)->respondWithMessage($message);
     }
 
-    public function respondCreated($message = "Created!") 
+    public function respondCreated($message = "Created") 
     {
         return $this->respondWithMessage($message);
     }
 
-    public function respondUpdated($message = "Updated!") 
+    public function respondUpdated($message = "Updated") 
     {
         return $this->respondWithMessage($message);
     }
 
-    public function respondDeleted($message = "Deleted!") 
+    public function respondDeleted($message = "Deleted") 
     {
         return $this->respondWithMessage($message);
     }
