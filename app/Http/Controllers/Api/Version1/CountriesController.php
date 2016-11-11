@@ -17,8 +17,8 @@ class CountriesController extends ApiController
 
     /** 
      * @api {get} /addresses Get Addresses
-     * @apiName AddressIndex
-     * @apiGroup Address
+     * @apiName CountriesIndex
+     * @apiGroup Country
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
@@ -43,8 +43,8 @@ class CountriesController extends ApiController
 
     /**
      * @api {post} /addresses Create Address
-     * @apiName AddressStore
-     * @apiGroup Address
+     * @apiName CountriesStore
+     * @apiGroup Country
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
@@ -68,8 +68,8 @@ class CountriesController extends ApiController
 
     /**
      * @api {get} /addresses/:id Get Address by ID
-     * @apiName AddressShow
-     * @apiGroup Address
+     * @apiName CountriesShow
+     * @apiGroup Country
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -97,8 +97,8 @@ class CountriesController extends ApiController
 
     /**
      * @api {put} /addresses/:id Update Address
-     * @apiName AddressUpdate
-     * @apiGroup Address
+     * @apiName CountriesUpdate
+     * @apiGroup Country
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
@@ -124,8 +124,8 @@ class CountriesController extends ApiController
 
     /**
      * @api {delete} /addresses/:id Delete Address
-     * @apiName AddressDelete
-     * @apiGroup Address
+     * @apiName CountriesDelete
+     * @apiGroup Country
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *

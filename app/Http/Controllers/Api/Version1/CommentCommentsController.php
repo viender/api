@@ -11,7 +11,7 @@ class CommentCommentsController extends ApiController
 {
     /** 
      * @api {get} /addresses Get Addresses
-     * @apiName AddressIndex
+     * @apiName CommentCommentsIndex
      * @apiGroup Address
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
@@ -39,7 +39,7 @@ class CommentCommentsController extends ApiController
 
     /**
      * @api {post} /addresses Create Address
-     * @apiName AddressStore
+     * @apiName CommentCommentsStore
      * @apiGroup Address
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
@@ -66,7 +66,7 @@ class CommentCommentsController extends ApiController
 
     /**
      * @api {get} /addresses/:id Get Address by ID
-     * @apiName AddressShow
+     * @apiName CommentCommentsShow
      * @apiGroup Address
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
@@ -97,7 +97,7 @@ class CommentCommentsController extends ApiController
 
     /**
      * @api {put} /addresses/:id Update Address
-     * @apiName AddressUpdate
+     * @apiName CommentCommentsUpdate
      * @apiGroup Address
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
@@ -128,7 +128,7 @@ class CommentCommentsController extends ApiController
 
     /**
      * @api {delete} /addresses/:id Delete Address
-     * @apiName AddressDelete
+     * @apiName CommentCommentsDelete
      * @apiGroup Address
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses

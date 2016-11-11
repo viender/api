@@ -12,8 +12,8 @@ class AnswerCommentsController extends ApiController
 {
     /** 
      * @api {get} /addresses Get Addresses
-     * @apiName AddressIndex
-     * @apiGroup Address
+     * @apiName AnswerCommentsIndex
+     * @apiGroup Answer
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
@@ -40,8 +40,8 @@ class AnswerCommentsController extends ApiController
 
     /**
      * @api {post} /addresses Create Address
-     * @apiName AddressStore
-     * @apiGroup Address
+     * @apiName AnswerCommentsStore
+     * @apiGroup Answer
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
@@ -67,8 +67,8 @@ class AnswerCommentsController extends ApiController
 
     /**
      * @api {get} /addresses/:id Get Address by ID
-     * @apiName AddressShow
-     * @apiGroup Address
+     * @apiName AnswerCommentsShow
+     * @apiGroup Answer
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -98,8 +98,8 @@ class AnswerCommentsController extends ApiController
 
     /**
      * @api {put} /addresses/:id Update Address
-     * @apiName AddressUpdate
-     * @apiGroup Address
+     * @apiName AnswerCommentsUpdate
+     * @apiGroup Answer
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
@@ -129,8 +129,8 @@ class AnswerCommentsController extends ApiController
 
     /**
      * @api {delete} /addresses/:id Delete Address
-     * @apiName AddressDelete
-     * @apiGroup Address
+     * @apiName AnswerCommentsDelete
+     * @apiGroup Answer
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *

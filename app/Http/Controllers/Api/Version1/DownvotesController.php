@@ -17,8 +17,8 @@ class DownvotesController extends ApiController
 
     /** 
      * @api {get} /addresses Get Addresses
-     * @apiName AddressIndex
-     * @apiGroup Address
+     * @apiName DownvotesIndex
+     * @apiGroup Downvote
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
@@ -43,8 +43,8 @@ class DownvotesController extends ApiController
 
     /**
      * @api {post} /addresses Create Address
-     * @apiName AddressStore
-     * @apiGroup Address
+     * @apiName DownvotesStore
+     * @apiGroup Downvote
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
@@ -68,8 +68,8 @@ class DownvotesController extends ApiController
 
     /**
      * @api {get} /addresses/:id Get Address by ID
-     * @apiName AddressShow
-     * @apiGroup Address
+     * @apiName DownvotesShow
+     * @apiGroup Downvote
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -97,8 +97,8 @@ class DownvotesController extends ApiController
 
     /**
      * @api {put} /addresses/:id Update Address
-     * @apiName AddressUpdate
-     * @apiGroup Address
+     * @apiName DownvotesUpdate
+     * @apiGroup Downvote
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
@@ -124,8 +124,8 @@ class DownvotesController extends ApiController
 
     /**
      * @api {delete} /addresses/:id Delete Address
-     * @apiName AddressDelete
-     * @apiGroup Address
+     * @apiName DownvotesDelete
+     * @apiGroup Downvote
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *

@@ -12,8 +12,8 @@ class UserAnswersController extends ApiController
 {
     /** 
      * @api {get} /addresses Get Addresses
-     * @apiName AddressIndex
-     * @apiGroup Address
+     * @apiName UserAnswersIndex
+     * @apiGroup User
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
@@ -40,8 +40,8 @@ class UserAnswersController extends ApiController
 
     /**
      * @api {post} /addresses Create Address
-     * @apiName AddressStore
-     * @apiGroup Address
+     * @apiName UserAnswersStore
+     * @apiGroup User
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
@@ -67,8 +67,8 @@ class UserAnswersController extends ApiController
 
     /**
      * @api {get} /addresses/:id Get Address by ID
-     * @apiName AddressShow
-     * @apiGroup Address
+     * @apiName UserAnswersShow
+     * @apiGroup User
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -98,8 +98,8 @@ class UserAnswersController extends ApiController
 
     /**
      * @api {put} /addresses/:id Update Address
-     * @apiName AddressUpdate
-     * @apiGroup Address
+     * @apiName UserAnswersUpdate
+     * @apiGroup User
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
@@ -129,8 +129,8 @@ class UserAnswersController extends ApiController
 
     /**
      * @api {delete} /addresses/:id Delete Address
-     * @apiName AddressDelete
-     * @apiGroup Address
+     * @apiName UserAnswersDelete
+     * @apiGroup User
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *

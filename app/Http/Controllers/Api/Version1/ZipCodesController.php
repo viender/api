@@ -17,8 +17,8 @@ class ZipCodesController extends ApiController
 
     /** 
      * @api {get} /addresses Get Addresses
-     * @apiName AddressIndex
-     * @apiGroup Address
+     * @apiName ZipCodesIndex
+     * @apiGroup ZipCode
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
@@ -43,8 +43,8 @@ class ZipCodesController extends ApiController
 
     /**
      * @api {post} /addresses Create Address
-     * @apiName AddressStore
-     * @apiGroup Address
+     * @apiName ZipCodesStore
+     * @apiGroup ZipCode
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
@@ -68,8 +68,8 @@ class ZipCodesController extends ApiController
 
     /**
      * @api {get} /addresses/:id Get Address by ID
-     * @apiName AddressShow
-     * @apiGroup Address
+     * @apiName ZipCodesShow
+     * @apiGroup ZipCode
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -97,8 +97,8 @@ class ZipCodesController extends ApiController
 
     /**
      * @api {put} /addresses/:id Update Address
-     * @apiName AddressUpdate
-     * @apiGroup Address
+     * @apiName ZipCodesUpdate
+     * @apiGroup ZipCode
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
@@ -124,8 +124,8 @@ class ZipCodesController extends ApiController
 
     /**
      * @api {delete} /addresses/:id Delete Address
-     * @apiName AddressDelete
-     * @apiGroup Address
+     * @apiName ZipCodesDelete
+     * @apiGroup ZipCode
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
