@@ -30,7 +30,9 @@ class QuestionTagsController extends ApiController
      */
     public function store(Request $request, Question $question)
     {
-        $question->tags()->save(new Tag($request->all()));
+        if( ! $question->tags()->find($request->tag_id)) {
+            $question->tags()->attach(Tag::findOrFail($request->tag_id));
+        }
 
         return $this->respondCreated();
     }
@@ -72,9 +74,7 @@ class QuestionTagsController extends ApiController
      */
     public function destroy(Question $question, $tag)
     {
-        $tag = $question->tags()->findOrFail($tag);
-        
-        $tag->delete();
+        $auction->tags()->detach($auction->tags()->findOrFail($tag));
 
         return $this->respondDeleted();
     }

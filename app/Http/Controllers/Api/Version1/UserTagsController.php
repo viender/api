@@ -30,7 +30,9 @@ class UserTagsController extends ApiController
      */
     public function store(Request $request, User $user)
     {
-        $user->tags()->save(new Tag($request->all()));
+        if( ! $user->tags()->find($request->tag_id)) {
+            $user->tags()->attach(Tag::findOrFail($request->tag_id));
+        }
 
         return $this->respondCreated();
     }
@@ -72,9 +74,7 @@ class UserTagsController extends ApiController
      */
     public function destroy(User $user, $tag)
     {
-        $tag = $user->tags()->findOrFail($tag);
-        
-        $tag->delete();
+        $user->tags()->detach($user->tags()->findOrFail($tag));
 
         return $this->respondDeleted();
     }
