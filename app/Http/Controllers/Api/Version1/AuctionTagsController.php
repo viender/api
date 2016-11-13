@@ -13,21 +13,13 @@ class AuctionTagsController extends ApiController
     /** 
      * @api {get} /auctions/:slug/tags Get Auction Tags
      * @apiName AuctionTagsIndex
-     * @apiGroup Auction
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiSuccess {Object[]} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse TagIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
@@ -41,19 +33,15 @@ class AuctionTagsController extends ApiController
     /**
      * @api {post} /auctions/:slug/tags Create Auction Tag
      * @apiName AuctionTagsStore
-     * @apiGroup Auction
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
-     * @apiHeader {String} Authorization Personal Access Token
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      * 
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
+     * @apiUse TagRequestBodyParam
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -70,7 +58,7 @@ class AuctionTagsController extends ApiController
     /**
      * @api {get} /auctions/:slug/tags/:id Get Auction Tag
      * @apiName AuctionTagsShow
-     * @apiGroup Auction
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -78,15 +66,7 @@ class AuctionTagsController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {Object} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse TagShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -101,20 +81,17 @@ class AuctionTagsController extends ApiController
     /**
      * @api {put} /auctions/:slug/tags/:id Update Auction Tag
      * @apiName AuctionTagsUpdate
-     * @apiGroup Auction
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
-     * 
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse TagRequestBodyParam
+     *
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -128,16 +105,15 @@ class AuctionTagsController extends ApiController
     /**
      * @api {delete} /auctions/:slug/tags/:id Delete Auction Tag
      * @apiName AuctionTagsDelete
-     * @apiGroup Auction
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response

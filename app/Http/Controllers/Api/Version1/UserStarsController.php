@@ -11,23 +11,15 @@ use App\Viender\Transformers\Version1\StarTransformer;
 class UserStarsController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /users/:username/stars Get User Stars
      * @apiName UserStarsIndex
-     * @apiGroup User
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiSuccess {Object[]} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse StarIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
@@ -39,21 +31,17 @@ class UserStarsController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /users/:username/stars Create User Star
      * @apiName UserStarsStore
-     * @apiGroup User
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
-     * @apiHeader {String} Authorization Personal Access Token
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      * 
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
+     * @apiUse StarRequestBodyParam
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -66,9 +54,9 @@ class UserStarsController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /users/:username/stars/:id Get User Star
      * @apiName UserStarsShow
-     * @apiGroup User
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -76,15 +64,7 @@ class UserStarsController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {Object} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse StarShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -97,22 +77,19 @@ class UserStarsController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /users/:username/stars/:id Update User Star
      * @apiName UserStarsUpdate
-     * @apiGroup User
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
-     * 
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse StarRequestBodyParam
+     *
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -128,18 +105,17 @@ class UserStarsController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /users/:username/stars/:id Delete User Star
      * @apiName UserStarsDelete
-     * @apiGroup User
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response

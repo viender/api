@@ -11,23 +11,15 @@ use App\Viender\Transformers\Version1\BidTransformer;
 class UserBidsController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /users/:username/bids Get User Bids
      * @apiName UserBidsIndex
-     * @apiGroup User
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiSuccess {Object[]} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse BidIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
@@ -39,21 +31,17 @@ class UserBidsController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /users/:username/bids Create User Bid
      * @apiName UserBidsStore
-     * @apiGroup User
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
-     * @apiHeader {String} Authorization Personal Access Token
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      * 
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
+     * @apiUse BidRequestBodyParam
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -66,9 +54,9 @@ class UserBidsController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /users/:username/bids/:id Get User Bid
      * @apiName UserBidsShow
-     * @apiGroup User
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -76,15 +64,7 @@ class UserBidsController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {Object} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse BidShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -97,22 +77,19 @@ class UserBidsController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /users/:username/bids/:id Update User Bid
      * @apiName UserBidsUpdate
-     * @apiGroup User
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
-     * 
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse BidRequestBodyParam
+     *
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -128,18 +105,17 @@ class UserBidsController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /users/:username/bids/:id Delete User Bid
      * @apiName UserBidsDelete
-     * @apiGroup User
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response

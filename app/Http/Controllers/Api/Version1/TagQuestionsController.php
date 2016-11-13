@@ -11,23 +11,15 @@ use App\Viender\Transformers\Version1\QuestionTransformer;
 class TagQuestionsController extends ApiController
 {
     /** 
-     * @api {get} /addresses Get Addresses
+     * @api {get} /tags/:id/questions Get Tag Questions
      * @apiName TagQuestionsIndex
-     * @apiGroup Tag
+     * @apiGroup TagGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiSuccess {Object[]} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse QuestionIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
@@ -39,21 +31,17 @@ class TagQuestionsController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
+     * @api {post} /tags/:id/questions Create Tag Question
      * @apiName TagQuestionsStore
-     * @apiGroup Tag
+     * @apiGroup TagGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
-     * @apiHeader {String} Authorization Personal Access Token
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      * 
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
+     * @apiUse QuestionRequestBodyParam
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -66,9 +54,9 @@ class TagQuestionsController extends ApiController
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
+     * @api {get} /tags/:id/questions/:slug Get Tag Question
      * @apiName TagQuestionsShow
-     * @apiGroup Tag
+     * @apiGroup TagGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -76,15 +64,7 @@ class TagQuestionsController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {Object} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse QuestionShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -97,22 +77,19 @@ class TagQuestionsController extends ApiController
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
+     * @api {put} /tags/:id/questions/:slug Update Tag Question
      * @apiName TagQuestionsUpdate
-     * @apiGroup Tag
+     * @apiGroup TagGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
-     * 
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse QuestionRequestBodyParam
+     *
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -128,18 +105,17 @@ class TagQuestionsController extends ApiController
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
+     * @api {delete} /tags/:id/questions/:slug Delete Tag Question
      * @apiName TagQuestionsDelete
-     * @apiGroup Tag
+     * @apiGroup TagGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response

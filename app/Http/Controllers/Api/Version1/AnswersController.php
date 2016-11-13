@@ -18,21 +18,13 @@ class AnswersController extends ApiController
     /** 
      * @api {get} /answers Get Answers
      * @apiName AnswersIndex
-     * @apiGroup Answer
+     * @apiGroup AnswerGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiSuccess {Object[]} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse AnswerIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
@@ -44,19 +36,15 @@ class AnswersController extends ApiController
     /**
      * @api {post} /answers Create Answers
      * @apiName AnswersStore
-     * @apiGroup Answer
+     * @apiGroup AnswerGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
-     * @apiHeader {String} Authorization Personal Access Token
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      * 
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
+     * @apiUse AnswerRequestBodyParam
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -69,7 +57,7 @@ class AnswersController extends ApiController
     /**
      * @api {get} /answers/:id Get Answer
      * @apiName AnswersShow
-     * @apiGroup Answer
+     * @apiGroup AnswerGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -77,15 +65,7 @@ class AnswersController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {Object} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse AnswerShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -98,20 +78,17 @@ class AnswersController extends ApiController
     /**
      * @api {put} /answers/:id Update Answer
      * @apiName AnswersUpdate
-     * @apiGroup Answer
+     * @apiGroup AnswerGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
-     * 
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse AnswerRequestBodyParam
+     *
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -125,16 +102,15 @@ class AnswersController extends ApiController
     /**
      * @api {delete} /answers/:id Delete Answer
      * @apiName AnswersDelete
-     * @apiGroup Answer
+     * @apiGroup AnswerGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response

@@ -1,8 +1,6 @@
 <?php
 
-include __DIR__ . '/old/version1.php';
-
-Route::group(['namespace' => 'Api\Version1'], function() {
+Route::group(['prefix' => 'v1', 'namespace' => 'Api\Version1'], function() {
 
     // Models
     Route::resource('users', 'UsersController', ['except' => ['create', 'edit']]);

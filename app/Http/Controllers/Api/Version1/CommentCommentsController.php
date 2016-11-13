@@ -12,21 +12,13 @@ class CommentCommentsController extends ApiController
     /** 
      * @api {get} /comments/:id/comments Get Comment Comments
      * @apiName CommentCommentsIndex
-     * @apiGroup Address
+     * @apiGroup CommentGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiSuccess {Object[]} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse CommentIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
@@ -40,19 +32,15 @@ class CommentCommentsController extends ApiController
     /**
      * @api {post} /comments/:id/comments Create Comment Comment
      * @apiName CommentCommentsStore
-     * @apiGroup Address
+     * @apiGroup CommentGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
-     * @apiHeader {String} Authorization Personal Access Token
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      * 
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
+     * @apiUse CommentRequestBodyParam
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -67,7 +55,7 @@ class CommentCommentsController extends ApiController
     /**
      * @api {get} /comments/:id/comments/:id Get Comment Comment
      * @apiName CommentCommentsShow
-     * @apiGroup Address
+     * @apiGroup CommentGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -75,15 +63,7 @@ class CommentCommentsController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {Object} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse CommentShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -98,20 +78,17 @@ class CommentCommentsController extends ApiController
     /**
      * @api {put} /comments/:id/comments/:id Update Comment Comment
      * @apiName CommentCommentsUpdate
-     * @apiGroup Address
+     * @apiGroup CommentGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
-     * 
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse CommentRequestBodyParam
+     *
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -129,16 +106,15 @@ class CommentCommentsController extends ApiController
     /**
      * @api {delete} /comments/:id/comments/:id Delete Comment Comment
      * @apiName CommentCommentsDelete
-     * @apiGroup Address
+     * @apiGroup CommentGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response

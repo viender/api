@@ -13,21 +13,13 @@ class CityZipCodesController extends ApiController
     /** 
      * @api {get} /cities/:id/zipcodes Get City ZipCodes
      * @apiName CityZipCodesIndex
-     * @apiGroup City
+     * @apiGroup CityGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiSuccess {Object[]} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse ZipCodeIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
@@ -41,19 +33,15 @@ class CityZipCodesController extends ApiController
     /**
      * @api {post} /cities/:id/zipcodes Create City ZipCode
      * @apiName CityZipCodesStore
-     * @apiGroup City
+     * @apiGroup CityGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
-     * @apiHeader {String} Authorization Personal Access Token
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      * 
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
+     * @apiUse ZipCodeRequestBodyParam
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -68,7 +56,7 @@ class CityZipCodesController extends ApiController
     /**
      * @api {get} /cities/:id/zipcodes/:id Get City ZipCode
      * @apiName CityZipCodesShow
-     * @apiGroup City
+     * @apiGroup CityGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -76,15 +64,7 @@ class CityZipCodesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {Object} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse ZipCodeShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -99,20 +79,17 @@ class CityZipCodesController extends ApiController
     /**
      * @api {put} /cities/:id/zipcodes/:id Update City ZipCode
      * @apiName CityZipCodesUpdate
-     * @apiGroup City
+     * @apiGroup CityGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
-     * 
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse ZipCodeRequestBodyParam
+     *
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -130,16 +107,15 @@ class CityZipCodesController extends ApiController
     /**
      * @api {delete} /cities/:id/zipcodes/:id Delete City ZipCode
      * @apiName CityZipCodesDelete
-     * @apiGroup City
+     * @apiGroup CityGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response

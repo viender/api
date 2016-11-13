@@ -13,21 +13,13 @@ class QuestionUpvotesController extends ApiController
     /** 
      * @api {get} /questions/:slug/upvotes Get Question Upvotes
      * @apiName QuestionUpvotesIndex
-     * @apiGroup Question
+     * @apiGroup QuestionGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiSuccess {Object[]} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse UpvoteIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
@@ -41,19 +33,15 @@ class QuestionUpvotesController extends ApiController
     /**
      * @api {post} /questions/:slug/upvotes Create Question Upvote
      * @apiName QuestionUpvotesStore
-     * @apiGroup Question
+     * @apiGroup QuestionGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
-     * @apiHeader {String} Authorization Personal Access Token
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      * 
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
+     * @apiUse UpvoteRequestBodyParam
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -68,7 +56,7 @@ class QuestionUpvotesController extends ApiController
     /**
      * @api {get} /questions/:slug/upvotes/:id Get Question Upvote
      * @apiName QuestionUpvotesShow
-     * @apiGroup Question
+     * @apiGroup QuestionGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -76,15 +64,7 @@ class QuestionUpvotesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {Object} data Array of addresses
-     * @apiSuccess {Number} data.id Adresses unique ID
-     * @apiSuccess {String} data.street Street name
-     * @apiSuccess {String} data.city City name
-     * @apiSuccess {String} data.state State name
-     * @apiSuccess {String} data.country Country name
-     * @apiSuccess {Object[]} data.links Addresses links
-     * @apiSuccess {Url} data.links.rel Addresses links rel
-     * @apiSuccess {Url} data.links.uri Addresses links uri
+     * @apiUse UpvoteShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -99,20 +79,17 @@ class QuestionUpvotesController extends ApiController
     /**
      * @api {put} /questions/:slug/upvotes/:id Update Question Upvote
      * @apiName QuestionUpvotesUpdate
-     * @apiGroup Question
+     * @apiGroup QuestionGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiParam (Request Body Fields) {Number} user_id Users unique ID
-     * @apiParam (Request Body Fields) {Number} city_id Cities unique ID
-     * @apiParam (Request Body Fields) {String} name Street name
-     * 
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse UpvoteRequestBodyParam
+     *
+     * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -130,16 +107,15 @@ class QuestionUpvotesController extends ApiController
     /**
      * @api {delete} /questions/:slug/upvotes/:id Delete Question Upvote
      * @apiName QuestionUpvotesDelete
-     * @apiGroup Question
+     * @apiGroup QuestionGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
-     * @apiHeader {String} Content-Type Content-Type
+     * @apiUse AuthApiHeader
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiSuccess {String} message Response message
-     * @apiSuccess {Number} status_code Response status code
+     * @apiUse MessageResponseSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
