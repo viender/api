@@ -15,7 +15,7 @@ class AnswerTransformer extends Transformer
      * @var array
      */
     protected $availableIncludes = [
-        'owner'
+        'owner', 'question',
     ];
 
     /**
@@ -45,4 +45,16 @@ class AnswerTransformer extends Transformer
             ],
         ];
     }
+
+    /**
+     * Include Question
+     *
+     * @return League\Fractal\ItemResource
+     */
+    public function includeQuestion($answer)
+    {
+        $question = $answer->question;
+
+        return $this->item($question, new QuestionTransformer);
+    }    
 }
