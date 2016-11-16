@@ -26,9 +26,10 @@ class AnswerTransformer extends Transformer
     public function transform(Answer $answer)
     {
         return [
-            'id'        => (int) $answer->id,
-            'title'     => $answer->title,
-            'body'      => $answer->body,
+            'id'            => (int) $answer->id,
+            'title'         => $answer->title,
+            'body'          => $answer->body,
+            'upvote_count'  => $answer->upvotes()->count(),
             'links'   => [
                 [
                     'rel' => 'self',
