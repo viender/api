@@ -13,8 +13,8 @@ return [
      */
     'supportsCredentials' => false,
     'allowedOrigins' => ['http://web.viender.dev', 'https://viender.com', 'https://www.viender.com'],
-    'allowedHeaders' => ['Content-Type', 'Accept', 'Authorize'],
-    'allowedMethods' => ['*'],
+    'allowedHeaders' => ['Content-Type', 'Accept', 'Authorization'],
+    'allowedMethods' => ['GET', 'POST', 'PUT',  'DELETE'],
     'exposedHeaders' => [],
     'maxAge' => 0,
     'hosts' => [],
