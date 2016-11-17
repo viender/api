@@ -31,6 +31,12 @@ class CommentTransformer extends Transformer
             'body'              => $comment->body,
             'upvote_count'      => $comment->upvotes()->count(),
             'comment_count'     => $comment->comments()->count(),
+            'links'   => [
+                [
+                    'rel' => 'comments',
+                    'url' => url('/comments') . '/' . $comment->id . '/comments',
+                ],
+            ],
         ];
     }
 }
