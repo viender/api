@@ -6,8 +6,8 @@ use Response;
 use League\Fractal\Manager;
 use App\Http\Controllers\Controller;
 use League\Fractal\Resource\Collection;
-use League\Fractal\Serializer\ArraySerializer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use App\Viender\Transformers\Version1\Serializer\ArraySerializer;
 
 class ApiController extends Controller
 {
