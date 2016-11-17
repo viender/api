@@ -3,19 +3,21 @@
 namespace App\Viender\Transformers\Version1;
 
 use App\Question;
+use App\Viender\Transformers\Version1\AnswerTransformer;
 use App\Viender\Transformers\Version1\Traits\UserIncludable;
+use App\Viender\Transformers\Version1\Traits\CommentsIncludable;
 
 class QuestionTransformer extends Transformer
 {
-    use UserIncludable;
-    
+    use UserIncludable, CommentsIncludable;
+
     /**
      * List of resources possible to include
      *
      * @var array
      */
     protected $availableIncludes = [
-        'owner',
+        'owner', 'answers', 'comments',
     ];
     
     /**
@@ -40,5 +42,17 @@ class QuestionTransformer extends Transformer
                 ],
             ]            
         ];
+    }
+
+    /**
+     * Include Answers
+     *
+     * @return League\Fractal\ItemResource
+     */
+    public function includeAnswers($item)
+    {
+        $answers = $item->answers;
+
+        return $this->collection($answers, new AnswerTransformer, 'answers');
     }
 }
