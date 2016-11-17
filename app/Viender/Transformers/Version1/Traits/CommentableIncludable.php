@@ -7,7 +7,7 @@ trait CommentableIncludable
     use TransformerTrait;
 
     /**
-     * Include Commentable
+     * Include Comments
      *
      * @return League\Fractal\ItemResource
      */
