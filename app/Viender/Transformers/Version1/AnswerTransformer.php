@@ -4,10 +4,11 @@ namespace App\Viender\Transformers\Version1;
 
 use App\Answer;
 use App\Viender\Transformers\Version1\Traits\UserIncludable;
+use App\Viender\Transformers\Version1\Traits\CommentsIncludable;
 
 class AnswerTransformer extends Transformer
 {
-    use UserIncludable;
+    use UserIncludable, CommentsIncludable;
 
     /**
      * List of resources possible to include
@@ -15,7 +16,7 @@ class AnswerTransformer extends Transformer
      * @var array
      */
     protected $availableIncludes = [
-        'owner', 'question',
+        'owner', 'question', 'comments',
     ];
 
     /**
