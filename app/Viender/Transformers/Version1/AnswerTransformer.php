@@ -34,15 +34,19 @@ class AnswerTransformer extends Transformer
             'links'   => [
                 [
                     'rel' => 'self',
-                    'uri' => url('/answers') . '/' . $answer->id,
+                    'url' => url('/answers') . '/' . $answer->id,
                 ],
                 [
                     'rel' => 'author',
-                    'uri' => url('/users') . '/' . $answer->user->username,
+                    'url' => url('/users') . '/' . $answer->user->username,
                 ],
                 [
                     'rel' => 'question',
-                    'uri' => url('/questions') . '/' . $answer->question->slug,
+                    'url' => url('/questions') . '/' . $answer->question->slug,
+                ],
+                [
+                    'rel' => 'comments',
+                    'url' => url('/answers') . '/' . $answer->id . '/comments',
                 ],
             ],
         ];
