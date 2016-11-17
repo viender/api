@@ -31,6 +31,7 @@ class AnswerTransformer extends Transformer
             'title'         => $answer->title,
             'body'          => $answer->body,
             'upvote_count'  => $answer->upvotes()->count(),
+            'comment_count'  => $answer->comments()->count(),
             'links'   => [
                 [
                     'rel' => 'self',

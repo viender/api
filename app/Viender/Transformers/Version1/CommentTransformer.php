@@ -29,6 +29,8 @@ class CommentTransformer extends Transformer
         return [
             'id'                => (int) $comment->id,
             'body'              => $comment->body,
+            'upvote_count'      => $comment->upvotes()->count(),
+            'comment_count'     => $comment->comments()->count(),
         ];
     }
 }
