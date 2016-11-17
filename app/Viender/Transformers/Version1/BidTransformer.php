@@ -34,15 +34,15 @@ class BidTransformer extends Transformer
             'links'         => [
                 [
                     'rel' => 'self',
-                    'uri' => url('/bids') . '/' . $bid->id,
+                    'url' => url('/bids') . '/' . $bid->id,
                 ],
                 [
                     'rel' => 'author',
-                    'uri' => url('/users') . '/' . $bid->user->username,
+                    'url' => url('/users') . '/' . $bid->user->username,
                 ],
                 [
                     'rel' => 'auction',
-                    'uri' => url('/auctions') . '/' . $bid->auction->slug,
+                    'url' => url('/auctions') . '/' . $bid->auction->slug,
                 ],
             ],
         ];
