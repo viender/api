@@ -34,11 +34,11 @@ class QuestionTransformer extends Transformer
             'links'   => [
                 [
                     'rel' => 'self',
-                    'uri' => url('/questions') . '/' . $question->slug,
+                    'url' => url('/questions') . '/' . $question->slug,
                 ],
                 [
                     'rel' => 'author',
-                    'uri' => url('/users') . '/' . $question->user->username,
+                    'url' => url('/users') . '/' . $question->user->username,
                 ],
             ]            
         ];

@@ -34,11 +34,11 @@ class AuctionTransformer extends Transformer
             'links'   => [
                 [
                     'rel' => 'self',
-                    'uri' => url('/auctions') . '/' . $auction->slug,
+                    'url' => url('/auctions') . '/' . $auction->slug,
                 ],
                 [
                     'rel' => 'author',
-                    'uri' => url('/users') . '/' . $auction->user->username,
+                    'url' => url('/users') . '/' . $auction->user->username,
                 ],
             ],
         ];

@@ -36,7 +36,7 @@ class AddressTransformer extends Transformer
             'links'   => [
                 [
                     'rel' => 'self',
-                    'uri' => url('/addresses') . '/' . $address->id,
+                    'url' => url('/addresses') . '/' . $address->id,
                 ]
             ],
         ];
