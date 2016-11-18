@@ -45,6 +45,10 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($request->expectsJson()) {
+            if ($exception instanceof \Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException) {
+                return response()->json(["message" => "Unprocessable", "status_code" => 422], 422);
+            }
+
             if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
                 return response()->json(["message" => "Not Found", "status_code" => 404], 404);
             }

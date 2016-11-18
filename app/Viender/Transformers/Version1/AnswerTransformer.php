@@ -3,6 +3,7 @@
 namespace App\Viender\Transformers\Version1;
 
 use App\Answer;
+use Illuminate\Support\Facades\Auth;
 use App\Viender\Transformers\Version1\Traits\UserIncludable;
 use App\Viender\Transformers\Version1\Traits\CommentsIncludable;
 

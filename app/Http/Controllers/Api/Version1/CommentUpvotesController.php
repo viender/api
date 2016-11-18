@@ -48,6 +48,10 @@ class CommentUpvotesController extends ApiController
      */
     public function store(Request $request, Comment $comment)
     {
+        if($comment->upvotes()->where('user_id', Auth::user()->id)->first()) {
+           throw new UnprocessableEntityHttpException();
+        }
+        
         $comment->upvotes()->save(new Upvote($request->all()));
 
         return $this->respondCreated();
