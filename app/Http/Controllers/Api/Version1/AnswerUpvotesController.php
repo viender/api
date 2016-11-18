@@ -6,7 +6,9 @@ use App\Answer;
 use App\Upvote;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use Illuminate\Support\Facades\Auth;
 use App\Viender\Transformers\Version1\UpvoteTransformer;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 class AnswerUpvotesController extends ApiController
 {
@@ -48,6 +50,10 @@ class AnswerUpvotesController extends ApiController
      */
     public function store(Request $request, Answer $answer)
     {
+        if($answer->upvotes()->where('user_id', Auth::user()->id)->first()) {
+           throw new UnprocessableEntityHttpException();
+        }
+
         $answer->upvotes()->save(new Upvote($request->all()));
 
         return $this->respondCreated();

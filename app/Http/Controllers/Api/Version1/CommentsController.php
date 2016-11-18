@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Version1;
 
 use App\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Viender\Transformers\Version1\CommentTransformer;
 use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
@@ -96,6 +97,7 @@ class CommentsController extends ApiController
      */
     public function update(Request $request, Comment $comment)
     {
+        dd(Auth::user());
         return $this->handler->update($request, $comment);
     }
 
