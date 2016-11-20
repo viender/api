@@ -92,4 +92,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Address');
     }
+
+    public function socialAccounts() 
+    {
+        return $this->hasMany('App\SocialAccount');
+    }
 }
