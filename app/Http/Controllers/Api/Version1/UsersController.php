@@ -6,12 +6,14 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Viender\Transformers\Version1\UserTransformer;
 use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class UsersController extends ApiController
 {
     public function __construct()
     {
         parent::__construct();
+        $this->middleware('auth:api')->except('index', 'show', 'store');
         $this->handler = new BasicHandler($this, User::class, UserTransformer::class);
     }
 
@@ -51,6 +53,10 @@ class UsersController extends ApiController
      */
     public function store(Request $request)
     {
+        if(\DB::table('oauth_clients')->where([['id', $request->client_id], ['secret', $request->client_secret]])->count() == 0) {
+            throw new AccessDeniedHttpException;
+        }
+
         return $this->handler->store($request);
     }
 
