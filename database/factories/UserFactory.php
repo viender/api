@@ -15,9 +15,12 @@
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
     $genders = ['male', 'female'];
+    $name = $faker->name;
 
     return [
-        'name' => $faker->name,
+        'first_name' => explode(' ', $name)[0],
+        'last_name' => explode(' ', $name)[1],
+        'avatar_url' => "https://web.viender.dev/img/profile.jpg",
         'username' => function(array $me) {
             return App\Viender\Utilities\Text::clean($me['name']);
         },
