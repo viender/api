@@ -12,7 +12,7 @@ return [
      |
      */
     'supportsCredentials' => false,
-    'allowedOrigins' => ['http://web.viender.dev', 'https://viender.com', 'https://www.viender.com', 'http://dev.viender.com'],
+    'allowedOrigins' => ['http://web.viender.dev', 'https://web.viender.dev', 'https://viender.com', 'https://www.viender.com', 'https://dev.viender.com'],
     'allowedHeaders' => ['Content-Type', 'Accept', 'Authorization'],
     'allowedMethods' => ['GET', 'POST', 'PUT',  'DELETE'],
     'exposedHeaders' => [],
