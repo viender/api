@@ -12,6 +12,7 @@ class UsersController extends ApiController
     public function __construct()
     {
         parent::__construct();
+        $this->middleware('auth:api')->except('index', 'show', 'store');
         $this->handler = new BasicHandler($this, User::class, UserTransformer::class);
     }
 
@@ -51,6 +52,10 @@ class UsersController extends ApiController
      */
     public function store(Request $request)
     {
+        if(DB::table('oauth_clients')->where('secret', $request->client_secret)->count() == 0) {
+            abort(403);
+        }
+
         return $this->handler->store($request);
     }
 
