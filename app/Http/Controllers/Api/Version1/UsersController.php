@@ -3,16 +3,22 @@
 namespace App\Http\Controllers\Api\Version1;
 
 use App\User;
+use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use App\Viender\Transformers\Version1\UserTransformer;
 use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use App\Viender\Transformers\Version1\Serializer\ArraySerializer;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class UsersController extends ApiController
 {
     public function __construct()
     {
-        parent::__construct();
+        $this->fractal  = new Manager();
+        $this->fractal->setSerializer(new ArraySerializer());
+        if (isset($_GET['with'])) {
+            $this->fractal->parseIncludes($_GET['with']);
+        }
         $this->middleware('auth:api')->except('index', 'show', 'store');
         $this->handler = new BasicHandler($this, User::class, UserTransformer::class);
     }
@@ -53,23 +59,25 @@ class UsersController extends ApiController
      */
     public function store(Request $request)
     {
+        $user;
+
         if( ! \DB::table('oauth_clients')->where([['id', $request->client_id], ['secret', $request->client_secret]])->exists()) {
             throw new AccessDeniedHttpException;
         }
 
         if($this->isSocialAccountRequest($request)) {
             if(\App\SocialAccount::where([
-                ['provider' => $request->provider],
-                ['social_id' => $request->social_id]
+                ['provider', $request->provider],
+                ['social_id', $request->social_id]
             ])->exists()) {
-                $socialAccount = $user->socialAccounts()->where([
-                    ['provider' => $request->provider],
-                    ['social_id' => $request->social_id]
+                $socialAccount = \App\SocialAccount::where([
+                    ['provider', $request->provider],
+                    ['social_id', $request->social_id]
                 ])->first();
 
-                $socialAccount->user->update($request->all()); // Is this necessary?
-
                 $socialAccount->update($request->all());
+
+                $user = $socialAccount->user;
             } else {
                 $user = \App\User::create($request->all());
                 $socialAccount = $user->socialAccounts()->save(new \App\SocialAccount($request->all()));
@@ -78,8 +86,7 @@ class UsersController extends ApiController
             $user = \App\User::create($request->all());
         }
 
-
-        return 'berhasil';
+        return $user->socialAccounts;
     }
 
     /**
