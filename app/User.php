@@ -16,8 +16,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'email', 'password', 'gender',
+        'first_name', 'last_name', 'username', 'avatar_url', 'email', 'password', 'gender',
     ];
+
+    public function fullName() 
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 
     /**
      * Get the route key for the model.
@@ -91,5 +96,10 @@ class User extends Authenticatable
     public function addresses() 
     {
         return $this->hasMany('App\Address');
+    }
+
+    public function socialAccounts() 
+    {
+        return $this->hasMany('App\SocialAccount');
     }
 }

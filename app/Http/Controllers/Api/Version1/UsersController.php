@@ -53,11 +53,33 @@ class UsersController extends ApiController
      */
     public function store(Request $request)
     {
-        if(\DB::table('oauth_clients')->where([['id', $request->client_id], ['secret', $request->client_secret]])->count() == 0) {
+        if( ! \DB::table('oauth_clients')->where([['id', $request->client_id], ['secret', $request->client_secret]])->exists()) {
             throw new AccessDeniedHttpException;
         }
 
-        return $this->handler->store($request);
+        if($this->isSocialAccountRequest($request)) {
+            if(\App\SocialAccount::where([
+                ['provider' => $request->provider],
+                ['social_id' => $request->social_id]
+            ])->exists()) {
+                $socialAccount = $user->socialAccounts()->where([
+                    ['provider' => $request->provider],
+                    ['social_id' => $request->social_id]
+                ])->first();
+
+                $socialAccount->user->update($request->all()); // Is this necessary?
+
+                $socialAccount->update($request->all());
+            } else {
+                $user = \App\User::create($request->all());
+                $socialAccount = $user->socialAccounts()->save(new \App\SocialAccount($request->all()));
+            }
+        } else {
+            $user = \App\User::create($request->all());
+        }
+
+
+        return 'berhasil';
     }
 
     /**
@@ -124,5 +146,13 @@ class UsersController extends ApiController
     public function destroy(User $user)
     {
         return $this->handler->destroy($user);
+    }
+
+    public function isSocialAccountRequest(Request $request) 
+    {
+        return (isset($request->social_id) && 
+            isset($request->provider) && 
+            isset($request->token) &&
+            isset($request->expiresIn));
     }
 }
