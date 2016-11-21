@@ -100,6 +100,6 @@ class User extends Authenticatable
 
     public function socialAccounts() 
     {
-        return $this->hasMany('App\SocialAccount');
+        return $this->hasOne('App\SocialAccount');
     }
 }
