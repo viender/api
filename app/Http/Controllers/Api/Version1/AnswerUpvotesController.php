@@ -56,9 +56,7 @@ class AnswerUpvotesController extends ApiController
             return $this->respondDeleted('Downvoted');
         }
 
-        $request->request->add(['user_id' => Auth::user()->id]);
-
-        $answer->upvotes()->save(new Upvote($request->all()));
+        $answer->upvotes()->save(new Upvote(['user_id' => Auth::user()->id]));
 
         return $this->respondCreated('Upvoted');
     }
