@@ -50,13 +50,17 @@ class AnswerUpvotesController extends ApiController
      */
     public function store(Request $request, Answer $answer)
     {
-        if($answer->upvotes()->where('user_id', Auth::user()->id)->first()) {
-           throw new UnprocessableEntityHttpException();
+        if($answer->upvotes()->where('user_id', Auth::user()->id)->exists()) {
+            $upvote = $answer->upvotes()->where('user_id', Auth::user()->id)->first();
+            $upvote->delete();
+            return $this->respondDeleted('Downvoted');
         }
+
+        $request->request->add(['user_id' => Auth::user()->id]);
 
         $answer->upvotes()->save(new Upvote($request->all()));
 
-        return $this->respondCreated();
+        return $this->respondCreated('Upvoted');
     }
 
     /**

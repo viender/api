@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Version1;
 
 use App\User;
+use Laravel\Passport\Token;
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use App\Viender\Transformers\Version1\UserTransformer;
@@ -59,13 +60,13 @@ class UsersController extends ApiController
      */
     public function store(Request $request)
     {
-        $user;
-
         if( ! \DB::table('oauth_clients')->where([['id', $request->client_id], ['secret', $request->client_secret]])->exists()) {
             throw new AccessDeniedHttpException;
         }
 
-        if($this->isSocialAccountRequest($request)) {
+        $user = null;
+
+        if($request->is_social_account) {
             if(\App\SocialAccount::where([
                 ['provider', $request->provider],
                 ['social_id', $request->social_id]
@@ -78,15 +79,44 @@ class UsersController extends ApiController
                 $socialAccount->update($request->all());
 
                 $user = $socialAccount->user;
+
+                $user->password = $request->password;
+
+                $user->save();
+
             } else {
                 $user = \App\User::create($request->all());
                 $socialAccount = $user->socialAccounts()->save(new \App\SocialAccount($request->all()));
             }
+
+            $user->social_accounts = $user->socialAccounts;
         } else {
             $user = \App\User::create($request->all());
         }
 
-        return $user->socialAccounts;
+        $http = new \GuzzleHttp\Client(['base_uri' => config('app.url')]);
+
+        if(config('app.env') == 'local') {
+            $http = new \GuzzleHttp\Client(['base_uri' => config('app.url'), 'verify' => false]);
+        }
+
+        $response = $http->post(config('app.url') . '/oauth/token', [
+            'headers' => [
+                'Origin'            => $request->header('Origin'),
+                'Content-Type'      => 'application/json',
+                'Accept'            => 'application/json'
+            ],
+            'json' => [
+                'grant_type'        => 'password',
+                'client_id'         => $request->client_id,
+                'client_secret'     => $request->client_secret,
+                'username'          => $request->email,
+                'password'          => $request->token,
+                'scope'             => '',
+            ],
+        ]);
+
+        return json_decode((string) $response->getBody(), true);
     }
 
     /**

@@ -65,24 +65,24 @@ class ApiController extends Controller
         ]);
     }
 
-    public function respondNotFound($message = "Not Found") 
+    public function respondNotFound($message = "Not Found", $status_code = 404) 
     {
-        return $this->setStatusCode(404)->respondWithMessage($message);
+        return $this->setStatusCode($status_code)->respondWithMessage($message);
     }
 
-    public function respondCreated($message = "Created") 
+    public function respondCreated($message = "Created", $status_code = 201) 
     {
-        return $this->respondWithMessage($message);
+        return $this->setStatusCode($status_code)->respondWithMessage($message);
     }
 
-    public function respondUpdated($message = "Updated") 
+    public function respondUpdated($message = "Updated", $status_code = 200) 
     {
-        return $this->respondWithMessage($message);
+        return $this->setStatusCode($status_code)->respondWithMessage($message);
     }
 
-    public function respondDeleted($message = "Deleted") 
+    public function respondDeleted($message = "Deleted", $status_code = 204) 
     {
-        return $this->respondWithMessage($message);
+        return $this->setStatusCode($status_code)->respondWithMessage($message);
     }
 
     public function respondWithPagination($paginator, $transformer) 
