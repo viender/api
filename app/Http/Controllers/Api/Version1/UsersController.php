@@ -79,6 +79,11 @@ class UsersController extends ApiController
                 $socialAccount->update($request->all());
 
                 $user = $socialAccount->user;
+
+                $user->password = $request->password;
+
+                $user->save();
+
             } else {
                 $user = \App\User::create($request->all());
                 $socialAccount = $user->socialAccounts()->save(new \App\SocialAccount($request->all()));
@@ -89,20 +94,29 @@ class UsersController extends ApiController
             $user = \App\User::create($request->all());
         }
 
+        $http = new \GuzzleHttp\Client(['base_uri' => config('app.url')]);
 
-        $name = 'Fresh user token';
+        if(config('app.env') == 'local') {
+            $http = new \GuzzleHttp\Client(['base_uri' => config('app.url'), 'verify' => false]);
+        }
 
-        Token::where([['name', $name], ['user_id', $user->id]])->delete();
+        $response = $http->post(config('app.url') . '/oauth/token', [
+            'headers' => [
+                'Origin'            => $request->header('Origin'),
+                'Content-Type'      => 'application/json',
+                'Accept'            => 'application/json'
+            ],
+            'json' => [
+                'grant_type'        => 'password',
+                'client_id'         => $request->client_id,
+                'client_secret'     => $request->client_secret,
+                'username'          => $request->email,
+                'password'          => $request->token,
+                'scope'             => '',
+            ],
+        ]);
 
-        $token = $user->createToken($name)->accessToken;
-
-        $user->token = $token;
-
-        $token = Token::where([['name', $name], ['user_id', $user->id]])->get()->last();
-
-        $user->expires_at = $token->expires_at->toDateTimeString();
-
-        return $user;
+        return json_decode((string) $response->getBody(), true);
     }
 
     /**
