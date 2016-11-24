@@ -2,9 +2,10 @@
 
 namespace App;
 
+use App\Contracts\Post\Upvotable;
 use Illuminate\Database\Eloquent\Model;
 
-class Answer extends Model
+class Answer extends Model implements Upvotable
 {
     /**
      * The attributes that are mass assignable.
