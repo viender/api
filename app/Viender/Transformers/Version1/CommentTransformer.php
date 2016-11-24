@@ -33,6 +33,10 @@ class CommentTransformer extends Transformer
             'comment_count'     => $comment->comments()->count(),
             'links'   => [
                 [
+                    'rel' => 'self',
+                    'url' => url('/comments') . '/' . $comment->id,
+                ],
+                [
                     'rel' => 'comments',
                     'url' => url('/comments') . '/' . $comment->id . '/comments',
                 ],

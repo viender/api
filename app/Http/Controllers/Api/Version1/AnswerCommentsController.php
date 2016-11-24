@@ -6,10 +6,19 @@ use App\Answer;
 use App\Comment;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use App\Repositories\CommentsRepository;
 use App\Viender\Transformers\Version1\CommentTransformer;
 
 class AnswerCommentsController extends ApiController
 {
+    private $comments;
+
+    public function __construct(CommentsRepository $comments)
+    {
+        parent::__construct();
+        $this->comments = $comments;
+    }
+
     /** 
      * @api {get} /answers/:id/comments Get Answer Comments
      * @apiName AnswerCommentsIndex
@@ -51,7 +60,7 @@ class AnswerCommentsController extends ApiController
      */
     public function store(Request $request, Answer $answer)
     {
-        $answer->comments()->save(new Comment($request->all()));
+        $this->comments->createByUser(\Auth::user()->id, $answer, $request->all());
 
         return $this->respondCreated();
     }

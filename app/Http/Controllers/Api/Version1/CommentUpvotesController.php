@@ -2,14 +2,23 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
-use App\Comment;
 use App\Upvote;
+use App\Comment;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use App\Repositories\UpvotesRepository;
 use App\Viender\Transformers\Version1\UpvoteTransformer;
 
 class CommentUpvotesController extends ApiController
 {
+    private $upvotes;
+
+    public function __construct(UpvotesRepository $upvotes)
+    {
+        parent::__construct();
+        $this->upvotes = $upvotes;
+    }
+
     /** 
      * @api {get} /comments/:id/upvotes Get Comment Upvotes
      * @apiName CommentUpvotesIndex
@@ -48,13 +57,11 @@ class CommentUpvotesController extends ApiController
      */
     public function store(Request $request, Comment $comment)
     {
-        if($comment->upvotes()->where('user_id', Auth::user()->id)->first()) {
-           throw new UnprocessableEntityHttpException();
+        if($this->upvotes->toggle(\Auth::user()->id, $comment)){
+            return $this->respondCreated('Upvoted');
         }
-        
-        $comment->upvotes()->save(new Upvote($request->all()));
 
-        return $this->respondCreated();
+        return $this->respondDeleted('Downvoted');
     }
 
     /**

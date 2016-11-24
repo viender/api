@@ -6,12 +6,20 @@ use App\Answer;
 use App\Upvote;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use Illuminate\Support\Facades\Auth;
+use App\Repositories\UpvotesRepository;
 use App\Viender\Transformers\Version1\UpvoteTransformer;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 class AnswerUpvotesController extends ApiController
 {
+    private $upvotes;
+
+    public function __construct(UpvotesRepository $upvotes)
+    {
+        parent::__construct();
+        $this->upvotes = $upvotes;
+    }
+
     /** 
      * @api {get} /answers/:id/upvotes Get Answer Upvotes
      * @apiName AnswerUpvotesIndex
@@ -50,17 +58,11 @@ class AnswerUpvotesController extends ApiController
      */
     public function store(Request $request, Answer $answer)
     {
-        if($answer->upvotes()->where('user_id', Auth::user()->id)->exists()) {
-            $upvote = $answer->upvotes()->where('user_id', Auth::user()->id)->first();
-            $upvote->delete();
-            return $this->respondDeleted('Downvoted');
+        if($this->upvotes->toggle(\Auth::user()->id, $answer)){
+            return $this->respondCreated('Upvoted');
         }
 
-        $request->request->add(['user_id' => Auth::user()->id]);
-
-        $answer->upvotes()->save(new Upvote($request->all()));
-
-        return $this->respondCreated('Upvoted');
+        return $this->respondDeleted('Downvoted');
     }
 
     /**
