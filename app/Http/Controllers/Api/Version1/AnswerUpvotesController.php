@@ -6,18 +6,18 @@ use App\Answer;
 use App\Upvote;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use App\Repositories\UsersRepository;
+use App\Repositories\UpvotesRepository;
 use App\Viender\Transformers\Version1\UpvoteTransformer;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 class AnswerUpvotesController extends ApiController
 {
-    private $users;
+    private $upvotes;
 
-    public function __construct(UsersRepository $users)
+    public function __construct(UpvotesRepository $upvotes)
     {
         parent::__construct();
-        $this->users = $users;
+        $this->upvotes = $upvotes;
     }
 
     /** 
@@ -58,7 +58,7 @@ class AnswerUpvotesController extends ApiController
      */
     public function store(Request $request, Answer $answer)
     {
-        if($this->users->toggleUpvote($answer)){
+        if($this->upvotes->toggle(\Auth::user()->id, $answer)){
             return $this->respondCreated('Upvoted');
         }
 
