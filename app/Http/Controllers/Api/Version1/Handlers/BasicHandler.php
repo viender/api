@@ -14,7 +14,7 @@ class BasicHandler extends Handler
      */
     public function index()
     {
-        $paginator = $this->model::paginate();
+        $paginator = $this->model::orderBy('created_at', 'desc')->paginate();
         return $this->controller->respondWithPagination($paginator, new $this->transformer);
     }
 
