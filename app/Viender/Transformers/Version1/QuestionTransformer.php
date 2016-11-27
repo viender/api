@@ -28,17 +28,28 @@ class QuestionTransformer extends Transformer
     public function transform(Question $question)
     {
         return [
-            'id'        => (int) $question->id,
-            'title'     => $question->title,
-            'body'      => $question->body,
+            'id'            => (int) $question->id,
+            'slug'          => $question->slug,
+            'title'         => $question->title,
+            'body'          => $question->body,
+            'upvote_count'  => $question->upvotes()->count(),
+            'comment_count' => $question->comments()->count(),
             'links'   => [
                 [
                     'rel' => 'self',
-                    'url' => url('/questions') . '/' . $question->slug,
+                    'url' => url('questions/' . $question->slug),
                 ],
                 [
                     'rel' => 'author',
-                    'url' => url('/users') . '/' . $question->user->username,
+                    'url' => url('users/' . $question->user->username),
+                ],
+                [
+                    'rel' => 'answers',
+                    'url' => url('questions/' . $question->slug . '/answers'),
+                ],
+                [
+                    'rel' => 'comments',
+                    'url' => url('questions/' . $question->slug . '/comments'),
                 ],
             ]            
         ];
