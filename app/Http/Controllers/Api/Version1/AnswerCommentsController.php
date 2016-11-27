@@ -34,7 +34,7 @@ class AnswerCommentsController extends ApiController
      */
     public function index(Answer $answer)
     {
-        $paginator = $answer->comments()->paginate();
+        $paginator = $answer->comments()->orderBy('created_at', 'desc')->paginate();
 
         return $this->respondWithPagination($paginator, new CommentTransformer);
     }
@@ -60,9 +60,9 @@ class AnswerCommentsController extends ApiController
      */
     public function store(Request $request, Answer $answer)
     {
-        $this->comments->createByUser(\Auth::user()->id, $answer, $request->all());
+        $comment = $this->comments->createByUser(\Auth::user()->id, $answer, $request->all());
 
-        return $this->respondCreated();
+        return $this->respond(new Item($comment, new CommentTransformer));
     }
 
     /**
