@@ -2,14 +2,23 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
-use App\Question;
 use App\Answer;
+use App\Question;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use App\Repositories\AnswersRepository;
 use App\Viender\Transformers\Version1\AnswerTransformer;
 
 class QuestionAnswersController extends ApiController
 {
+    private $answers;
+
+    public function __construct(AnswersRepository $answers)
+    {
+        parent::__construct();
+        $this->answers = $answers;
+    }
+
     /** 
      * @api {get} /questions/:slug/answers Get Question Answers
      * @apiName QuestionAnswersIndex
@@ -25,7 +34,7 @@ class QuestionAnswersController extends ApiController
      */
     public function index(Question $question)
     {
-        $paginator = $question->answers()->paginate();
+        $paginator = $question->answers()->orderBy('created_at', 'desc')->paginate();
 
         return $this->respondWithPagination($paginator, new AnswerTransformer);
     }
@@ -48,9 +57,9 @@ class QuestionAnswersController extends ApiController
      */
     public function store(Request $request, Question $question)
     {
-        $question->answers()->save(new Answer($request->all()));
+        $answer = $this->answers->createByUser(\Auth::user()->id, $question, $request->all());
 
-        return $this->respondCreated();
+        return $this->respond(new Item($answer, new AnswerTransformer));
     }
 
     /**

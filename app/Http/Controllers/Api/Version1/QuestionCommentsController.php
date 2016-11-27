@@ -2,14 +2,23 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
-use App\Question;
 use App\Comment;
+use App\Question;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use App\Repositories\CommentsRepository;
 use App\Viender\Transformers\Version1\CommentTransformer;
 
 class QuestionCommentsController extends ApiController
 {
+    private $comments;
+
+    public function __construct(CommentsRepository $comments)
+    {
+        parent::__construct();
+        $this->comments = $comments;
+    }
+
     /** 
      * @api {get} /questions/:slug/comments Get Question Comments
      * @apiName QuestionCommentsIndex
@@ -48,9 +57,9 @@ class QuestionCommentsController extends ApiController
      */
     public function store(Request $request, Question $question)
     {
-        $question->comments()->save(new Comment($request->all()));
+        $comment = $this->comments->createByUser(\Auth::user()->id, $question, $request->all());
 
-        return $this->respondCreated();
+        return $this->respond(new Item($comment, new CommentTransformer));
     }
 
     /**

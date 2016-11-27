@@ -2,14 +2,23 @@
 
 namespace App\Http\Controllers\Api\Version1;
 
-use App\Question;
 use App\Upvote;
+use App\Question;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use App\Repositories\UpvotesRepository;
 use App\Viender\Transformers\Version1\UpvoteTransformer;
 
 class QuestionUpvotesController extends ApiController
 {
+    private $upvotes;
+
+    public function __construct(UpvotesRepository $upvotes)
+    {
+        parent::__construct();
+        $this->upvotes = $upvotes;
+    }
+
     /** 
      * @api {get} /questions/:slug/upvotes Get Question Upvotes
      * @apiName QuestionUpvotesIndex
@@ -48,9 +57,11 @@ class QuestionUpvotesController extends ApiController
      */
     public function store(Request $request, Question $question)
     {
-        $question->upvotes()->save(new Upvote($request->all()));
+        if($this->upvotes->toggle(\Auth::user()->id, $question)){
+            return $this->respondCreated('Upvoted');
+        }
 
-        return $this->respondCreated();
+        return $this->respondDeleted('Downvoted');
     }
 
     /**

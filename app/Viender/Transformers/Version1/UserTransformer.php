@@ -23,6 +23,10 @@ class UserTransformer extends Transformer
                 [
                     'rel' => 'self',
                     'url' => url('/users') . '/' . $user->username,
+                ],
+                [
+                    'rel' => 'avatar',
+                    'url' => $user->avatar_url,
                 ]
             ],
         ];
