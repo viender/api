@@ -18,4 +18,24 @@ class CommentsRepository extends Repository
 
         return $commentable->comments()->save(new Comment($data));
     }
+
+    public function getCommentableUrl(Comment $comment) 
+    {
+        $url = '';
+
+        if($comment->commentable_type == 'App\Question') {
+            $url = url('/questions' . '/' . $comment->commentable->slug);
+        }
+
+        if($comment->commentable_type == 'App\Answer') {
+            $url = url('/answers' . '/' . $comment->commentable->id);
+        }
+
+        return $url;
+    }
+
+    public function getCommentableType(Comment $comment) 
+    {
+        return (new \ReflectionClass($comment->commentable))->getShortName();
+    }
 }
