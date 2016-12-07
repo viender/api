@@ -60,13 +60,18 @@ class UsersController extends ApiController
      */
     public function store(Request $request)
     {
+        // Reject further access if the client_id is not valid
         if( ! \DB::table('oauth_clients')->where([['id', $request->client_id], ['secret', $request->client_secret]])->exists()) {
             throw new AccessDeniedHttpException;
         }
 
         $user = null;
+        $passwordTemp;
 
+        // If the request is from social account, find or create user based on
+        // user data provided in the request.
         if($request->is_social_account) {
+            // Update social account and password if social account already exist.
             if(\App\SocialAccount::where([
                 ['provider', $request->provider],
                 ['social_id', $request->social_id]
@@ -80,16 +85,20 @@ class UsersController extends ApiController
 
                 $user = $socialAccount->user;
 
-                $user->password = $request->password;
+                $passwordTemp = $user->password;
+
+                $user->password = bcrypt($request->password);
 
                 $user->save();
 
+            // Create new social account and user if social account is not exist.
             } else {
                 $user = \App\User::create($request->all());
+
                 $socialAccount = $user->socialAccounts()->save(new \App\SocialAccount($request->all()));
             }
 
-            $user->social_accounts = $user->socialAccounts;
+        // If the request is not from social account then simply create new user
         } else {
             $user = \App\User::create($request->all());
         }
@@ -111,12 +120,24 @@ class UsersController extends ApiController
                 'client_id'         => $request->client_id,
                 'client_secret'     => $request->client_secret,
                 'username'          => $request->email,
-                'password'          => $request->token,
+                'password'          => $request->password,
                 'scope'             => '',
             ],
         ]);
 
-        return json_decode((string) $response->getBody(), true);
+        $user->password = $passwordTemp;
+
+        $user->save();
+
+        // Add social account field to user.
+        $user->social_accounts = $user->socialAccounts;
+
+        $token = json_decode((string) $response->getBody(), true);
+        
+        $token['access_token'] = encrypt($token['access_token']);
+        $token['refresh_token'] = encrypt($token['refresh_token']);
+
+        return response(array_merge($user->toArray(), $token));
     }
 
     /**
