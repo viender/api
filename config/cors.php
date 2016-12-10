@@ -11,9 +11,9 @@ return [
      | to accept any value.
      |
      */
-    'supportsCredentials' => false,
+    'supportsCredentials' => true,
     'allowedOrigins' => ['http://web.viender.dev', 'https://web.viender.dev', 'https://viender.com', 'https://www.viender.com', 'https://dev.viender.com'],
-    'allowedHeaders' => ['Content-Type', 'Accept', 'Authorization'],
+    'allowedHeaders' => ['Content-Type', 'Accept', 'Authorization', 'X-XSRF-TOKEN'],
     'allowedMethods' => ['GET', 'POST', 'PUT',  'DELETE'],
     'exposedHeaders' => [],
     'maxAge' => 0,
