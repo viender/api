@@ -4,16 +4,22 @@ namespace App\Http\Controllers\Api\Version1;
 
 use App\Question;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\Repositories\QuestionsRepository;
 use App\Viender\Transformers\Version1\QuestionTransformer;
 use App\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
 class QuestionsController extends ApiController
 {
-    public function __construct()
+    private $questions;
+
+    public function __construct(QuestionsRepository $questions)
     {
         parent::__construct();
+        $this->questions = $questions;
         $this->handler = new BasicHandler($this, Question::class, QuestionTransformer::class);
     }
+        
 
     /** 
      * @api {get} /questions Get Questions
@@ -51,7 +57,9 @@ class QuestionsController extends ApiController
      */
     public function store(Request $request)
     {
-        return $this->handler->store($request);
+        $question = $this->questions->createByUser(\Auth::user(), $request->all());
+
+        return $this->respond(new Item($question, new QuestionTransformer));
     }
 
     /**
