@@ -49,10 +49,10 @@ class Handler extends ExceptionHandler
                 return response()->json(["error" => "Access Denied", "message" => "Access Denied"], 403);
             }
 
-            if ($exception instanceof \Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException ||
-                $exception instanceof \Illuminate\Database\QueryException) {
-                return response()->json(["error" => "Unprocessable", "message" => "Unprocessable"], 422);
-            }
+            // if ($exception instanceof \Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException ||
+            //     $exception instanceof \Illuminate\Database\QueryException) {
+            //     return response()->json(["error" => "Unprocessable", "message" => "Unprocessable"], 422);
+            // }
 
             if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
                 return response()->json(["error" => "Not Found", "message" => "Not Found"], 404);
