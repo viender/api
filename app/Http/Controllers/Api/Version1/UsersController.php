@@ -134,9 +134,6 @@ class UsersController extends ApiController
 
         $token = json_decode((string) $response->getBody(), true);
         
-        $token['access_token'] = encrypt($token['access_token']);
-        $token['refresh_token'] = encrypt($token['refresh_token']);
-
         return response(array_merge($user->toArray(), $token));
     }
 
