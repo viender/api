@@ -45,22 +45,22 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($request->expectsJson()) {
-            if ($exception instanceof \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException) {
-                return response()->json(["error" => "Access Denied", "message" => "Access Denied"], 403);
-            }
-
-            // if ($exception instanceof \Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException ||
-            //     $exception instanceof \Illuminate\Database\QueryException) {
-            //     return response()->json(["error" => "Unprocessable", "message" => "Unprocessable"], 422);
+            // if ($exception instanceof \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException) {
+            //     return response()->json(["error" => "Access Denied", "message" => "Access Denied"], 403);
             // }
 
-            if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
-                return response()->json(["error" => "Not Found", "message" => "Not Found"], 404);
-            }
+            // // if ($exception instanceof \Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException ||
+            // //     $exception instanceof \Illuminate\Database\QueryException) {
+            // //     return response()->json(["error" => "Unprocessable", "message" => "Unprocessable"], 422);
+            // // }
 
-            if ($exception instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException) {
-                return response()->json(["error" => "Not Found", "message" => "Method Not Allowed"], 405);
-            }
+            // if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
+            //     return response()->json(["error" => "Not Found", "message" => "Not Found"], 404);
+            // }
+
+            // if ($exception instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException) {
+            //     return response()->json(["error" => "Not Found", "message" => "Method Not Allowed"], 405);
+            // }
         }
 
         return parent::render($request, $exception);
