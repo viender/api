@@ -13,7 +13,7 @@ return [
      */
     'supportsCredentials' => true,
     'allowedOrigins' => ['http://web.viender.dev', 'https://web.viender.dev', 'https://viender.com', 'https://www.viender.com', 'https://dev.viender.com'],
-    'allowedHeaders' => ['content-type', 'Authorization', 'X-XSRF-TOKEN', 'X-CSRF-Token'],
+    'allowedHeaders' => ['content-type', 'Authorization', 'X-XSRF-TOKEN', 'X-CSRF-TOKEN'],
     'allowedMethods' => ['GET', 'POST', 'PUT',  'DELETE'],
     'exposedHeaders' => [],
     'maxAge' => 0,
