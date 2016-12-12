@@ -16,19 +16,11 @@ class DecryptToken
      */
     public function handle($request, Closure $next)
     {
-        // if($request->header('Authorization') !== null) {
-        //     $auth = explode(' ', $request->header('Authorization'));
-        //     $authorization = $auth[0] . ' ' . decrypt($auth[1]);
-        //     $request->headers->set('Authorization', $authorization);
-        // }
+        if(\Cookie::get('pt') !== null) {
+            $request->headers->set('Authorization', decrypt(\Cookie::get('pt')));
+        }
 
-        // if(isset($request->refresh_token)) {
-        //     try{
-        //         $request->refresh_token = decrypt($request->refresh_token);
-        //     } catch(\Illuminate\Contracts\Encryption\DecryptException $e){ 
-        //         throw new AccessDeniedHttpException;
-        //     }
-        // }
+        // return $request->header();
 
         return $next($request);
     }
