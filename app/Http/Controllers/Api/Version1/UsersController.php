@@ -95,6 +95,12 @@ class UsersController extends ApiController
             } else {
                 $user = \App\User::create($request->all());
 
+                $passwordTemp = $user->password;
+
+                $user->password = bcrypt($request->password);
+
+                $user->save();
+
                 $socialAccount = $user->socialAccounts()->save(new \App\SocialAccount($request->all()));
             }
 
