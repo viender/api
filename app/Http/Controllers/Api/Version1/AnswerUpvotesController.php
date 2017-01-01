@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Version1;
 use App\Answer;
 use App\Upvote;
 use Illuminate\Http\Request;
+use App\Events\UpvotableUpvoted;
 use League\Fractal\Resource\Item;
 use App\Repositories\UpvotesRepository;
 use App\Viender\Transformers\Version1\UpvoteTransformer;
@@ -58,7 +59,8 @@ class AnswerUpvotesController extends ApiController
      */
     public function store(Request $request, Answer $answer)
     {
-        if($this->upvotes->toggle(\Auth::user()->id, $answer)){
+        if($upvote = $this->upvotes->toggle(\Auth::user()->id, $answer)){
+            event(new UpvotableUpvoted($upvote));
             return $this->respondCreated('Upvoted');
         }
 

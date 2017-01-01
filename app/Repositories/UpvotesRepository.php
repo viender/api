@@ -17,11 +17,13 @@ class UpvotesRepository extends Repository
         if($upvotable->upvotes()->where('user_id', $user_id)->exists()) {
             $upvote = $upvotable->upvotes()->where('user_id', $user_id)->first();
             $upvote->delete();
-            return false;
+            return null;
         }
 
-        $upvotable->upvotes()->save(new Upvote(['user_id' => $user_id]));
+        $upvote = new Upvote(['user_id' => $user_id]);
 
-        return true;
+        $upvotable->upvotes()->save($upvote);
+
+        return $upvote;
     }
 }
