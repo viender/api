@@ -42,7 +42,7 @@ class RouteRegistrar
 
     public function version1($option = [])
     {
-        $this->router->group(array_merge(['prefix' => 'v1'], $option), function() {
+        $this->router->group(array_merge(['prefix' => 'v1'], $option, ['namespace' => 'Api\Version1']), function() {
 
             // Models
             $this->router->resource('users', 'UsersController', ['except' => ['create', 'edit']]);

@@ -14,7 +14,7 @@ class Ideapool
         };
 
         $options = array_merge([
-            'namespace' => '\App\Ideapool\Http\Controllers\Api\Version1',
+            'namespace' => '\App\Ideapool\Http\Controllers',
             'middleware' => 'api'
         ]);
 
