@@ -12,10 +12,10 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Bid::class, function (Faker\Generator $faker) {
+$factory->define(App\Ideapool\Bid::class, function (Faker\Generator $faker) {
     
     $users = App\User::all()->pluck('id')->toArray();
-    $auctions = App\Auction::all()->pluck('id')->toArray();
+    $auctions = App\Ideapool\Auction::all()->pluck('id')->toArray();
 
     return [
         'user_id' => $faker->randomElement($users),

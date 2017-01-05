@@ -45,61 +45,61 @@ class User extends Authenticatable
 
     public function questions()
     {
-        return $this->hasMany('App\Question');
+        return $this->hasMany('App\Ideapool\Question');
     }
 
     public function answers()
     {
-        return $this->hasMany('App\Answer');
+        return $this->hasMany('App\Ideapool\Answer');
     }
 
     public function tags()
     {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Ideapool\Tag');
     }
 
     public function auctions() 
     {
-        return $this->hasMany('App\Auction');
+        return $this->hasMany('App\Ideapool\Auction');
     }
 
     public function bids() 
     {
-        return $this->hasMany('App\Bid');
+        return $this->hasMany('App\Ideapool\Bid');
     }
 
     public function comments() 
     {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Ideapool\Comment');
     }
 
     public function upvotes() 
     {
-        return $this->hasMany('App\Upvote');
+        return $this->hasMany('App\Ideapool\Upvote');
     }
 
     public function downvotes() 
     {
-        return $this->hasMany('App\Downvote');
+        return $this->hasMany('App\Ideapool\Downvote');
     }
 
     public function stars() 
     {
-        return $this->morphMany('App\Star', 'starable');
+        return $this->morphMany('App\Ideapool\Star', 'starable');
     }
 
     public function stared() 
     {
-        return $this->hasMany('App\Star');
+        return $this->hasMany('App\Ideapool\Star');
     }
 
     public function addresses() 
     {
-        return $this->hasMany('App\Address');
+        return $this->hasMany('App\Ideapool\Address');
     }
 
     public function socialAccounts() 
     {
-        return $this->hasOne('App\SocialAccount');
+        return $this->hasOne('App\Ideapool\SocialAccount');
     }
 }

@@ -11,6 +11,6 @@ class ZipCodesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\ZipCode::class, 10)->create();
+        factory(App\Ideapool\ZipCode::class, 10)->create();
     }
 }
