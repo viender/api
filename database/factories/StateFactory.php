@@ -12,9 +12,9 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\State::class, function (Faker\Generator $faker) {
+$factory->define(App\Ideapool\State::class, function (Faker\Generator $faker) {
 
-    $countries = App\Country::all()->pluck('id')->toArray();
+    $countries = App\Ideapool\Country::all()->pluck('id')->toArray();
 
     return [
         'country_id' => $faker->randomElement($countries),

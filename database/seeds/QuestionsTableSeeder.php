@@ -11,19 +11,19 @@ class QuestionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Question::class, 50)->create()->each(function($u) {
+        factory(App\Ideapool\Question::class, 50)->create()->each(function($u) {
             
             $faker = Faker\Factory::create();
             
-            $tags = App\Tag::all()->pluck('id')->toArray();
+            $tags = App\Ideapool\Tag::all()->pluck('id')->toArray();
 
-            $tag = App\Tag::find($faker->randomElement($tags));
+            $tag = App\Ideapool\Tag::find($faker->randomElement($tags));
 
             $u->tags()->save($tag);
 
             foreach (range(1, 2) as $i) {
                 if(rand(0, 1)) {
-                    $tag = App\Tag::find($faker->randomElement($tags));
+                    $tag = App\Ideapool\Tag::find($faker->randomElement($tags));
 
                     $u->tags()->save($tag);
                 }

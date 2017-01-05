@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Tag::class, function (Faker\Generator $faker) {
+$factory->define(App\Ideapool\Tag::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->word,

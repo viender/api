@@ -166,8 +166,9 @@ return [
         /*
          * Package Service Providers...
          */
+        Laravel\Passport\PassportServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
 
-        //
 
         /*
          * Application Service Providers...
@@ -177,8 +178,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
-        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*
@@ -228,5 +227,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+
+    'viender_web_url' => env('APP_VIENDER_WEB_URL', 'http://localhost'),
 
 ];
