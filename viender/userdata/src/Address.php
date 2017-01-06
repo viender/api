@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Ideapool;
+namespace Viender\Userdata;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,22 +22,22 @@ class Address extends Model
 
     public function zipCode() 
     {
-        return $this->belongsTo('Viender\Ideapool\ZipCode');
+        return $this->belongsTo('Viender\Userdata\ZipCode');
     }
 
     public function city() 
     {
-        return $this->belongsTo('Viender\Ideapool\City');
+        return $this->belongsTo('Viender\Userdata\City');
     }
 
     public function state() 
     {
-        return $this->belongsTo('Viender\Ideapool\State');
+        return $this->belongsTo('Viender\Userdata\State');
     }
 
     public function country() 
     {
-        return $this->belongsTo('Viender\Ideapool\Country');
+        return $this->belongsTo('Viender\Userdata\Country');
     }
 
     public static function createWithStreet(array $request) 

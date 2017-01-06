@@ -2,8 +2,8 @@
 
 namespace Viender\Ideapool\Http\Controllers\Api\Version1;
 
-use Viender\Ideapool\State;
-use Viender\Ideapool\City;
+use Viender\Userdata\State;
+use Viender\Userdata\City;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Ideapool\Transformers\Version1\CityTransformer;

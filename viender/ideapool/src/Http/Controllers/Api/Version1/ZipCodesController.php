@@ -2,7 +2,7 @@
 
 namespace Viender\Ideapool\Http\Controllers\Api\Version1;
 
-use Viender\Ideapool\ZipCode;
+use Viender\Userdata\ZipCode;
 use Illuminate\Http\Request;
 use Viender\Ideapool\Transformers\Version1\ZipCodeTransformer;
 use Viender\Ideapool\Http\Controllers\Api\Version1\Handlers\BasicHandler;

@@ -2,7 +2,7 @@
 
 namespace Viender\Ideapool\Transformers\Version1;
 
-use Viender\Ideapool\City;
+use Viender\Userdata\City;
 
 class CityTransformer extends Transformer
 {

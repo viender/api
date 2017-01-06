@@ -2,7 +2,7 @@
 
 namespace Viender\Ideapool\Transformers\Version1;
 
-use Viender\Ideapool\ZipCode;
+use Viender\Userdata\ZipCode;
 
 class ZipCodeTransformer extends Transformer
 {

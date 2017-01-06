@@ -2,7 +2,7 @@
 
 namespace Viender\Ideapool\Http\Controllers\Api\Version1;
 
-use Viender\Ideapool\City;
+use Viender\Userdata\City;
 use Illuminate\Http\Request;
 use Viender\Ideapool\Transformers\Version1\CityTransformer;
 use Viender\Ideapool\Http\Controllers\Api\Version1\Handlers\BasicHandler;

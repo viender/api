@@ -3,7 +3,7 @@
 namespace Viender\Ideapool\Http\Controllers\Api\Version1;
 
 use App\User;
-use Viender\Ideapool\Address;
+use Viender\Userdata\Address;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Ideapool\Transformers\Version1\AddressTransformer;

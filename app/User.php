@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     public function socialAccounts() 
     {
-        return $this->hasOne('Viender\Ideapool\SocialAccount');
+        return $this->hasOne('App\SocialAccount');
     }
 }

@@ -72,11 +72,11 @@ class UsersController extends ApiController
         // user data provided in the request.
         if($request->is_social_account) {
             // Update social account and password if social account already exist.
-            if(\Viender\Ideapool\SocialAccount::where([
+            if(\App\SocialAccount::where([
                 ['provider', $request->provider],
                 ['social_id', $request->social_id]
             ])->exists()) {
-                $socialAccount = \Viender\Ideapool\SocialAccount::where([
+                $socialAccount = \App\SocialAccount::where([
                     ['provider', $request->provider],
                     ['social_id', $request->social_id]
                 ])->first();
@@ -101,7 +101,7 @@ class UsersController extends ApiController
 
                 $user->save();
 
-                $socialAccount = $user->socialAccounts()->save(new \Viender\Ideapool\SocialAccount($request->all()));
+                $socialAccount = $user->socialAccounts()->save(new \App\SocialAccount($request->all()));
             }
 
         // If the request is not from social account then simply create new user

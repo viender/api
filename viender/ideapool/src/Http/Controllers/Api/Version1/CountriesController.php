@@ -2,7 +2,7 @@
 
 namespace Viender\Ideapool\Http\Controllers\Api\Version1;
 
-use Viender\Ideapool\Country;
+use Viender\Userdata\Country;
 use Illuminate\Http\Request;
 use Viender\Ideapool\Transformers\Version1\CountryTransformer;
 use Viender\Ideapool\Http\Controllers\Api\Version1\Handlers\BasicHandler;

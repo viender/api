@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Ideapool;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
