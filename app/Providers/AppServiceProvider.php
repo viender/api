@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Ideapool\Ideapool;
+use Viender\Ideapool\Ideapool;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

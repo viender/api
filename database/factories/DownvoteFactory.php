@@ -12,14 +12,14 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Ideapool\Downvote::class, function (Faker\Generator $faker) {
+$factory->define(Viender\Ideapool\Downvote::class, function (Faker\Generator $faker) {
 
     $users = App\User::all()->pluck('id')->toArray();
 
     $downvotables = [
-        'App\Ideapool\Question',
-        'App\Ideapool\Answer',
-        'App\Ideapool\Comment',
+        'Viender\Ideapool\Question',
+        'Viender\Ideapool\Answer',
+        'Viender\Ideapool\Comment',
     ];
 
     return [

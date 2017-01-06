@@ -12,7 +12,7 @@ class CommentsTableSeeder extends Seeder
     public function run()
     {
         foreach (range(1, 500) as $i) {
-            factory(App\Ideapool\Comment::class, 1)->create();
+            factory(Viender\Ideapool\Comment::class, 1)->create();
         }
     }
 }

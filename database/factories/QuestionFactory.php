@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Ideapool\Question::class, function (Faker\Generator $faker) {
+$factory->define(Viender\Ideapool\Question::class, function (Faker\Generator $faker) {
     
     $users = App\User::all()->pluck('id')->toArray();
 
@@ -20,7 +20,7 @@ $factory->define(App\Ideapool\Question::class, function (Faker\Generator $faker)
         'user_id' => $faker->randomElement($users),
         'title' => trim($faker->sentence(), '.').'?',
         'slug' => function(array $me) {
-            return  App\Ideapool\Viender\Utilities\Text::clean($me['title']);
+            return  Viender\Ideapool\Utilities\Text::clean($me['title']);
         },
         'body' => implode(" ", $faker->paragraphs(3)),
     ];

@@ -12,14 +12,14 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Ideapool\City::class, function (Faker\Generator $faker) {
+$factory->define(Viender\Ideapool\City::class, function (Faker\Generator $faker) {
     
-    $states = App\Ideapool\State::all()->pluck('id')->toArray();
+    $states = Viender\Ideapool\State::all()->pluck('id')->toArray();
 
     return [
         'state_id' => $faker->randomElement($states),
         'country_id' => function(array $me) {
-            return App\Ideapool\State::where('id', $me['state_id'])->first()->country()->first()->id;
+            return Viender\Ideapool\State::where('id', $me['state_id'])->first()->country()->first()->id;
         },
         'name' => $faker->city,
     ];

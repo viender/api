@@ -12,10 +12,10 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Ideapool\Answer::class, function (Faker\Generator $faker) {
+$factory->define(Viender\Ideapool\Answer::class, function (Faker\Generator $faker) {
     
     $users = App\User::all()->pluck('id')->toArray();
-    $questions = App\Ideapool\Question::all()->pluck('id')->toArray();
+    $questions = Viender\Ideapool\Question::all()->pluck('id')->toArray();
 
     return [
         'user_id' => $faker->randomElement($users),

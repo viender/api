@@ -11,6 +11,6 @@ class StarsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Ideapool\Star::class, 1000)->create();
+        factory(Viender\Ideapool\Star::class, 1000)->create();
     }
 }
