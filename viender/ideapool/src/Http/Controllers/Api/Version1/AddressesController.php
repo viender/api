@@ -2,7 +2,7 @@
 
 namespace Viender\Ideapool\Http\Controllers\Api\Version1;
 
-use Viender\Userdata\Address;
+use Viender\Ideapool\Address;
 use Illuminate\Http\Request;
 use Viender\Ideapool\Transformers\Version1\AddressTransformer;
 use Viender\Ideapool\Http\Controllers\Api\Version1\Handlers\BasicHandler;

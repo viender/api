@@ -2,7 +2,7 @@
 
 namespace Viender\Ideapool\Transformers\Version1;
 
-use Viender\Userdata\Country;
+use Viender\Ideapool\Country;
 
 class CountryTransformer extends Transformer
 {

@@ -2,7 +2,7 @@
 
 namespace Viender\Ideapool\Http\Controllers\Api\Version1;
 
-use Viender\Userdata\State;
+use Viender\Ideapool\State;
 use Illuminate\Http\Request;
 use Viender\Ideapool\Transformers\Version1\StateTransformer;
 use Viender\Ideapool\Http\Controllers\Api\Version1\Handlers\BasicHandler;

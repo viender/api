@@ -56,6 +56,6 @@ trait Ideapoolable
 
     public function addresses() 
     {
-        return $this->hasMany('Viender\Userdata\Address');
+        return $this->hasMany('Viender\Ideapool\Address');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Viender\Ideapool\Transformers\Version1;
 
-use Viender\Userdata\State;
+use Viender\Ideapool\State;
 
 class StateTransformer extends Transformer
 {

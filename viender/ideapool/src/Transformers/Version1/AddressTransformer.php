@@ -2,7 +2,7 @@
 
 namespace Viender\Ideapool\Transformers\Version1;
 
-use Viender\Userdata\Address;
+use Viender\Ideapool\Address;
 use Viender\Ideapool\Transformers\Version1\Traits\UserIncludable;
 
 class AddressTransformer extends Transformer

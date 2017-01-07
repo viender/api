@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Userdata;
+namespace Viender\Ideapool;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,21 +17,21 @@ class City extends Model
 
     public function addresses()
     {
-        return $this->hasMany('Viender\Userdata\Address');
+        return $this->hasMany('Viender\Ideapool\Address');
     }
 
     public function zipCodes()
     {
-        return $this->hasMany('Viender\Userdata\ZipCode');
+        return $this->hasMany('Viender\Ideapool\ZipCode');
     }
 
     public function state() 
     {
-        return $this->belongsTo('Viender\Userdata\State');
+        return $this->belongsTo('Viender\Ideapool\State');
     }
 
     public function country() 
     {
-        return $this->belongsTo('Viender\Userdata\Country');
+        return $this->belongsTo('Viender\Ideapool\Country');
     }
 }

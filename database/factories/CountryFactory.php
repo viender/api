@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(Viender\Userdata\Country::class, function (Faker\Generator $faker) {
+$factory->define(Viender\Ideapool\Country::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->country,

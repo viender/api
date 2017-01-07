@@ -2,8 +2,8 @@
 
 namespace Viender\Ideapool\Http\Controllers\Api\Version1;
 
-use Viender\Userdata\ZipCode;
-use Viender\Userdata\Address;
+use Viender\Ideapool\ZipCode;
+use Viender\Ideapool\Address;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Ideapool\Transformers\Version1\AddressTransformer;
