@@ -53,9 +53,4 @@ trait Ideapoolable
     {
         return $this->hasMany('Viender\Ideapool\Star');
     }
-
-    public function addresses() 
-    {
-        return $this->hasMany('Viender\Ideapool\Address');
-    }
 }

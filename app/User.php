@@ -6,10 +6,11 @@ use Viender\Ideapool\Ideapoolable;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Viender\Userdata\HasUserdata;
 
 class User extends Authenticatable
 {
-    use Ideapoolable, HasApiTokens, Notifiable;
+    use HasUserdata, Ideapoolable, HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
