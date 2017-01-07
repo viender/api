@@ -1,30 +1,30 @@
 <?php
 
-namespace Viender\Ideapool\Http\Controllers\Api\Version1;
+namespace Viender\Userdata\Http\Controllers\Api\Version1;
 
-use Viender\Ideapool\Address;
+use Viender\Userdata\ZipCode;
 use Illuminate\Http\Request;
-use Viender\Ideapool\Transformers\Version1\AddressTransformer;
-use Viender\Ideapool\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Viender\Userdata\Transformers\Version1\ZipCodeTransformer;
+use Viender\Userdata\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
-class AddressesController extends ApiController
+class ZipCodesController extends ApiController
 {
     public function __construct()
     {
         parent::__construct();
-        $this->handler = new BasicHandler($this, Address::class, AddressTransformer::class);
+        $this->handler = new BasicHandler($this, ZipCode::class, ZipCodeTransformer::class);
     }
 
     /** 
-     * @api {get} /addresses Get Addresses
-     * @apiName AddressIndex
-     * @apiGroup AddressGroup
+     * @api {get} /zipcodes Get ZipCodes
+     * @apiName ZipCodesIndex
+     * @apiGroup ZipCodeGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
-     *
-     * @apiUse AddressIndexSuccess
+     * 
+     * @apiUse ZipCodeIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
@@ -34,15 +34,15 @@ class AddressesController extends ApiController
     }
 
     /**
-     * @api {post} /addresses Create Address
-     * @apiName AddressStore
-     * @apiGroup AddressGroup
+     * @api {post} /zipcodes Create ZipCode
+     * @apiName ZipCodesStore
+     * @apiGroup ZipCodeGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
      * 
-     * @apiUse AddressRequestBodyParam
+     * @apiUse ZipCodeRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -51,14 +51,13 @@ class AddressesController extends ApiController
      */
     public function store(Request $request)
     {
-        Address::createWithStreet($request->all());
-        return $this->respondCreated();
+        return $this->handler->store($request);
     }
 
     /**
-     * @api {get} /addresses/:id Get Address by ID
-     * @apiName AddressShow
-     * @apiGroup AddressGroup
+     * @api {get} /zipcodes/:id Get ZipCode
+     * @apiName ZipCodesShow
+     * @apiGroup ZipCodeGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -66,20 +65,20 @@ class AddressesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse AddressShowSuccess
+     * @apiUse ZipCodeShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Address $address)
+    public function show(ZipCode $zipCode)
     {
-        return $this->handler->show($address);
+        return $this->handler->show($zipCode);
     }
 
     /**
-     * @api {put} /addresses/:id Update Address
-     * @apiName AddressUpdate
-     * @apiGroup AddressGroup
+     * @api {put} /zipcodes/:id Update ZipCode
+     * @apiName ZipCodesUpdate
+     * @apiGroup ZipCodeGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
@@ -87,7 +86,7 @@ class AddressesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse AddressRequestBodyParam
+     * @apiUse ZipCodeRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -95,15 +94,15 @@ class AddressesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Address $address)
+    public function update(Request $request, ZipCode $zipCode)
     {
-        return $this->handler->update($request, $address);
+        return $this->handler->update($request, $zipCode);
     }
 
     /**
-     * @api {delete} /addresses/:id Delete Address
-     * @apiName AddressDelete
-     * @apiGroup AddressGroup
+     * @api {delete} /zipcodes/:id Delete ZipCode
+     * @apiName ZipCodesDelete
+     * @apiGroup ZipCodeGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
@@ -116,8 +115,8 @@ class AddressesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Address $address)
+    public function destroy(ZipCode $zipCode)
     {
-        return $this->handler->destroy($address);
+        return $this->handler->destroy($zipCode);
     }
 }

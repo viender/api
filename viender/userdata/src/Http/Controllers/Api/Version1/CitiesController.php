@@ -1,11 +1,11 @@
 <?php
 
-namespace Viender\Ideapool\Http\Controllers\Api\Version1;
+namespace Viender\Userdata\Http\Controllers\Api\Version1;
 
-use Viender\Ideapool\City;
+use Viender\Userdata\City;
 use Illuminate\Http\Request;
-use Viender\Ideapool\Transformers\Version1\CityTransformer;
-use Viender\Ideapool\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Viender\Userdata\Transformers\Version1\CityTransformer;
+use Viender\Userdata\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
 class CitiesController extends ApiController
 {

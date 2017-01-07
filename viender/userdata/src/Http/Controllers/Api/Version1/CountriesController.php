@@ -1,30 +1,30 @@
 <?php
 
-namespace Viender\Ideapool\Http\Controllers\Api\Version1;
+namespace Viender\Userdata\Http\Controllers\Api\Version1;
 
-use Viender\Ideapool\State;
+use Viender\Userdata\Country;
 use Illuminate\Http\Request;
-use Viender\Ideapool\Transformers\Version1\StateTransformer;
-use Viender\Ideapool\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Viender\Userdata\Transformers\Version1\CountryTransformer;
+use Viender\Userdata\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
-class StatesController extends ApiController
+class CountriesController extends ApiController
 {
     public function __construct()
     {
         parent::__construct();
-        $this->handler = new BasicHandler($this, State::class, StateTransformer::class);
+        $this->handler = new BasicHandler($this, Country::class, CountryTransformer::class);
     }
 
     /** 
-     * @api {get} /states Get States
-     * @apiName StatesIndex
-     * @apiGroup StateGroup
+     * @api {get} /countries Get Countries
+     * @apiName CountriesIndex
+     * @apiGroup CountryGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiUse StateIndexSuccess
+     * @apiUse CountryIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
@@ -34,15 +34,15 @@ class StatesController extends ApiController
     }
 
     /**
-     * @api {post} /states Create State
-     * @apiName StatesStore
-     * @apiGroup StateGroup
+     * @api {post} /countries Create Country
+     * @apiName CountriesStore
+     * @apiGroup CountryGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
      * 
-     * @apiUse StateRequestBodyParam
+     * @apiUse CountryRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -55,9 +55,9 @@ class StatesController extends ApiController
     }
 
     /**
-     * @api {get} /states/:id Get State
-     * @apiName StatesShow
-     * @apiGroup StateGroup
+     * @api {get} /countries/:id Get Country
+     * @apiName CountriesShow
+     * @apiGroup CountryGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -65,20 +65,20 @@ class StatesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse StateShowSuccess
+     * @apiUse CountryShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(State $state)
+    public function show(Country $country)
     {
-        return $this->handler->show($state);
+        return $this->handler->show($country);
     }
 
     /**
-     * @api {put} /states/:id Update State
-     * @apiName StatesUpdate
-     * @apiGroup StateGroup
+     * @api {put} /countries/:id Update Country
+     * @apiName CountriesUpdate
+     * @apiGroup CountryGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
@@ -86,7 +86,7 @@ class StatesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse StateRequestBodyParam
+     * @apiUse CountryRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -94,15 +94,15 @@ class StatesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, State $state)
+    public function update(Request $request, Country $country)
     {
-        return $this->handler->update($request, $state);
+        return $this->handler->update($request, $country);
     }
 
     /**
-     * @api {delete} /states/:id Delete State
-     * @apiName StatesDelete
-     * @apiGroup StateGroup
+     * @api {delete} /countries/:id Delete Country
+     * @apiName CountriesDelete
+     * @apiGroup CountryGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
@@ -115,8 +115,8 @@ class StatesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(State $state)
+    public function destroy(Country $country)
     {
-        return $this->handler->destroy($state);
+        return $this->handler->destroy($country);
     }
 }

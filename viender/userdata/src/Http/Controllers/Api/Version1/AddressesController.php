@@ -1,30 +1,30 @@
 <?php
 
-namespace Viender\Ideapool\Http\Controllers\Api\Version1;
+namespace Viender\Userdata\Http\Controllers\Api\Version1;
 
-use Viender\Ideapool\Country;
+use Viender\Userdata\Address;
 use Illuminate\Http\Request;
-use Viender\Ideapool\Transformers\Version1\CountryTransformer;
-use Viender\Ideapool\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Viender\Userdata\Transformers\Version1\AddressTransformer;
+use Viender\Userdata\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
-class CountriesController extends ApiController
+class AddressesController extends ApiController
 {
     public function __construct()
     {
         parent::__construct();
-        $this->handler = new BasicHandler($this, Country::class, CountryTransformer::class);
+        $this->handler = new BasicHandler($this, Address::class, AddressTransformer::class);
     }
 
     /** 
-     * @api {get} /countries Get Countries
-     * @apiName CountriesIndex
-     * @apiGroup CountryGroup
+     * @api {get} /addresses Get Addresses
+     * @apiName AddressIndex
+     * @apiGroup AddressGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
-     * 
-     * @apiUse CountryIndexSuccess
+     *
+     * @apiUse AddressIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
@@ -34,15 +34,15 @@ class CountriesController extends ApiController
     }
 
     /**
-     * @api {post} /countries Create Country
-     * @apiName CountriesStore
-     * @apiGroup CountryGroup
+     * @api {post} /addresses Create Address
+     * @apiName AddressStore
+     * @apiGroup AddressGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
      * 
-     * @apiUse CountryRequestBodyParam
+     * @apiUse AddressRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -51,13 +51,14 @@ class CountriesController extends ApiController
      */
     public function store(Request $request)
     {
-        return $this->handler->store($request);
+        Address::createWithStreet($request->all());
+        return $this->respondCreated();
     }
 
     /**
-     * @api {get} /countries/:id Get Country
-     * @apiName CountriesShow
-     * @apiGroup CountryGroup
+     * @api {get} /addresses/:id Get Address by ID
+     * @apiName AddressShow
+     * @apiGroup AddressGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -65,20 +66,20 @@ class CountriesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse CountryShowSuccess
+     * @apiUse AddressShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Country $country)
+    public function show(Address $address)
     {
-        return $this->handler->show($country);
+        return $this->handler->show($address);
     }
 
     /**
-     * @api {put} /countries/:id Update Country
-     * @apiName CountriesUpdate
-     * @apiGroup CountryGroup
+     * @api {put} /addresses/:id Update Address
+     * @apiName AddressUpdate
+     * @apiGroup AddressGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
@@ -86,7 +87,7 @@ class CountriesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse CountryRequestBodyParam
+     * @apiUse AddressRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -94,15 +95,15 @@ class CountriesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Country $country)
+    public function update(Request $request, Address $address)
     {
-        return $this->handler->update($request, $country);
+        return $this->handler->update($request, $address);
     }
 
     /**
-     * @api {delete} /countries/:id Delete Country
-     * @apiName CountriesDelete
-     * @apiGroup CountryGroup
+     * @api {delete} /addresses/:id Delete Address
+     * @apiName AddressDelete
+     * @apiGroup AddressGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
@@ -115,8 +116,8 @@ class CountriesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Country $country)
+    public function destroy(Address $address)
     {
-        return $this->handler->destroy($country);
+        return $this->handler->destroy($address);
     }
 }

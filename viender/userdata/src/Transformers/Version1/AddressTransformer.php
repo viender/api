@@ -1,8 +1,8 @@
 <?php
 
-namespace Viender\Ideapool\Transformers\Version1;
+namespace Viender\Userdata\Transformers\Version1;
 
-use Viender\Ideapool\Address;
+use Viender\Userdata\Address;
 use Viender\Ideapool\Transformers\Version1\Traits\UserIncludable;
 
 class AddressTransformer extends Transformer

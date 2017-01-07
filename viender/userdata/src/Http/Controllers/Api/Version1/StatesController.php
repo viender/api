@@ -1,30 +1,30 @@
 <?php
 
-namespace Viender\Ideapool\Http\Controllers\Api\Version1;
+namespace Viender\Userdata\Http\Controllers\Api\Version1;
 
-use Viender\Ideapool\ZipCode;
+use Viender\Userdata\State;
 use Illuminate\Http\Request;
-use Viender\Ideapool\Transformers\Version1\ZipCodeTransformer;
-use Viender\Ideapool\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Viender\Userdata\Transformers\Version1\StateTransformer;
+use Viender\Userdata\Http\Controllers\Api\Version1\Handlers\BasicHandler;
 
-class ZipCodesController extends ApiController
+class StatesController extends ApiController
 {
     public function __construct()
     {
         parent::__construct();
-        $this->handler = new BasicHandler($this, ZipCode::class, ZipCodeTransformer::class);
+        $this->handler = new BasicHandler($this, State::class, StateTransformer::class);
     }
 
     /** 
-     * @api {get} /zipcodes Get ZipCodes
-     * @apiName ZipCodesIndex
-     * @apiGroup ZipCodeGroup
+     * @api {get} /states Get States
+     * @apiName StatesIndex
+     * @apiGroup StateGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiUse ZipCodeIndexSuccess
+     * @apiUse StateIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
@@ -34,15 +34,15 @@ class ZipCodesController extends ApiController
     }
 
     /**
-     * @api {post} /zipcodes Create ZipCode
-     * @apiName ZipCodesStore
-     * @apiGroup ZipCodeGroup
+     * @api {post} /states Create State
+     * @apiName StatesStore
+     * @apiGroup StateGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
      * 
-     * @apiUse ZipCodeRequestBodyParam
+     * @apiUse StateRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -55,9 +55,9 @@ class ZipCodesController extends ApiController
     }
 
     /**
-     * @api {get} /zipcodes/:id Get ZipCode
-     * @apiName ZipCodesShow
-     * @apiGroup ZipCodeGroup
+     * @api {get} /states/:id Get State
+     * @apiName StatesShow
+     * @apiGroup StateGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -65,20 +65,20 @@ class ZipCodesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse ZipCodeShowSuccess
+     * @apiUse StateShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ZipCode $zipCode)
+    public function show(State $state)
     {
-        return $this->handler->show($zipCode);
+        return $this->handler->show($state);
     }
 
     /**
-     * @api {put} /zipcodes/:id Update ZipCode
-     * @apiName ZipCodesUpdate
-     * @apiGroup ZipCodeGroup
+     * @api {put} /states/:id Update State
+     * @apiName StatesUpdate
+     * @apiGroup StateGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
@@ -86,7 +86,7 @@ class ZipCodesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse ZipCodeRequestBodyParam
+     * @apiUse StateRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -94,15 +94,15 @@ class ZipCodesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ZipCode $zipCode)
+    public function update(Request $request, State $state)
     {
-        return $this->handler->update($request, $zipCode);
+        return $this->handler->update($request, $state);
     }
 
     /**
-     * @api {delete} /zipcodes/:id Delete ZipCode
-     * @apiName ZipCodesDelete
-     * @apiGroup ZipCodeGroup
+     * @api {delete} /states/:id Delete State
+     * @apiName StatesDelete
+     * @apiGroup StateGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
@@ -115,8 +115,8 @@ class ZipCodesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ZipCode $zipCode)
+    public function destroy(State $state)
     {
-        return $this->handler->destroy($zipCode);
+        return $this->handler->destroy($state);
     }
 }

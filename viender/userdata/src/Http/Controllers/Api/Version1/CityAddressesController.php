@@ -1,19 +1,19 @@
 <?php
 
-namespace Viender\Ideapool\Http\Controllers\Api\Version1;
+namespace Viender\Userdata\Http\Controllers\Api\Version1;
 
-use Viender\Ideapool\ZipCode;
-use Viender\Ideapool\Address;
+use Viender\Userdata\City;
+use Viender\Userdata\Address;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use Viender\Ideapool\Transformers\Version1\AddressTransformer;
+use Viender\Userdata\Transformers\Version1\AddressTransformer;
 
-class ZipCodeAddressesController extends ApiController
+class CityAddressesController extends ApiController
 {
     /** 
-     * @api {get} /zipcodes/:id/addresses Get ZipCode Addresses
-     * @apiName ZipCodeAddressesIndex
-     * @apiGroup ZipCodeGroup
+     * @api {get} /cities/:id/addresses Get City Addresses
+     * @apiName CityAddressesIndex
+     * @apiGroup CityGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
@@ -23,40 +23,40 @@ class ZipCodeAddressesController extends ApiController
      * 
      * @return \Illuminate\Http\Response
      */
-    public function index(ZipCode $zipcode)
+    public function index(City $city)
     {
-        $paginator = $zipcode->addresses()->paginate();
+        $paginator = $city->addresses()->paginate();
 
         return $this->respondWithPagination($paginator, new AddressTransformer);
     }
 
     /**
-     * @api {post} /zipcodes/:id/addresses Create ZipCode Address
-     * @apiName ZipCodeAddressesStore
-     * @apiGroup ZipCodeGroup
+     * @api {post} /cities/:id/addresses Create City Address
+     * @apiName CityAddressesStore
+     * @apiGroup CityGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
      * 
-     * @apiUse ZipCodeRequestBodyParam
+     * @apiUse AddressRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, ZipCode $zipcode)
+    public function store(Request $request, City $city)
     {
-        $zipcode->addresses()->save(new Address($request->all()));
+        $city->addresses()->save(new Address($request->all()));
 
         return $this->respondCreated();
     }
 
     /**
-     * @api {get} /zipcodes/:id/addresses/:id Get ZipCode Address
-     * @apiName ZipCodeAddressesShow
-     * @apiGroup ZipCodeGroup
+     * @api {get} /cities/:id/addresses/:id Get City Address
+     * @apiName CityAddressesShow
+     * @apiGroup CityGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -69,17 +69,17 @@ class ZipCodeAddressesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ZipCode $zipcode, $address)
+    public function show(City $city, $address)
     {
-        $address = $zipcode->addresses()->findOrFail($address);
+        $address = $city->addresses()->findOrFail($address);
 
         return $this->respond(new Item($address, new AddressTransformer));
     }
 
     /**
-     * @api {put} /zipcodes/:id/addresses/:id Update ZipCode Address
-     * @apiName ZipCodeAddressesUpdate
-     * @apiGroup ZipCodeGroup
+     * @api {put} /cities/:id/addresses/:id Update City Address
+     * @apiName CityAddressesUpdate
+     * @apiGroup CityGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
@@ -87,7 +87,7 @@ class ZipCodeAddressesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse ZipCodeRequestBodyParam
+     * @apiUse AddressRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -95,9 +95,9 @@ class ZipCodeAddressesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ZipCode $zipcode, $address)
+    public function update(Request $request, City $city, $address)
     {
-        $address = $zipcode->addresses()->findOrFail($address);
+        $address = $city->addresses()->findOrFail($address);
 
         $address->update($request->all());
 
@@ -105,9 +105,9 @@ class ZipCodeAddressesController extends ApiController
     }
 
     /**
-     * @api {delete} /zipcodes/:id/addresses/:id Delete ZipCode Address
-     * @apiName ZipCodeAddressesDelete
-     * @apiGroup ZipCodeGroup
+     * @api {delete} /cities/:id/addresses/:id Delete City Address
+     * @apiName CityAddressesDelete
+     * @apiGroup CityGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
@@ -120,9 +120,9 @@ class ZipCodeAddressesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ZipCode $zipcode, $address)
+    public function destroy(City $city, $address)
     {
-        $address = $zipcode->addresses()->findOrFail($address);
+        $address = $city->addresses()->findOrFail($address);
         
         $address->delete();
 

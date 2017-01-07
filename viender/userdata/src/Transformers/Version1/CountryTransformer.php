@@ -1,8 +1,8 @@
 <?php
 
-namespace Viender\Ideapool\Transformers\Version1;
+namespace Viender\Userdata\Transformers\Version1;
 
-use Viender\Ideapool\Country;
+use Viender\Userdata\Country;
 
 class CountryTransformer extends Transformer
 {

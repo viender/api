@@ -1,45 +1,45 @@
 <?php
 
-namespace Viender\Ideapool\Http\Controllers\Api\Version1;
+namespace Viender\Userdata\Http\Controllers\Api\Version1;
 
-use Viender\Ideapool\State;
-use Viender\Ideapool\City;
+use Viender\Userdata\State;
+use Viender\Userdata\Address;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use Viender\Ideapool\Transformers\Version1\CityTransformer;
+use Viender\Userdata\Transformers\Version1\AddressTransformer;
 
-class StateCitiesController extends ApiController
+class StateAddressesController extends ApiController
 {
     /** 
-     * @api {get} /states/:id/cities Get State Cities
-     * @apiName StateCitiesIndex
+     * @api {get} /states/:id/addresses Get State Addresses
+     * @apiName StateAddressesIndex
      * @apiGroup StateGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiUse CityIndexSuccess
+     * @apiUse AddressIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
     public function index(State $state)
     {
-        $paginator = $state->cities()->paginate();
+        $paginator = $state->addresses()->paginate();
 
-        return $this->respondWithPagination($paginator, new CityTransformer);
+        return $this->respondWithPagination($paginator, new AddressTransformer);
     }
 
     /**
-     * @api {post} /states/:id/cities Create State Cities
-     * @apiName StateCitiesStore
+     * @api {post} /states/:id/addresses Create State Address
+     * @apiName StateAddressesStore
      * @apiGroup StateGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
      * 
-     * @apiUse CityRequestBodyParam
+     * @apiUse AddressRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -48,14 +48,14 @@ class StateCitiesController extends ApiController
      */
     public function store(Request $request, State $state)
     {
-        $state->cities()->save(new City($request->all()));
+        $state->addresses()->save(new Address($request->all()));
 
         return $this->respondCreated();
     }
 
     /**
-     * @api {get} /states/:id/cities/:id Get State Cities
-     * @apiName StateCitiesShow
+     * @api {get} /states/:id/addresses/:id Get State Address
+     * @apiName StateAddressesShow
      * @apiGroup StateGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
@@ -64,21 +64,21 @@ class StateCitiesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse CityShowSuccess
+     * @apiUse AddressShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(State $state, $city)
+    public function show(State $state, $address)
     {
-        $city = $state->cities()->findOrFail($city);
+        $address = $state->addresses()->findOrFail($address);
 
-        return $this->respond(new Item($city, new CityTransformer));
+        return $this->respond(new Item($address, new AddressTransformer));
     }
 
     /**
-     * @api {put} /states/:id/cities/:id Update State Cities
-     * @apiName StateCitiesUpdate
+     * @api {put} /states/:id/addresses/:id Update State Address
+     * @apiName StateAddressesUpdate
      * @apiGroup StateGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
@@ -87,7 +87,7 @@ class StateCitiesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse CityRequestBodyParam
+     * @apiUse AddressRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -95,18 +95,18 @@ class StateCitiesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, State $state, $city)
+    public function update(Request $request, State $state, $address)
     {
-        $city = $state->cities()->findOrFail($city);
+        $address = $state->addresses()->findOrFail($address);
 
-        $city->update($request->all());
+        $address->update($request->all());
 
         return $this->respondUpdated();
     }
 
     /**
-     * @api {delete} /states/:id/cities/:id Delete State Cities
-     * @apiName StateCitiesDelete
+     * @api {delete} /states/:id/addresses/:id Delete State Address
+     * @apiName StateAddressesDelete
      * @apiGroup StateGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
@@ -120,11 +120,11 @@ class StateCitiesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(State $state, $city)
+    public function destroy(State $state, $address)
     {
-        $city = $state->cities()->findOrFail($city);
+        $address = $state->addresses()->findOrFail($address);
         
-        $city->delete();
+        $address->delete();
 
         return $this->respondDeleted();
     }

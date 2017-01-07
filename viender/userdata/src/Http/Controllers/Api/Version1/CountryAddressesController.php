@@ -1,45 +1,45 @@
 <?php
 
-namespace Viender\Ideapool\Http\Controllers\Api\Version1;
+namespace Viender\Userdata\Http\Controllers\Api\Version1;
 
-use Viender\Ideapool\Country;
-use Viender\Ideapool\State;
+use Viender\Userdata\Country;
+use Viender\Userdata\Address;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use Viender\Ideapool\Transformers\Version1\StateTransformer;
+use Viender\Userdata\Transformers\Version1\AddressTransformer;
 
-class CountryStatesController extends ApiController
+class CountryAddressesController extends ApiController
 {
     /** 
-     * @api {get} /countries/:id/states Get Country States
-     * @apiName countryStatesIndex
+     * @api {get} /countries/:id/addresses Get Country Addresses
+     * @apiName CountryAddressesIndex
      * @apiGroup CountryGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiUse StateIndexSuccess
+     * @apiUse AddressIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
     public function index(Country $country)
     {
-        $paginator = $country->states()->paginate();
+        $paginator = $country->addresses()->paginate();
 
-        return $this->respondWithPagination($paginator, new StateTransformer);
+        return $this->respondWithPagination($paginator, new AddressTransformer);
     }
 
     /**
-     * @api {post} /countries/:id/states Create Cuntry State
-     * @apiName countryStatesStore
+     * @api {post} /countries/:id/addresses Create Country Address
+     * @apiName CountryAddressesStore
      * @apiGroup CountryGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
      * 
-     * @apiUse StateRequestBodyParam
+     * @apiUse AddressRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -48,14 +48,14 @@ class CountryStatesController extends ApiController
      */
     public function store(Request $request, Country $country)
     {
-        $country->states()->save(new State($request->all()));
+        $country->addresses()->save(new Address($request->all()));
 
         return $this->respondCreated();
     }
 
     /**
-     * @api {get} /countries/:id/states/:id Get Country State
-     * @apiName countryStatesShow
+     * @api {get} /countries/:id/addresses/:id Get Country Address
+     * @apiName CountryAddressesShow
      * @apiGroup CountryGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
@@ -64,21 +64,21 @@ class CountryStatesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse StateShowSuccess
+     * @apiUse AddressShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Country $country, $state)
+    public function show(Country $country, $address)
     {
-        $state = $country->states()->findOrFail($state);
+        $address = $country->addresses()->findOrFail($address);
 
-        return $this->respond(new Item($state, new StateTransformer));
+        return $this->respond(new Item($address, new AddressTransformer));
     }
 
     /**
-     * @api {put} /countries/:id/states/:id Update Country State
-     * @apiName countryStatesUpdate
+     * @api {put} /countries/:id/addresses/:id Update Country Address
+     * @apiName CountryAddressesUpdate
      * @apiGroup CountryGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
@@ -87,7 +87,7 @@ class CountryStatesController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse StateRequestBodyParam
+     * @apiUse AddressRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -95,18 +95,18 @@ class CountryStatesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Country $country, $state)
+    public function update(Request $request, Country $country, $address)
     {
-        $state = $country->states()->findOrFail($state);
+        $address = $country->addresses()->findOrFail($address);
 
-        $state->update($request->all());
+        $address->update($request->all());
 
         return $this->respondUpdated();
     }
 
     /**
-     * @api {delete} /countries/:id/states/:id Delete Country State
-     * @apiName countryStatesDelete
+     * @api {delete} /countries/:id/addresses/:id Delete Country Address
+     * @apiName CountryAddressesDelete
      * @apiGroup CountryGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
@@ -120,11 +120,11 @@ class CountryStatesController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Country $country, $state)
+    public function destroy(Country $country, $address)
     {
-        $state = $country->states()->findOrFail($state);
+        $address = $country->addresses()->findOrFail($address);
         
-        $state->delete();
+        $address->delete();
 
         return $this->respondDeleted();
     }

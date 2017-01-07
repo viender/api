@@ -47,11 +47,6 @@ class RouteRegistrar
             // Models
             $this->router->resource('users', 'UsersController', ['except' => ['create', 'edit']]);
             $this->router->resource('stars', 'StarsController', ['except' => ['create', 'edit']]);
-            $this->router->resource('addresses', 'AddressesController', ['except' => ['create', 'edit']]);
-            $this->router->resource('countries', 'CountriesController', ['except' => ['create', 'edit']]);
-            $this->router->resource('states', 'StatesController', ['except' => ['create', 'edit']]);
-            $this->router->resource('cities', 'CitiesController', ['except' => ['create', 'edit']]);
-            $this->router->resource('zipcodes', 'ZipCodesController', ['except' => ['create', 'edit']]);
             $this->router->resource('answers', 'AnswersController', ['except' => ['create', 'edit']]);
             $this->router->resource('questions', 'QuestionsController', ['except' => ['create', 'edit']]);
             $this->router->resource('auctions', 'AuctionsController', ['except' => ['create', 'edit']]);
@@ -106,17 +101,6 @@ class RouteRegistrar
 
             // Relationships - Tutor rating
             $this->router->resource('users.stars', 'UserStarsController', ['except' => ['create', 'edit']]);
-
-
-            // Relationships - User address
-            $this->router->resource('users.addresses', 'UserAddressesController', ['except' => ['create', 'edit']]);
-            $this->router->resource('countries.addresses', 'CountryAddressesController', ['except' => ['create', 'edit']]);
-            $this->router->resource('countries.states', 'CountryStatesController', ['except' => ['create', 'edit']]);
-            $this->router->resource('states.addresses', 'StateAddressesController', ['except' => ['create', 'edit']]);
-            $this->router->resource('states.cities', 'StateCitiesController', ['except' => ['create', 'edit']]);
-            $this->router->resource('cities.addresses', 'CityAddressesController', ['except' => ['create', 'edit']]);
-            $this->router->resource('cities.zipcodes', 'CityZipCodesController', ['except' => ['create', 'edit']]);
-            $this->router->resource('zipcodes.addresses', 'ZipCodeAddressesController', ['except' => ['create', 'edit']]);
         });
     }
 }
