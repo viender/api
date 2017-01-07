@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Viender\Ideapool\Ideapool;
+use Viender\Socialite\Socialite;
 use Viender\Userdata\Userdata;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Ideapool::routes();
+        Socialite::routes();
         Userdata::routes();
     }
 

@@ -4,10 +4,10 @@ namespace Viender\Userdata\Http\Controllers\Api\Version1;
 
 use Response;
 use League\Fractal\Manager;
-use Viender\Ideapool\Http\Controllers\Controller;
+use Viender\Socialite\Http\Controllers\Controller;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
-use Viender\Ideapool\Transformers\Version1\Serializer\ArraySerializer;
+use Viender\Socialite\Transformers\Version1\Serializer\ArraySerializer;
 
 class ApiController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-use Viender\Ideapool\Utilities\Text;
+use Viender\Socialite\Utilities\Text;
 
 /*
 |--------------------------------------------------------------------------

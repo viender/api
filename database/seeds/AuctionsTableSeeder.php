@@ -12,19 +12,19 @@ class AuctionsTableSeeder extends Seeder
     public function run()
     {
 
-        factory(Viender\Ideapool\Auction::class, 20)->create()->each(function($u) {
+        factory(Viender\Socialite\Auction::class, 20)->create()->each(function($u) {
             
             $faker = Faker\Factory::create();
             
-            $tags = Viender\Ideapool\Tag::all()->pluck('id')->toArray();
+            $tags = Viender\Socialite\Tag::all()->pluck('id')->toArray();
 
-            $tag = Viender\Ideapool\Tag::find($faker->randomElement($tags));
+            $tag = Viender\Socialite\Tag::find($faker->randomElement($tags));
 
             $u->tags()->save($tag);
 
             foreach (range(1, 2) as $i) {
                 if(rand(0, 1)) {
-                    $tag = Viender\Ideapool\Tag::find($faker->randomElement($tags));
+                    $tag = Viender\Socialite\Tag::find($faker->randomElement($tags));
 
                     $u->tags()->save($tag);
                 }

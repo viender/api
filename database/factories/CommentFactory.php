@@ -16,7 +16,7 @@ class FactoryStatus {
 }
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(Viender\Ideapool\Comment::class, function (Faker\Generator $faker) {
+$factory->define(Viender\Socialite\Comment::class, function (Faker\Generator $faker) {
     
     $users = App\User::all()->pluck('id')->toArray();
     
@@ -28,14 +28,14 @@ $factory->define(Viender\Ideapool\Comment::class, function (Faker\Generator $fak
             $faker = Faker\Factory::create();
 
             $commentables = [
-                'Viender\Ideapool\Question',
-                'Viender\Ideapool\Answer',
-                'Viender\Ideapool\Comment',
+                'Viender\Socialite\Question',
+                'Viender\Socialite\Answer',
+                'Viender\Socialite\Comment',
             ];
 
             $commentable = $faker->randomElement($commentables);
 
-            while($commentable == 'Viender\Ideapool\Comment' && FactoryStatus::$isFirst) {
+            while($commentable == 'Viender\Socialite\Comment' && FactoryStatus::$isFirst) {
                 $commentable = $faker->randomElement($commentables);
             }
 

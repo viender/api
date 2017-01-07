@@ -25,7 +25,7 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Viender\\Ideapool\\": "viender/ideapool/src/",
+            "Viender\\Socialite\\": "viender/socialite/src/",
             "Viender\\Userdata\\": "viender/userdata/src/"
         }
     },
