@@ -1,9 +1,7 @@
 <?php
 
-namespace Viender\Socialite\Repositories;
+namespace App\Repositories;
 
-use Viender\Socialite\Upvote;
-use Viender\Socialite\Contracts\Post\Upvotable;
 
 class UsersRepository extends Repository
 {

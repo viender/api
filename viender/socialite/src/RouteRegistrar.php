@@ -45,7 +45,6 @@ class RouteRegistrar
         $this->router->group(array_merge(['prefix' => 'v1'], $option, ['namespace' => 'Api\Version1']), function() {
 
             // Models
-            $this->router->resource('users', 'UsersController', ['except' => ['create', 'edit']]);
             $this->router->resource('stars', 'StarsController', ['except' => ['create', 'edit']]);
             $this->router->resource('answers', 'AnswersController', ['except' => ['create', 'edit']]);
             $this->router->resource('questions', 'QuestionsController', ['except' => ['create', 'edit']]);

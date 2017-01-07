@@ -1,8 +1,8 @@
 <?php
 
-namespace Viender\Socialite\Transformers\Version1\Traits;
+namespace Viender\Userdata\Transformers\Version1\Traits;
 
-use Viender\Socialite\Transformers\Version1\UserTransformer;
+use Viender\Userdata\Transformers\Version1\UserTransformer;
 
 trait UserIncludable
 {

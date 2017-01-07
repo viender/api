@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Socialite\Transformers\Version1;
+namespace Viender\Userdata\Transformers\Version1;
 
 use App\User;
 

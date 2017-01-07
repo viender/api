@@ -3,7 +3,7 @@
 namespace Viender\Userdata\Transformers\Version1;
 
 use Viender\Userdata\Address;
-use Viender\Socialite\Transformers\Version1\Traits\UserIncludable;
+use Viender\Userdata\Transformers\Version1\Traits\UserIncludable;
 
 class AddressTransformer extends Transformer
 {

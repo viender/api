@@ -1,14 +1,13 @@
 <?php
 
-namespace Viender\Socialite\Http\Controllers\Api\Version1;
+namespace Viender\Userdata\Http\Controllers\Api\Version1;
 
 use App\User;
-use Laravel\Passport\Token;
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
-use Viender\Socialite\Transformers\Version1\UserTransformer;
-use Viender\Socialite\Http\Controllers\Api\Version1\Handlers\BasicHandler;
-use Viender\Socialite\Transformers\Version1\Serializer\ArraySerializer;
+use Viender\Userdata\Transformers\Version1\UserTransformer;
+use Viender\Userdata\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Viender\Userdata\Transformers\Version1\Serializer\ArraySerializer;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class UsersController extends ApiController

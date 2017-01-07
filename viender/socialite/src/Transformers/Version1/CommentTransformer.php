@@ -5,7 +5,7 @@ namespace Viender\Socialite\Transformers\Version1;
 use Viender\Socialite\Comment;
 use Illuminate\Support\Collection;
 use Viender\Socialite\Repositories\CommentsRepository;
-use Viender\Socialite\Transformers\Version1\Traits\UserIncludable;
+use Viender\Userdata\Transformers\Version1\Traits\UserIncludable;
 use Viender\Socialite\Transformers\Version1\Traits\CommentableIncludable;
 
 class CommentTransformer extends Transformer
