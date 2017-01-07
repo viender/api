@@ -7,7 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Viender\Ideapool\Notifications\UpvotableUpvotedNotification;
 
-class UserEventSubscriber
+class IdeapoolUserEventSubscriber
 {
     public function onUpvotableUpvoted($event)
     {
@@ -27,7 +27,7 @@ class UserEventSubscriber
     {
         $events->listen(
             'Viender\Ideapool\Events\UpvotableUpvoted',
-            'Viender\Ideapool\Listeners\UserEventSubscriber@onUpvotableUpvoted'
+            'Viender\Ideapool\Listeners\IdeapoolUserEventSubscriber@onUpvotableUpvoted'
         );
     }
 }
