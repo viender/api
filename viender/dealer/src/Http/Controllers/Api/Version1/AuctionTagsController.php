@@ -1,12 +1,12 @@
 <?php
 
-namespace Viender\Socialite\Http\Controllers\Api\Version1;
+namespace Viender\Dealer\Http\Controllers\Api\Version1;
 
 use Viender\Dealer\Auction;
 use Viender\Socialite\Tag;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use Viender\Socialite\Viender\Transformers\Version1\TagTransformer;
+use Viender\Socialite\Transformers\Version1\TagTransformer;
 
 class AuctionTagsController extends ApiController
 {

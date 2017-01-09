@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Viender\Dealer\Dealer;
 use Viender\Socialite\Socialite;
 use Viender\Userdata\Userdata;
 use Illuminate\Support\ServiceProvider;
@@ -15,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Dealer::routes();
         Socialite::routes();
         Userdata::routes();
     }

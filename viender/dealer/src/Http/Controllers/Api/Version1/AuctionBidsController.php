@@ -1,12 +1,12 @@
 <?php
 
-namespace Viender\Socialite\Http\Controllers\Api\Version1;
+namespace Viender\Dealer\Http\Controllers\Api\Version1;
 
 use Viender\Dealer\Auction;
 use Viender\Dealer\Bid;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use Viender\Socialite\Transformers\Version1\BidTransformer;
+use Viender\Dealer\Transformers\Version1\BidTransformer;
 
 class AuctionBidsController extends ApiController
 {

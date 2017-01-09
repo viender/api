@@ -14,7 +14,7 @@ class Dealer
         };
 
         $options = array_merge([
-            'namespace' => '\Viender\dealer\Http\Controllers',
+            'namespace' => '\Viender\Dealer\Http\Controllers',
             'middleware' => 'api'
         ]);
 

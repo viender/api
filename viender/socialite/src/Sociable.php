@@ -19,16 +19,6 @@ trait Sociable
         return $this->belongsToMany('Viender\Socialite\Tag');
     }
 
-    public function auctions() 
-    {
-        return $this->hasMany('Viender\Dealer\Auction');
-    }
-
-    public function bids() 
-    {
-        return $this->hasMany('Viender\Dealer\Bid');
-    }
-
     public function comments() 
     {
         return $this->hasMany('Viender\Socialite\Comment');

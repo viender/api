@@ -1,10 +1,10 @@
 <?php
 
-namespace Viender\Socialite\Http\Controllers\Api\Version1;
+namespace Viender\Dealer\Http\Controllers\Api\Version1;
 
 use Viender\Dealer\Auction;
 use Illuminate\Http\Request;
-use Viender\Socialite\Transformers\Version1\AuctionTransformer;
+use Viender\Dealer\Transformers\Version1\AuctionTransformer;
 use Viender\Utilities\Controllers\Handlers\BasicHandler;
 
 class AuctionsController extends ApiController

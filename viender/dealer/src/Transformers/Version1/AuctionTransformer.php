@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Socialite\Transformers\Version1;
+namespace Viender\Dealer\Transformers\Version1;
 
 use Viender\Dealer\Auction;
 use Viender\Userdata\Transformers\Version1\Traits\UserIncludable;
