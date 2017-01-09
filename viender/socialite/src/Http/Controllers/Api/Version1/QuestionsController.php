@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Socialite\Repositories\QuestionsRepository;
 use Viender\Socialite\Transformers\Version1\QuestionTransformer;
-use Viender\Socialite\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Viender\Utilities\Controllers\Handlers\BasicHandler;
 
 class QuestionsController extends ApiController
 {

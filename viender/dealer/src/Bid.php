@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Socialite;
+namespace Viender\Dealer;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,6 +22,6 @@ class Bid extends Model
 
     public function Auction() 
     {
-        return $this->belongsTo('Viender\Socialite\Auction');
+        return $this->belongsTo('Viender\Dealer\Auction');
     }
 }

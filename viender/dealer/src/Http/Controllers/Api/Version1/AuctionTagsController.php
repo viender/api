@@ -2,61 +2,63 @@
 
 namespace Viender\Socialite\Http\Controllers\Api\Version1;
 
+use Viender\Dealer\Auction;
 use Viender\Socialite\Tag;
-use Viender\Socialite\Auction;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use Viender\Socialite\Transformers\Version1\AuctionTransformer;
+use Viender\Socialite\Viender\Transformers\Version1\TagTransformer;
 
-class TagAuctionsController extends ApiController
+class AuctionTagsController extends ApiController
 {
     /** 
-     * @api {get} /tags/:id/auctions Get Tag Auctions
-     * @apiName TagAuctionsIndex
-     * @apiGroup TagGroup
+     * @api {get} /auctions/:slug/tags Get Auction Tags
+     * @apiName AuctionTagsIndex
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiUse AuctionIndexSuccess
+     * @apiUse TagIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
-    public function index(Tag $tag)
+    public function index(Auction $auction)
     {
-        $paginator = $tag->auctions()->paginate();
+        $paginator = $auction->tags()->paginate();
 
-        return $this->respondWithPagination($paginator, new AuctionTransformer);
+        return $this->respondWithPagination($paginator, new TagTransformer);
     }
 
     /**
-     * @api {post} /tags/:id/auctions Create Tag Auction
-     * @apiName TagAuctionsStore
-     * @apiGroup TagGroup
+     * @api {post} /auctions/:slug/tags Create Auction Tag
+     * @apiName AuctionTagsStore
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
      * 
-     * @apiUse AuctionRequestBodyParam
+     * @apiUse TagRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Tag $tag)
+    public function store(Request $request, Auction $auction)
     {
-        $tag->auctions()->save(new Auction($request->all()));
+        if( ! $auction->tags()->find($request->tag_id)) {
+            $auction->tags()->attach(Tag::findOrFail($request->tag_id));
+        }
 
         return $this->respondCreated();
     }
 
     /**
-     * @api {get} /tags/:id/auctions/:slug Get Tag Auction
-     * @apiName TagAuctionsShow
-     * @apiGroup TagGroup
+     * @api {get} /auctions/:slug/tags/:id Get Auction Tag
+     * @apiName AuctionTagsShow
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -64,22 +66,22 @@ class TagAuctionsController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse AuctionShowSuccess
+     * @apiUse TagShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Tag $tag, $auction)
+    public function show(Auction $auction, $tag)
     {
-        $auction = $tag->auctions()->findOrFail($auction);
+        $tag = $auction->tags()->findOrFail($tag);
 
-        return $this->respond(new Item($auction, new AuctionTransformer));
+        return $this->respond(new Item($tag, new TagTransformer));
     }
 
     /**
-     * @api {put} /tags/:id/auctions/:slug Update Tag Auction
-     * @apiName TagAuctionsUpdate
-     * @apiGroup TagGroup
+     * @api {put} /auctions/:slug/tags/:id Update Auction Tag
+     * @apiName AuctionTagsUpdate
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
@@ -87,7 +89,7 @@ class TagAuctionsController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse AuctionRequestBodyParam
+     * @apiUse TagRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -95,19 +97,15 @@ class TagAuctionsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag, $auction)
+    public function update(Request $request, Auction $auction, $tag)
     {
-        $auction = $tag->auctions()->findOrFail($auction);
-
-        $auction->update($request->all());
-
-        return $this->respondUpdated();
+        abort(405);
     }
 
     /**
-     * @api {delete} /tags/:id/auctions/:slug Delete Tag Auction
-     * @apiName TagAuctionsDelete
-     * @apiGroup TagGroup
+     * @api {delete} /auctions/:slug/tags/:id Delete Auction Tag
+     * @apiName AuctionTagsDelete
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
@@ -120,11 +118,9 @@ class TagAuctionsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag, $auction)
+    public function destroy(Auction $auction, $tag)
     {
-        $auction = $tag->auctions()->findOrFail($auction);
-        
-        $auction->delete();
+        $auction->tags()->detach($auction->tags()->findOrFail($tag));
 
         return $this->respondDeleted();
     }

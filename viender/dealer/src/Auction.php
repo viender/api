@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Socialite;
+namespace Viender\Dealer;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,7 +32,7 @@ class Auction extends Model
 
     public function bids() 
     {
-        return $this->hasMany('Viender\Socialite\Bid');
+        return $this->hasMany('Viender\Dealer\Bid');
     }
 
     public function tags() 

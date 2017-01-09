@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Socialite\Http\Controllers\Api\Version1\Handlers;
+namespace Viender\Utilities\Controllers\Handlers;
 
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;

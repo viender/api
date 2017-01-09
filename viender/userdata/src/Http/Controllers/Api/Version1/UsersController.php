@@ -6,7 +6,7 @@ use App\User;
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use Viender\Userdata\Transformers\Version1\UserTransformer;
-use Viender\Userdata\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Viender\Utilities\Controllers\Handlers\BasicHandler;
 use Viender\Userdata\Transformers\Version1\Serializer\ArraySerializer;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 

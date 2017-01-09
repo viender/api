@@ -6,7 +6,7 @@ use Viender\Socialite\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Viender\Socialite\Transformers\Version1\CommentTransformer;
-use Viender\Socialite\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Viender\Utilities\Controllers\Handlers\BasicHandler;
 
 class CommentsController extends ApiController
 {

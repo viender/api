@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Socialite\Utilities;
+namespace Viender\Utilities;
 
 class Text {
     public static function clean($string) 

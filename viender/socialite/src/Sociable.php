@@ -21,12 +21,12 @@ trait Sociable
 
     public function auctions() 
     {
-        return $this->hasMany('Viender\Socialite\Auction');
+        return $this->hasMany('Viender\Dealer\Auction');
     }
 
     public function bids() 
     {
-        return $this->hasMany('Viender\Socialite\Bid');
+        return $this->hasMany('Viender\Dealer\Bid');
     }
 
     public function comments() 

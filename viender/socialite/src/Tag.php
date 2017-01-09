@@ -27,6 +27,6 @@ class Tag extends Model
 
     public function auctions() 
     {
-        return $this->morphedByMany('Viender\Socialite\Auction', 'taggable');
+        return $this->morphedByMany('Viender\Dealer\Auction', 'taggable');
     }
 }

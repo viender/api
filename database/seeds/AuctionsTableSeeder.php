@@ -12,7 +12,7 @@ class AuctionsTableSeeder extends Seeder
     public function run()
     {
 
-        factory(Viender\Socialite\Auction::class, 20)->create()->each(function($u) {
+        factory(\Viender\Dealer\Auction::class, 20)->create()->each(function($u) {
             
             $faker = Faker\Factory::create();
             

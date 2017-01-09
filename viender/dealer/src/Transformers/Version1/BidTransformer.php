@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Transformers\Version1;
 
-use Viender\Socialite\Bid;
+use Viender\Dealer\Bid;
 use Viender\Userdata\Transformers\Version1\Traits\UserIncludable;
 
 class BidTransformer extends Transformer

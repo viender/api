@@ -2,29 +2,29 @@
 
 namespace Viender\Socialite\Http\Controllers\Api\Version1;
 
-use Viender\Socialite\Bid;
+use Viender\Dealer\Auction;
 use Illuminate\Http\Request;
-use Viender\Socialite\Transformers\Version1\BidTransformer;
-use Viender\Socialite\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Viender\Socialite\Transformers\Version1\AuctionTransformer;
+use Viender\Utilities\Controllers\Handlers\BasicHandler;
 
-class BidsController extends ApiController
+class AuctionsController extends ApiController
 {
     public function __construct()
     {
         parent::__construct();
-        $this->handler = new BasicHandler($this, Bid::class, BidTransformer::class);
+        $this->handler = new BasicHandler($this, Auction::class, AuctionTransformer::class);
     }
 
     /** 
-     * @api {get} /bids Get Bids
-     * @apiName BidsIndex
-     * @apiGroup BidGroup
+     * @api {get} /auctions Get Auctions
+     * @apiName AuctionsIndex
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiUse BidIndexSuccess
+     * @apiUse AuctionIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
@@ -34,15 +34,15 @@ class BidsController extends ApiController
     }
 
     /**
-     * @api {post} /bids Create Bids
-     * @apiName BidsStore
-     * @apiGroup BidGroup
+     * @api {post} /auctions Create Auction
+     * @apiName AuctionsStore
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
      * 
-     * @apiUse BidRequestBodyParam
+     * @apiUse AuctionRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -55,9 +55,9 @@ class BidsController extends ApiController
     }
 
     /**
-     * @api {get} /bids/:id Get Bid
-     * @apiName BidsShow
-     * @apiGroup BidGroup
+     * @api {get} /auctions/:slug Get Auction
+     * @apiName AuctionsShow
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -65,20 +65,20 @@ class BidsController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse BidShowSuccess
+     * @apiUse AuctionShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Bid $bid)
+    public function show(Auction $auction)
     {
-        return $this->handler->show($bid);
+        return $this->handler->show($auction);
     }
 
     /**
-     * @api {put} /bids/:id Update Bid
-     * @apiName BidsUpdate
-     * @apiGroup BidGroup
+     * @api {put} /auctions/:slug Update Auction
+     * @apiName AuctionsUpdate
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
@@ -86,7 +86,7 @@ class BidsController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse BidRequestBodyParam
+     * @apiUse AuctionRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -94,15 +94,15 @@ class BidsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bid $bid)
+    public function update(Request $request, Auction $auction)
     {
-        return $this->handler->update($request, $bid);
+        return $this->handler->update($request, $auction);
     }
 
     /**
-     * @api {delete} /bids/:id Delete Bid
-     * @apiName BidsDelete
-     * @apiGroup BidGroup
+     * @api {delete} /auctions/:slug Delete Auction
+     * @apiName AuctionsDelete
+     * @apiGroup AuctionGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
@@ -115,8 +115,8 @@ class BidsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bid $bid)
+    public function destroy(Auction $auction)
     {
-        return $this->handler->destroy($bid);
+        return $this->handler->destroy($auction);
     }
 }

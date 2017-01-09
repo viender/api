@@ -2,18 +2,18 @@
 
 namespace Viender\Socialite\Http\Controllers\Api\Version1;
 
-use Viender\Socialite\Auction;
-use Viender\Socialite\Bid;
+use App\User;
+use Viender\Dealer\Bid;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Socialite\Transformers\Version1\BidTransformer;
 
-class AuctionBidsController extends ApiController
+class UserBidsController extends ApiController
 {
     /** 
-     * @api {get} /auctions/:id/bids Get Auction Bids
-     * @apiName AuctionBidsIndex
-     * @apiGroup AuctionGroup
+     * @api {get} /users/:username/bids Get User Bids
+     * @apiName UserBidsIndex
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
@@ -23,17 +23,17 @@ class AuctionBidsController extends ApiController
      * 
      * @return \Illuminate\Http\Response
      */
-    public function index(Auction $auction)
+    public function index(User $user)
     {
-        $paginator = $auction->bids()->paginate();
+        $paginator = $user->bids()->paginate();
 
         return $this->respondWithPagination($paginator, new BidTransformer);
     }
 
     /**
-     * @api {post} /auctions/:id/bids Create Auction Bid
-     * @apiName AuctionBidsStore
-     * @apiGroup AuctionGroup
+     * @api {post} /users/:username/bids Create User Bid
+     * @apiName UserBidsStore
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
@@ -46,17 +46,17 @@ class AuctionBidsController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Auction $auction)
+    public function store(Request $request, User $user)
     {
-        $auction->bids()->save(new Bid($request->all()));
+        $user->bids()->save(new Bid($request->all()));
 
         return $this->respondCreated();
     }
 
     /**
-     * @api {get} /auctions/:id/bids/:id Get Auction Bid
-     * @apiName AuctionBidsShow
-     * @apiGroup AuctionGroup
+     * @api {get} /users/:username/bids/:id Get User Bid
+     * @apiName UserBidsShow
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -69,17 +69,17 @@ class AuctionBidsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Auction $auction, $bid)
+    public function show(User $user, $bids)
     {
-        $bid = $auction->bids()->findOrFail($bid);
+        $bids = $user->bids()->findOrFail($bids);
 
-        return $this->respond(new Item($bid, new BidTransformer));
+        return $this->respond(new Item($bids, new BidTransformer));
     }
 
     /**
-     * @api {put} /auctions/:id/bids/:id Update Auction Bid
-     * @apiName AuctionBidsUpdate
-     * @apiGroup AuctionGroup
+     * @api {put} /users/:username/bids/:id Update User Bid
+     * @apiName UserBidsUpdate
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
@@ -95,19 +95,19 @@ class AuctionBidsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Auction $auction, $bid)
+    public function update(Request $request, User $user, $bids)
     {
-        $bid = $auction->bids()->findOrFail($bid);
-        
-        $bid->update($request->all());
+        $bids = $user->bids()->findOrFail($bids);
+
+        $bids->update($request->all());
 
         return $this->respondUpdated();
     }
 
     /**
-     * @api {delete} /auctions/:id/bids/:id Delete Auction Bid
-     * @apiName AuctionBidsDelete
-     * @apiGroup AuctionGroup
+     * @api {delete} /users/:username/bids/:id Delete User Bid
+     * @apiName UserBidsDelete
+     * @apiGroup UserGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
@@ -120,11 +120,11 @@ class AuctionBidsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Auction $auction, $bid)
+    public function destroy(User $user, $bids)
     {
-        $bid = $auction->bids()->findOrFail($bid);
-
-        $bid->delete();
+        $bids = $user->bids()->findOrFail($bids);
+        
+        $bids->delete();
 
         return $this->respondDeleted();
     }

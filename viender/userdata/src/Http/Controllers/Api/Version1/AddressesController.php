@@ -5,7 +5,7 @@ namespace Viender\Userdata\Http\Controllers\Api\Version1;
 use Viender\Userdata\Address;
 use Illuminate\Http\Request;
 use Viender\Userdata\Transformers\Version1\AddressTransformer;
-use Viender\Userdata\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Viender\Utilities\Controllers\Handlers\BasicHandler;
 
 class AddressesController extends ApiController
 {

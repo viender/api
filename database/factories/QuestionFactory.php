@@ -20,7 +20,7 @@ $factory->define(Viender\Socialite\Question::class, function (Faker\Generator $f
         'user_id' => $faker->randomElement($users),
         'title' => trim($faker->sentence(), '.').'?',
         'slug' => function(array $me) {
-            return  Viender\Socialite\Utilities\Text::clean($me['title']);
+            return  Viender\Utilities\Text::clean($me['title']);
         },
         'body' => implode(" ", $faker->paragraphs(3)),
     ];

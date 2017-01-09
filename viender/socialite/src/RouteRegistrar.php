@@ -48,8 +48,6 @@ class RouteRegistrar
             $this->router->resource('stars', 'StarsController', ['except' => ['create', 'edit']]);
             $this->router->resource('answers', 'AnswersController', ['except' => ['create', 'edit']]);
             $this->router->resource('questions', 'QuestionsController', ['except' => ['create', 'edit']]);
-            $this->router->resource('auctions', 'AuctionsController', ['except' => ['create', 'edit']]);
-            $this->router->resource('bids', 'BidsController', ['except' => ['create', 'edit']]);
             $this->router->resource('comments', 'CommentsController', ['except' => ['create', 'edit']]);
             $this->router->resource('tags', 'TagsController', ['except' => ['create', 'edit']]);
             $this->router->resource('upvotes', 'UpvotesController', ['except' => ['create', 'edit']]);
@@ -66,11 +64,9 @@ class RouteRegistrar
             // Relationships - Tag
             $this->router->resource('users.tags', 'UserTagsController', ['except' => ['create', 'edit']]);
             $this->router->resource('questions.tags', 'QuestionTagsController', ['except' => ['create', 'edit']]);
-            $this->router->resource('auctions.tags', 'AuctionTagsController', ['except' => ['create', 'edit']]);
-            
+
             $this->router->resource('tags.users', 'TagUsersController', ['except' => ['create', 'edit']]);
             $this->router->resource('tags.questions', 'TagQuestionsController', ['except' => ['create', 'edit']]);
-            $this->router->resource('tags.auctions', 'TagAuctionsController', ['except' => ['create', 'edit']]);
 
 
             // Relationships - Comment
@@ -90,13 +86,6 @@ class RouteRegistrar
             $this->router->resource('questions.downvotes', 'QuestionDownvotesController', ['except' => ['create', 'edit']]);
             $this->router->resource('answers.downvotes', 'AnswerDownvotesController', ['except' => ['create', 'edit']]);
             $this->router->resource('comments.downvotes', 'CommentDownvotesController', ['except' => ['create', 'edit']]);
-
-
-            // Relationships - Tutor seeker
-            $this->router->resource('users.auctions', 'UserAuctionsController', ['except' => ['create', 'edit']]);
-            $this->router->resource('users.bids', 'UserBidsController', ['except' => ['create', 'edit']]);
-            $this->router->resource('auctions.bids', 'AuctionBidsController', ['except' => ['create', 'edit']]);
-
 
             // Relationships - Tutor rating
             $this->router->resource('users.stars', 'UserStarsController', ['except' => ['create', 'edit']]);

@@ -3,7 +3,7 @@
 namespace Viender\Socialite\Http\Controllers\Api\Version1;
 
 use App\User;
-use Viender\Socialite\Auction;
+use Viender\Dealer\Auction;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Socialite\Transformers\Version1\AuctionTransformer;

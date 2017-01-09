@@ -2,61 +2,61 @@
 
 namespace Viender\Socialite\Http\Controllers\Api\Version1;
 
-use App\User;
-use Viender\Socialite\Bid;
+use Viender\Socialite\Tag;
+use Viender\Dealer\Auction;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use Viender\Socialite\Transformers\Version1\BidTransformer;
+use Viender\Socialite\Transformers\Version1\AuctionTransformer;
 
-class UserBidsController extends ApiController
+class TagAuctionsController extends ApiController
 {
     /** 
-     * @api {get} /users/:username/bids Get User Bids
-     * @apiName UserBidsIndex
-     * @apiGroup UserGroup
+     * @api {get} /tags/:id/auctions Get Tag Auctions
+     * @apiName TagAuctionsIndex
+     * @apiGroup TagGroup
      * @apiVersion 1.0.0
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
      * 
-     * @apiUse BidIndexSuccess
+     * @apiUse AuctionIndexSuccess
      * 
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index(Tag $tag)
     {
-        $paginator = $user->bids()->paginate();
+        $paginator = $tag->auctions()->paginate();
 
-        return $this->respondWithPagination($paginator, new BidTransformer);
+        return $this->respondWithPagination($paginator, new AuctionTransformer);
     }
 
     /**
-     * @api {post} /users/:username/bids Create User Bid
-     * @apiName UserBidsStore
-     * @apiGroup UserGroup
+     * @api {post} /tags/:id/auctions Create Tag Auction
+     * @apiName TagAuctionsStore
+     * @apiGroup TagGroup
      * @apiVersion 1.0.0
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
      * 
-     * @apiUse BidRequestBodyParam
+     * @apiUse AuctionRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user)
+    public function store(Request $request, Tag $tag)
     {
-        $user->bids()->save(new Bid($request->all()));
+        $tag->auctions()->save(new Auction($request->all()));
 
         return $this->respondCreated();
     }
 
     /**
-     * @api {get} /users/:username/bids/:id Get User Bid
-     * @apiName UserBidsShow
-     * @apiGroup UserGroup
+     * @api {get} /tags/:id/auctions/:slug Get Tag Auction
+     * @apiName TagAuctionsShow
+     * @apiGroup TagGroup
      * @apiVersion 1.0.0
      * @apiDescription Get an Addresses object
      *
@@ -64,22 +64,22 @@ class UserBidsController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse BidShowSuccess
+     * @apiUse AuctionShowSuccess
      * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user, $bids)
+    public function show(Tag $tag, $auction)
     {
-        $bids = $user->bids()->findOrFail($bids);
+        $auction = $tag->auctions()->findOrFail($auction);
 
-        return $this->respond(new Item($bids, new BidTransformer));
+        return $this->respond(new Item($auction, new AuctionTransformer));
     }
 
     /**
-     * @api {put} /users/:username/bids/:id Update User Bid
-     * @apiName UserBidsUpdate
-     * @apiGroup UserGroup
+     * @api {put} /tags/:id/auctions/:slug Update Tag Auction
+     * @apiName TagAuctionsUpdate
+     * @apiGroup TagGroup
      * @apiVersion 1.0.0
      * @apiDescription Update an Addresses
      *
@@ -87,7 +87,7 @@ class UserBidsController extends ApiController
      *
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
-     * @apiUse BidRequestBodyParam
+     * @apiUse AuctionRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
      * 
@@ -95,19 +95,19 @@ class UserBidsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user, $bids)
+    public function update(Request $request, Tag $tag, $auction)
     {
-        $bids = $user->bids()->findOrFail($bids);
+        $auction = $tag->auctions()->findOrFail($auction);
 
-        $bids->update($request->all());
+        $auction->update($request->all());
 
         return $this->respondUpdated();
     }
 
     /**
-     * @api {delete} /users/:username/bids/:id Delete User Bid
-     * @apiName UserBidsDelete
-     * @apiGroup UserGroup
+     * @api {delete} /tags/:id/auctions/:slug Delete Tag Auction
+     * @apiName TagAuctionsDelete
+     * @apiGroup TagGroup
      * @apiVersion 1.0.0
      * @apiDescription Delete an Addresses
      *
@@ -120,11 +120,11 @@ class UserBidsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user, $bids)
+    public function destroy(Tag $tag, $auction)
     {
-        $bids = $user->bids()->findOrFail($bids);
+        $auction = $tag->auctions()->findOrFail($auction);
         
-        $bids->delete();
+        $auction->delete();
 
         return $this->respondDeleted();
     }

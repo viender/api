@@ -11,6 +11,6 @@ class BidsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Viender\Socialite\Bid::class, 100)->create();
+        factory(\Viender\Dealer\Bid::class, 100)->create();
     }
 }

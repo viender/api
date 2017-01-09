@@ -5,7 +5,7 @@ namespace Viender\Socialite\Http\Controllers\Api\Version1;
 use Viender\Socialite\Upvote;
 use Illuminate\Http\Request;
 use Viender\Socialite\Transformers\Version1\UpvoteTransformer;
-use Viender\Socialite\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Viender\Utilities\Controllers\Handlers\BasicHandler;
 
 class UpvotesController extends ApiController
 {

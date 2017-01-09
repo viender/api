@@ -5,7 +5,7 @@ namespace Viender\Userdata\Http\Controllers\Api\Version1;
 use Viender\Userdata\Country;
 use Illuminate\Http\Request;
 use Viender\Userdata\Transformers\Version1\CountryTransformer;
-use Viender\Userdata\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Viender\Utilities\Controllers\Handlers\BasicHandler;
 
 class CountriesController extends ApiController
 {

@@ -5,7 +5,7 @@ namespace Viender\Socialite\Http\Controllers\Api\Version1;
 use Viender\Socialite\Downvote;
 use Illuminate\Http\Request;
 use Viender\Socialite\Transformers\Version1\DownvoteTransformer;
-use Viender\Socialite\Http\Controllers\Api\Version1\Handlers\BasicHandler;
+use Viender\Utilities\Controllers\Handlers\BasicHandler;
 
 class DownvotesController extends ApiController
 {
