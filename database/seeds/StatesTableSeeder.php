@@ -11,6 +11,6 @@ class StatesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Ideapool\State::class, 10)->create();
+        factory(Viender\Userdata\State::class, 10)->create();
     }
 }

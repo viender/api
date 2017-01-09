@@ -168,7 +168,9 @@ return [
          */
         Laravel\Passport\PassportServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
-
+        Viender\Dealer\DealerServiceProvider::class,
+        Viender\Socialite\SocialiteServiceProvider::class,
+        Viender\Userdata\UserdataServiceProvider::class,
 
         /*
          * Application Service Providers...

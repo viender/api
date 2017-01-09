@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Ideapool\Star::class, function (Faker\Generator $faker) {
+$factory->define(Viender\Socialite\Star::class, function (Faker\Generator $faker) {
 
     $users = App\User::all()->pluck('id')->toArray();
 

@@ -12,14 +12,14 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Ideapool\Upvote::class, function (Faker\Generator $faker) {
+$factory->define(Viender\Socialite\Upvote::class, function (Faker\Generator $faker) {
 
     $users = App\User::all()->pluck('id')->toArray();
 
     $upvotables = [
-        'App\Ideapool\Question',
-        'App\Ideapool\Answer',
-        'App\Ideapool\Comment',
+        'Viender\Socialite\Question',
+        'Viender\Socialite\Answer',
+        'Viender\Socialite\Comment',
     ];
 
     return [
