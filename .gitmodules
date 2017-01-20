@@ -13,3 +13,6 @@
 [submodule "viender/tutor"]
 	path = viender/tutor
 	url = https://github.com/viender/tutor.git
+[submodule "viender/courier"]
+	path = viender/courier
+	url = https://github.com/nugrahawahyu/courier
