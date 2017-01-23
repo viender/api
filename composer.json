@@ -30,7 +30,8 @@
             "Viender\\Userdata\\": "viender/userdata/src/",
             "Viender\\Dealer\\": "viender/dealer/src/",
             "Viender\\Utilities\\": "viender/utilities/src/",
-            "Viender\\Courier\\": "viender/courier/src/"
+            "Viender\\Courier\\": "viender/courier/src/",
+            "Viender\\Mytutor\\": "viender/mytutor/src/"
         }
     },
     "autoload-dev": {
