@@ -1,18 +1,15 @@
-[submodule "viender/utilities"]
-	path = viender/utilities
-	url = https://github.com/viender/utilities
-[submodule "viender/userdata"]
-	path = viender/userdata
-	url = https://github.com/viender/userdata
-[submodule "viender/socialite"]
-	path = viender/socialite
+[submodule "profile"]
+	path = profile
+	url = https://github.com/viender/profile
+[submodule "mytutor"]
+	path = mytutor
+	url = https://github.com/viender/mytutor
+[submodule "socialite"]
+	path = socialite
 	url = https://github.com/viender/socialite
-[submodule "viender/dealer"]
-	path = viender/dealer
+[submodule "dealer"]
+	path = dealer
 	url = https://github.com/viender/dealer
-[submodule "viender/tutor"]
-	path = viender/tutor
-	url = https://github.com/viender/tutor.git
-[submodule "viender/courier"]
-	path = viender/courier
-	url = https://github.com/nugrahawahyu/courier
+[submodule "utilities"]
+	path = utilities
+	url = https://github.com/viender/utilities
