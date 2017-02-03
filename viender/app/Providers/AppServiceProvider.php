@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Viender\Dealer\Dealer;
-use Viender\Userdata\Userdata;
+use Viender\Profile\Profile;
 use Viender\Socialite\Socialite;
 use Illuminate\Support\ServiceProvider;
 
@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Dealer::routes();
         Socialite::routes();
-        Userdata::routes();
+        Profile::routes();
     }
 
     /**

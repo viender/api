@@ -27,7 +27,7 @@
         "psr-4": {
             "App\\": "app/",
             "Viender\\Socialite\\": "../socialite/src/",
-            "Viender\\Userdata\\": "../userdata/src/",
+            "Viender\\Profile\\": "../profile/src/",
             "Viender\\Dealer\\": "../dealer/src/",
             "Viender\\Utilities\\": "../utilities/src/",
             "Viender\\Courier\\": "../courier/src/"
