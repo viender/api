@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
 
         factory(App\User::class, 50)->create()->each(function($user) use(&$tags) {
 
-            $user->addresses()->save(factory(Viender\Userdata\Address::class)->make());
+            $user->addresses()->save(factory(Viender\Profile\Address::class)->make());
             
             foreach (range(1, rand(2, 5)) as $index) {
                 $user->tags()->toggle(Viender\Socialite\Tag::find(array_rand($tags)));

@@ -22,7 +22,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'first_name' => explode(' ', $name)[0],
         'last_name' => explode(' ', $name)[1],
-        'avatar_url' => "https://web.viender.dev/img/profile.jpg",
+        'avatar_url' => "/img/profile.jpg",
         'username' => function(array $me) {
             return Text::clean($me['first_name']) . Text::clean($me['last_name']) ;
         },

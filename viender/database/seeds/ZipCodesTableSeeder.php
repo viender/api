@@ -11,6 +11,6 @@ class ZipCodesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Viender\Userdata\ZipCode::class, 10)->create();
+        factory(Viender\Profile\ZipCode::class, 10)->create();
     }
 }
