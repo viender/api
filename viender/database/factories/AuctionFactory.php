@@ -24,6 +24,6 @@ $factory->define(\Viender\Dealer\Auction::class, function (Faker\Generator $fake
         },
         'body' => implode(" ", $faker->paragraphs(3)),
         'price' => rand(50000, 500000),
-        'status' => true,
+        'active' => true,
     ];
 });

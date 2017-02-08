@@ -171,6 +171,8 @@ return [
         Viender\Dealer\DealerServiceProvider::class,
         Viender\Socialite\SocialiteServiceProvider::class,
         Viender\Profile\ProfileServiceProvider::class,
+        Viender\Dealer\DealerServiceProvider::class,
+        Viender\Mytutor\MytutorServiceProvider::class,
 
         /*
          * Application Service Providers...
