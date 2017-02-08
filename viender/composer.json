@@ -30,7 +30,7 @@
             "Viender\\Profile\\": "../profile/src/",
             "Viender\\Dealer\\": "../dealer/src/",
             "Viender\\Utilities\\": "../utilities/src/",
-            "Viender\\Courier\\": "../courier/src/"
+            "Viender\\Mytutor\\": "../mytutor/src/"
         }
     },
     "autoload-dev": {
