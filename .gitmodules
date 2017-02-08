@@ -7,6 +7,9 @@
 [submodule "socialite"]
 	path = socialite
 	url = https://github.com/viender/socialite
+[submodule "socialauth"]
+	path = socialauth
+	url = https://github.com/viender/socialauth
 [submodule "dealer"]
 	path = dealer
 	url = https://github.com/viender/dealer
