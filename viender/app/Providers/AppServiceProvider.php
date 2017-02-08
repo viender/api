@@ -18,9 +18,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Dealer::routes();
-        Socialite::routes();
-        Profile::routes();
         Mytutor::routes(['prefix' => 'mytutor']);
+        Profile::routes();
+        Socialite::routes();
     }
 
     /**
