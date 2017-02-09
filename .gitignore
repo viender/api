@@ -1,7 +1,7 @@
-/node_modules
+/viender/node_modules
 /public/storage
 /storage/*.key
-/vendor
+/viender/vendor
 /.idea
 Homestead.json
 Homestead.yaml
