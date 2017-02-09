@@ -1,8 +1,8 @@
 /viender/node_modules
-/public/storage
-/storage/*.key
+/viender/public/storage
+/viender/storage/*.key
 /viender/vendor
 /.idea
-Homestead.json
-Homestead.yaml
-.env
+/viender/Homestead.json
+/viender/Homestead.yaml
+/viender/.env
