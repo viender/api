@@ -1,6 +1,7 @@
 /viender/node_modules
 /viender/public/storage
 /viender/storage/*.key
+/viender/vendor
 /.idea
 /viender/Homestead.json
 /viender/Homestead.yaml
