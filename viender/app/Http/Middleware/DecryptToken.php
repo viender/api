@@ -20,8 +20,6 @@ class DecryptToken
             $request->headers->set('Authorization', decrypt(\Cookie::get('pt')));
         }
 
-        // return $request->header();
-
         return $next($request);
     }
 }

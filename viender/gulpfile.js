@@ -16,8 +16,8 @@ require('laravel-elixir-vue-2');
 elixir((mix) => {
     mix.sass('app.scss')
        .webpack('app.js')
-       .webpack('./../mytutor/resources/assets/js/browse/browse.js', 'viender_mytutor_browse.js')
-       .webpack('./../mytutor/resources/assets/js/browse/dashboard.js', 'viender_mytutor_dashboard.js')
-       .webpack('./../mytutor/resources/assets/js/browse/postTutoring.js', 'viender_mytutor_postTutoring.js')
-       .webpack('./../mytutor/resources/assets/js/browse/showTutoring.js', 'viender_mytutor_showTutoring.js');
+       .webpack('./../mytutor/resources/assets/js/browse/browse.js')
+       .webpack('./../mytutor/resources/assets/js/dashboard/dashboard.js')
+       .webpack('./../mytutor/resources/assets/js/postTutoring/postTutoring.js')
+       .webpack('./../mytutor/resources/assets/js/showTutoring/showTutoring.js');
 });

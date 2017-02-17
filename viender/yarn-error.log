@@ -2,7 +2,7 @@ Arguments:
   C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
 
 PATH: 
-  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\xampp\php;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin;C:\ProgramData\ComposerSetup\bin;C:\Users\KHADAFI\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\KHADAFI\AppData\Local\Programs\Python\Python36-32\;C:\Users\KHADAFI\AppData\Local\Microsoft\WindowsApps;C:\Users\KHADAFI\AppData\Roaming\npm;C:\Users\KHADAFI\AppData\Local\Yarn\.bin;C:\Users\KHADAFI\AppData\Roaming\Composer\vendor\bin
+  C:\cygwin64\usr\local\bin;C:\cygwin64\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files\Git\cmd;C:\xampp\php;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\ProgramData\ComposerSetup\bin;C:\Users\KHADAFI\AppData\Local\Microsoft\WindowsApps;C:\Users\KHADAFI\AppData\Roaming\npm;C:\Users\KHADAFI\AppData\Local\Yarn\.bin;C:\Python27
 
 Yarn version: 
   0.18.1
@@ -4335,6 +4335,7 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: getaddrinfo ENOTFOUND github.com github.com:443
-      at errnoException (dns.js:28:10)
+  Error: getaddrinfo ENOENT github.com:443
+      at Object.exports._errnoException (util.js:1022:11)
+      at errnoException (dns.js:33:15)
       at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:76:26)

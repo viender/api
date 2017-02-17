@@ -18,7 +18,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Dealer::routes();
-        Mytutor::routes(['prefix' => 'mytutor']);
+        Mytutor::routes(['prefix' => 'jobs']);
+        Mytutor::routes(['prefix' => 'v1/jobs'], function ($router) {
+            $router->apiVersion1();
+        });
         Profile::routes();
         Socialite::routes();
     }

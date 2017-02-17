@@ -166,13 +166,10 @@ return [
         /*
          * Package Service Providers...
          */
+        Laravel\Tinker\TinkerServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
-        Viender\Dealer\DealerServiceProvider::class,
-        Viender\Socialite\SocialiteServiceProvider::class,
-        Viender\Profile\ProfileServiceProvider::class,
-        Viender\Dealer\DealerServiceProvider::class,
-        Viender\Mytutor\MytutorServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -182,6 +179,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Viender\Dealer\DealerServiceProvider::class,
+        Viender\Socialite\SocialiteServiceProvider::class,
+        Viender\Profile\ProfileServiceProvider::class,
+        Viender\Dealer\DealerServiceProvider::class,
+        Viender\Mytutor\MytutorServiceProvider::class,
     ],
 
     /*
@@ -233,5 +235,9 @@ return [
     ],
 
     'viender_web_url' => env('APP_VIENDER_WEB_URL', 'http://localhost'),
+
+    'domain' => env('APP_DOMAIN', 'localhost'),
+
+    'api_domain' => env('APP_API_DOMAIN', 'localhost'),
 
 ];

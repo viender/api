@@ -10,9 +10,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -20,16 +17,21 @@
         ]); ?>
     </script>
 
+    <!-- Styles -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link href={{ mix('css/app.css') }} rel="stylesheet">
+    <link href="/css/vue-material.css" rel="stylesheet">
+
     @yield('head')
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="main-content">
         @include('layouts.nav')
         @yield('content')
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
     @yield('scripts')
 </body>
 </html>
