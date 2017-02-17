@@ -183,7 +183,7 @@ return [
         Viender\Socialite\SocialiteServiceProvider::class,
         Viender\Profile\ProfileServiceProvider::class,
         Viender\Dealer\DealerServiceProvider::class,
-        Viender\Mytutor\MytutorServiceProvider::class,
+        Viender\Mytutor\Init::class,
     ],
 
     /*

@@ -3,10 +3,10 @@
 namespace App;
 
 use Viender\Dealer\Dealerable;
-use Viender\Mytutor\Tutorable;
 use Viender\Socialite\Sociable;
 use Viender\Profile\HasUserdata;
 use Laravel\Passport\HasApiTokens;
+use Viender\Mytutor\Traits\Tutorable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
