@@ -75,5 +75,5 @@
 @endsection
 
 @section('scripts')
-<script src={{ mix('js/viender/mytutor/showTutoring.js') }}></script>
+<script src={{ mix('js/viender/mytutor/showTutoring/showTutoring.js') }}></script>
 @endsection

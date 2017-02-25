@@ -32,5 +32,5 @@
 @endsection
 
 @section('scripts')
-<script src={{ mix('js/viender/mytutor/postBid.js') }}></script>
+<script src={{ mix('js/viender/mytutor/showBid/app.js') }}></script>
 @endsection

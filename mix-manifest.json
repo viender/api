@@ -1,12 +1,12 @@
 {
-  "/js/app.js": "/js/app.a28ba6d3dd30036ebe5b.js",
-  "/css/app.css": "/css/app.eee400a4e2840d0dfb22.css",
-  "/css/viender/mytutor/feed.css": "/css/viender/mytutor/feed.eee400a4e2840d0dfb22.css",
-  "/css/viender/mytutor/postTutoring.css": "/css/viender/mytutor/postTutoring.eee400a4e2840d0dfb22.css",
-  "/css/viender/mytutor/postBid.css": "/css/viender/mytutor/postBid.eee400a4e2840d0dfb22.css",
-  "/css/viender/mytutor/showTutoring.css": "/css/viender/mytutor/showTutoring.eee400a4e2840d0dfb22.css",
-  "/js/viender/mytutor/feed.js": "/js/viender/mytutor/feed.9175595872bcdfcec344.js",
-  "/js/viender/mytutor/showTutoring.js": "/js/viender/mytutor/showTutoring.fec47e9aa6d49f93a32b.js",
-  "/js/viender/mytutor/postTutoring.js": "/js/viender/mytutor/postTutoring.f8395f9ddf2d57886355.js",
-  "/js/viender/mytutor/postBid.js": "/js/viender/mytutor/postBid.ed35d645522bceed0d65.js"
+  "/js/app.js": "/js/app.4d818afe03bd118a9b53.js",
+  "/css/app.css": "/css/app.981289324c08f7f5b88a.css",
+  "/css/viender/mytutor/feed/app.css": "/css/viender/mytutor/feed/app.981289324c08f7f5b88a.css",
+  "/css/viender/mytutor/postTutoring/app.css": "/css/viender/mytutor/postTutoring/app.981289324c08f7f5b88a.css",
+  "/css/viender/mytutor/postBid/app.css": "/css/viender/mytutor/postBid/app.981289324c08f7f5b88a.css",
+  "/css/viender/mytutor/showTutoring/app.css": "/css/viender/mytutor/showTutoring/app.981289324c08f7f5b88a.css",
+  "/js/viender/mytutor/feed/app.js": "/js/viender/mytutor/feed/app.c2e6836afd042ae87cd0.js",
+  "/js/viender/mytutor/showTutoring/app.js": "/js/viender/mytutor/showTutoring/app.26afddcb228d8b8c0254.js",
+  "/js/viender/mytutor/postTutoring/app.js": "/js/viender/mytutor/postTutoring/app.4e1f48a6d856dab28a45.js",
+  "/js/viender/mytutor/postBid/app.js": "/js/viender/mytutor/postBid/app.949b4a2d748dc57528e7.js"
 }
