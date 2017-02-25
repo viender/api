@@ -13,7 +13,7 @@ class StoreBid extends FormRequest
      */
     public function authorize()
     {
-
+        return \Auth::user() ? true : false;
     }
 
     /**
@@ -24,8 +24,7 @@ class StoreBid extends FormRequest
     public function rules()
     {
         return [
-            'offered_price' => 'required',
-            'proposal' => 'required',
+
         ];
     }
 }

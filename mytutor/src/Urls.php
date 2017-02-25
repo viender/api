@@ -76,18 +76,16 @@ class Urls
 
             $this->router->get('tutorings/{tutoring}', 'TutoringsController@show')->name($namePrefix . '.tutorings.show');
 
-            $this->router->group(['middleware' => 'auth:api'], function() use ($namePrefix) {
-                $this->router->resource('tutorings', 'TutoringsController', [
-                    'as'        => $namePrefix,
-                    'only'    => ['store', 'update', 'destroy']
-                ]);
-            });
-
             $this->router->get('tutorings/{tutoring}/bids', 'TutoringBidsController@index')->name($namePrefix . '.tutorings.bids.index');
 
             $this->router->get('tutorings/{tutoring}/bids/{bid}', 'TutoringBidsController@show')->name($namePrefix . '.tutorings.bids.show');
 
             $this->router->group(['middleware' => 'auth:api'], function() use ($namePrefix) {
+                $this->router->resource('tutorings', 'TutoringsController', [
+                    'as'        => $namePrefix,
+                    'only'    => ['store', 'update', 'destroy']
+                ]);
+
                 $this->router->resource('tutorings.bids', 'TutoringBidsController', [
                     'as'        => $namePrefix,
                     'only'    => ['store', 'update', 'destroy']

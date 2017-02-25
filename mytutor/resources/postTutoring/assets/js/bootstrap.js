@@ -29,6 +29,7 @@ window.axios = require('axios');
 window.axios.defaults.withCredentials = true;
 
 window.axios.defaults.headers.common = {
+	'Accept': 'application/json',
     'X-CSRF-TOKEN': window.Laravel.csrfToken,
     'X-Requested-With': 'XMLHttpRequest'
 };

@@ -53,8 +53,6 @@ class TutoringsRepository extends Repository
 
         $bid->bidder()->associate(\Auth::user());
 
-        $bid->title = '';
-
         return $auction->bids()->save($bid);
     }
 }

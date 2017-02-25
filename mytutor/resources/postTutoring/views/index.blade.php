@@ -11,7 +11,7 @@
 @endsection
 
 @section('head')
-<link rel="stylesheet" href={{  mix('css/viender/mytutor/postTutoring.css') }}>
+<link rel="stylesheet" href={{  mix('css/viender/mytutor/postTutoring/app.css') }}>
 @endsection
 
 @section('scripts')
