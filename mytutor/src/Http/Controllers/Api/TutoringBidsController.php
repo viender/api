@@ -71,7 +71,7 @@ class TutoringBidsController extends ApiController
         if ($request->expectsJson()) {
             return $this->respondCreated();
         }
-
+        
         return redirect(route('web.viender.mytutor.tutorings.show', $tutoring->{$tutoring->getRouteKeyName()}));
     }
 
