@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Answer;
+use Viender\Socialite\Models\Answer;
 use Illuminate\Http\Request;
 use Viender\Socialite\Transformers\AnswerTransformer;
 use Viender\Utilities\Controllers\Handlers\BasicHandler;

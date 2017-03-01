@@ -3,7 +3,7 @@
 namespace Viender\Socialite\Repositories;
 
 use App\User;
-use Viender\Socialite\Question;
+use Viender\Socialite\Models\Question;
 use Viender\Utilities\Text;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
@@ -11,7 +11,7 @@ class QuestionsRepository extends Repository
 {
     public function model()
     {
-        return 'Viender\Socialite\Question';
+        return 'Viender\Socialite\Models\Question';
     }
 
     /**

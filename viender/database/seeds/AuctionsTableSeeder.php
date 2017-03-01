@@ -16,15 +16,15 @@ class AuctionsTableSeeder extends Seeder
             
             $faker = Faker\Factory::create();
             
-            $tags = Viender\Socialite\Tag::all()->pluck('id')->toArray();
+            $tags = \Viender\Socialite\Models\Tag::all()->pluck('id')->toArray();
 
-            $tag = Viender\Socialite\Tag::find($faker->randomElement($tags));
+            $tag = \Viender\Socialite\Models\Tag::find($faker->randomElement($tags));
 
             $u->tags()->save($tag);
 
             foreach (range(1, 2) as $i) {
                 if(rand(0, 1)) {
-                    $tag = Viender\Socialite\Tag::find($faker->randomElement($tags));
+                    $tag = \Viender\Socialite\Models\Tag::find($faker->randomElement($tags));
 
                     $u->tags()->save($tag);
                 }

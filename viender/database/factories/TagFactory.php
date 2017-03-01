@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(Viender\Socialite\Tag::class, function (Faker\Generator $faker) {
+$factory->define(\Viender\Socialite\Models\Tag::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->word,

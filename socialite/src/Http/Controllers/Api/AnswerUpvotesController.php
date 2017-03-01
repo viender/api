@@ -3,23 +3,23 @@
 namespace Viender\Socialite\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use Viender\Socialite\Answer;
-use Viender\Socialite\Upvote;
+use Viender\Socialite\Models\Answer;
+use Viender\Socialite\Models\Upvote;
 use League\Fractal\Resource\Item;
 use Illuminate\Container\Container;
 use Viender\Socialite\Events\UpvotableUpvoted;
-use Viender\Socialite\Repositories\UpvotesRepository;
+use Viender\Socialite\Repositories\AnswersRepository;
 use Viender\Socialite\Transformers\UpvoteTransformer;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 class AnswerUpvotesController extends ApiController
 {
-    private $upvotes;
+    private $answers;
 
-    public function __construct(UpvotesRepository $upvotes)
+    public function __construct(AnswersRepository $answers)
     {
         parent::__construct();
-        $this->upvotes = $upvotes;
+        $this->answers = $answers;
     }
 
     /** 
@@ -60,7 +60,7 @@ class AnswerUpvotesController extends ApiController
      */
     public function store(Request $request, Answer $answer)
     {
-        if($upvote = $this->upvotes->toggle(\Auth::user()->id, $answer)){
+        if($upvote = $this->answers->toggleUpvote($answer)){
             event(new UpvotableUpvoted($upvote));
 
             // If we don't want to use Illuminate\Foundation, use this to fire an event.

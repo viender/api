@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Upvote;
+use Viender\Socialite\Models\Upvote;
 use Illuminate\Http\Request;
 use Viender\Socialite\Transformers\UpvoteTransformer;
 use Viender\Utilities\Controllers\Handlers\BasicHandler;

@@ -11,6 +11,6 @@ class StarsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Viender\Socialite\Star::class, 1000)->create();
+        factory(\Viender\Socialite\Models\Star::class, 1000)->create();
     }
 }

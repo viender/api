@@ -2,14 +2,23 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Answer;
-use Viender\Socialite\Downvote;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use Viender\Socialite\Models\Answer;
+use Viender\Socialite\Models\Downvote;
+use Viender\Socialite\Repositories\AnswersRepository;
 use Viender\Socialite\Transformers\DownvoteTransformer;
 
 class AnswerDownvotesController extends ApiController
 {
+    protected $answers;
+
+    public function __construct(AnswersRepository $answers)
+    {
+        parent::__construct();
+        $this->answers = $answers;
+    }
+
     /** 
      * @api {get} /answers/:id/downvotes Get Answer Downvotes
      * @apiName AnswerDownvotesIndex
@@ -48,9 +57,11 @@ class AnswerDownvotesController extends ApiController
      */
     public function store(Request $request, Answer $answer)
     {
-        $answer->downvotes()->save(new Downvote($request->all()));
+        if($upvote = $this->answers->toggleDownvote($answer)) {
+            return $this->respondCreated('Downvoted');
+        }
 
-        return $this->respondCreated();
+        return $this->respondDeleted('Downvote removed');
     }
 
     /**

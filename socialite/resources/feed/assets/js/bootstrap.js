@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 
 /**
@@ -7,9 +6,9 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = require('mdbootstrap/js/jquery-3.1.1.js');
-window.Tether = require('mdbootstrap/js/tether.js');
-require('mdbootstrap/js/bootstrap.js');
+window.$ = window.jQuery = require('jquery');
+
+require('bootstrap-sass');
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -18,25 +17,21 @@ require('mdbootstrap/js/bootstrap.js');
  */
 
 window.Vue = require('vue');
-require('vue-resource');
-window.bus = new Vue();
 
 /**
- * We'll register a HTTP interceptor to attach the "CSRF" header to each of
- * the outgoing requests issued by this application. The CSRF middleware
- * included with Laravel will automatically verify the header's value.
+ * We'll load the axios HTTP library which allows us to easily issue requests
+ * to our Laravel back-end. This library automatically handles sending the
+ * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-Vue.http.interceptors.push((request, next) => {
-    request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
+window.axios = require('axios');
 
-    next();
-});
+window.axios.defaults.withCredentials = true;
 
-// Comment these three for local build.
-// Vue.config.devtools = false
-// Vue.config.debug = false
-// Vue.config.silent = true
+window.axios.defaults.headers.common = {
+    'X-CSRF-TOKEN': window.Laravel.csrfToken,
+    'X-Requested-With': 'XMLHttpRequest'
+};
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -51,36 +46,8 @@ Vue.http.interceptors.push((request, next) => {
 //     key: 'your-pusher-key'
 // });
 
-/**
- * Packages
- */
-window.VueCookie = require('vue-cookie');
-window.axios = require('axios');
-window.autosize = require('autosize');
-require('readmore-js');
-require('./helpers.js');
-// if( ! window.Promise) {
-// 	window.Promise = require('es6-promise').Promise;
-// }
+var VueMaterial = require('vue-material');
 
-// Tell Vue to use the plugin 
-Vue.use(VueCookie);
+window.Vuex = require('vuex')
 
-axios.defaults.baseURL = api('v1');
-axios.defaults.withCredentials = true;
-
-/**
- * App
- */
-
-window.me = JSON.parse(Vue.cookie.get('me'));
-window.scrollPos = 0;
-if(window.me) {
-	window.me.name = window.me.first_name + ' ' + window.me.last_name;
-}
-
-var Auth = require('./auth/auth.js');
-window.Auth = new Auth();
-require('./components/helpers.js');
-function requireAll(r) { r.keys().forEach(r); }
-requireAll(require.context('./mixins', true, /\.js$/));
+Vue.use(VueMaterial);

@@ -11,6 +11,6 @@ class AnswersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Viender\Socialite\Answer::class, 300)->create();
+        factory(\Viender\Socialite\Models\Answer::class, 300)->create();
     }
 }

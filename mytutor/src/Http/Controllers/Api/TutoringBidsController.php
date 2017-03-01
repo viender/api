@@ -38,7 +38,7 @@ class TutoringBidsController extends ApiController
     {
         $auction = $tutoring->auction;
 
-        $paginator = $auction->bids()->paginate();
+        $paginator = $auction->bids()->with('bidder')->paginate();
 
         return $this->respondWithPagination($paginator, new BidTransformer);
     }

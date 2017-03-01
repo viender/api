@@ -6,6 +6,6 @@ trait HasComments
 {
     public function comments() 
     {
-        return $this->morphMany('Viender\Socialite\Comment', 'commentable');
+        return $this->morphMany('Viender\Socialite\Models\Comment', 'commentable');
     }
 }

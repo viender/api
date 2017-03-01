@@ -3,7 +3,7 @@
 namespace Viender\Socialite\Http\Controllers\Api;
 
 use App\User;
-use Viender\Socialite\Answer;
+use Viender\Socialite\Models\Answer;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Socialite\Transformers\AnswerTransformer;

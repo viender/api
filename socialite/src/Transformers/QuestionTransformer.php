@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Transformers;
 
-use Viender\Socialite\Question;
+use Viender\Socialite\Models\Question;
 use Viender\Socialite\Transformers\AnswerTransformer;
 use Viender\Profile\Transformers\Traits\UserIncludable;
 use Viender\Socialite\Transformers\Traits\CommentsIncludable;

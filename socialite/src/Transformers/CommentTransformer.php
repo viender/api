@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Transformers;
 
-use Viender\Socialite\Comment;
+use Viender\Socialite\Models\Comment;
 use Illuminate\Support\Collection;
 use Viender\Socialite\Repositories\CommentsRepository;
 use Viender\Profile\Transformers\Traits\UserIncludable;
@@ -40,7 +40,7 @@ class CommentTransformer extends Transformer
             'body'              => $comment->body,
             'upvote_count'      => $comment->upvotes()->count(),
             'comment_count'     => $comment->comments()->count(),
-            'commentable_type'  => $this->comments->getCommentableType($comment),
+            // 'commentable_type'  => $this->comments->getCommentableType($comment),
             'links'   => [
                 [
                     'rel' => 'self',
@@ -52,7 +52,15 @@ class CommentTransformer extends Transformer
                 ],
                 [
                     'rel' => 'comments',
-                    'url' => url('/comments') . '/' . $comment->id . '/comments',
+                    'url' => route('api.viender.socialite.comments.comments.index', $comment->id),
+                ],
+                [
+                    'rel' => 'upvotes',
+                    'url' => route('api.viender.socialite.comments.upvotes.index', $comment->id)
+                ],
+                [
+                    'rel' => 'downvotes',
+                    'url' => route('api.viender.socialite.comments.downvotes.index', $comment->id),
                 ],
             ],
         ];

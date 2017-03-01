@@ -3,7 +3,7 @@
 namespace Viender\Socialite\Http\Controllers\Api;
 
 use App\User;
-use Viender\Socialite\Tag;
+use Viender\Socialite\Models\Tag;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Socialite\Transformers\TagTransformer;

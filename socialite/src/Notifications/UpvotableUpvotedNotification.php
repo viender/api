@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Notifications;
 
-use Viender\Socialite\Upvote;
+use Viender\Socialite\Models\Upvote;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -51,15 +51,15 @@ class UpvotableUpvotedNotification extends Notification
 
         $upvotableClass = $chunks[count($chunks) - 1];
 
-        if($this->upvote->upvotable_type == 'Viender\Socialite\Question') {
+        if($this->upvote->upvotable_type == 'Viender\Socialite\Models\Question') {
 
             $url = config('app.viender_web_url') . '/questions/' . $upvotable->slug;
 
-        }elseif($this->upvote->upvotable_type == 'Viender\Socialite\Answer') {
+        }elseif($this->upvote->upvotable_type == 'Viender\Socialite\Models\Answer') {
 
             $url = config('app.viender_web_url') . '/answers/' . $upvotable->id;
 
-        }elseif($this->upvote->upvotable_type == 'Viender\Socialite\Comment') {
+        }elseif($this->upvote->upvotable_type == 'Viender\Socialite\Models\Comment') {
 
             $url = config('app.viender_web_url') . '/answers/' . $upvotable->id;
             

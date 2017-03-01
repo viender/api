@@ -2,7 +2,7 @@
 
 namespace Viender\Dealer\Http\Controllers\Api;
 
-use Viender\Socialite\Tag;
+use Viender\Socialite\Models\Tag;
 use Viender\Dealer\Auction;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;

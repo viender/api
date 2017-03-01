@@ -44,7 +44,7 @@ class RouteRegistrar
     {
         $this->router->group(array_merge(['prefix' => 'v1'], $option, ['namespace' => 'Api']), function() {
             // Authenticated user
-            $this->router->resource('user', 'UsersController@authenticated');
+            $this->router->get('user', 'UsersController@authenticated');
 
             // Models
             $this->router->resource('users', 'UsersController', ['except' => ['create', 'edit']]);

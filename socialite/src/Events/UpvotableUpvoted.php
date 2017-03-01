@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Events;
 
-use Viender\Socialite\Upvote;
+use Viender\Socialite\Models\Upvote;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;

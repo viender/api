@@ -180,7 +180,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Viender\Dealer\DealerServiceProvider::class,
-        Viender\Socialite\SocialiteServiceProvider::class,
+        Viender\Socialite\Init::class,
         Viender\Profile\ProfileServiceProvider::class,
         Viender\Dealer\DealerServiceProvider::class,
         Viender\Mytutor\Init::class,
@@ -235,6 +235,8 @@ return [
     ],
 
     'viender_web_url' => env('APP_VIENDER_WEB_URL', 'http://localhost'),
+
+    'api_url' => env('APP_API_URL', 'http://localhost'),
 
     'domain' => env('APP_DOMAIN', 'localhost'),
 

@@ -30,6 +30,9 @@ mix.js('mytutor/resources/feed/assets/js/app.js', 'js/viender/mytutor/feed/app.j
    .js('mytutor/resources/showTutoring/assets/js/app.js', 'js/viender/mytutor/showTutoring/app.js')
    .sass('mytutor/resources/showTutoring/assets/sass/app.scss', 'css/viender/mytutor/showTutoring/app.css');
 
+mix.js('socialite/resources/answer/assets/js/app.js', 'js/viender/socialite/answer/app.js');
+mix.js('socialite/resources/feed/assets/js/app.js', 'js/viender/socialite/feed/app.js');
+
 mix.copy('node_modules/vue-material/dist/vue-material.css', 'viender/public/css/vue-material.css');
 
 mix.version();

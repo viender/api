@@ -11,14 +11,14 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $tags = Viender\Socialite\Tag::all()->pluck('id')->toArray();
+        $tags = \Viender\Socialite\Models\Tag::all()->pluck('id')->toArray();
 
         factory(App\User::class, 50)->create()->each(function($user) use(&$tags) {
 
             $user->addresses()->save(factory(Viender\Profile\Address::class)->make());
             
             foreach (range(1, rand(2, 5)) as $index) {
-                $user->tags()->toggle(Viender\Socialite\Tag::find(array_rand($tags)));
+                $user->tags()->toggle(\Viender\Socialite\Models\Tag::find(array_rand($tags)));
             }
         });
     }

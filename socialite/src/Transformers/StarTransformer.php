@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Transformers;
 
-use Viender\Socialite\Star;
+use Viender\Socialite\Models\Star;
 use Viender\Profile\Transformers\Traits\UserIncludable;
 use Viender\Socialite\Transformers\Traits\StarableIncludable;
 

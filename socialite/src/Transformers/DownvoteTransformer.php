@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Transformers;
 
-use Viender\Socialite\Downvote;
+use Viender\Socialite\Models\Downvote;
 use Viender\Profile\Transformers\Traits\UserIncludable;
 use Viender\Socialite\Transformers\Traits\DownvotableIncludable;
 

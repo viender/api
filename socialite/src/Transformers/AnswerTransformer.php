@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Transformers;
 
-use Viender\Socialite\Answer;
+use Viender\Socialite\Models\Answer;
 use Illuminate\Support\Facades\Auth;
 use Viender\Profile\Transformers\Traits\UserIncludable;
 use Viender\Socialite\Transformers\Traits\CommentsIncludable;
@@ -31,6 +31,8 @@ class AnswerTransformer extends Transformer
             'id'            => (int) $answer->id,
             'title'         => $answer->title,
             'body'          => $answer->body,
+            'upvoted'       => \Auth::user() ? $answer->upvotes()->where('user_id', \Auth::user()->id)->exists() : false,
+            'downvoted'       => \Auth::user() ? $answer->downvotes()->where('user_id', \Auth::user()->id)->exists() : false,
             'upvote_count'  => $answer->upvotes()->count(),
             'comment_count'  => $answer->comments()->count(),
             'links'   => [
@@ -49,6 +51,14 @@ class AnswerTransformer extends Transformer
                 [
                     'rel' => 'comments',
                     'url' => url('/answers') . '/' . $answer->id . '/comments',
+                ],
+                [
+                    'rel' => 'upvotes',
+                    'url' => url('/answers') . '/' . $answer->id . '/upvotes',
+                ],
+                [
+                    'rel' => 'downvotes',
+                    'url' => url('/answers') . '/' . $answer->id . '/downvotes',
                 ],
             ],
         ];

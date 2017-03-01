@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Question;
+use Viender\Socialite\Models\Question;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Socialite\Repositories\QuestionsRepository;

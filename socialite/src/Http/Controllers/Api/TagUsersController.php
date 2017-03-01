@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Tag;
+use Viender\Socialite\Models\Tag;
 use App\User;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;

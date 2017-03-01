@@ -2,8 +2,8 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Question;
-use Viender\Socialite\Downvote;
+use Viender\Socialite\Models\Question;
+use Viender\Socialite\Models\Downvote;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Socialite\Transformers\DownvoteTransformer;

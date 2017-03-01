@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Downvote;
+use Viender\Socialite\Models\Downvote;
 use Illuminate\Http\Request;
 use Viender\Socialite\Transformers\DownvoteTransformer;
 use Viender\Utilities\Controllers\Handlers\BasicHandler;

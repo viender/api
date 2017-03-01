@@ -37,7 +37,7 @@ class BidTransformer extends Transformer
                 ],
                 [
                     'rel' => 'author',
-                    'url' => url('/users') . '/' . $bid->user->username,
+                    'url' => url('/users') . '/' . $bid->bidder->username,
                 ],
                 [
                     'rel' => 'auction',

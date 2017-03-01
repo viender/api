@@ -2,8 +2,8 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Answer;
-use Viender\Socialite\Comment;
+use Viender\Socialite\Models\Answer;
+use Viender\Socialite\Models\Comment;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Socialite\Repositories\CommentsRepository;

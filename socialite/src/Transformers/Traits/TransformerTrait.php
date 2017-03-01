@@ -4,10 +4,11 @@ namespace Viender\Socialite\Transformers\Traits;
 
 trait TransformerTrait
 {
-    protected $namespace = '\App\Viender\Transformers\\';
+    protected $namespace = '\Viender\Socialite\Transformers\\';
 
     public function getTransformer($itemType) 
     {
-        return $this->namespace . explode('\\', $itemType)[1] . 'Transformer';
+    	$className = explode('\\', $itemType);
+        return $this->namespace . $className[sizeof($className)-1] . 'Transformer';
     }
 }

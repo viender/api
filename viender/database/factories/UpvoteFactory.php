@@ -12,14 +12,14 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(Viender\Socialite\Upvote::class, function (Faker\Generator $faker) {
+$factory->define(\Viender\Socialite\Models\Upvote::class, function (Faker\Generator $faker) {
 
     $users = App\User::all()->pluck('id')->toArray();
 
     $upvotables = [
-        'Viender\Socialite\Question',
-        'Viender\Socialite\Answer',
-        'Viender\Socialite\Comment',
+        'Viender\Socialite\Models\Question',
+        'Viender\Socialite\Models\Answer',
+        'Viender\Socialite\Models\Comment',
     ];
 
     return [

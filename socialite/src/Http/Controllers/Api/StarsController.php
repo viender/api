@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Star;
+use Viender\Socialite\Models\Star;
 use Illuminate\Http\Request;
 use Viender\Socialite\Transformers\StarTransformer;
 use Viender\Utilities\Controllers\Handlers\BasicHandler;

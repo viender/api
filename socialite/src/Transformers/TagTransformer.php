@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Transformers;
 
-use Viender\Socialite\Tag;
+use Viender\Socialite\Models\Tag;
 
 class TagTransformer extends Transformer
 {

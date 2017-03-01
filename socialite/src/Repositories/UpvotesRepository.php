@@ -2,14 +2,14 @@
 
 namespace Viender\Socialite\Repositories;
 
-use Viender\Socialite\Upvote;
+use Viender\Socialite\Models\Upvote;
 use Viender\Socialite\Contracts\Post\Upvotable;
 
 class UpvotesRepository extends Repository
 {
     public function model()
     {
-        return 'Viender\Socialite\Upvote';
+        return 'Viender\Socialite\Models\Upvote';
     }
 
     public function toggle($user_id, Upvotable $upvotable) 

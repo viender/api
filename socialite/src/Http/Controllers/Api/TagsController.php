@@ -2,7 +2,7 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Tag;
+use Viender\Socialite\Models\Tag;
 use Illuminate\Http\Request;
 use Viender\Socialite\Transformers\TagTransformer;
 use Viender\Utilities\Controllers\Handlers\BasicHandler;
