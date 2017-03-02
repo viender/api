@@ -1,4 +1,6 @@
 /node_modules
+/vendor
+/src/viender/vendor
 /viender/node_modules
 /viender/public/storage
 /viender/storage/*.key
