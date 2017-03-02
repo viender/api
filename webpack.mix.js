@@ -3,8 +3,13 @@ var path = require('path');
  
 mix.webpackConfig({ 
     output: { 
-      path: path.resolve(__dirname, "public/") 
-  } 
+        path: path.resolve(__dirname, "public/") 
+    },
+    resolve: {
+        alias: {
+            viender_core: path.resolve(__dirname, 'assets/'),
+        }
+    }
 });
  
 /* 

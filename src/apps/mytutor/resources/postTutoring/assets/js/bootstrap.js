@@ -1,15 +1,3 @@
-window._ = require('lodash');
-
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
-
-window.$ = window.jQuery = require('jquery');
-
-require('bootstrap-sass');
-
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean
@@ -29,7 +17,6 @@ window.axios = require('axios');
 window.axios.defaults.withCredentials = true;
 
 window.axios.defaults.headers.common = {
-	'Accept': 'application/json',
     'X-CSRF-TOKEN': window.Laravel.csrfToken,
     'X-Requested-With': 'XMLHttpRequest'
 };
@@ -47,6 +34,4 @@ window.axios.defaults.headers.common = {
 //     key: 'your-pusher-key'
 // });
 
-var VueMaterial = require('vue-material');
-
-Vue.use(VueMaterial);
+require('viender_core/js/core');
