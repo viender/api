@@ -35,9 +35,9 @@ mix.js('src/apps/mytutor/resources/feed/assets/js/app.js', 'js/viender/mytutor/f
    .js('src/apps/mytutor/resources/showTutoring/assets/js/app.js', 'js/viender/mytutor/showTutoring/app.js') 
    .sass('src/apps/mytutor/resources/showTutoring/assets/sass/app.scss', 'css/viender/mytutor/showTutoring/app.css'); 
  
-mix.js('src/apps/socialite/resources/answer/assets/js/app.js', 'js/viender/socialite/answer/app.js'); 
-mix.js('src/apps/socialite/resources/feed/assets/js/app.js', 'js/viender/socialite/feed/app.js'); 
- 
-mix.copy('node_modules/vue-material/dist/vue-material.css', 'public/css/vue-material.css'); 
+mix.js('src/apps/socialite/resources/answer/assets/js/app.js', 'js/viender/socialite/answer/app.js')
+   .sass('src/apps/socialite/resources/answer/assets/sass/app.scss', 'css/viender/socialite/answer/app.css')
+   .js('src/apps/socialite/resources/feed/assets/js/app.js', 'js/viender/socialite/feed/app.js')
+   .sass('src/apps/socialite/resources/feed/assets/sass/app.scss', 'css/viender/socialite/feed/app.css');
  
 mix.version();
