@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 122);
+/******/ 	return __webpack_require__(__webpack_require__.s = 116);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -32777,8 +32777,8 @@ __webpack_require__(67);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('tutoring-table', __webpack_require__(87));
-Vue.component('tutoring-row', __webpack_require__(86));
+Vue.component('tutoring-table', __webpack_require__(84));
+Vue.component('tutoring-row', __webpack_require__(83));
 
 var feed = new Vue({
   el: '#app'
@@ -32904,31 +32904,28 @@ __webpack_require__(28);
 /* 76 */,
 /* 77 */,
 /* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(35)();
 exports.push([module.i, "\ntr {\n\theight: 90px;\n}\n.tutoring-row {\n\tcursor: pointer;\n}\n", ""]);
 
 /***/ }),
+/* 80 */,
+/* 81 */,
 /* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(117)
+__webpack_require__(112)
 
 var Component = __webpack_require__(9)(
   /* script */
   __webpack_require__(53),
   /* template */
-  __webpack_require__(109),
+  __webpack_require__(106),
   /* scopeId */
   null,
   /* cssModules */
@@ -32955,14 +32952,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 87 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(9)(
   /* script */
   __webpack_require__(54),
   /* template */
-  __webpack_require__(108),
+  __webpack_require__(105),
   /* scopeId */
   null,
   /* cssModules */
@@ -32989,6 +32986,9 @@ module.exports = Component.exports
 
 
 /***/ }),
+/* 85 */,
+/* 86 */,
+/* 87 */,
 /* 88 */,
 /* 89 */,
 /* 90 */,
@@ -33006,10 +33006,7 @@ module.exports = Component.exports
 /* 102 */,
 /* 103 */,
 /* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -33036,7 +33033,7 @@ if (false) {
 }
 
 /***/ }),
-/* 109 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -33099,20 +33096,18 @@ if (false) {
 }
 
 /***/ }),
+/* 107 */,
+/* 108 */,
+/* 109 */,
 /* 110 */,
 /* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */,
-/* 116 */,
-/* 117 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(81);
+var content = __webpack_require__(79);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -33132,11 +33127,10 @@ if(false) {
 }
 
 /***/ }),
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(39);

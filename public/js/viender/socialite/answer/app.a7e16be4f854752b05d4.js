@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 126);
+/******/ 	return __webpack_require__(__webpack_require__.s = 120);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -32459,7 +32459,7 @@ __webpack_require__(71);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('question-list', __webpack_require__(91));
+Vue.component('question-list', __webpack_require__(88));
 
 var feed = new Vue({
   el: '#app'
@@ -32531,17 +32531,14 @@ __webpack_require__(28);
 /* 85 */,
 /* 86 */,
 /* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(9)(
   /* script */
   __webpack_require__(58),
   /* template */
-  __webpack_require__(107),
+  __webpack_require__(104),
   /* scopeId */
   null,
   /* cssModules */
@@ -32568,6 +32565,9 @@ module.exports = Component.exports
 
 
 /***/ }),
+/* 89 */,
+/* 90 */,
+/* 91 */,
 /* 92 */,
 /* 93 */,
 /* 94 */,
@@ -32580,10 +32580,7 @@ module.exports = Component.exports
 /* 101 */,
 /* 102 */,
 /* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -32598,6 +32595,9 @@ if (false) {
 }
 
 /***/ }),
+/* 105 */,
+/* 106 */,
+/* 107 */,
 /* 108 */,
 /* 109 */,
 /* 110 */,
@@ -32610,13 +32610,7 @@ if (false) {
 /* 117 */,
 /* 118 */,
 /* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(43);

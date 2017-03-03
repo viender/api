@@ -1,0 +1,9 @@
+.#{$namespace-utilities} {
+	&display-absolute {
+		position: absolute !important;
+	}&dimension--small {
+		width: 24px !important;
+		height: 24px !important;
+	}
+}
+

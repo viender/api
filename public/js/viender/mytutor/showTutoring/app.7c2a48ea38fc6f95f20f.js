@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 125);
+/******/ 	return __webpack_require__(__webpack_require__.s = 119);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -32780,7 +32780,7 @@ __webpack_require__(70);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('bid-row', __webpack_require__(90));
+Vue.component('bid-row', __webpack_require__(87));
 
 var postTutoring = new Vue({
   el: '#app'
@@ -32871,36 +32871,33 @@ __webpack_require__(28);
 /* 75 */,
 /* 76 */,
 /* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(35)();
 exports.push([module.i, "\ntr {\n\theight: 90px;\n}\n.bid-row {\n\tcursor: pointer;\n}\n", ""]);
 
 /***/ }),
+/* 79 */,
+/* 80 */,
 /* 81 */,
 /* 82 */,
 /* 83 */,
 /* 84 */,
 /* 85 */,
 /* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(116)
+__webpack_require__(111)
 
 var Component = __webpack_require__(9)(
   /* script */
   __webpack_require__(57),
   /* template */
-  __webpack_require__(106),
+  __webpack_require__(103),
   /* scopeId */
   null,
   /* cssModules */
@@ -32927,6 +32924,9 @@ module.exports = Component.exports
 
 
 /***/ }),
+/* 88 */,
+/* 89 */,
+/* 90 */,
 /* 91 */,
 /* 92 */,
 /* 93 */,
@@ -32939,10 +32939,7 @@ module.exports = Component.exports
 /* 100 */,
 /* 101 */,
 /* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -32991,22 +32988,20 @@ if (false) {
 }
 
 /***/ }),
+/* 104 */,
+/* 105 */,
+/* 106 */,
 /* 107 */,
 /* 108 */,
 /* 109 */,
 /* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */,
-/* 116 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(80);
+var content = __webpack_require__(78);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -33026,15 +33021,14 @@ if(false) {
 }
 
 /***/ }),
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
 /* 117 */,
 /* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(42);

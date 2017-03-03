@@ -1,8 +1,13 @@
-// Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-
 @import "node_modules/materialize-css/sass/materialize";
-
-@import "components/navbar";
-
+@import "variables_materialize";
 @import "variables";
+
+// Viender styles
+@import "components/navbar";
+@import "components/collections";
+@import "utilities/borders";
+@import "utilities/miscellaneous";
+@import "utilities/shadows";
+@import "utilities/whitespaces";
+@import "utilities/texts";

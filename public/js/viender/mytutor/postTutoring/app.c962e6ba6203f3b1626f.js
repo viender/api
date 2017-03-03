@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 124);
+/******/ 	return __webpack_require__(__webpack_require__.s = 118);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -32457,7 +32457,7 @@ __webpack_require__(69);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('tutoring-create-form', __webpack_require__(89));
+Vue.component('tutoring-create-form', __webpack_require__(86));
 
 var postTutoring = new Vue({
   el: '#app'
@@ -32662,17 +32662,14 @@ __webpack_require__(28);
 /* 83 */,
 /* 84 */,
 /* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(9)(
   /* script */
   __webpack_require__(56),
   /* template */
-  __webpack_require__(101),
+  __webpack_require__(98),
   /* scopeId */
   null,
   /* cssModules */
@@ -32699,6 +32696,9 @@ module.exports = Component.exports
 
 
 /***/ }),
+/* 87 */,
+/* 88 */,
+/* 89 */,
 /* 90 */,
 /* 91 */,
 /* 92 */,
@@ -32707,10 +32707,7 @@ module.exports = Component.exports
 /* 95 */,
 /* 96 */,
 /* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -32974,6 +32971,9 @@ if (false) {
 }
 
 /***/ }),
+/* 99 */,
+/* 100 */,
+/* 101 */,
 /* 102 */,
 /* 103 */,
 /* 104 */,
@@ -32990,13 +32990,7 @@ if (false) {
 /* 115 */,
 /* 116 */,
 /* 117 */,
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(41);

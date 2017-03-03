@@ -1,31 +1,20 @@
 <template>
-	<div  class="answer-container">
-	    <div class="answer-heading">
-	        <strong><h4><a :href="'//api.viender.dev/questions/' + answer.question.slug">{{ answer.question.title }}</a></h4></strong>
-
-	        <div class="row">
-                <!-- Avatar -->
-                <div class="avatar col-xs-2">
-                    <img :src="getUrl('avatar', answer.owner)" alt="" class="img-fluid img-circle" style="width: 62px">
-                </div>
-                
-                <!-- Answerer Bio -->
-                <div class="author-bio col-xs-10">
-                    <p class=""><strong><a class="profile-link" :href="url('users/' + answer.owner.login)">{{ answer.owner.name }}</a></strong>, Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                </div>
-            </div>
-	    </div>
-	    <div class="answer-body">
-	        {{ answer.body }}
-	    </div>
-	    <div class="answer-footer row">
-	    	<div class="col-xs-4"><button class="btn btn-default" @click="upvote">Upvote | {{ upvoteCount }}</button></div>
-	    	<div class="col-xs-4"><a class="btn btn-link" @click="downvote">Downvote</a></div>
-	    	<div class="col-xs-4"><a class="btn btn-link" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a></div>
-	    </div>
-	    <div class="panel-footer" v-if="showComments">
-	    	<comment-list :comments-url="getUrl('comments', answer)" @comment-posted="incrementCommentCount()"></comment-list>
-	    </div>
+	<div class="row u-margin--none">
+		<div class="col s12">
+			<div class="card u-margin--none u-box-shadow--none">
+				<div class="card-content">
+					<!-- <img :src="getUrl('avatar', answer.owner)" alt="" class="circle"> -->
+					<span class="card-title"><h4><a :href="'//api.viender.dev/questions/' + answer.question.slug">{{ answer.question.title }}</a></h4></span>
+					<p>{{ answer.body }}</p>
+				</div>
+				<div class="card-action u-border--only-bottom">
+			    	<button class="btn btn-default" @click="upvote">Upvote | {{ upvoteCount }}</button>
+			    	<a @click="downvote">Downvote</a>
+			    	<a @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
+					<comment-list :comments-url="getUrl('comments', answer)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -112,14 +101,3 @@
         }
     }
 </script>
-
-<style>
-	.avatar {
-		padding-right: 0px;
-		width: 14.666667%;
-	}
-
-	.author-bio {
-		padding-left: 6px;
-	}
-</style>

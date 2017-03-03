@@ -1,36 +1,19 @@
 <template>
-	<div  class="comment-container">
-	    <div class="comment-heading">
-	        <div class="row">
-                <!-- Avatar -->
-                <div class="avatar-container col-xs-1">
-                    <img :src="getUrl('avatar', comment.owner)" alt="" class="avatar-comment img-fluid img-circle">
-                </div>
-                
-                <!-- commenter Bio -->
-                <div class="col-xs-11">
-                    <p class=""><strong><a class="profile-link" :href="url('users/' + comment.owner.login)">{{ comment.owner.name }}</a></strong></p>
-                </div>
-            </div>
-	    </div>
-	    <div class="comment-body row">
-	    	<div class="col-xs-11 col-xs-offset-1">
-	        	{{ comment.body }}
-	        </div>
-	    </div>
-	    <div class="comment-footer row">
-	    	<div class="col-xs-11 col-xs-offset-1">
-		    	<div class="col-xs-4"><button class="btn btn-link" @click="upvote">Upvote | {{ upvoteCount }}</button></div>
-		    	<div class="col-xs-4"><a class="btn btn-link" @click="downvote">Downvote</a></div>
-		    	<div class="col-xs-4"><a class="btn btn-link" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a></div>
-		    </div>
-	    </div>
-	    <div class="panel-footer row" v-if="showComments">
-	    	<div class="col-xs-11 col-xs-offset-1">
-		    	<comment-list :comments-url="getUrl('comments', comment)" @comment-posted="updateCommentCount()"></comment-list>
-		    </div>
-	    </div>
-	</div>
+	<li class="collection-item avatar avatar--small u-border--none">
+		<img :src="getUrl('avatar', comment.owner)" alt="" class="u-dimension--small circle">
+		<span class="title">
+			<strong>
+				<a class="profile-link" :href="url('users/' + comment.owner.login)">{{ comment.owner.name }}</a>
+			</strong>
+		</span>
+		<p>{{ comment.body }}</p>
+		<div class="card-action u-border--only-bottom">
+			<a @click="upvote">Upvote | {{ upvoteCount }}</a>
+			<a @click="downvote">Downvote</a>
+			<a @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
+		</div>
+		 <comment-list :comments-url="getUrl('comments', comment)" @comment-posted="updateCommentCount()" v-if="showComments"></comment-list> 
+	</li>
 </template>
 
 <script>
@@ -117,25 +100,3 @@ export default {
 
 }
 </script>
-
-<style>
-	.comment-container {
-		padding-top: 20px;
-	}
-
-	.comment-body {
-		padding-bottom: 18px;
-	}
-
-	.avatar-container {
-		padding-right: 0;
-	}
-
-	.avatar-comment {
-		width: 25px;
-	}
-
-	.panel-footer {
-		border-top: none;
-	}
-</style>

@@ -5,6 +5,10 @@ nav {
     line-height: 45px;
 }
 
+nav a {
+	@extend .grey-text, .text-darken-4;
+}
+
 nav li a {
 	@extend .grey-text, .text-darken-4;
 }
@@ -15,4 +19,9 @@ nav .brand-logo {
 
 nav a.brand-logo {
 	@extend .red-text, .text-lighten-1;
+}
+
+nav .nav-wrapper i, nav a.button-collapse i {
+    height: 45px;
+    line-height: 45px;
 }

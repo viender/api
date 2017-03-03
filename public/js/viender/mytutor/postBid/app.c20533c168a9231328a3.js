@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 123);
+/******/ 	return __webpack_require__(__webpack_require__.s = 117);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -32456,7 +32456,7 @@ __webpack_require__(68);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('bid-create-form', __webpack_require__(88));
+Vue.component('bid-create-form', __webpack_require__(85));
 
 var postBid = new Vue({
   el: '#app'
@@ -32587,17 +32587,14 @@ __webpack_require__(28);
 /* 82 */,
 /* 83 */,
 /* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(9)(
   /* script */
   __webpack_require__(55),
   /* template */
-  __webpack_require__(104),
+  __webpack_require__(101),
   /* scopeId */
   null,
   /* cssModules */
@@ -32624,6 +32621,9 @@ module.exports = Component.exports
 
 
 /***/ }),
+/* 86 */,
+/* 87 */,
+/* 88 */,
 /* 89 */,
 /* 90 */,
 /* 91 */,
@@ -32636,10 +32636,7 @@ module.exports = Component.exports
 /* 98 */,
 /* 99 */,
 /* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -32751,6 +32748,9 @@ if (false) {
 }
 
 /***/ }),
+/* 102 */,
+/* 103 */,
+/* 104 */,
 /* 105 */,
 /* 106 */,
 /* 107 */,
@@ -32763,13 +32763,7 @@ if (false) {
 /* 114 */,
 /* 115 */,
 /* 116 */,
-/* 117 */,
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(40);
