@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<example></example>
 <div class="container">
     <div class="row">
         <div class="col-md-4">
@@ -18,6 +17,10 @@
 </div>
 @endsection
 
-@section('scripts')
-<script src={{ mix('js/app.js') }}></script>
+@section('head-styles')
+<link rel="stylesheet" href={{ mix('css/app.css') }}>
+@endsection
+
+@section('head-scripts')
+<script src={{ mix('js/app.js') }} async="true"></script>
 @endsection

@@ -64,15 +64,18 @@
     <!-- Styles -->
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
-    @yield('head')
+
+    @yield('head-styles')
+
+    <!-- Scripts -->
+    @yield('head-scripts')
 </head>
 <body>
     <div id="app" class="main-content">
         @include('layouts.nav')
         @yield('content')
+        <!-- Scripts -->
+        @yield('scripts')
     </div>
-
-    <!-- Scripts -->
-    @yield('scripts')
 </body>
 </html>
