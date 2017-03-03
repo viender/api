@@ -12,7 +12,8 @@
         "barryvdh/laravel-cors": "^0.8.2",
         "bosnadev/repositories": " 0.*",
         "paquettg/php-html-parser": "^1.7",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "jenssegers/agent": "^2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
