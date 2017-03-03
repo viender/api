@@ -1,13 +1,5 @@
 @extends('layouts.app')
 
-@section('head')
-<style>
-    .inline {
-        display: inline;
-    }
-</style>
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row">
@@ -74,6 +66,10 @@
 </div>
 @endsection
 
-@section('scripts')
-<script src={{ mix('js/viender/mytutor/showTutoring/app.js') }}></script>
+@section('head-styles')
+<link rel="stylesheet" href={{ mix('css/viender/mytutor/showTutoring/app.css') }}>
+@endsection
+
+@section('head-scripts')
+<script src={{ mix('js/viender/mytutor/showTutoring/app.js') }} async="1"></script>
 @endsection

@@ -14,6 +14,10 @@
 </div>
 @endsection
 
-@section('scripts')
-<script src={{ mix('js/viender/mytutor/postBid/app.js') }}></script>
+@section('head-styles')
+<link rel="stylesheet" href={{ mix('css/viender/mytutor/postBid/app.css') }}>
+@endsection
+
+@section('head-scripts')
+<script src={{ mix('js/viender/mytutor/postBid/app.js') }} async="1"></script>
 @endsection

@@ -6,6 +6,10 @@
 </div>
 @endsection
 
-@section('scripts')
-<script src={{ mix('js/viender/socialite/feed/app.js') }}></script>
+@section('head-styles')
+<link rel="stylesheet" href={{ mix('css/viender/socialite/feed/app.css') }}>
+@endsection
+
+@section('head-scripts')
+<script src={{ mix('js/viender/socialite/feed/app.js') }} async="1"></script>
 @endsection
