@@ -38,6 +38,8 @@ mix.js('src/apps/mytutor/resources/feed/assets/js/app.js', 'js/viender/mytutor/f
 mix.js('src/apps/socialite/resources/answer/assets/js/app.js', 'js/viender/socialite/answer/app.js')
    .sass('src/apps/socialite/resources/answer/assets/sass/app.scss', 'css/viender/socialite/answer/app.css')
    .js('src/apps/socialite/resources/feed/assets/js/app.js', 'js/viender/socialite/feed/app.js')
-   .sass('src/apps/socialite/resources/feed/assets/sass/app.scss', 'css/viender/socialite/feed/app.css');
+   .js('src/apps/socialite/resources/feed/assets/js/app-mobile.js', 'js/viender/socialite/feed/app-mobile.js')
+   .sass('src/apps/socialite/resources/feed/assets/sass/app.scss', 'css/viender/socialite/feed/app.css')
+   .sass('src/apps/socialite/resources/feed/assets/sass/app-mobile.scss', 'css/viender/socialite/feed/app-mobile.css');
  
 mix.version();
