@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="">
         <answer :answer="answer" v-for="answer in answers"></answer>
         <button class="btn btn-default" @click="fetchData()">Load more</button>
     </div>

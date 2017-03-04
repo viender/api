@@ -4,7 +4,7 @@
 			<div class="card u-margin--none u-box-shadow--none">
 				<div class="card-content">
 					<!-- <img :src="getUrl('avatar', answer.owner)" alt="" class="circle"> -->
-					<span class="card-title"><h4><a :href="'//api.viender.dev/questions/' + answer.question.slug">{{ answer.question.title }}</a></h4></span>
+					<span class="card-title"><h4><a :href="url(answer.question.slug)">{{ answer.question.title }}</a></h4></span>
 					<p>{{ answer.body }}</p>
 				</div>
 				<div class="card-action u-border--only-bottom">
