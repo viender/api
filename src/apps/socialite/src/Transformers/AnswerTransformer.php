@@ -38,27 +38,27 @@ class AnswerTransformer extends Transformer
             'links'   => [
                 [
                     'rel' => 'self',
-                    'url' => url('/answers') . '/' . $answer->id,
+                    'url' => route('api.viender.socialite.answers.show', $answer->id),
                 ],
                 [
                     'rel' => 'author',
-                    'url' => url('/users') . '/' . $answer->user->username,
+                    'url' => route('api.viender.core.users.show', $answer->user->username),
                 ],
                 [
                     'rel' => 'question',
-                    'url' => url('/questions') . '/' . $answer->question->slug,
+                    'url' => route('api.viender.socialite.answers.show', $answer->question->slug),
                 ],
                 [
                     'rel' => 'comments',
-                    'url' => url('/answers') . '/' . $answer->id . '/comments',
+                    'url' => route('api.viender.socialite.answers.comments.index', $answer->id),
                 ],
                 [
                     'rel' => 'upvotes',
-                    'url' => url('/answers') . '/' . $answer->id . '/upvotes',
+                    'url' => route('api.viender.socialite.answers.upvotes.index', $answer->id),
                 ],
                 [
                     'rel' => 'downvotes',
-                    'url' => url('/answers') . '/' . $answer->id . '/downvotes',
+                    'url' => route('api.viender.socialite.answers.downvotes.index', $answer->id),
                 ],
             ],
         ];

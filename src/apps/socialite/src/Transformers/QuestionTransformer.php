@@ -37,19 +37,19 @@ class QuestionTransformer extends Transformer
             'links'   => [
                 [
                     'rel' => 'self',
-                    'url' => url('questions/' . $question->slug),
+                    'url' => route('api.viender.socialite.questions.show', $question->slug),
                 ],
                 [
                     'rel' => 'author',
-                    'url' => url('users/' . $question->user->username),
+                    'url' => route('api.viender.core.users.show', $question->user->username),
                 ],
                 [
                     'rel' => 'answers',
-                    'url' => url('questions/' . $question->slug . '/answers'),
+                    'url' => route('api.viender.socialite.questions.answers.index', $question->slug),
                 ],
                 [
                     'rel' => 'comments',
-                    'url' => url('questions/' . $question->slug . '/comments'),
+                    'url' => route('api.viender.socialite.questions.comments.index', $question->slug),
                 ],
             ]            
         ];

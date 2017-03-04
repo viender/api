@@ -40,15 +40,10 @@ class CommentTransformer extends Transformer
             'body'              => $comment->body,
             'upvote_count'      => $comment->upvotes()->count(),
             'comment_count'     => $comment->comments()->count(),
-            // 'commentable_type'  => $this->comments->getCommentableType($comment),
             'links'   => [
                 [
                     'rel' => 'self',
-                    'url' => url('/comments') . '/' . $comment->id,
-                ],
-                [
-                    'rel' => 'commentable',
-                    'url' => $this->comments->getCommentableUrl($comment),
+                    'url' => route('api.viender.socialite.comments.show', $comment->id),
                 ],
                 [
                     'rel' => 'comments',
