@@ -42,12 +42,10 @@ class RouteRegistrar
 
     public function version1($option = [])
     {
+        $namePrefix = 'api' . (isset($option['showVersionPrefix']) ? ($option['showVersionPrefix'] ? '.v1' : '') : '.v1') . '.viender.profile';
+
         $this->router->group(array_merge(['prefix' => 'v1'], $option, ['namespace' => 'Api']), function() {
             // Authenticated user
-            $this->router->get('user', 'UsersController@authenticated');
-
-            // Models
-            $this->router->resource('users', 'UsersController', ['except' => ['create', 'edit']]);
             $this->router->resource('addresses', 'AddressesController', ['except' => ['create', 'edit']]);
             $this->router->resource('countries', 'CountriesController', ['except' => ['create', 'edit']]);
             $this->router->resource('states', 'StatesController', ['except' => ['create', 'edit']]);
