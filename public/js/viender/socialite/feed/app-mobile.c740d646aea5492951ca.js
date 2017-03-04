@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 120);
+/******/ 	return __webpack_require__(__webpack_require__.s = 123);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -32435,73 +32435,26 @@ module.exports = g;
 /***/ }),
 /* 35 */,
 /* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 37 */
+/***/ (function(module, exports) {
 
+module.exports = {
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * include Vue and Vue Resource. This gives a great starting point for
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-__webpack_require__(86);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('tutoring-create-form', __webpack_require__(98));
-
-var postTutoring = new Vue({
-  el: '#app'
-
-});
+	methods: {
+		getUrl: function getUrl(rel, obj) {
+			return obj.links.filter(function (link) {
+				return link.rel == rel;
+			})[0].url;
+		},
+		url: function url(path) {
+			return window.url(path);
+		}
+	}
+};
 
 /***/ }),
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */
+/* 38 */,
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32526,6 +32479,88 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+/* harmony default export */ __webpack_exports__["default"] = {
+	props: ['answer'],
+
+	mixins: [__webpack_require__(37)],
+
+	data: function data() {
+		return {
+			requesting: false,
+			upvoteCount: 0,
+			commentCount: 0,
+			showComments: false
+		};
+	},
+	mounted: function mounted() {
+		this.upvoteCount = this.answer.upvote_count;
+		this.commentCount = this.answer.comment_count;
+	},
+
+
+	methods: {
+		upvote: function upvote() {
+			var _this = this;
+
+			if (_this.requesting) return;
+
+			_this.requesting = true;
+
+			axios.post(this.getUrl('upvotes', this.answer), {}).then(function (response) {
+				if (response.status == 201) {
+					_this.upvoteCount += 1;
+				}
+				if (response.status == 204) {
+					_this.upvoteCount -= 1;
+				}
+				_this.requesting = false;
+			}).catch(function (error) {
+				if (error.response.status == 401) {
+					document.location = url('login');
+				}
+				_this.requesting = false;
+			});
+		},
+		downvote: function downvote() {
+			var _this = this;
+
+			if (_this.requesting) return;
+
+			_this.requesting = true;
+
+			axios.post(this.getUrl('downvotes', this.answer), {}).then(function (response) {
+				if (response.status == 201) {
+					if (response.status == 201) {
+						_this.upvoteCount -= 1;
+					}
+					if (response.status == 204) {
+						_this.upvoteCount += 1;
+					}
+				}
+				_this.requesting = false;
+			}).catch(function (error) {
+				if (error.response.status == 401) {
+					document.location = url('login');
+				}
+				_this.requesting = false;
+			});
+		},
+		toggleComments: function toggleComments() {
+			this.showComments = !this.showComments;
+		},
+		incrementCommentCount: function incrementCommentCount() {
+			this.commentCount++;
+		}
+	}
+};
+
+/***/ }),
+/* 40 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -32541,6 +32576,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+/* harmony default export */ __webpack_exports__["default"] = {
+	props: ['commentableCommentsUrl'],
+
+	data: function data() {
+		return {
+			requesting: false,
+			formData: {
+				body: null
+			}
+		};
+	},
+
+
+	methods: {
+		postComment: function postComment(event) {
+			var _this = this;
+
+			if (event) event.preventDefault();
+
+			if (_this.requesting) return;
+
+			if (!_this.formData.body) return;
+
+			_this.requesting = true;
+
+			axios.post(this.commentableCommentsUrl + '?with=owner', this.formData).then(function (response) {
+				if (response.status == 200) {
+					_this.$emit('comment-posted', response);
+					_this.formData.body = null;
+				}
+				_this.requesting = false;
+			}).catch(function (error) {
+				if (error.response.status == 401) {
+					document.location = url('login');
+				}
+				_this.requesting = false;
+			});
+		}
+	}
+};
+
+/***/ }),
+/* 41 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -32550,6 +32633,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    props: ['commentsUrl'],
+
+    data: function data() {
+        return {
+            comments: [],
+            requesting: false,
+            page: 1
+        };
+    },
+    mounted: function mounted() {
+        this.fetchData();
+    },
+
+
+    methods: {
+        fetchData: function fetchData() {
+            var _this = this;
+
+            if (_this.requesting) return;
+
+            _this.requesting = true;
+
+            axios.get(_this.commentsUrl, {
+                params: {
+                    with: ['owner'],
+                    page: _this.page
+                }
+            }).then(function (response) {
+                _this.comments = _this.comments.concat(response.data.data);
+                _this.page++;
+                _this.requesting = false;
+            }).catch(function (error) {
+                console.log(error);
+                _this.requesting = false;
+            });
+        },
+        addComment: function addComment(comment) {
+            this.comments.push(comment);
+            this.$emit('comment-posted');
+        }
+    }
+};
+
+/***/ }),
+/* 42 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -32570,86 +32704,658 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = {
-    props: ['action'],
+	props: ['comment'],
 
-    data: function data() {
-        return {
-            csrfToken: window.Laravel ? window.Laravel.csrfToken : '',
+	mixins: [__webpack_require__(37)],
 
-            days: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
+	data: function data() {
+		return {
+			requesting: false,
+			upvoteCount: 0,
+			commentCount: 0,
+			showComments: false
+		};
+	},
+	mounted: function mounted() {
+		this.upvoteCount = this.comment.upvote_count;
+		this.commentCount = this.comment.comment_count;
+	},
 
-            formData: {
-                title: null,
-                price: null,
-                number_of_week: null,
-                body: null,
-                schedules: [{
-                    day: 'monday',
-                    from: '',
-                    to: ''
-                }, {
-                    day: 'tuesday',
-                    from: '',
-                    to: ''
-                }, {
-                    day: 'wednesday',
-                    from: '',
-                    to: ''
-                }, {
-                    day: 'thursday',
-                    from: '',
-                    to: ''
-                }, {
-                    day: 'friday',
-                    from: '',
-                    to: ''
-                }, {
-                    day: 'saturday',
-                    from: '',
-                    to: ''
-                }, {
-                    day: 'sunday',
-                    from: '',
-                    to: ''
-                }]
-            },
 
-            errors: {},
+	methods: {
+		upvote: function upvote() {
+			var _this = this;
 
-            loading: false
-        };
+			if (_this.requesting) return;
+
+			_this.requesting = true;
+
+			axios.post(this.getUrl('upvotes', this.comment), {}).then(function (response) {
+				if (response.status == 201) {
+					_this.upvoteCount += 1;
+				}
+				if (response.status == 204) {
+					_this.upvoteCount -= 1;
+				}
+				_this.requesting = false;
+			}).catch(function (error) {
+				if (error.response.status == 401) {
+					document.location = url('login');
+				}
+				_this.requesting = false;
+			});
+		},
+		downvote: function downvote() {
+			var _this = this;
+
+			if (_this.requesting) return;
+
+			_this.requesting = true;
+
+			axios.post(this.getUrl('downvotes', this.comment), {}).then(function (response) {
+				if (response.status == 201) {
+					if (response.status == 201) {
+						_this.upvoteCount -= 1;
+					}
+					if (response.status == 204) {
+						_this.upvoteCount += 1;
+					}
+				}
+				_this.requesting = false;
+			}).catch(function (error) {
+				if (error.response.status == 401) {
+					document.location = url('login');
+				}
+				_this.requesting = false;
+			});
+		},
+		toggleComments: function toggleComments() {
+			this.showComments = !this.showComments;
+		},
+		updateCommentCount: function updateCommentCount() {
+			this.commentCount++;
+		}
+	}
+
+};
+
+/***/ }),
+/* 43 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    props: ['feedUrls'],
+
+    computed: {
+        answers: function answers() {
+            return this.$store.state.feed.answers;
+        }
     },
+
     mounted: function mounted() {
-        console.log('hello from postTutoring');
+        this.$store.commit('feed/setFeedUrl', this.feedUrls);
+        this.fetchData();
     },
 
 
     methods: {
-        submit: function submit(event) {
-            var _this = this;
+        fetchData: function fetchData() {
+            this.$store.dispatch('feed/fetchData');
+        }
+    }
+};
 
-            if (event) event.preventDefault();
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
 
-            if (this.loading) return;
+__webpack_require__(28);
 
-            this.loading = true;
+/***/ }),
+/* 45 */
+/***/ (function(module, exports) {
 
-            axios.post(this.action, this.formData).then(function (response) {
-                var tutoring = response.data;
-                document.location = tutoring.links.filter(function (link) {
-                    return link.rel == 'self_html';
-                })[0].url;
-            }).catch(function (error) {
-                if (error.response.status == 422) {
-                    _this.errors = error.response.data;
+module.exports = {};
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = new Vuex.Store({
+  modules: {
+    feed: __webpack_require__(47)
+  },
+
+  actions: __webpack_require__(45),
+
+  mutations: __webpack_require__(48)
+});
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports) {
+
+module.exports = {
+    namespaced: true,
+
+    state: {
+        page: 1,
+        requesting: false,
+        answers: [],
+        feedUrls: {}
+    },
+
+    mutations: {
+        addAnswers: function addAnswers(state, answers) {
+            state.answers = state.answers.concat(answers);
+        },
+        setFeedUrl: function setFeedUrl(state, url) {
+            state.feedUrls = url;
+        },
+        incrementPage: function incrementPage(state) {
+            state.page++;
+        },
+        updateRequesting: function updateRequesting(state, requesting) {
+            state.requesting = requesting;
+        }
+    },
+
+    actions: {
+        fetchData: function fetchData(_ref) {
+            var state = _ref.state,
+                commit = _ref.commit,
+                rootState = _ref.rootState;
+
+            if (state.requesting) return;
+
+            commit('updateRequesting', true);
+
+            axios.get(state.feedUrls.answers, {
+                params: {
+                    with: ['owner', 'question'],
+                    page: state.page
                 }
-                _this.loading = false;
+            }).then(function (response) {
+                commit('addAnswers', response.data.data);
+                commit('incrementPage');
+                commit('updateRequesting', false);
+            }).catch(function (error) {
+                console.log(error);
+                commit('updateRequesting', false);
             });
         }
     }
 };
 
 /***/ }),
+/* 48 */
+/***/ (function(module, exports) {
+
+module.exports = {};
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(4)(
+  /* script */
+  __webpack_require__(39),
+  /* template */
+  __webpack_require__(55),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/nugraha/Code/viender/src/apps/socialite/resources/feed/assets/js/components/answer.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] answer.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3947dd72", Component.options)
+  } else {
+    hotAPI.reload("data-v-3947dd72", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(4)(
+  /* script */
+  __webpack_require__(40),
+  /* template */
+  __webpack_require__(54),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/nugraha/Code/viender/src/apps/socialite/resources/feed/assets/js/components/comment-create-form.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] comment-create-form.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0bbac1fa", Component.options)
+  } else {
+    hotAPI.reload("data-v-0bbac1fa", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(4)(
+  /* script */
+  __webpack_require__(41),
+  /* template */
+  __webpack_require__(57),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/nugraha/Code/viender/src/apps/socialite/resources/feed/assets/js/components/comment-list.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] comment-list.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3e73ae00", Component.options)
+  } else {
+    hotAPI.reload("data-v-3e73ae00", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(4)(
+  /* script */
+  __webpack_require__(42),
+  /* template */
+  __webpack_require__(58),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/nugraha/Code/viender/src/apps/socialite/resources/feed/assets/js/components/comment.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] comment.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-fb72ba4a", Component.options)
+  } else {
+    hotAPI.reload("data-v-fb72ba4a", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(4)(
+  /* script */
+  __webpack_require__(43),
+  /* template */
+  __webpack_require__(56),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/nugraha/Code/viender/src/apps/socialite/resources/feed/assets/js/components/feed-list.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] feed-list.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3cea73e9", Component.options)
+  } else {
+    hotAPI.reload("data-v-3cea73e9", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('form', {
+    attrs: {
+      "method": "POST",
+      "action": _vm.commentableCommentsUrl
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s9"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.formData.body),
+      expression: "formData.body"
+    }],
+    staticStyle: {
+      "width": "100%"
+    },
+    attrs: {
+      "type": "text",
+      "name": "body"
+    },
+    domProps: {
+      "value": (_vm.formData.body)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.formData.body = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "col s3"
+  }, [_c('button', {
+    staticClass: "btn waves-effect waves-light",
+    attrs: {
+      "type": "submit",
+      "name": "action"
+    },
+    on: {
+      "click": function($event) {
+        _vm.postComment($event)
+      }
+    }
+  }, [_vm._v("\n\t\t\t\tComment\n\t\t\t")])])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0bbac1fa", module.exports)
+  }
+}
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row u-margin--none"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "card u-margin--none u-box-shadow--none"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title"
+  }, [_c('h4', [_c('a', {
+    attrs: {
+      "href": _vm.url(_vm.answer.question.slug)
+    }
+  }, [_vm._v(_vm._s(_vm.answer.question.title))])])]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.answer.body))])]), _vm._v(" "), _c('div', {
+    staticClass: "card-action u-border--only-bottom"
+  }, [_c('button', {
+    staticClass: "btn btn-default",
+    on: {
+      "click": _vm.upvote
+    }
+  }, [_vm._v("Upvote | " + _vm._s(_vm.upvoteCount))]), _vm._v(" "), _c('a', {
+    on: {
+      "click": _vm.downvote
+    }
+  }, [_vm._v("Downvote")]), _vm._v(" "), _c('a', {
+    on: {
+      "click": function($event) {
+        _vm.toggleComments()
+      }
+    }
+  }, [_vm._v("Comments "), _c('span', [_vm._v("(" + _vm._s(_vm.commentCount) + ")")])]), _vm._v(" "), (_vm.showComments) ? _c('comment-list', {
+    attrs: {
+      "comments-url": _vm.getUrl('comments', _vm.answer)
+    },
+    on: {
+      "comment-posted": function($event) {
+        _vm.incrementCommentCount()
+      }
+    }
+  }) : _vm._e()], 1)])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3947dd72", module.exports)
+  }
+}
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {}, [_vm._l((_vm.answers), function(answer) {
+    return _c('answer', {
+      attrs: {
+        "answer": answer
+      }
+    })
+  }), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-default",
+    on: {
+      "click": function($event) {
+        _vm.fetchData()
+      }
+    }
+  }, [_vm._v("Load more")])], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3cea73e9", module.exports)
+  }
+}
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('ul', {
+    staticClass: "collection u-border--none"
+  }, [_c('li', {
+    staticClass: "collection-item collection-item-form"
+  }, [_c('comment-create-form', {
+    attrs: {
+      "commentable-comments-url": _vm.commentsUrl
+    },
+    on: {
+      "comment-posted": function($event) {
+        _vm.addComment($event.data)
+      }
+    }
+  })], 1), _vm._v(" "), _vm._l((_vm.comments), function(comment) {
+    return _c('comment', {
+      attrs: {
+        "comment": comment
+      }
+    })
+  })], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3e73ae00", module.exports)
+  }
+}
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', {
+    staticClass: "collection-item avatar avatar--small u-border--none"
+  }, [_c('img', {
+    staticClass: "u-dimension--small circle",
+    attrs: {
+      "src": _vm.getUrl('avatar', _vm.comment.owner),
+      "alt": ""
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "title"
+  }, [_c('strong', [_c('a', {
+    staticClass: "profile-link",
+    attrs: {
+      "href": _vm.url('users/' + _vm.comment.owner.login)
+    }
+  }, [_vm._v(_vm._s(_vm.comment.owner.name))])])]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.comment.body))]), _vm._v(" "), _c('div', {
+    staticClass: "card-action u-border--only-bottom"
+  }, [_c('a', {
+    on: {
+      "click": _vm.upvote
+    }
+  }, [_vm._v("Upvote | " + _vm._s(_vm.upvoteCount))]), _vm._v(" "), _c('a', {
+    on: {
+      "click": _vm.downvote
+    }
+  }, [_vm._v("Downvote")]), _vm._v(" "), _c('a', {
+    on: {
+      "click": function($event) {
+        _vm.toggleComments()
+      }
+    }
+  }, [_vm._v("Comments "), _c('span', [_vm._v("(" + _vm._s(_vm.commentCount) + ")")])])]), _vm._v(" "), (_vm.showComments) ? _c('comment-list', {
+    attrs: {
+      "comments-url": _vm.getUrl('comments', _vm.comment)
+    },
+    on: {
+      "comment-posted": function($event) {
+        _vm.updateCommentCount()
+      }
+    }
+  }) : _vm._e()], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-fb72ba4a", module.exports)
+  }
+}
+
+/***/ }),
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * include Vue and Vue Resource. This gives a great starting point for
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
+__webpack_require__(44);
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+Vue.component('comment', __webpack_require__(52));
+Vue.component('comment-list', __webpack_require__(51));
+Vue.component('comment-create-form', __webpack_require__(50));
+Vue.component('answer', __webpack_require__(49));
+Vue.component('feed-list', __webpack_require__(53));
+
+var feed = new Vue({
+  el: '#app',
+
+  store: __webpack_require__(46)
+});
+
+/***/ }),
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
 /* 79 */,
 /* 80 */,
 /* 81 */,
@@ -32657,12 +33363,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 83 */,
 /* 84 */,
 /* 85 */,
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(28);
-
-/***/ }),
+/* 86 */,
 /* 87 */,
 /* 88 */,
 /* 89 */,
@@ -32674,309 +33375,13 @@ __webpack_require__(28);
 /* 95 */,
 /* 96 */,
 /* 97 */,
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(4)(
-  /* script */
-  __webpack_require__(78),
-  /* template */
-  __webpack_require__(104),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/home/nugraha/Code/viender/src/apps/mytutor/resources/postTutoring/assets/js/components/tutoring-create-form.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] tutoring-create-form.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-12605679", Component.options)
-  } else {
-    hotAPI.reload("data-v-12605679", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
+/* 98 */,
 /* 99 */,
 /* 100 */,
 /* 101 */,
 /* 102 */,
 /* 103 */,
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('form', {
-    ref: "form",
-    attrs: {
-      "action": _vm.action,
-      "method": "POST"
-    },
-    on: {
-      "submit": function($event) {
-        _vm.submit($event)
-      }
-    }
-  }, [_c('input', {
-    attrs: {
-      "type": "hidden",
-      "name": "_token"
-    },
-    domProps: {
-      "value": _vm.csrfToken
-    }
-  }), _vm._v(" "), _c('div', {
-    class: 'form-group' + (_vm.errors.title ? ' has-error' : '')
-  }, [_c('label', {
-    attrs: {
-      "for": "title"
-    }
-  }, [_vm._v("Title")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.formData.title),
-      expression: "formData.title"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "title",
-      "name": "title",
-      "placeholder": "Title"
-    },
-    domProps: {
-      "value": (_vm.formData.title)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.formData.title = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _vm._l((_vm.errors.title), function(error) {
-    return (_vm.errors.title) ? _c('span', {
-      staticClass: "help-block"
-    }, [_c('strong', [_vm._v(_vm._s(error))])]) : _vm._e()
-  })], 2), _vm._v(" "), _c('div', {
-    class: 'form-group' + (_vm.errors.price ? ' has-error' : '')
-  }, [_c('label', {
-    attrs: {
-      "for": "price"
-    }
-  }, [_vm._v("Budget")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.formData.price),
-      expression: "formData.price"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "number",
-      "min": "0",
-      "id": "price",
-      "name": "price",
-      "placeholder": "Budget"
-    },
-    domProps: {
-      "value": (_vm.formData.price)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.formData.price = $event.target.value
-      },
-      "blur": function($event) {
-        _vm.$forceUpdate()
-      }
-    }
-  }), _vm._v(" "), _vm._l((_vm.errors.price), function(error) {
-    return (_vm.errors.price) ? _c('span', {
-      staticClass: "help-block"
-    }, [_c('strong', [_vm._v(_vm._s(error))])]) : _vm._e()
-  })], 2), _vm._v(" "), _c('div', {
-    class: 'form-group' + (_vm.errors.number_of_week ? ' has-error' : '')
-  }, [_c('label', {
-    attrs: {
-      "for": "number_of_week"
-    }
-  }, [_vm._v("Number of week")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.formData.number_of_week),
-      expression: "formData.number_of_week"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "number",
-      "min": "0",
-      "id": "number_of_week",
-      "name": "number_of_week",
-      "placeholder": "Number of week"
-    },
-    domProps: {
-      "value": (_vm.formData.number_of_week)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.formData.number_of_week = $event.target.value
-      },
-      "blur": function($event) {
-        _vm.$forceUpdate()
-      }
-    }
-  }), _vm._v(" "), _vm._l((_vm.errors.number_of_week), function(error) {
-    return (_vm.errors.number_of_week) ? _c('span', {
-      staticClass: "help-block"
-    }, [_c('strong', [_vm._v(_vm._s(error))])]) : _vm._e()
-  })], 2), _vm._v(" "), _c('div', {
-    class: 'form-group' + (_vm.errors.body ? ' has-error' : '')
-  }, [_c('label', {
-    attrs: {
-      "for": "body"
-    }
-  }, [_vm._v("Description")]), _vm._v(" "), _c('textarea', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.formData.body),
-      expression: "formData.body"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "rows": "10",
-      "id": "body",
-      "name": "body",
-      "placeholder": "Description"
-    },
-    domProps: {
-      "value": (_vm.formData.body)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.formData.body = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _vm._l((_vm.errors.body), function(error) {
-    return (_vm.errors.body) ? _c('span', {
-      staticClass: "help-block"
-    }, [_c('strong', [_vm._v(_vm._s(error.replace('body', 'description')))])]) : _vm._e()
-  })], 2), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("Schedule")]), _vm._v(" "), _vm._l((_vm.days), function(day) {
-    return _c('div', {
-      staticClass: "form-group row"
-    }, [_c('label', {
-      staticClass: "col-md-2 col-form-label",
-      attrs: {
-        "for": day
-      }
-    }, [_c('input', {
-      attrs: {
-        "type": "checkbox",
-        "id": day,
-        "name": day
-      }
-    }), _vm._v(_vm._s(day))]), _vm._v(" "), _c('input', {
-      attrs: {
-        "type": "hidden",
-        "name": 'schedules[{{' + _vm.days.indexOf(day) + '}}][day]'
-      },
-      domProps: {
-        "value": day
-      }
-    }), _vm._v(" "), _c('div', {
-      staticClass: "form-group col-md-10 row"
-    }, [_c('div', {
-      staticClass: "col-md-6"
-    }, [_c('label', {
-      attrs: {
-        "for": day + '_from'
-      }
-    }, [_vm._v("From")]), _vm._v(" "), _c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.formData.schedules[_vm.days.indexOf(day)].from),
-        expression: "formData.schedules[days.indexOf(day)].from"
-      }],
-      staticClass: "form-control",
-      attrs: {
-        "type": "time",
-        "id": day + '_from',
-        "name": 'schedules[{{' + _vm.days.indexOf(day) + '}}][from]'
-      },
-      domProps: {
-        "value": (_vm.formData.schedules[_vm.days.indexOf(day)].from)
-      },
-      on: {
-        "input": function($event) {
-          if ($event.target.composing) { return; }
-          _vm.formData.schedules[_vm.days.indexOf(day)].from = $event.target.value
-        }
-      }
-    })]), _vm._v(" "), _c('div', {
-      staticClass: "col-md-6"
-    }, [_c('label', {
-      attrs: {
-        "for": day + '_to'
-      }
-    }, [_vm._v("To")]), _vm._v(" "), _c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.formData.schedules[_vm.days.indexOf(day)].to),
-        expression: "formData.schedules[days.indexOf(day)].to"
-      }],
-      staticClass: "form-control",
-      attrs: {
-        "type": "time",
-        "id": day + '_to',
-        "name": 'schedules[{{' + _vm.days.indexOf(day) + '}}][to]'
-      },
-      domProps: {
-        "value": (_vm.formData.schedules[_vm.days.indexOf(day)].to)
-      },
-      on: {
-        "input": function($event) {
-          if ($event.target.composing) { return; }
-          _vm.formData.schedules[_vm.days.indexOf(day)].to = $event.target.value
-        }
-      }
-    })])])])
-  })], 2), _vm._v(" "), _c('input', {
-    ref: "submit-button",
-    staticClass: "btn btn-default pull-right",
-    attrs: {
-      "type": "submit",
-      "value": "Submit"
-    }
-  })])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-12605679", module.exports)
-  }
-}
-
-/***/ }),
+/* 104 */,
 /* 105 */,
 /* 106 */,
 /* 107 */,
@@ -32992,10 +33397,13 @@ if (false) {
 /* 117 */,
 /* 118 */,
 /* 119 */,
-/* 120 */
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(61);
+module.exports = __webpack_require__(64);
 
 
 /***/ })
