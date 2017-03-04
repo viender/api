@@ -3,7 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @if( \Agent::isDesktop())
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    @else
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    @endif
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -72,7 +76,12 @@
 </head>
 <body>
     <div id="app" class="main-content">
-        @include('layouts.nav')
+        @if(\Agent::isDesktop())
+            @include('layouts.nav')
+        @else
+            @include('layouts.nav-mobile')
+        @endif
+
         @yield('content')
         <!-- Scripts -->
         @yield('scripts')
