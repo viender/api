@@ -1,11 +1,12 @@
 <?php
 
-namespace Viender\Profile\Http\Controllers\Api;
+namespace App\Http\Controllers\Api;
 
 use App\User;
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use Viender\Profile\Http\Controllers\Api\ApiController;
 use Viender\Profile\Transformers\UserTransformer;
 use Viender\Utilities\Controllers\Handlers\BasicHandler;
 use Viender\Profile\Transformers\Serializer\ArraySerializer;
