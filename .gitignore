@@ -1,5 +1,6 @@
 /node_modules
 /vendor
+/viender/vendor
 /src/viender/vendor
 /viender/node_modules
 /viender/public/storage

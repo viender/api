@@ -24,20 +24,20 @@
     },
     "autoload": {
         "classmap": [
-            "src/viender/database"
+            "viender/database"
         ],
         "psr-4": {
-            "App\\": "src/viender/app/",
-            "Viender\\Socialite\\": "src/apps/socialite/src/",
-            "Viender\\Profile\\": "src/apps/profile/src/",
-            "Viender\\Dealer\\": "src/apps/dealer/src/",
-            "Viender\\Utilities\\": "src/apps/utilities/src/",
-            "Viender\\Mytutor\\": "src/apps/mytutor/src/"
+            "App\\": "viender/app/",
+            "Viender\\Socialite\\": "apps/socialite/src/",
+            "Viender\\Profile\\": "apps/profile/src/",
+            "Viender\\Dealer\\": "apps/dealer/src/",
+            "Viender\\Utilities\\": "apps/utilities/src/",
+            "Viender\\Mytutor\\": "apps/mytutor/src/"
         }
     },
     "autoload-dev": {
         "classmap": [
-            "src/viender/tests/TestCase.php"
+            "viender/tests/TestCase.php"
         ]
     },
     "scripts": {
@@ -58,6 +58,6 @@
     },
     "config": {
         "preferred-install": "dist",
-        "vendor-dir": "src/viender/vendor"
+        "vendor-dir": "viender/vendor"
     }
 }

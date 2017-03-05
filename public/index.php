@@ -19,7 +19,7 @@
 |
 */
 
-require __DIR__.'/../src/viender/bootstrap/autoload.php';
+require __DIR__.'/../viender/bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ require __DIR__.'/../src/viender/bootstrap/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../src/viender/bootstrap/app.php';
+$app = require_once __DIR__.'/../viender/bootstrap/app.php';
 
 // set the public path to this directory
 $app->bind('path.public', function() {
