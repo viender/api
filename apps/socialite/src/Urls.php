@@ -38,13 +38,13 @@ class Urls
     public function web($option = [])
     {
         $this->router->group(array_merge($option, ['domain' => config('app.domain'), 'middleware' => 'web']), function() {
-            $this->router->get('/', 'PagesController@feed')->name('web.viender.socialite.pages.read');
+            $this->router->get('/', 'ReadController@index')->name('web.viender.socialite.pages.read');
 
-            $this->router->get('answer', 'PagesController@answers')->name('web.viender.socialite.pages.answer');
+            $this->router->get('answer', 'AnswerController@index')->name('web.viender.socialite.pages.answer');
 
-            $this->router->get('questions/{question}', 'PagesController@question')->name('web.viender.socialite.pages.questions.show');
+            $this->router->get('questions/{question}', 'QuestionShowController@show')->name('web.viender.socialite.pages.questionShow');
 
-            $this->router->get('questions/{question}/answer/{answer}', 'PagesController@answer')->name('web.viender.socialite.pages.questions.answer');
+            $this->router->get('questions/{question}/answer/{answer}', 'AnswerShowController@show')->name('web.viender.socialite.pages.answerShow');
         });
     }
 

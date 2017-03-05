@@ -37,7 +37,19 @@ window.axios.defaults.headers.common = {
 // });
 
 /**
- * Other dependecies
+ * Config
+ */
+
+window.config = require('./configs/viender');
+
+/**
+ * Helpers
+ */
+
+require('./helpers/url.js');
+
+/**
+ * Materialize
  */
 
 window.jQuery = window.$ = require('jquery');
@@ -48,3 +60,11 @@ $(document).ready(function() {
 	$(".button-collapse").sideNav();
 	$(".dropdown-button").dropdown();
 });
+
+/**
+ * Google Analytic
+ */
+
+if(process.env.APP_ENV == 'production') {
+	require('./services/googleAnalytics');
+}

@@ -41,7 +41,7 @@ class QuestionTransformer extends Transformer
                 ],
                 [
                     'rel' => 'self_html',
-                    'url' => route('web.viender.socialite.pages.questions.show', $question->slug),
+                    'url' => route('web.viender.socialite.pages.questionShow', $question->slug),
                 ],
                 [
                     'rel' => 'author',

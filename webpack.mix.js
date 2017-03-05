@@ -1,9 +1,10 @@
+var webpack = require('webpack');
 const { mix } = require('laravel-mix'); 
 var path = require('path'); 
+var fileSystem = require('fs');
+require('dotenv').config({path: './viender/.env'});
 
-var fs = require('fs');
-
-var apps = fs.readdirSync(path.resolve(__dirname, 'apps/'));
+var apps = fileSystem.readdirSync(path.resolve(__dirname, 'apps/'));
 
 var config = { 
     output: { 
@@ -11,9 +12,21 @@ var config = {
     },
     resolve: {
         alias: {
+          viender: path.resolve(__dirname, 'viender'),
           viender_core: path.resolve(__dirname, 'assets/core'),
         }
-    }
+    },
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env': {
+          APP_ENV: JSON.stringify(process.env.APP_ENV),
+          APP_URL: JSON.stringify(process.env.APP_URL),
+          APP_API_URL: JSON.stringify(process.env.APP_API_URL),
+          APP_DOMAIN: JSON.stringify(process.env.APP_DOMAIN),
+          APP_API_DOMAIN: JSON.stringify(process.env.APP_API_DOMAIN),
+        }
+      })
+    ]
 };
 
 for(var i=0; i < apps.length; i++) {
@@ -43,8 +56,8 @@ var pagesPath = '';
 for(var i=0; i < apps.length; i++) {
   pagesPath = path.resolve(__dirname, 'apps/' + apps[i] + '/resources/pages');
 
-  if (fs.existsSync(pagesPath)) {
-    pages = fs.readdirSync(pagesPath);
+  if (fileSystem.existsSync(pagesPath)) {
+    pages = fileSystem.readdirSync(pagesPath);
 
     for(var j=0; j < pages.length; j++) {
       mix.js('apps/' + apps[i] + '/resources/pages/' + pages[j] + '/assets/js/app.js', 'js/viender/' + apps[i] + '/' + pages[j] + '/app.js')
