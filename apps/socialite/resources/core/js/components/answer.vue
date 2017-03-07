@@ -3,14 +3,26 @@
 		<div class="col s12">
 			<div class="card u-margin--none u-box-shadow--none">
 				<div class="card-content">
-					<!-- <img :src="getUrl('avatar', answer.owner)" alt="" class="circle"> -->
-					<span class="card-title"><h4><a :href="getUrl('self_html', answer.question)">{{ answer.question.title }}</a></h4></span>
+					<span class="card-title">
+						<h4><a :href="getUrl('self_html', answer.question)">{{ answer.question.title }}</a></h4>
+					</span>
+				  	<ul class="collection">
+						<li class="collection-item avatar">
+							<img :src="getUrl('avatar', answer.owner)" alt="" class="circle">
+							<span class="card-title">
+								{{ answer.owner.name }}
+							</span>
+						</li>
+					</ul>
 					<p>{{ answer.body }}</p>
 				</div>
 				<div class="card-action u-border--only-bottom">
-			    	<button class="btn btn-default" @click="upvote">Upvote | {{ upvoteCount }}</button>
-			    	<a @click="downvote">Downvote</a>
-			    	<a @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
+			    	<span style="cursor: pointer;" @click="upvote">
+				    	<span style="padding-right: 5px;">{{ upvoteCount }}</span>
+				    	<a :style="! answer.upvoted ? 'color: grey;' : ''" class="material-icons dp48">thumb_up</a>
+			    	</span>
+			    	<a :style="! answer.downvoted ? 'color: grey;' : ''" @click="downvote" class="material-icons dp48">thumb_down</a>
+			    	<a style="color: grey;" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
 					<comment-list :comments-url="getUrl('comments', answer)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
 				</div>
 			</div>
@@ -50,9 +62,12 @@
 					.then(function (response) {
 					    if(response.status == 201) {
 					        _this.upvoteCount += 1;
+					    	_this.answer.upvoted = true;
+					    	_this.answer.downvoted = false;
 					    }
 					    if(response.status == 204) {
 					        _this.upvoteCount -= 1;
+					    	_this.answer.upvoted = false;
 					    }
 					    _this.requesting = false;
 					})
@@ -73,13 +88,14 @@
 
 				axios.post(this.getUrl('downvotes', this.answer), {})
 					.then(function (response) {
-					    if(response.status == 201) {
-					        if(response.status == 201) {
-					        	_this.upvoteCount -= 1;
-					        }
-					        if(response.status == 204) {
-						        _this.upvoteCount += 1;
-						    }
+				        if(response.status == 201) {
+				        	if(_this.answer.upvoted)
+				        		_this.upvoteCount -= 1;
+					    	_this.answer.upvoted = false;
+					    	_this.answer.downvoted = true;
+				        }
+				        if(response.status == 204) {
+					    	_this.answer.downvoted = false;
 					    }
 					    _this.requesting = false;
 					})

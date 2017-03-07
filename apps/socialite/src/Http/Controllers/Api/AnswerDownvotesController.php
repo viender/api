@@ -6,17 +6,17 @@ use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Socialite\Models\Answer;
 use Viender\Socialite\Models\Downvote;
-use Viender\Socialite\Repositories\AnswersRepository;
+use Viender\Socialite\Repositories\DownvotesRepository;
 use Viender\Socialite\Transformers\DownvoteTransformer;
 
 class AnswerDownvotesController extends ApiController
 {
-    protected $answers;
+    protected $downvotes;
 
-    public function __construct(AnswersRepository $answers)
+    public function __construct(DownvotesRepository $downvotes)
     {
         parent::__construct();
-        $this->answers = $answers;
+        $this->downvotes = $downvotes;
     }
 
     /** 
@@ -57,7 +57,7 @@ class AnswerDownvotesController extends ApiController
      */
     public function store(Request $request, Answer $answer)
     {
-        if($upvote = $this->answers->toggleDownvote($answer)) {
+        if($upvote = $this->downvotes->toggle($answer)) {
             return $this->respondCreated('Downvoted');
         }
 

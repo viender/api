@@ -2,14 +2,23 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Models\Comment;
-use Viender\Ideapool\Downvote;
 use Illuminate\Http\Request;
+use Viender\Ideapool\Downvote;
 use League\Fractal\Resource\Item;
+use Viender\Socialite\Models\Comment;
+use Viender\Socialite\Repositories\DownvotesRepository;
 use Viender\Socialite\Transformers\DownvoteTransformer;
 
 class CommentDownvotesController extends ApiController
 {
+    protected $downvotes;
+
+    public function __construct(DownvotesRepository $downvotes)
+    {
+        parent::__construct();
+        $this->downvotes = $downvotes;
+    }
+    
     /** 
      * @api {get} /comments/:id/downvotes Get Comment Downvotes
      * @apiName CommentDownvotesIndex
@@ -48,9 +57,11 @@ class CommentDownvotesController extends ApiController
      */
     public function store(Request $request, Comment $comment)
     {
-        $comment->downvotes()->save(new Downvote($request->all()));
+        if($upvote = $this->downvotes->toggle($comment)) {
+            return $this->respondCreated('Downvoted');
+        }
 
-        return $this->respondCreated();
+        return $this->respondDeleted('Downvote removed');
     }
 
     /**

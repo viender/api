@@ -2,36 +2,6 @@
 	padding-left: 50px !important;
 }
 
-.card li .card-action {
-	padding-left: 0;
-}
-
-.card .card-action a {
-	margin-left: 0;
-	margin-right: 13px !important;
-	cursor: pointer;
-	font-size: 13px;
-	text-transform: none !important;
-}
-
-.card .card-title h4 a {
-	font-size: 18px;
-	@extend .grey-text, .text-darken-4;
-}
-
-.card button {
-	margin-right: 13px;
-	font-size: 13px;
-	padding: 5px;
-	height: 27px;
-    line-height: 13px;
-	text-transform: none !important;
-}
-
-.card .collection, .card .collection .collection-item {
-	background-color: #f6f6f6;
-}
-
 .collection input {
 	background-color: white;
 	margin: 0;
@@ -39,4 +9,28 @@
 
 .collection form .row {
 	margin: 0;
+}
+
+.collection-item.avatar.avatar--small img {
+	margin-left: 12px;
+}
+
+.collection-item.avatar.avatar--small .title a {
+	display: block;
+	line-height: 11px;
+}
+
+.collection .collection-item.avatar .title {
+    min-height: 20px;
+    display: block;
+}
+
+.collection .row .col.s9 {
+	width: calc(100% - 96px);
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.collection .row .col.s3 {
+	width: 20px;
 }

@@ -55,6 +55,14 @@ class QuestionTransformer extends Transformer
                     'rel' => 'comments',
                     'url' => route('api.viender.socialite.questions.comments.index', $question->slug),
                 ],
+                [
+                    'rel' => 'upvotes',
+                    'url' => route('api.viender.socialite.questions.upvotes.index', $question->slug),
+                ],
+                [
+                    'rel' => 'downvotes',
+                    'url' => route('api.viender.socialite.questions.downvotes.index', $question->slug),
+                ],
             ]            
         ];
     }

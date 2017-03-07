@@ -1,9 +1,13 @@
-module.exports = new Vuex.Store({
+import Vue from 'vue';
+import Vuex from 'vuex';
+import answer from './modules/answer';
+
+Vue.use(Vuex);
+
+export default new Vuex.Store({
   modules: {
-    feed: require('./modules/feed')
+    answer: answer
   },
 
   actions: require('./actions.js'),
-
-  mutations: require('./mutations.js')
-})
+});

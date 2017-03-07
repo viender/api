@@ -1,0 +1,68 @@
+.card .card-content .collection {
+    background-color: white;
+	margin: 0;
+    border: none;
+}
+
+.card .card-content .collection .collection-item.avatar {
+    padding-left: 52px;
+    background-color: white;
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: 45px;
+}
+
+.card li .card-action {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.card .card-action a {
+	margin-left: 0;
+	margin-right: 13px !important;
+	cursor: pointer;
+	font-size: 13px;
+	text-transform: none !important;
+}
+
+.card .card-title h4 a {
+	font-size: 18px;
+	@extend .grey-text, .text-darken-4;
+}
+
+.card button {
+	margin-right: 13px;
+	font-size: 13px;
+	padding: 5px;
+	height: 27px;
+    line-height: 13px;
+	text-transform: none !important;
+}
+
+.card .collection, .card .collection .collection-item {
+	background-color: #f6f6f6;
+}
+
+.card .card-content .card-title {
+    display: block;
+    line-height: 20px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.card .collection .collection-item.avatar .circle {
+    left: 0;
+}
+
+.card h4 {
+	line-height: 80%;
+}
+
+.card .collection .collection-item {
+	padding-right: 0px;
+}
+
+.card .collection .collection .collection-item {
+	padding-left: 0px;
+}

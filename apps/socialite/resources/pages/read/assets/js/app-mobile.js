@@ -12,11 +12,11 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('comment', require('./components/comment.vue'));
-Vue.component('comment-list', require('./components/comment-list.vue'));
-Vue.component('comment-create-form', require('./components/comment-create-form.vue'));
-Vue.component('answer', require('./components/answer.vue'));
-Vue.component('feed-list', require('./components/feed-list.vue'));
+Vue.component('comment', require('viender_socialite/core/js/components/comment.vue'));
+Vue.component('comment-list', require('viender_socialite/core/js/components/comment-list.vue'));
+Vue.component('comment-create-form', require('viender_socialite/core/js/components/comment-create-form.vue'));
+Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
+Vue.component('feed-list', require('viender_socialite/core/js/components/feed-list.vue'));
 
 const feed = new Vue({
     el: '#app',

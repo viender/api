@@ -19,10 +19,22 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     $genders = ['male', 'female'];
     $name = $faker->name;
 
+    $profilePictures = [
+        "/img/profile-1.jpg",
+        "/img/profile-2.jpg",
+        "/img/profile-3.jpg",
+        "/img/profile-4.jpg",
+        "/img/profile-5.jpg",
+        "/img/profile-6.jpg",
+        "/img/profile-7.jpg",
+        "/img/profile-8.jpg",
+        "/img/profile-9.jpg",
+    ];
+
     return [
         'first_name' => explode(' ', $name)[0],
         'last_name' => explode(' ', $name)[1],
-        'avatar_url' => "/img/profile.jpg",
+        'avatar_url' => $faker->randomElement($profilePictures),
         'username' => function(array $me) {
             return Text::clean($me['first_name']) . Text::clean($me['last_name']) ;
         },

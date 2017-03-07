@@ -1,3 +1,4 @@
+import store from './store/index';
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -13,14 +14,15 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('comment', require('./components/comment.vue'));
-Vue.component('comment-list', require('./components/comment-list.vue'));
-Vue.component('comment-create-form', require('./components/comment-create-form.vue'));
-Vue.component('answer', require('./components/answer.vue'));
-Vue.component('feed-list', require('./components/feed-list.vue'));
+Vue.component('comment', require('viender_socialite/core/js/components/comment.vue'));
+Vue.component('comment-list', require('viender_socialite/core/js/components/comment-list.vue'));
+Vue.component('comment-create-form', require('viender_socialite/core/js/components/comment-create-form.vue'));
+Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
+Vue.component('question', require('viender_socialite/core/js/components/question.vue'));
+Vue.component('question-list', require('viender_socialite/core/js/components/question-list.vue'));
 
 const feed = new Vue({
     el: '#app',
 
-    store: require('./store/index')
+    store: store,
 });

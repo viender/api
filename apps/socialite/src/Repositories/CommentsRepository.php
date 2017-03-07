@@ -38,4 +38,50 @@ class CommentsRepository extends Repository
     {
         return (new \ReflectionClass($comment->commentable))->getShortName();
     }
+
+    public function toggleUpvote(Answer $answer, $user_id = 0) 
+    {
+        if(! $user_id) {
+            $user_id = \Auth::user()->id;
+        }
+
+        if($answer->downvotes()->where('user_id', $user_id)->exists()) {
+            $downvote = $answer->downvotes()->where('user_id', $user_id)->first();
+            $downvote->delete();
+        }
+
+        if($answer->upvotes()->where('user_id', $user_id)->exists()) {
+            $upvote = $answer->upvotes()->where('user_id', $user_id)->delete();
+            return null;
+        }
+
+        $upvote = new Upvote(['user_id' => $user_id]);
+
+        $answer->upvotes()->save($upvote);
+
+        return $upvote;
+    }
+
+    public function toggleDownvote(Answer $answer, $user_id = 0) 
+    {
+        if(! $user_id) {
+            $user_id = \Auth::user()->id;
+        }
+
+        if($answer->upvotes()->where('user_id', $user_id)->exists()) {
+            $upvote = $answer->upvotes()->where('user_id', $user_id)->first();
+            $upvote->delete();
+        }
+
+        if($answer->downvotes()->where('user_id', $user_id)->exists()) {
+            $downvote = $answer->downvotes()->where('user_id', $user_id)->delete();
+            return null;
+        }
+
+        $downvote = new Downvote(['user_id' => $user_id]);
+
+        $answer->downvotes()->save($downvote);
+
+        return $downvote;
+    }
 }

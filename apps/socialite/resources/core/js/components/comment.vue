@@ -8,11 +8,14 @@
 		</span>
 		<p>{{ comment.body }}</p>
 		<div class="card-action u-border--only-bottom">
-			<a @click="upvote">Upvote | {{ upvoteCount }}</a>
-			<a @click="downvote">Downvote</a>
-			<a @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
+	    	<span style="cursor: pointer;" @click="upvote">
+		    	<span style="padding-right: 5px;">{{ upvoteCount }}</span>
+		    	<a :style="! comment.upvoted ? 'color: grey;' : ''" class="material-icons dp48">thumb_up</a>
+	    	</span>
+	    	<a :style="! comment.downvoted ? 'color: grey;' : ''" @click="downvote" class="material-icons dp48">thumb_down</a>
+	    	<a style="color: grey;" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
+			<comment-list :comments-url="getUrl('comments', comment)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
 		</div>
-		 <comment-list :comments-url="getUrl('comments', comment)" @comment-posted="updateCommentCount()" v-if="showComments"></comment-list> 
 	</li>
 </template>
 
@@ -48,9 +51,12 @@ export default {
 				.then(function (response) {
 				    if(response.status == 201) {
 				        _this.upvoteCount += 1;
+				    	_this.comment.upvoted = true;
+				    	_this.comment.downvoted = false;
 				    }
 				    if(response.status == 204) {
 				        _this.upvoteCount -= 1;
+				    	_this.comment.upvoted = false;
 				    }
 				    _this.requesting = false;
 				})
@@ -71,13 +77,14 @@ export default {
 
 			axios.post(this.getUrl('downvotes', this.comment), {})
 				.then(function (response) {
-				    if(response.status == 201) {
-				        if(response.status == 201) {
-				        	_this.upvoteCount -= 1;
-				        }
-				        if(response.status == 204) {
-					        _this.upvoteCount += 1;
-					    }
+			        if(response.status == 201) {
+			        	if(_this.comment.upvoted)
+			        		_this.upvoteCount -= 1;
+				    	_this.comment.upvoted = false;
+				    	_this.comment.downvoted = true;
+			        }
+			        if(response.status == 204) {
+				    	_this.comment.downvoted = false;
 				    }
 				    _this.requesting = false;
 				})

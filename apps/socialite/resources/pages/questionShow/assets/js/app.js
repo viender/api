@@ -12,7 +12,7 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('question-list', require('./components/question-list.vue'));
+Vue.component('question-list', require('viender_socialite/core/js/components/question-list.vue'));
 
 const feed = new Vue({
     el: '#app',

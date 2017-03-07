@@ -2,10 +2,11 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Models\Upvote;
-use Viender\Socialite\Models\Comment;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use Viender\Socialite\Models\Upvote;
+use Viender\Socialite\Models\Comment;
+use Viender\Socialite\Events\UpvotableUpvoted;
 use Viender\Socialite\Repositories\UpvotesRepository;
 use Viender\Socialite\Transformers\UpvoteTransformer;
 
@@ -57,7 +58,12 @@ class CommentUpvotesController extends ApiController
      */
     public function store(Request $request, Comment $comment)
     {
-        if($this->upvotes->toggle(\Auth::user()->id, $comment)){
+        if($upvote = $this->upvotes->toggle($comment)){
+            event(new UpvotableUpvoted($upvote));
+
+            // If we don't want to use Illuminate\Foundation, use this to fire an event.
+            // Container::getInstance()->make('events')->fire(new UpvotableUpvoted($upvote));
+
             return $this->respondCreated('Upvoted');
         }
 
