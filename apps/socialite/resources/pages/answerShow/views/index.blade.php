@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-hello
+{{ $answer }}
 @endsection
 
 @section('head-styles')

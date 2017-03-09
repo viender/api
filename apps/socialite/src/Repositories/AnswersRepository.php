@@ -27,6 +27,7 @@ class AnswersRepository extends Repository
     {
         $data['user_id'] = $user_id;
         $data['title'] = '';
+        $data['slug'] = \App\User::find($user_id)->username;
 
         return $answerable->answers()->save(new Answer($data));
     }

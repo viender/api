@@ -66,3 +66,11 @@
     </div>
 </div>
 @endsection
+
+@section('head-styles')
+<link rel="stylesheet" href={{ mix('css/app.css') }}>
+@endsection
+
+@section('head-scripts')
+<script src={{ mix('js/app.js') }} aysnc="true"></script>
+@endsection

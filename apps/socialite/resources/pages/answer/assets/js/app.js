@@ -1,4 +1,4 @@
-import store from './store/index';
+import store from './store';
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -20,6 +20,7 @@ Vue.component('comment-create-form', require('viender_socialite/core/js/componen
 Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
 Vue.component('question', require('viender_socialite/core/js/components/question.vue'));
 Vue.component('question-list', require('viender_socialite/core/js/components/question-list.vue'));
+Vue.component('answer-create-form', require('viender_socialite/core/js/components/answer-create-form.vue'));
 
 const feed = new Vue({
     el: '#app',

@@ -2,7 +2,7 @@
 	<nav>
 		<div class="nav-wrapper">
 			<a class="brand-logo" href="{{ url('/') }}">
-			{{ config('app.name', 'Laravel') }}
+			{{-- {{ config('app.name', 'Laravel') }} --}}
 			</a>
 		
 			<ul class="right">

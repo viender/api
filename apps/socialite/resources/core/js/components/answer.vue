@@ -14,7 +14,7 @@
 							</span>
 						</li>
 					</ul>
-					<p>{{ answer.body }}</p>
+					<div class="answer-content" v-html="answer.body"></div>
 				</div>
 				<div class="card-action u-border--only-bottom">
 			    	<span style="cursor: pointer;" @click="upvote">

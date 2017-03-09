@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "bootstrap-sass": "^3.3.5",
+    "codemirror": "^5.24.2",
     "dotenv": "^4.0.0",
     "materialize-css": "^0.98.0",
     "summernote": "^0.8.2",

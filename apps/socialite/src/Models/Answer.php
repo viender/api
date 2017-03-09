@@ -18,9 +18,19 @@ class Answer extends Model implements Upvotable, Commentable
      * @var array
      */
     protected $fillable = [
-        'user_id', 'question_id', 'title', 'body',
+        'user_id', 'slug', 'question_id', 'title', 'body',
     ];
-    
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
     public function user() 
     {
         return $this->belongsTo('App\User');

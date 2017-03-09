@@ -44,7 +44,7 @@ class Urls
 
             $this->router->get('questions/{question}', 'QuestionShowController@show')->name('web.viender.socialite.pages.questionShow');
 
-            $this->router->get('questions/{question}/answer/{answer}', 'AnswerShowController@show')->name('web.viender.socialite.pages.answerShow');
+            $this->router->get('questions/{question}/answers/{answer}', 'AnswerShowController@show')->name('web.viender.socialite.pages.answerShow');
         });
     }
 

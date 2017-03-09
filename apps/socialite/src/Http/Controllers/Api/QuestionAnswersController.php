@@ -2,12 +2,13 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Models\Answer;
-use Viender\Socialite\Models\Question;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use Viender\Socialite\Models\Answer;
+use Viender\Socialite\Models\Question;
 use Viender\Socialite\Repositories\AnswersRepository;
 use Viender\Socialite\Transformers\AnswerTransformer;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class QuestionAnswersController extends ApiController
 {
@@ -57,6 +58,10 @@ class QuestionAnswersController extends ApiController
      */
     public function store(Request $request, Question $question)
     {
+        if($question->answers()->where('user_id', \Auth::user()->id)->exists()) {
+            return $this->setStatusCode(400)->respondWithMessage("Cannot post multiple answer for one question.");
+        }
+
         $answer = $this->answers->createByUser(\Auth::user()->id, $question, $request->all());
 
         return $this->respond(new Item($answer, new AnswerTransformer));
@@ -80,7 +85,7 @@ class QuestionAnswersController extends ApiController
      */
     public function show(Question $question, $answer)
     {
-        $answer = $question->answers()->findOrFail($answer);
+        $answer = $question->answers()->where('slug', $answer)->firstOrFail();
 
         return $this->respond(new Item($answer, new AnswerTransformer));
     }

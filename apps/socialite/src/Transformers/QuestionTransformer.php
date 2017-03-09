@@ -34,6 +34,7 @@ class QuestionTransformer extends Transformer
             'body'          => $question->body,
             'upvote_count'  => $question->upvotes()->count(),
             'comment_count' => $question->comments()->count(),
+            'answered'      => \Auth::user() ? $question->answers()->where('user_id', \Auth::user()->id)->exists() : false,
             'links'   => [
                 [
                     'rel' => 'self',

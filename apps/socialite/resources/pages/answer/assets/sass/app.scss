@@ -1,3 +1,21 @@
+@import "bootstrap";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/summernote/dist/summernote";
+
 @import "node_modules/materialize-css/sass/materialize";
 @import "variables";
 @import "~viender_core/sass/core";
+
+.z-depth-4, .modal {
+	box-shadow: none;
+	background: none;
+}
+
+.note-editing-area ul {
+	padding-left: 40px;
+	list-style-type: disc;
+}
+
+.note-editing-area ul li {
+	list-style-type: disc;
+}

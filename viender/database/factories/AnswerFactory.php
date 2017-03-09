@@ -20,7 +20,10 @@ $factory->define(\Viender\Socialite\Models\Answer::class, function (Faker\Genera
     return [
         'user_id' => $faker->randomElement($users),
         'question_id' => $faker->randomElement($questions),
-        'title' => '',
+        'slug' => function(array $me) {
+        	$user = App\User::find($me['user_id']);
+            return $user->username;
+        },
         'body' => implode(" ", $faker->paragraphs(3)),
     ];
 });

@@ -38,20 +38,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-4 control-label">Username</label>
-
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="viender.com/(username)" required autofocus>
-
-                                @if ($errors->has('username'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
@@ -101,4 +87,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('head-styles')
+<link rel="stylesheet" href={{ mix('css/app.css') }}>
+@endsection
+
+@section('head-scripts')
+<script src={{ mix('js/app.js') }} aysnc="true"></script>
 @endsection

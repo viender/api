@@ -2,9 +2,10 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Models\Question;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use Viender\Socialite\Models\Answer;
+use Viender\Socialite\Models\Question;
 use Viender\Socialite\Repositories\QuestionsRepository;
 use Viender\Socialite\Transformers\QuestionTransformer;
 use Viender\Utilities\Controllers\Handlers\BasicHandler;
@@ -36,7 +37,11 @@ class QuestionsController extends ApiController
      */
     public function index()
     {
-        return $this->handler->index();
+        $answered_ids = Answer::where('user_id', \Auth::user()->id)->pluck('question_id');
+
+        $paginator = Question::whereNotIn('id', $answered_ids)->orderBy('created_at', 'desc')->paginate();
+
+        return $this->respondWithPagination($paginator, new QuestionTransformer);
     }
 
     /**

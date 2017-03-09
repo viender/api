@@ -5,11 +5,14 @@
 				<div class="card-content">
 					<span class="card-title"><h4><a :href="getUrl('self_html', question)">{{ question.title }}</a></h4></span>
 				</div>
-				<div class="card-action u-border--only-bottom">
-			    	<button class="btn btn-default" @click="upvote">Upvote | {{ upvoteCount }}</button>
+				<div class="card-action u-border--only-bottom" v-if=" ! question.answered">
+			    	<button class="btn btn-default" @click="answer()">Answer</button>
 			    	<a @click="downvote">Downvote</a>
 			    	<a @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
 					<comment-list :comments-url="getUrl('comments', question)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
+				</div>
+				<div class="card-action u-border--only-bottom" v-else>
+					Answered
 				</div>
 			</div>
 		</div>
@@ -27,7 +30,10 @@
         		requesting: false,
         		upvoteCount: 0,
         		commentCount: 0,
-        		showComments: false
+        		showComments: false,
+        		answerText: {
+        			body: null
+        		}
         	}
         },
 
@@ -37,29 +43,30 @@
         },
 
         methods: {
-        	upvote() {
-        		var _this = this;
+        	answer() {
+        		this.$emit('btn-answer-clicked', { question: this.question, answerText: this.answerText});
+    //     		var _this = this;
 
-        		if(_this.requesting) return;
+    //     		if(_this.requesting) return;
 
-        		_this.requesting = true;
+    //     		_this.requesting = true;
 
-				axios.post(this.getUrl('upvotes', this.question), {})
-					.then(function (response) {
-					    if(response.status == 201) {
-					        _this.upvoteCount += 1;
-					    }
-					    if(response.status == 204) {
-					        _this.upvoteCount -= 1;
-					    }
-					    _this.requesting = false;
-					})
-					.catch(function (error) {
-					    if(error.response.status == 401) {
-					    	document.location = url('login');
-					    }
-					    _this.requesting = false;
-				});
+				// axios.post(this.getUrl('upvotes', this.question), {})
+				// 	.then(function (response) {
+				// 	    if(response.status == 201) {
+				// 	        _this.upvoteCount += 1;
+				// 	    }
+				// 	    if(response.status == 204) {
+				// 	        _this.upvoteCount -= 1;
+				// 	    }
+				// 	    _this.requesting = false;
+				// 	})
+				// 	.catch(function (error) {
+				// 	    if(error.response.status == 401) {
+				// 	    	document.location = url('login');
+				// 	    }
+				// 	    _this.requesting = false;
+				// });
         	},
 
         	downvote() {

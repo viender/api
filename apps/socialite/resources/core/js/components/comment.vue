@@ -6,7 +6,7 @@
 				<a class="profile-link" :href="url('users/' + comment.owner.login)">{{ comment.owner.name }}</a>
 			</strong>
 		</span>
-		<p>{{ comment.body }}</p>
+		<p style="padding-right: 5px;">{{ comment.body }}</p>
 		<div class="card-action u-border--only-bottom">
 	    	<span style="cursor: pointer;" @click="upvote">
 		    	<span style="padding-right: 5px;">{{ upvoteCount }}</span>
