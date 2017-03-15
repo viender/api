@@ -7,10 +7,10 @@
 
 window.url = function url(path) {
     if(path[0] === '/') {
-        return config.app.url + path;
+        return treasure.env.url + path;
     }
 
-    return config.app.url + '/' + path;
+    return treasure.env.url + '/' + path;
 }
 
 /**
@@ -21,8 +21,14 @@ window.url = function url(path) {
  */
 window.api = function api(path) {
     if(path[0] === '/') {
-        return config.api_url + path;
+        return treasure.env.api_url + path;
     }
 
-    return config.api_url + '/' + path;
+    return treasure.env.api_url + '/' + path;
+}
+
+window.getUrl = function getUrl(rel, obj) {
+	return obj.links.filter(function(link) {
+		return link.rel == rel;
+	})[0].url;
 }

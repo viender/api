@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 167);
+/******/ 	return __webpack_require__(__webpack_require__.s = 168);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21466,19 +21466,6 @@ module.exports = function spread(callback) {
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = {
-    app: {
-        env: "local",
-        url: "http://viender.dev",
-        api_url: "http://api.viender.dev",
-        domain: "viender.dev"
-    }
-};
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
 /* WEBPACK VAR INJECTION */(function($) {/**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean
@@ -21518,10 +21505,9 @@ window.axios.defaults.headers.common = {
 // });
 
 /**
- * Config
+ * Treasure
  */
-
-window.config = __webpack_require__(30);
+window.treasure.env = __webpack_require__(31);
 
 /**
  * Helpers
@@ -21549,7 +21535,30 @@ $(document).ready(function () {
 if (false) {
   require('./services/googleAnalytics');
 }
+
+/**
+ * Get Authenticated user
+ */
+var event = new Event('userFetched');
+
+axios.get(api('/user'), {}).then(function (response) {
+  treasure.user = response.data;
+  document.dispatchEvent(event);
+}).catch(function (error) {
+  console.log(error);
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = {
+    env: "local",
+    url: "http://viender.dev",
+    api_url: "http://api.viender.dev",
+    domain: "viender.dev"
+};
 
 /***/ }),
 /* 32 */
@@ -21563,11 +21572,11 @@ if (false) {
  */
 
 window.url = function url(path) {
-    if (path[0] === '/') {
-        return config.app.url + path;
-    }
+  if (path[0] === '/') {
+    return treasure.env.url + path;
+  }
 
-    return config.app.url + '/' + path;
+  return treasure.env.url + '/' + path;
 };
 
 /**
@@ -21577,11 +21586,17 @@ window.url = function url(path) {
  * @return String
  */
 window.api = function api(path) {
-    if (path[0] === '/') {
-        return config.api_url + path;
-    }
+  if (path[0] === '/') {
+    return treasure.env.api_url + path;
+  }
 
-    return config.api_url + '/' + path;
+  return treasure.env.api_url + '/' + path;
+};
+
+window.getUrl = function getUrl(rel, obj) {
+  return obj.links.filter(function (link) {
+    return link.rel == rel;
+  })[0].url;
 };
 
 /***/ }),
@@ -32498,7 +32513,9 @@ module.exports = g;
 
 
 /***/ }),
-/* 37 */
+/* 37 */,
+/* 38 */,
+/* 39 */
 /***/ (function(module, exports) {
 
 /*
@@ -32554,7 +32571,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -32573,7 +32590,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(39)
+var listToStyles = __webpack_require__(41)
 
 /*
 type StyleObject = {
@@ -32790,7 +32807,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports) {
 
 /**
@@ -32823,8 +32840,6 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 40 */,
-/* 41 */,
 /* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -32906,23 +32921,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(37)();
+exports = module.exports = __webpack_require__(39)();
 exports.push([module.i, "\ntr {\n\theight: 90px;\n}\n.tutoring-row {\n\tcursor: pointer;\n}\n", ""]);
 
 /***/ }),
-/* 46 */,
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(53)
+__webpack_require__(52)
 
 var Component = __webpack_require__(3)(
   /* script */
   __webpack_require__(42),
   /* template */
-  __webpack_require__(50),
+  __webpack_require__(49),
   /* scopeId */
   null,
   /* cssModules */
@@ -32949,14 +32963,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(3)(
   /* script */
   __webpack_require__(43),
   /* template */
-  __webpack_require__(51),
+  __webpack_require__(50),
   /* scopeId */
   null,
   /* cssModules */
@@ -32983,8 +32997,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 49 */,
-/* 50 */
+/* 48 */,
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -33047,7 +33061,7 @@ if (false) {
 }
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -33074,8 +33088,8 @@ if (false) {
 }
 
 /***/ }),
-/* 52 */,
-/* 53 */
+/* 51 */,
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -33085,7 +33099,7 @@ var content = __webpack_require__(45);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(38)("b1a082da", content, false);
+var update = __webpack_require__(40)("b1a082da", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -33101,6 +33115,7 @@ if(false) {
 }
 
 /***/ }),
+/* 53 */,
 /* 54 */,
 /* 55 */,
 /* 56 */,
@@ -33118,13 +33133,13 @@ if(false) {
 /* 68 */,
 /* 69 */,
 /* 70 */,
-/* 71 */,
-/* 72 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(31);
+__webpack_require__(30);
 
 /***/ }),
+/* 72 */,
 /* 73 */,
 /* 74 */,
 /* 75 */,
@@ -33155,9 +33170,7 @@ __webpack_require__(31);
 /* 100 */,
 /* 101 */,
 /* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -33167,7 +33180,7 @@ __webpack_require__(31);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(72);
+__webpack_require__(71);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33175,14 +33188,16 @@ __webpack_require__(72);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('tutoring-table', __webpack_require__(48));
-Vue.component('tutoring-row', __webpack_require__(47));
+Vue.component('tutoring-table', __webpack_require__(47));
+Vue.component('tutoring-row', __webpack_require__(46));
 
 var feed = new Vue({
   el: '#app'
 });
 
 /***/ }),
+/* 104 */,
+/* 105 */,
 /* 106 */,
 /* 107 */,
 /* 108 */,
@@ -33244,10 +33259,11 @@ var feed = new Vue({
 /* 164 */,
 /* 165 */,
 /* 166 */,
-/* 167 */
+/* 167 */,
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(105);
+module.exports = __webpack_require__(103);
 
 
 /***/ })

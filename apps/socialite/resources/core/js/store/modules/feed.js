@@ -1,4 +1,6 @@
-module.exports = {
+import * as types from '../mutation-types';
+
+export default {
     namespaced: true,
     
     state: { 
@@ -6,6 +8,8 @@ module.exports = {
         requesting: false,
         answers: [],
         feedUrls:{},
+        showAnswerModal: false,
+        showedAnswer: null,
     },
 
     mutations: { 
@@ -23,6 +27,21 @@ module.exports = {
 
         updateRequesting(state, requesting) {
             state.requesting = requesting;
+        },
+
+        [types.SET_SHOW_ANSWER_SHOW_MODAL] (state, showAnswerModal) {
+            if(showAnswerModal) {
+                document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+                
+            } else {
+                document.getElementsByTagName('body')[0].style.overflow = 'scroll';
+            }
+            
+            state.showAnswerModal = showAnswerModal;
+        },
+
+        [types.SET_SHOWED_ANSWER] (state, showedAnswer) {
+            state.showedAnswer = showedAnswer;
         }
     },
 
@@ -47,7 +66,31 @@ module.exports = {
                 console.log(error);
                 commit('updateRequesting', false);
             });
-        }
+        },
 
+        setShowedAnswer({ state, commit, rootState }, showedAnswer) {
+            if(showedAnswer ? ! showedAnswer.body : false) {
+                if(state.requesting) return;
+
+                commit('updateRequesting', true);
+
+                axios.get(getUrl('self', showedAnswer), {
+                    params: {
+                        with: ['owner', 'question'],
+                        page: state.page
+                    }
+                })
+                .then(function (response) {
+                    showedAnswer.body = response.data.body;
+                    commit('updateRequesting', false);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    commit('updateRequesting', false);
+                });
+            }
+
+            commit(types.SET_SHOWED_ANSWER, showedAnswer);
+        }
     }
 }

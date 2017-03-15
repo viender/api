@@ -17,10 +17,11 @@ require('./bootstrap');
 Vue.component('comment', require('viender_socialite/core/js/components/comment.vue'));
 Vue.component('comment-list', require('viender_socialite/core/js/components/comment-list.vue'));
 Vue.component('comment-create-form', require('viender_socialite/core/js/components/comment-create-form.vue'));
-Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
+Vue.component('answer-preview', require('viender_socialite/core/js/components/answer-preview.vue'));
 Vue.component('question', require('viender_socialite/core/js/components/question.vue'));
 Vue.component('question-list', require('viender_socialite/core/js/components/question-list.vue'));
 Vue.component('answer-create-form', require('viender_socialite/core/js/components/answer-create-form.vue'));
+Vue.component('answer-create-modal', require('viender_socialite/core/js/components/answer-create-modal.vue'));
 
 const feed = new Vue({
     el: '#app',

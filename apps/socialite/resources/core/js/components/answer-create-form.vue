@@ -1,6 +1,19 @@
 <template>
 	<div>
-		<div ref="editor"></div>
+		<div style="padding-bottom: 20px;">
+			<h4><a :href="question ? getUrl('self_html', question) : ''">{{ question ? question.title : '' }}</a></h4>
+			<div>{{ question ? question.body : '' }}</div>
+			<hr>
+			<ul class="collection">
+				<li class="collection-item avatar">
+					<img :src="user ? getUrl('avatar', user) : ''" alt="" class="circle">
+					<span class="card-title">
+						{{ user ? user.name : '' }}
+					</span>
+				</li>
+			</ul>
+		</div>
+		<div class="answer-create-editor" ref="editor"></div>
 		<button class="btn btn-default" type="submit" @click="answer($event)">Submit</button>
 	</div>
 </template>
@@ -14,8 +27,17 @@ export default {
 
 	data() {
 		return {
-			requesting: false
+			requesting: false,
+			user: null
 		}
+	},
+
+	created() {
+		var _this = this;
+
+		document.addEventListener('userFetched', function () {
+		    _this.user = window.treasure.user;
+		});
 	},
 
     computed: {
@@ -49,6 +71,8 @@ export default {
 				}
 			});
 		});
+
+		this.$store.commit('editor/' + types.SET_EDITOR_ELEMENT, $(_this.$refs.editor));
 	},
 
 	methods: {
@@ -68,7 +92,7 @@ export default {
 				    if(response.status == 200) {
 				        _this.$emit('answer-posted', response);
 				        _this.$store.commit('editor/' + types.UPDATE_EDITOR_CONTENT, null);
-				        _this.$store.commit('answer/' + types.SET_AS_ANSWERED, _this.question);
+				        _this.$store.commit('questionList/' + types.SET_AS_ANSWERED, _this.question);
 				        $(_this.$refs.editor).summernote('code', '');
 				        console.log(_this.getUrl('self_html', response.data));
 				        // document.location = _this.getUrl('self_html', response.data);

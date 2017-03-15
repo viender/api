@@ -77,4 +77,18 @@ class AnswersRepository extends Repository
 
         return $downvote;
     }
+
+    public function getPreview(Answer $answer)
+    {
+        if(strlen($answer) > 255) {
+            return substr(strip_tags($answer->body), 0, 255) . '...';
+        }
+
+        return strip_tags($answer->body);
+    }
+
+    public function getPreviewImage(Answer $answer)
+    {
+        return null;
+    }
 }

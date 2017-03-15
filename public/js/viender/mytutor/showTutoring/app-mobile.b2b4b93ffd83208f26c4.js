@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 170);
+/******/ 	return __webpack_require__(__webpack_require__.s = 174);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21466,19 +21466,6 @@ module.exports = function spread(callback) {
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = {
-    app: {
-        env: "local",
-        url: "http://viender.dev",
-        api_url: "http://api.viender.dev",
-        domain: "viender.dev"
-    }
-};
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
 /* WEBPACK VAR INJECTION */(function($) {/**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean
@@ -21518,10 +21505,9 @@ window.axios.defaults.headers.common = {
 // });
 
 /**
- * Config
+ * Treasure
  */
-
-window.config = __webpack_require__(30);
+window.treasure.env = __webpack_require__(31);
 
 /**
  * Helpers
@@ -21549,7 +21535,30 @@ $(document).ready(function () {
 if (false) {
   require('./services/googleAnalytics');
 }
+
+/**
+ * Get Authenticated user
+ */
+var event = new Event('userFetched');
+
+axios.get(api('/user'), {}).then(function (response) {
+  treasure.user = response.data;
+  document.dispatchEvent(event);
+}).catch(function (error) {
+  console.log(error);
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = {
+    env: "local",
+    url: "http://viender.dev",
+    api_url: "http://api.viender.dev",
+    domain: "viender.dev"
+};
 
 /***/ }),
 /* 32 */
@@ -21563,11 +21572,11 @@ if (false) {
  */
 
 window.url = function url(path) {
-    if (path[0] === '/') {
-        return config.app.url + path;
-    }
+  if (path[0] === '/') {
+    return treasure.env.url + path;
+  }
 
-    return config.app.url + '/' + path;
+  return treasure.env.url + '/' + path;
 };
 
 /**
@@ -21577,11 +21586,17 @@ window.url = function url(path) {
  * @return String
  */
 window.api = function api(path) {
-    if (path[0] === '/') {
-        return config.api_url + path;
-    }
+  if (path[0] === '/') {
+    return treasure.env.api_url + path;
+  }
 
-    return config.api_url + '/' + path;
+  return treasure.env.api_url + '/' + path;
+};
+
+window.getUrl = function getUrl(rel, obj) {
+  return obj.links.filter(function (link) {
+    return link.rel == rel;
+  })[0].url;
 };
 
 /***/ }),
@@ -32498,7 +32513,9 @@ module.exports = g;
 
 
 /***/ }),
-/* 37 */
+/* 37 */,
+/* 38 */,
+/* 39 */
 /***/ (function(module, exports) {
 
 /*
@@ -32554,7 +32571,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -32573,7 +32590,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(39)
+var listToStyles = __webpack_require__(41)
 
 /*
 type StyleObject = {
@@ -32790,7 +32807,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports) {
 
 /**
@@ -32823,19 +32840,281 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
+/* 42 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+	props: ['tutoring', 'selfUrl', 'bidUrl', 'bidded'],
+
+	data: function data() {
+		return {
+			mouseover: false
+		};
+	},
+
+
+	methods: {
+		hover: function hover() {
+			this.mouseover = true;
+		},
+		leave: function leave() {
+			this.mouseover = false;
+		},
+		click: function click() {
+			window.location = this.selfUrl;
+		}
+	}
+};
+
+/***/ }),
+/* 43 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    props: ['tutorings']
+};
+
+/***/ }),
 /* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(39)();
+exports.push([module.i, "\ntr {\n\theight: 90px;\n}\n.tutoring-row {\n\tcursor: pointer;\n}\n", ""]);
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(52)
+
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(42),
+  /* template */
+  __webpack_require__(49),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/nugraha/Code/viender/apps/mytutor/resources/core/js/components/tutoring-row.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] tutoring-row.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-17988bd8", Component.options)
+  } else {
+    hotAPI.reload("data-v-17988bd8", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(43),
+  /* template */
+  __webpack_require__(50),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/nugraha/Code/viender/apps/mytutor/resources/core/js/components/tutoring-table.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] tutoring-table.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1fb7724c", Component.options)
+  } else {
+    hotAPI.reload("data-v-1fb7724c", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
 /* 48 */,
-/* 49 */,
-/* 50 */,
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('tr', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.tutoring ? (_vm.tutoring.auction ? true : false) : false),
+      expression: "tutoring ? (tutoring.auction ? true : false) : false"
+    }],
+    staticClass: "tutoring-row",
+    on: {
+      "mouseover": function($event) {
+        _vm.hover()
+      },
+      "mouseleave": function($event) {
+        _vm.leave()
+      },
+      "click": function($event) {
+        _vm.click()
+      }
+    }
+  }, [_c('td', {
+    attrs: {
+      "width": "50%"
+    }
+  }, [_c('div', [_vm._v("\n            " + _vm._s(_vm.tutoring ? (_vm.tutoring.auction ? _vm.tutoring.auction.title : '') : '') + "\n        ")]), _vm._v(" "), _c('div', [_vm._v("\n            " + _vm._s(_vm.tutoring ? (_vm.tutoring.auction ? _vm.tutoring.auction.body : '') : '') + "\n        ")])]), _vm._v(" "), _c('td', {
+    attrs: {
+      "width": "15%"
+    }
+  }, [_vm._v(_vm._s(_vm.tutoring ? (_vm.tutoring.auction ? _vm.tutoring.auction.bids.length : '') : ''))]), _vm._v(" "), _c('td', {
+    attrs: {
+      "width": "15%"
+    }
+  }, [_vm._v(_vm._s(_vm.tutoring ? _vm.tutoring.number_of_week : 0))]), _vm._v(" "), _c('td', {
+    attrs: {
+      "width": "20%"
+    }
+  }, [_c('div', [_vm._v(_vm._s('Rp. ' + new Intl.NumberFormat('id-ID').format(_vm.tutoring ? (_vm.tutoring.auction ? _vm.tutoring.auction.price : 0) : 0)))]), _vm._v(" "), (!_vm.bidded) ? _c('a', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.mouseover),
+      expression: "mouseover"
+    }],
+    staticClass: "btn btn-default",
+    attrs: {
+      "href": _vm.bidUrl
+    }
+  }, [_vm._v("Bid now")]) : _c('span', {
+    staticClass: "label label-success"
+  }, [_vm._v("Bidded")])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-17988bd8", module.exports)
+  }
+}
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('table', {
+    staticClass: "table table-hover table-responsive"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.tutorings.data), function(tutoring) {
+    return _c('tutoring-row', {
+      attrs: {
+        "tutoring": tutoring
+      }
+    })
+  }))])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', {
+    staticClass: "thead-inverse"
+  }, [_c('tr', [_c('th', [_vm._v("Title")]), _vm._v(" "), _c('th', [_vm._v("Bids")]), _vm._v(" "), _c('th', [_vm._v("Number of week")]), _vm._v(" "), _c('th', [_vm._v("Price")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-1fb7724c", module.exports)
+  }
+}
+
+/***/ }),
 /* 51 */,
-/* 52 */,
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(45);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(40)("b1a082da", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-17988bd8!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./tutoring-row.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-17988bd8!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./tutoring-row.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
 /* 53 */,
 /* 54 */,
 /* 55 */,
@@ -32856,13 +33135,13 @@ module.exports = function listToStyles (parentId, list) {
 /* 70 */,
 /* 71 */,
 /* 72 */,
-/* 73 */
+/* 73 */,
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(31);
+__webpack_require__(30);
 
 /***/ }),
-/* 74 */,
 /* 75 */,
 /* 76 */,
 /* 77 */,
@@ -32896,7 +33175,8 @@ __webpack_require__(31);
 /* 105 */,
 /* 106 */,
 /* 107 */,
-/* 108 */
+/* 108 */,
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -32906,7 +33186,7 @@ __webpack_require__(31);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(73);
+__webpack_require__(74);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32914,14 +33194,14 @@ __webpack_require__(73);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('bid-row', __webpack_require__(147));
+Vue.component('tutoring-table', __webpack_require__(47));
+Vue.component('tutoring-row', __webpack_require__(46));
 
-var postTutoring = new Vue({
+var feed = new Vue({
   el: '#app'
 });
 
 /***/ }),
-/* 109 */,
 /* 110 */,
 /* 111 */,
 /* 112 */,
@@ -32949,51 +33229,7 @@ var postTutoring = new Vue({
 /* 134 */,
 /* 135 */,
 /* 136 */,
-/* 137 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = {
-	props: ['bid', 'selfUrl', 'myTutoring', 'accepted'],
-
-	data: function data() {
-		return {
-			mouseover: false
-		};
-	},
-
-
-	methods: {
-		hover: function hover() {
-			this.mouseover = true;
-		},
-		leave: function leave() {
-			this.mouseover = false;
-		},
-		showBid: function showBid() {
-			if (!this.myTutoring) return;
-
-			window.location = this.selfUrl;
-		},
-		acceptBid: function acceptBid() {}
-	}
-};
-
-/***/ }),
+/* 137 */,
 /* 138 */,
 /* 139 */,
 /* 140 */,
@@ -33001,137 +33237,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 142 */,
 /* 143 */,
 /* 144 */,
-/* 145 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(37)();
-exports.push([module.i, "\ntr {\n\theight: 90px;\n}\n.bid-row {\n\tcursor: pointer;\n}\n", ""]);
-
-/***/ }),
+/* 145 */,
 /* 146 */,
-/* 147 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(159)
-
-var Component = __webpack_require__(3)(
-  /* script */
-  __webpack_require__(137),
-  /* template */
-  __webpack_require__(154),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/home/nugraha/Code/viender/apps/mytutor/resources/core/js/components/bid-row.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] bid-row.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-81fd0c0a", Component.options)
-  } else {
-    hotAPI.reload("data-v-81fd0c0a", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
+/* 147 */,
 /* 148 */,
 /* 149 */,
 /* 150 */,
 /* 151 */,
 /* 152 */,
 /* 153 */,
-/* 154 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', {
-    class: _vm.myTutoring ? 'bid-row' : '',
-    on: {
-      "mouseover": function($event) {
-        _vm.hover()
-      },
-      "mouseleave": function($event) {
-        _vm.leave()
-      },
-      "click": function($event) {
-        _vm.showBid()
-      }
-    }
-  }, [_c('td', {
-    attrs: {
-      "width": "80%"
-    }
-  }, [_vm._v(_vm._s(_vm.bid.bidder.first_name + ' ' + _vm.bid.bidder.last_name))]), _vm._v(" "), _c('td', {
-    attrs: {
-      "width": "20%"
-    }
-  }, [_c('div', [_c('span', [_vm._v("Rp. ")]), _c('span', [_vm._v(_vm._s(_vm.bid.offered_price))])]), _vm._v(" "), (_vm.myTutoring) ? _c('button', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.mouseover),
-      expression: "mouseover"
-    }],
-    staticClass: "btn btn-default",
-    on: {
-      "click": function($event) {
-        _vm.acceptBid()
-      }
-    }
-  }, [_vm._v("Accept")]) : _vm._e()])])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-81fd0c0a", module.exports)
-  }
-}
-
-/***/ }),
+/* 154 */,
 /* 155 */,
 /* 156 */,
 /* 157 */,
 /* 158 */,
-/* 159 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(145);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(38)("0624c774", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-81fd0c0a!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./bid-row.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-81fd0c0a!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./bid-row.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
+/* 159 */,
 /* 160 */,
 /* 161 */,
 /* 162 */,
@@ -33142,10 +33262,14 @@ if(false) {
 /* 167 */,
 /* 168 */,
 /* 169 */,
-/* 170 */
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(108);
+module.exports = __webpack_require__(109);
 
 
 /***/ })

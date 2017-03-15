@@ -8,6 +8,7 @@ export default {
         requesting: false,
         questions: [],
         questionUrl:{},
+        showAnswerCreateModal: false,
     },
 
     mutations: { 
@@ -33,7 +34,24 @@ export default {
 
         [types.UPDATE_REQUESTING] (state, requesting) {
             state.requesting = requesting;
-        }
+        },
+
+        [types.SET_SHOW_ANSWER_CREATE_MODAL] (state, showAnswerCreateModal) {
+            if(showAnswerCreateModal) {
+                document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+                
+            } else {
+                $('.answer-create-modal-overlay').scrollTop(0);
+                document.getElementsByTagName('body')[0].style.overflow = 'scroll';
+                $('.modal').modal('hide');
+            }
+
+            var imagePopOver = document.getElementsByClassName("note-image-popover")[0];
+
+            if(imagePopOver) imagePopOver.style.display = 'none';
+
+            state.showAnswerCreateModal = showAnswerCreateModal;
+        },
     },
 
     actions: {

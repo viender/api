@@ -5,6 +5,7 @@ namespace Viender\Socialite\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Socialite\Models\Answer;
+use Viender\Socialite\Models\Downvote;
 use Viender\Socialite\Models\Question;
 use Viender\Socialite\Repositories\QuestionsRepository;
 use Viender\Socialite\Transformers\QuestionTransformer;
@@ -39,7 +40,9 @@ class QuestionsController extends ApiController
     {
         $answered_ids = Answer::where('user_id', \Auth::user()->id)->pluck('question_id');
 
-        $paginator = Question::whereNotIn('id', $answered_ids)->orderBy('created_at', 'desc')->paginate();
+        $downvoted_ids = Downvote::where([['user_id', \Auth::user()->id], ['downvotable_type', Question::class]])->pluck('downvotable_id');
+
+        $paginator = Question::whereNotIn('id', $answered_ids->merge($downvoted_ids))->orderBy('created_at', 'desc')->paginate();
 
         return $this->respondWithPagination($paginator, new QuestionTransformer);
     }

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 168);
+/******/ 	return __webpack_require__(__webpack_require__.s = 173);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -11014,7 +11014,7 @@ var index_esm = {
 
 /***/ }),
 
-/***/ 106:
+/***/ 108:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -11024,7 +11024,7 @@ var index_esm = {
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(72);
+__webpack_require__(73);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -11032,7 +11032,7 @@ __webpack_require__(72);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('bid-create-form', __webpack_require__(91));
+Vue.component('bid-create-form', __webpack_require__(89));
 
 var showBid = new Vue({
   el: '#app'
@@ -11335,14 +11335,6 @@ module.exports = InterceptorManager;
 
 /***/ }),
 
-/***/ 168:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(106);
-
-
-/***/ }),
-
 /***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11426,6 +11418,14 @@ module.exports = function dispatchRequest(config) {
     return Promise.reject(reason);
   });
 };
+
+
+/***/ }),
+
+/***/ 173:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(108);
 
 
 /***/ }),
@@ -12076,20 +12076,6 @@ module.exports = function normalizeComponent (
 /***/ 30:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = {
-    app: {
-        env: "local",
-        url: "http://viender.dev",
-        api_url: "http://api.viender.dev",
-        domain: "viender.dev"
-    }
-};
-
-/***/ }),
-
-/***/ 31:
-/***/ (function(module, exports, __webpack_require__) {
-
 /* WEBPACK VAR INJECTION */(function($) {/**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean
@@ -12129,10 +12115,9 @@ window.axios.defaults.headers.common = {
 // });
 
 /**
- * Config
+ * Treasure
  */
-
-window.config = __webpack_require__(30);
+window.treasure.env = __webpack_require__(31);
 
 /**
  * Helpers
@@ -12160,7 +12145,31 @@ $(document).ready(function () {
 if (false) {
   require('./services/googleAnalytics');
 }
+
+/**
+ * Get Authenticated user
+ */
+var event = new Event('userFetched');
+
+axios.get(api('/user'), {}).then(function (response) {
+  treasure.user = response.data;
+  document.dispatchEvent(event);
+}).catch(function (error) {
+  console.log(error);
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 31:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = {
+    env: "local",
+    url: "http://viender.dev",
+    api_url: "http://api.viender.dev",
+    domain: "viender.dev"
+};
 
 /***/ }),
 
@@ -12175,11 +12184,11 @@ if (false) {
  */
 
 window.url = function url(path) {
-    if (path[0] === '/') {
-        return config.app.url + path;
-    }
+  if (path[0] === '/') {
+    return treasure.env.url + path;
+  }
 
-    return config.app.url + '/' + path;
+  return treasure.env.url + '/' + path;
 };
 
 /**
@@ -12189,11 +12198,17 @@ window.url = function url(path) {
  * @return String
  */
 window.api = function api(path) {
-    if (path[0] === '/') {
-        return config.api_url + path;
-    }
+  if (path[0] === '/') {
+    return treasure.env.api_url + path;
+  }
 
-    return config.api_url + '/' + path;
+  return treasure.env.api_url + '/' + path;
+};
+
+window.getUrl = function getUrl(rel, obj) {
+  return obj.links.filter(function (link) {
+    return link.rel == rel;
+  })[0].url;
 };
 
 /***/ }),
@@ -23365,10 +23380,10 @@ module.exports = function createError(message, config, code, response) {
 
 /***/ }),
 
-/***/ 72:
+/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(31);
+__webpack_require__(30);
 
 /***/ }),
 
@@ -23391,7 +23406,7 @@ module.exports = function bind(fn, thisArg) {
 
 /***/ }),
 
-/***/ 86:
+/***/ 82:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23465,6 +23480,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     }
 };
+
+/***/ }),
+
+/***/ 89:
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(82),
+  /* template */
+  __webpack_require__(96),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/nugraha/Code/viender/apps/mytutor/resources/core/js/components/bid-create-form.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] bid-create-form.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-494eec96", Component.options)
+  } else {
+    hotAPI.reload("data-v-494eec96", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 
@@ -32654,42 +32704,7 @@ module.exports = Vue$3;
 
 /***/ }),
 
-/***/ 91:
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(3)(
-  /* script */
-  __webpack_require__(86),
-  /* template */
-  __webpack_require__(95),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/home/nugraha/Code/viender/apps/mytutor/resources/core/js/components/bid-create-form.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] bid-create-form.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-494eec96", Component.options)
-  } else {
-    hotAPI.reload("data-v-494eec96", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 95:
+/***/ 96:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

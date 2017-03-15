@@ -1,12 +1,12 @@
 <template>
 	<div class="row u-margin--none">
 		<div class="col s12">
-			<div class="card u-margin--none u-box-shadow--none">
+			<div class="card u-margin--none u-box-shadow--none" v-if="! question.downvoted">
 				<div class="card-content">
 					<span class="card-title"><h4><a :href="getUrl('self_html', question)">{{ question.title }}</a></h4></span>
 				</div>
 				<div class="card-action u-border--only-bottom" v-if=" ! question.answered">
-			    	<button class="btn btn-default" @click="answer()">Answer</button>
+			    	<button class="btn btn-default" @click="showAnswerCreateModal()">Answer</button>
 			    	<a @click="downvote">Downvote</a>
 			    	<a @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
 					<comment-list :comments-url="getUrl('comments', question)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
@@ -15,94 +15,86 @@
 					Answered
 				</div>
 			</div>
+			<div class="card u-margin--none u-box-shadow--none" v-else>
+				<div class="card-content">
+					<strong>You downvoted this question</strong>
+					<p>Downvoting low-quality content improves Viender for everyone.</p>
+				</div>
+				<div class="card-action u-border--only-bottom" v-if=" ! question.answered">
+			    	<a @click="downvote">Undo</a>
+			    	<a @click="downvote">Report</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	export default {
-        props: ['question'],
+import * as types from '../store/mutation-types';
 
-        mixins: [require('viender_core/js/mixins/urlHelper')],
+export default {
+    props: ['question'],
 
-        data() {
-        	return {
-        		requesting: false,
-        		upvoteCount: 0,
-        		commentCount: 0,
-        		showComments: false,
-        		answerText: {
-        			body: null
-        		}
-        	}
-        },
+    mixins: [require('viender_core/js/mixins/urlHelper')],
 
-        mounted() {
-        	this.upvoteCount = this.question.upvote_count;
-        	this.commentCount = this.question.comment_count;
-        },
+    data() {
+    	return {
+    		requesting: false,
+    		upvoteCount: 0,
+    		commentCount: 0,
+    		showComments: false,
+    		answerText: {
+    			body: null
+    		}
+    	}
+    },
 
-        methods: {
-        	answer() {
-        		this.$emit('btn-answer-clicked', { question: this.question, answerText: this.answerText});
-    //     		var _this = this;
+    mounted() {
+    	this.upvoteCount = this.question.upvote_count;
+    	this.commentCount = this.question.comment_count;
+    },
 
-    //     		if(_this.requesting) return;
+    methods: {
+    	showAnswerCreateModal() {
+    		this.$store.commit('questionList/' + types.SET_SHOW_ANSWER_CREATE_MODAL, true);
+    		this.$store.dispatch('editor/setQuestion', {
+    			question: this.question,
+    			answerText: this.answerText
+    		});
+    	},
 
-    //     		_this.requesting = true;
+    	downvote() {
+    		var _this = this;
 
-				// axios.post(this.getUrl('upvotes', this.question), {})
-				// 	.then(function (response) {
-				// 	    if(response.status == 201) {
-				// 	        _this.upvoteCount += 1;
-				// 	    }
-				// 	    if(response.status == 204) {
-				// 	        _this.upvoteCount -= 1;
-				// 	    }
-				// 	    _this.requesting = false;
-				// 	})
-				// 	.catch(function (error) {
-				// 	    if(error.response.status == 401) {
-				// 	    	document.location = url('login');
-				// 	    }
-				// 	    _this.requesting = false;
-				// });
-        	},
+    		if(_this.requesting) return;
 
-        	downvote() {
-        		var _this = this;
+    		_this.requesting = true;
 
-        		if(_this.requesting) return;
+			axios.post(this.getUrl('downvotes', _this.question), {})
+				.then(function (response) {
+			        if(response.status == 201) {
+				    	_this.question.downvoted = true;
+			        }
+			        if(response.status == 204) {
+				    	_this.question.downvoted = false;
+				    }
+				    _this.requesting = false;
+				})
+				.catch(function (error) {
+				    if(error.response.status == 401) {
+				    	document.location = url('login');
+				    }
+				    _this.requesting = false;
+			});
+    	},
 
-        		_this.requesting = true;
+    	toggleComments() {
+    		this.showComments = !this.showComments;
+    	},
 
-				axios.post(this.getUrl('downvotes', this.question), {})
-					.then(function (response) {
-					    if(response.status == 201) {
-					        if(response.status == 201) {
-					        	_this.upvoteCount -= 1;
-					        }
-					        if(response.status == 204) {
-						        _this.upvoteCount += 1;
-						    }
-					    }
-					    _this.requesting = false;
-					})
-					.catch(function (error) {
-					    if(error.response.status == 401) {
-					    	document.location = url('login');
-					    }
-					    _this.requesting = false;
-				});
-        	},
-
-        	toggleComments() {
-        		this.showComments = !this.showComments;
-        	},
-
-        	incrementCommentCount() {
-        		this.commentCount++;
-        	}
-        }
+    	incrementCommentCount() {
+    		this.commentCount++;
+    	}
     }
+}
 </script>

@@ -2,17 +2,22 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Models\Answer;
 use Illuminate\Http\Request;
+use Viender\Socialite\Models\Answer;
+use Viender\Socialite\Repositories\AnswersRepository;
 use Viender\Socialite\Transformers\AnswerTransformer;
 use Viender\Utilities\Controllers\Handlers\BasicHandler;
+use Viender\Socialite\Transformers\AnswerPreviewTransformer;
 
 class AnswersController extends ApiController
 {
-    public function __construct()
+    protected $answers;
+
+    public function __construct(AnswersRepository $answers)
     {
         parent::__construct();
         $this->handler = new BasicHandler($this, Answer::class, AnswerTransformer::class);
+        $this->answers = $answers;
     }
 
     /** 
@@ -30,7 +35,8 @@ class AnswersController extends ApiController
      */
     public function index()
     {
-        return $this->handler->index();
+        $paginator = Answer::orderBy('created_at', 'desc')->paginate();
+        return $this->respondWithPagination($paginator, new AnswerPreviewTransformer($this->answers));
     }
 
     /**

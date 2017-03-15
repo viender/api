@@ -37,10 +37,9 @@ window.axios.defaults.headers.common = {
 // });
 
 /**
- * Config
+ * Treasure
  */
-
-window.config = require('./configs/viender');
+window.treasure.env = require('./env');
 
 /**
  * Helpers
@@ -68,3 +67,18 @@ $(document).ready(function() {
 if(process.env.APP_ENV == 'production') {
 	require('./services/googleAnalytics');
 }
+
+
+/**
+ * Get Authenticated user
+ */
+var event = new Event('userFetched');
+
+axios.get(api('/user'), {})
+.then(function (response) {
+    treasure.user = response.data;
+    document.dispatchEvent(event);
+})
+.catch(function (error) {
+    console.log(error);
+});

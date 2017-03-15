@@ -16,11 +16,10 @@
 			</div>
 		</div>
 		<div class="col s6">
-			<h5>Top stories for you</h5>
 			<question-list question-url="{{ route('api.viender.socialite.questions.index') }}"></question-list>
 		</div>
 		<div class="col s3">
-			dsfs
+			
 		</div>
 	</div>
 </div>

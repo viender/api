@@ -24,6 +24,6 @@ $factory->define(\Viender\Socialite\Models\Answer::class, function (Faker\Genera
         	$user = App\User::find($me['user_id']);
             return $user->username;
         },
-        'body' => implode(" ", $faker->paragraphs(3)),
+        'body' => implode("\n", $faker->paragraphs(5)),
     ];
 });

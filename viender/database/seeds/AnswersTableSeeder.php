@@ -14,17 +14,17 @@ class AnswersTableSeeder extends Seeder
      */
     public function run()
     {
-    	$user_ids = array_rand(User::all()->toArray(), 2);
+        $faker = \Faker\Factory::create();
 
-    	$faker = \Faker\Factory::create();
+        foreach (Question::all() as $question) {
+    	    $user_ids = array_rand(User::all()->toArray(), 2);
 
-    	foreach (Question::all() as $question) {
 	    	foreach ($user_ids as $user_id) {
 			    Answer::create([
-			        'user_id' => $user_id,
+			        'user_id' => $user_id+1,
 			        'question_id' => $question->id,
-			        'slug' => User::find($user_id)->username,
-			        'body' => implode(" ", $faker->paragraphs(3)),
+			        'slug' => User::find($user_id+1)->username,
+			        'body' => implode("<br>", $faker->paragraphs(10)),
 			    ]);
 	    	}
     	}

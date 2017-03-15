@@ -1,12 +1,11 @@
 <template>
 	<div class="row u-margin--none">
 		<div class="col s12">
-			<div class="card u-margin--none u-box-shadow--none" v-if="answer">
-				<div class="card-content">
+			<div class="card u-margin--none u-box-shadow--none">
+				<div class="card-content" @click="showAnswer()">
 					<span class="card-title">
 						<h4><a :href="getUrl('self_html', answer.question)">{{ answer.question.title }}</a></h4>
 					</span>
-					<hr style="margin-bottom: 30px;">
 				  	<ul class="collection">
 						<li class="collection-item avatar">
 							<img :src="getUrl('avatar', answer.owner)" alt="" class="circle">
@@ -15,7 +14,10 @@
 							</span>
 						</li>
 					</ul>
-					<div class="answer-content" v-html="answer.body"></div>
+					<div class="answer-content">
+						<div style="display: inline" v-html="answer.preview"></div>
+						<a style="cursor: pointer" v-if="answer.preview.length >= 258">(more)</a>
+					</div>
 				</div>
 				<div class="card-action u-border--only-bottom">
 			    	<span style="cursor: pointer;" @click="upvote">
@@ -32,6 +34,8 @@
 </template>
 
 <script>
+import * as types from '../store/mutation-types';
+
 export default {
     props: ['answer'],
 
@@ -55,6 +59,11 @@ export default {
     },
 
     methods: {
+    	showAnswer() {
+    		this.$store.commit('feed/' + types.SET_SHOW_ANSWER_SHOW_MODAL, true);
+    		this.$store.dispatch('feed/setShowedAnswer', this.answer);
+    	},
+
     	upvote() {
     		var _this = this;
 
@@ -93,7 +102,8 @@ export default {
 			axios.post(this.getUrl('downvotes', this.answer), {})
 				.then(function (response) {
 			        if(response.status == 201) {
-			        	if(_this.answer.upvoted) _this.answer.upvote_count -= 1;
+			        	if(_this.answer.upvoted)
+			        		_this.answer.upvote_count -= 1;
 				    	_this.answer.upvoted = false;
 				    	_this.answer.downvoted = true;
 			        }

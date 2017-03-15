@@ -1,3 +1,5 @@
+import store from './store';
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * include Vue and Vue Resource. This gives a great starting point for
@@ -15,11 +17,13 @@ require('./bootstrap');
 Vue.component('comment', require('viender_socialite/core/js/components/comment.vue'));
 Vue.component('comment-list', require('viender_socialite/core/js/components/comment-list.vue'));
 Vue.component('comment-create-form', require('viender_socialite/core/js/components/comment-create-form.vue'));
-Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
+Vue.component('answer-preview', require('viender_socialite/core/js/components/answer-preview.vue'));
 Vue.component('feed-list', require('viender_socialite/core/js/components/feed-list.vue'));
+Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
+Vue.component('answer-show-modal', require('viender_socialite/core/js/components/answer-show-modal.vue'));
 
 const feed = new Vue({
     el: '#app',
 
-    store: require('./store/index')
+    store: store
 });

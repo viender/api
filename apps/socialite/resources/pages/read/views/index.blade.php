@@ -18,6 +18,7 @@
 		<div class="col s6">
 			<h5>Top stories for you</h5>
 			<feed-list :feed-urls="{ answers: '{{ route('api.viender.socialite.answers.index') }}' }"></feed-list>
+			<answer-show-modal></answer-show-modal>
 		</div>
 		<div class="col s3">
 			dsfs

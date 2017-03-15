@@ -57,7 +57,7 @@ class AnswerDownvotesController extends ApiController
      */
     public function store(Request $request, Answer $answer)
     {
-        if($upvote = $this->downvotes->toggle($answer)) {
+        if($downvote = $this->downvotes->toggle($answer)) {
             return $this->respondCreated('Downvoted');
         }
 
