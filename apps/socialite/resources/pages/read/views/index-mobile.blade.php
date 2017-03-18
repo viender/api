@@ -9,6 +9,7 @@
 	</div>
 	
 	<feed-list :feed-urls="{ answers: '{{ route('api.viender.socialite.answers.index') }}' }"></feed-list>
+	<answer-show-modal></answer-show-modal>
 </div>
 @endsection
 

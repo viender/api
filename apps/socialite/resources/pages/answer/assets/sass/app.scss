@@ -1,10 +1,8 @@
-@import "bootstrap";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "node_modules/summernote/dist/summernote";
 
-@import "node_modules/materialize-css/sass/materialize";
-@import "variables";
 @import "~viender_core/sass/core";
+@import "variables";
 
 .z-depth-4, .modal {
 	box-shadow: none;
@@ -102,6 +100,17 @@
 	overflow: visible;
 }
 
+.answer-create-modal .modal.in {
+    width: 100%;
+}
+
 .modal-backdrop.in {
 	display: none;
+}
+
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    position: absolute;
+    left: 20px;
+    opacity: 1;
+    margin-top: 1px;
 }

@@ -1,6 +1,6 @@
 <template>
 	<div ref="modal" class="answer-show-modal-overlay" @click="hideAnswerCreateModal()" v-show="showAnswerModal">
-		<div class="answer-show-modal" @click="modalClickHandle()">
+		<div class="answer-show-modal" @click="modalClickHandle($event)">
 			<answer :answer="answer" v-if="answer ? answer.body : false"></answer>
 			<div class="preloader-wrapper small active" style="margin: 120px auto; display: block;" v-else>
 				<div class="spinner-layer spinner-blue-only">
@@ -16,6 +16,9 @@
 				</div>
 			</div>
 		</div>
+        <div class="modal-action">
+            <span>X</span>
+        </div>
 	</div>
 </template>
 
@@ -38,7 +41,7 @@ export default {
     },
 
     methods: {
-        modalClickHandle() {
+        modalClickHandle(event) {
             event.stopPropagation();
         },
 

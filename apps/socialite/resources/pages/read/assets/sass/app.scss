@@ -1,6 +1,5 @@
-@import "node_modules/materialize-css/sass/materialize";
-@import "variables";
 @import "~viender_core/sass/core";
+@import "variables";
 
 .card .card-content {
 	padding-left: 0;
@@ -41,4 +40,8 @@
     z-index: 1041;
     overflow-y: scroll;
     overflow-x: auto;
+}
+
+.modal-action {
+    display: none;
 }

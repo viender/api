@@ -5,6 +5,9 @@
                 <answer-create-form ref="answerCreateModal" @answer-posted="hideAnswerCreateModal()"></answer-create-form>
             </div>
         </div>
+        <div class="modal-action">
+            <span>X</span>
+        </div>
     </div>
 </template>
 
@@ -19,7 +22,7 @@ export default {
     },
 
     methods: {
-        modalClickHandle() {
+        modalClickHandle(event) {
             event.stopPropagation();
         },
 

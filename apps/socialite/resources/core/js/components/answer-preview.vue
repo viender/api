@@ -4,7 +4,7 @@
 			<div class="card u-margin--none u-box-shadow--none">
 				<div class="card-content" @click="showAnswer()">
 					<span class="card-title">
-						<h4><a :href="getUrl('self_html', answer.question)">{{ answer.question.title }}</a></h4>
+						<h4><a :href="getUrl('self_html', answer.question)" @click="titleClickHandle($event)">{{ answer.question.title }}</a></h4>
 					</span>
 				  	<ul class="collection">
 						<li class="collection-item avatar">
@@ -59,6 +59,10 @@ export default {
     },
 
     methods: {
+    	titleClickHandle(event) {
+            event.stopPropagation();
+        },
+
     	showAnswer() {
     		this.$store.commit('feed/' + types.SET_SHOW_ANSWER_SHOW_MODAL, true);
     		this.$store.dispatch('feed/setShowedAnswer', this.answer);
