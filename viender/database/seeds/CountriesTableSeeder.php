@@ -11,6 +11,6 @@ class CountriesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Viender\Profile\Country::class, 1)->create();
+        factory(\Viender\Address\Models\Country::class, 1)->create();
     }
 }

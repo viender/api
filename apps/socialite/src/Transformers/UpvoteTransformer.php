@@ -3,7 +3,7 @@
 namespace Viender\Socialite\Transformers;
 
 use Viender\Socialite\Models\Upvote;
-use Viender\Profile\Transformers\Traits\UserIncludable;
+use Viender\Address\Transformers\Traits\UserIncludable;
 use Viender\Socialite\Transformers\Traits\UpvotableIncludable;
 
 class UpvoteTransformer extends Transformer

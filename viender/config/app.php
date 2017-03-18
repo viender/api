@@ -181,9 +181,10 @@ return [
         App\Providers\RouteServiceProvider::class,
         Viender\Dealer\DealerServiceProvider::class,
         Viender\Socialite\Init::class,
-        Viender\Profile\ProfileServiceProvider::class,
+        Viender\Address\Init::class,
         Viender\Dealer\DealerServiceProvider::class,
         Viender\Mytutor\Init::class,
+        Viender\Profile\Init::class,
     ],
 
     /*

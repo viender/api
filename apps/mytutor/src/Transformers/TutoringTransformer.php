@@ -4,7 +4,7 @@ namespace Viender\Mytutor\Transformers;
 
 use Viender\Mytutor\Models\Tutoring;
 use Viender\Dealer\Transformers\AuctionTransformer;
-use Viender\Profile\Transformers\Traits\UserIncludable;
+use Viender\Address\Transformers\Traits\UserIncludable;
 
 class TutoringTransformer extends Transformer
 {

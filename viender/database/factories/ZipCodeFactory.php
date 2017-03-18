@@ -12,17 +12,17 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(Viender\Profile\ZipCode::class, function (Faker\Generator $faker) {
+$factory->define(\Viender\Address\Models\ZipCode::class, function (Faker\Generator $faker) {
 
-    $cities = Viender\Profile\City::all()->pluck('id')->toArray();
+    $cities = \Viender\Address\Models\City::all()->pluck('id')->toArray();
 
     return [
         'city_id' => $faker->randomElement($cities),
         'state_id' => function(array $me) {
-            return Viender\Profile\City::where('id', $me['city_id'])->first()->state()->first()->id;
+            return \Viender\Address\Models\City::where('id', $me['city_id'])->first()->state()->first()->id;
         },
         'country_id' => function(array $me) {
-            return Viender\Profile\City::where('id', $me['city_id'])->first()->country()->first()->id;
+            return \Viender\Address\Models\City::where('id', $me['city_id'])->first()->country()->first()->id;
         },
         'code' => $faker->postcode,
     ];

@@ -4,7 +4,7 @@ namespace Viender\Socialite\Transformers;
 
 use Viender\Socialite\Models\Question;
 use Viender\Socialite\Transformers\AnswerTransformer;
-use Viender\Profile\Transformers\Traits\UserIncludable;
+use Viender\Address\Transformers\Traits\UserIncludable;
 use Viender\Socialite\Transformers\Traits\CommentsIncludable;
 
 class QuestionTransformer extends Transformer

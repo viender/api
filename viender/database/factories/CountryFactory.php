@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(Viender\Profile\Country::class, function (Faker\Generator $faker) {
+$factory->define(\Viender\Address\Models\Country::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->country,

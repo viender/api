@@ -5,7 +5,7 @@ namespace Viender\Socialite\Transformers;
 use Illuminate\Support\Facades\Auth;
 use Viender\Socialite\Models\Answer;
 use Viender\Socialite\Repositories\AnswersRepository;
-use Viender\Profile\Transformers\Traits\UserIncludable;
+use Viender\Address\Transformers\Traits\UserIncludable;
 use Viender\Socialite\Transformers\Traits\CommentsIncludable;
 
 class AnswerPreviewTransformer extends Transformer

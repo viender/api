@@ -3,7 +3,7 @@
 namespace Viender\Dealer\Transformers;
 
 use Viender\Dealer\Bid;
-use Viender\Profile\Transformers\Traits\UserIncludable;
+use Viender\Address\Transformers\Traits\UserIncludable;
 
 class BidTransformer extends Transformer
 {

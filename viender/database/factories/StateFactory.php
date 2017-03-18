@@ -12,9 +12,9 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(Viender\Profile\State::class, function (Faker\Generator $faker) {
+$factory->define(\Viender\Address\Models\State::class, function (Faker\Generator $faker) {
 
-    $countries = Viender\Profile\Country::all()->pluck('id')->toArray();
+    $countries = \Viender\Address\Models\Country::all()->pluck('id')->toArray();
 
     return [
         'country_id' => $faker->randomElement($countries),

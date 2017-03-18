@@ -6,10 +6,10 @@ use App\User;
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use Viender\Profile\Http\Controllers\Api\ApiController;
-use Viender\Profile\Transformers\UserTransformer;
+use Viender\Address\Http\Controllers\Api\ApiController;
+use Viender\Address\Transformers\UserTransformer;
 use Viender\Utilities\Controllers\Handlers\BasicHandler;
-use Viender\Profile\Transformers\Serializer\ArraySerializer;
+use Viender\Address\Transformers\Serializer\ArraySerializer;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class UsersController extends ApiController
@@ -81,11 +81,11 @@ class UsersController extends ApiController
         // user data provided in the request.
         if($request->is_social_account) {
             // Update social account and password if social account already exist.
-            if(\Viender\Profile\SocialAccount::where([
+            if(\Viender\Address\Models\SocialAccount::where([
                 ['provider', $request->provider],
                 ['social_id', $request->social_id]
             ])->exists()) {
-                $socialAccount = \Viender\Profile\SocialAccount::where([
+                $socialAccount = \Viender\Address\Models\SocialAccount::where([
                     ['provider', $request->provider],
                     ['social_id', $request->social_id]
                 ])->first();
@@ -110,7 +110,7 @@ class UsersController extends ApiController
 
                 $user->save();
 
-                $socialAccount = $user->socialAccounts()->save(new \Viender\Profile\SocialAccount($request->all()));
+                $socialAccount = $user->socialAccounts()->save(new \Viender\Address\Models\SocialAccount($request->all()));
             }
 
         // If the request is not from social account then simply create new user

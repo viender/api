@@ -28,6 +28,7 @@
         ],
         "psr-4": {
             "App\\": "viender/app/",
+            "Viender\\Address\\": "apps/address/src/",
             "Viender\\Socialite\\": "apps/socialite/src/",
             "Viender\\Profile\\": "apps/profile/src/",
             "Viender\\Dealer\\": "apps/dealer/src/",
