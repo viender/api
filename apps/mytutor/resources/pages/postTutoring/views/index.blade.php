@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('viender::layouts.app')
 
 @section('content')
 <div id="viender_mytutor_postTutoring" class="container">

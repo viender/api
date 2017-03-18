@@ -37,9 +37,9 @@
 <body>
     <div id="app" class="main-content">
         @if(\Agent::isDesktop())
-            @include('layouts.nav')
+            @include('viender::layouts.nav')
         @else
-            @include('layouts.nav-mobile')
+            @include('viender::layouts.nav-mobile')
         @endif
 
         @yield('content')
