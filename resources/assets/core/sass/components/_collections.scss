@@ -1,0 +1,36 @@
+.avatar--small{
+	padding-left: 50px !important;
+}
+
+.collection input {
+	background-color: white;
+	margin: 0;
+}
+
+.collection form .row {
+	margin: 0;
+}
+
+.collection-item.avatar.avatar--small img {
+	margin-left: 12px;
+}
+
+.collection-item.avatar.avatar--small .title a {
+	display: block;
+	line-height: 11px;
+}
+
+.collection .collection-item.avatar .title {
+    min-height: 20px;
+    display: block;
+}
+
+.collection .row .col.s9 {
+	width: calc(100% - 96px);
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.collection .row .col.s3 {
+	width: 20px;
+}

@@ -13,7 +13,7 @@ var config = {
     resolve: {
         alias: {
           viender: path.resolve(__dirname, 'viender'),
-          viender_core: path.resolve(__dirname, 'assets/core'),
+          viender_core: path.resolve(__dirname, 'resources/assets/core'),
         }
     },
     plugins: [

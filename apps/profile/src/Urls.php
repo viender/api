@@ -38,7 +38,7 @@ class Urls
     public function web($option = [])
     {
         $this->router->group(array_merge($option, ['domain' => config('app.domain'), 'middleware' => 'web']), function() {
-            $this->router->get('/', 'ProfileController@index')->name('web.viender.profile.pages.profile');
+            $this->router->get('/{user}', 'ProfileController@profile')->name('web.viender.profile.pages.profile');
         });
     }
 
