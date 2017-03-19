@@ -45,7 +45,7 @@ class UpvotableUpvotedNotification extends Notification
     {
         $upvotable = $this->upvote->upvotable;
 
-        $url = config('app.viender_web_url');
+        $url = config('app.url');
 
         $chunks = explode('\\', $this->upvote->upvotable_type);
 
@@ -53,15 +53,15 @@ class UpvotableUpvotedNotification extends Notification
 
         if($this->upvote->upvotable_type == 'Viender\Socialite\Models\Question') {
 
-            $url = config('app.viender_web_url') . '/questions/' . $upvotable->slug;
+            $url = config('app.url') . '/questions/' . $upvotable->slug;
 
         }elseif($this->upvote->upvotable_type == 'Viender\Socialite\Models\Answer') {
 
-            $url = config('app.viender_web_url') . '/answers/' . $upvotable->id;
+            $url = config('app.url') . '/answers/' . $upvotable->id;
 
         }elseif($this->upvote->upvotable_type == 'Viender\Socialite\Models\Comment') {
 
-            $url = config('app.viender_web_url') . '/answers/' . $upvotable->id;
+            $url = config('app.url') . '/answers/' . $upvotable->id;
             
         }
 
