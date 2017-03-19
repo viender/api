@@ -37,11 +37,6 @@ window.axios.defaults.headers.common = {
 // });
 
 /**
- * Treasure
- */
-window.treasure.env = require('./env');
-
-/**
  * Helpers
  */
 
@@ -61,7 +56,7 @@ require('./documentReady');
  * Google Analytic
  */
 
-if(process.env.APP_ENV == 'production') {
+if(treasure.env.env == 'production') {
 	require('./services/googleAnalytics');
 }
 

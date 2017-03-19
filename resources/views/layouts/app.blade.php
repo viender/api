@@ -17,7 +17,13 @@
         ]); ?>;
 
         window.treasure = {!! json_encode([
-            'client' => [
+            'env'       => [
+                'env'       => config('app.env'),
+                'url'       => config('app.url'),
+                'api_url'   => config('app.api_url'),
+                'domain'    => config('app.domain'),
+            ],
+            'client'    => [
                 'type'      => \Agent::isDesktop() ? 'desktop' : 'mobile',
                 'device'    => \Agent::device(),
                 'platform'  => \Agent::platform(),
