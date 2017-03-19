@@ -36,8 +36,6 @@
     <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
     @yield('head-styles')
 
-    <!-- Scripts -->
-    @yield('head-scripts')
 </head>
 <body>
     <div id="app" class="main-content">
@@ -48,8 +46,9 @@
         @endif
 
         @yield('content')
-        <!-- Scripts -->
     </div>
+    <!-- Scripts -->
+    @yield('head-scripts')
     @yield('scripts')
 </body>
 </html>

@@ -24,7 +24,7 @@
 			    color: white;
 			    font-size: 22px;
 			    font-weight: bold;
-			    line-height: 223%;
+			    line-height: 250%;
 			    vertical-align: top;
 			}
 		}
@@ -41,6 +41,16 @@
 			background-color: $primary-color-dark;
 			color: white;
 			text-align: center;
+
+			.menu-button {
+				float: left;
+				padding-left: 5px;
+			}
+
+			.search-button {
+				float: right;
+				padding-right: 5px;
+			}
 		}
 
 		&-menus {

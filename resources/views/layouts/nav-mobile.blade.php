@@ -1,11 +1,19 @@
-<div class="navbar-fixed navbar-mobile" style="margin-top: -1px;">
+<div id="navbar-mobile" class="navbar-fixed navbar-mobile" style="margin-top: -1px;">
     <nav class="navbar-mobile">
         <div class="nav-wrapper">
             <div class="row navbar-mobile-header">
-                <div class="col s12">
+                <div class="col s3">
+                    <i class="material-icons menu-button">menu</i>
+                </div>
+                <div class="col s6">
                     <div class="logo">
                         <a href="/">Viender</a>
                     </div>
+                </div>
+                <div class="col s3">
+                    <search-or-ask-panel-trigger-open>
+                        <i class="material-icons dp48 search-button">zoom_in</i>
+                    </search-or-ask-panel-trigger-open>
                 </div>
             </div>
             <div class="row navbar-mobile-menus">
@@ -21,3 +29,4 @@
         </div>
     </nav>
 </div>
+<search-or-ask-panel></search-or-ask-panel>
