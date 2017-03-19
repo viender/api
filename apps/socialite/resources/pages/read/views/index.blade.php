@@ -4,7 +4,7 @@
 <div class="" style="padding-top: 5px;">
 	<div class="row">
 		<div class="col s3">
-			<div style="float: right; width: 200px">
+			<div style="margin-left: 130px">
 				<strong>Feeds</strong>
 				<div class="collection">
 					<a href="#" class="collection-item">Top stories</a>

@@ -48,7 +48,8 @@ mix.webpackConfig(config);
  */ 
  
 mix.js('viender/resources/assets/js/app.js', 'js') 
-   .sass('viender/resources/assets/sass/app.scss', 'css'); 
+   .sass('viender/resources/assets/sass/app-mobile.scss', 'css')
+   .sass('viender/resources/assets/sass/app.scss', 'css');
 
 var pages = '';
 var pagesPath = '';

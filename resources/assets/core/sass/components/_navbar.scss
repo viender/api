@@ -1,27 +1,57 @@
-nav {
-	@extend .white;
-    width: 100%;
-    height: 45px;
-    line-height: 45px;
-}
+.navbar {
+	&-desktop {
+	    width: 100%;
+	    height: 45px;
+	    line-height: 45px;
 
-nav a {
-	@extend .grey-text, .text-darken-4;
-}
+		.brand-logo {
+			padding-left: 20px;
+		}
 
-nav li a {
-	@extend .grey-text, .text-darken-4;
-}
+		.nav-wrapper i, a.button-collapse i {
+		    height: 45px;
+		    line-height: 45px;
+		}
+	}
 
-nav .brand-logo {
-	padding-left: 20px;
-}
+	&-mobile {
+		height: initial;
 
-nav a.brand-logo {
-	@extend .red-text, .text-lighten-1;
-}
+		.logo {
+			height: 3.64rem;
 
-nav .nav-wrapper i, nav a.button-collapse i {
-    height: 45px;
-    line-height: 45px;
+			a {
+			    color: white;
+			    font-size: 22px;
+			    font-weight: bold;
+			    line-height: 223%;
+			    vertical-align: top;
+			}
+		}
+
+		.row {
+			margin-bottom: 0;
+		}
+
+		input {
+			margin-bottom: 0;
+		}
+
+		&-header {
+			background-color: $primary-color-dark;
+			color: white;
+			text-align: center;
+		}
+
+		&-menus {
+			text-align: center;
+			background-color: $primary-color-light;
+			line-height: 364%;
+			position: fixed;
+			width: 100%;
+			bottom: 0;
+			margin-bottom: -1px;
+		}
+	}
+
 }

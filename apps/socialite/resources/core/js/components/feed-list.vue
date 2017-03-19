@@ -1,7 +1,20 @@
 <template>
     <div class="">
         <answer-preview :answer="answer" v-for="answer in answers"></answer-preview>
-        <button class="btn btn-default" @click="fetchData()">Load more</button>
+        <div class="preloader preloader-wrapper small active" v-show="requesting">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <button v-show="! requesting" style="width: 100%; padding-left: 0;" class="btn btn-default" @click="fetchData()">Load more</button>
     </div>
 </template>
 
@@ -10,6 +23,9 @@ export default {
     props: ['feedUrls'],
 
     computed: {
+        requesting() {
+            return this.$store.state.feed.requesting;
+        },
         answers() {
             return this.$store.state.feed.answers;
         }

@@ -1,7 +1,20 @@
 <template>
     <div class="">
         <question :question="question" v-for="question in questions"></question>
-        <button class="btn btn-default" @click="fetchData()">Load more</button>
+        <div class="preloader preloader-wrapper small active" v-show="requesting">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <button style="width: 100%; padding-left: 0;" class="btn btn-default" @click="fetchData()" v-show=" ! requesting">Load more</button>
         <answer-create-modal></answer-create-modal>
     </div>
 </template>
@@ -19,6 +32,10 @@ export default {
     },
 
     computed: {
+        requesting() {
+            return this.$store.state.questionList.requesting;
+        },
+
         questions() {
             return this.$store.state.questionList.questions;
         }

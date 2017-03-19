@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('viender::layouts.app')
 
 <!-- Main Content -->
 @section('content')
@@ -44,4 +44,16 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('head-styles')
+    @if(\Agent::isDesktop())
+        <link rel="stylesheet" href={{ mix('css/app.css') }}>
+    @else
+        <link rel="stylesheet" href={{ mix('css/app-mobile.css') }}>
+    @endif
+@endsection
+
+@section('head-scripts')
+<script src={{ mix('js/app.js') }} aysnc="true"></script>
 @endsection

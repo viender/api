@@ -55,10 +55,7 @@ window.jQuery = window.$ = require('jquery');
 
 require('materialize-css/dist/js/materialize');
 
-$(document).ready(function() {
-	$(".button-collapse").sideNav();
-	$(".dropdown-button").dropdown();
-});
+require('./documentReady');
 
 /**
  * Google Analytic

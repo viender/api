@@ -2,7 +2,7 @@
 	<div ref="modal" class="answer-show-modal-overlay" @click="hideAnswerCreateModal()" v-show="showAnswerModal">
 		<div class="answer-show-modal" @click="modalClickHandle($event)">
 			<answer :answer="answer" v-if="answer ? answer.body : false"></answer>
-			<div class="preloader-wrapper small active" style="margin: 120px auto; display: block;" v-else>
+			<div class="preloader-wrapper small active" style="position: fixed; top: calc(50% - 75px); left: calc(50% - 18px);" v-else>
 				<div class="spinner-layer spinner-blue-only">
 					<div class="circle-clipper left">
 						<div class="circle"></div>

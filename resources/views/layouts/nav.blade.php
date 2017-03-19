@@ -1,16 +1,27 @@
 <div class="navbar-fixed">
-	<nav>
+	<nav class="navbar-desktop">
 		<div class="nav-wrapper">
-			<a class="brand-logo" href="{{ url('/') }}">
-			{{-- {{ config('app.name', 'Laravel') }} --}}
+			<a class="logo left" href="{{ url('/') }}">
+			{{ config('app.name', 'Laravel') }}
 			</a>
-		
+			<ul class="left">
+				<li>
+					<form class="search-form">
+						<div>
+							<input type="text">
+						</div>
+					</form>
+				</li>
+			</ul>
+			
 			<ul class="right">
+				<li><a href={{ route('web.viender.socialite.pages.read') }}>Feed</a></li>
+				<li><a href={{ route('web.viender.socialite.pages.answer') }}>Questions</a></li>
 				@if (Auth::guest())
 					<li><a href="{{ url('/login') }}">Login</a></li>
 					<li><a href="{{ url('/register') }}">Register</a></li>
 				@else
-					<li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+					<li><a href={{ route('web.viender.profile.pages.profile', \Auth::user()->username) }}>You</a></li>
 				@endif
 			</ul>
 		</div>

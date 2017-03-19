@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('viender::layouts.app')
 
 @section('content')
 <div class="container">
@@ -54,7 +54,7 @@
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                                <a class="btn-link" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
                                 </a>
                             </div>
@@ -68,7 +68,11 @@
 @endsection
 
 @section('head-styles')
-<link rel="stylesheet" href={{ mix('css/app.css') }}>
+    @if(\Agent::isDesktop())
+        <link rel="stylesheet" href={{ mix('css/app.css') }}>
+    @else
+        <link rel="stylesheet" href={{ mix('css/app-mobile.css') }}>
+    @endif
 @endsection
 
 @section('head-scripts')

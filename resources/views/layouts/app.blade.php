@@ -14,15 +14,17 @@
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
-        ]); ?>; 
-        window.treasure = {
-            client: {
-                type: '{{ \Agent::isDesktop() ? 'desktop' : 'mobile' }}',
-                device: '{{ \Agent::device() }}',
-                platform: '{{ \Agent::platform() }}',
-                browser: '{{ \Agent::browser() }}',
-            }
-        };
+        ]); ?>;
+
+        window.treasure = {!! json_encode([
+            'client' => [
+                'type'      => \Agent::isDesktop() ? 'desktop' : 'mobile',
+                'device'    => \Agent::device(),
+                'platform'  => \Agent::platform(),
+                'browser'   => \Agent::browser(),
+            ]
+        ]) !!};
+
     </script>
 
     <!-- Styles -->

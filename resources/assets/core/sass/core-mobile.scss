@@ -1,23 +1,75 @@
-@import "node_modules/materialize-css/sass/materialize";
+@charset "UTF-8";
+
+// Mixins
+// @import "components/prefixer";
+@import "node_modules/materialize-css/sass/components/mixins";
+@import "node_modules/materialize-css/sass/components/color";
+
+// Variables;
 @import "variables";
+
+// Reset
+@import "node_modules/materialize-css/sass/components/normalize";
+
+// components
+@import "node_modules/materialize-css/sass/components/global";
+@import "node_modules/materialize-css/sass/components/badges";
+@import "node_modules/materialize-css/sass/components/icons-material-design";
+@import "node_modules/materialize-css/sass/components/grid";
+@import "node_modules/materialize-css/sass/components/navbar";
+@import "node_modules/materialize-css/sass/components/roboto";
+@import "node_modules/materialize-css/sass/components/typography";
+@import "node_modules/materialize-css/sass/components/transitions";
+@import "node_modules/materialize-css/sass/components/cards";
+@import "node_modules/materialize-css/sass/components/toast";
+@import "node_modules/materialize-css/sass/components/tabs";
+@import "node_modules/materialize-css/sass/components/tooltip";
+@import "node_modules/materialize-css/sass/components/buttons";
+@import "node_modules/materialize-css/sass/components/dropdown";
+@import "node_modules/materialize-css/sass/components/waves";
+@import "node_modules/materialize-css/sass/components/modal";
+@import "node_modules/materialize-css/sass/components/collapsible";
+@import "node_modules/materialize-css/sass/components/chips";
+@import "node_modules/materialize-css/sass/components/materialbox";
+@import "node_modules/materialize-css/sass/components/forms/forms";
+@import "node_modules/materialize-css/sass/components/table_of_contents";
+@import "node_modules/materialize-css/sass/components/sideNav";
+@import "node_modules/materialize-css/sass/components/preloader";
+@import "node_modules/materialize-css/sass/components/slider";
+@import "node_modules/materialize-css/sass/components/carousel";
+@import "node_modules/materialize-css/sass/components/date_picker/default";
+@import "node_modules/materialize-css/sass/components/date_picker/default.date";
+@import "node_modules/materialize-css/sass/components/date_picker/default.time";
+
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
 // Viender styles
 @import "components/navbar";
 @import "components/collections";
 @import "components/cards";
+@import "components/preloader";
 @import "utilities/borders";
 @import "utilities/miscellaneous";
 @import "utilities/shadows";
 @import "utilities/whitespaces";
 @import "utilities/texts";
 
-.card .card-content {
-	padding: 0;
+#app {
+    margin-bottom: 51px;	
 }
 
-.card .card-action {
-	padding: 0;
-	padding-top: 10px;
-	padding-bottom: 10px;
+.card {
+	.card-content {
+		padding: 0;
+	}
+
+	.card-action {
+		padding: 0;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+}
+
+.mobile {
+	padding-top: 52px;
 }

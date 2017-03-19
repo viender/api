@@ -4,6 +4,10 @@
 @import "~viender_core/sass/core";
 @import "variables";
 
+a {
+    text-decoration: none;
+}
+
 .z-depth-4, .modal {
 	box-shadow: none;
 	background: none;
