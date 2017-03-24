@@ -130,16 +130,18 @@
 	display: none;
 }
 
+$modal-action-height: 36px;
+
 .modal-action {
 	@extend .grey, .lighten-3;
 	@extend .grey-text, .text-darken-4;
 	width: 100%;
 	position: fixed;
 	z-index: 1042;
-	top: calc(100% - 32px);
+	top: calc(100% - #{$modal-action-height});
 	text-align: center;
-	height: 32px;
-	line-height: 32px;
+	height: $modal-action-height;
+	line-height: $modal-action-height;
 }
 
 .modal-header .close {

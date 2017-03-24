@@ -35,7 +35,6 @@ export default {
             commit(types.SET_EDITOR_QUESTION, payload.question);
             if(state.editorElement) {
                 state.editorElement.summernote('code', payload.answerText.body);
-                state.editorElement.trigger('focus');
             }
         },
     }

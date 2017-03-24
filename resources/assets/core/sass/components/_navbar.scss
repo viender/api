@@ -1,21 +1,30 @@
+$navbar-height: 45px;
+
 .navbar {
+	&-fixed {
+		height: $navbar-height;
+	}
+
 	&-desktop {
+		top: 0;
 	    width: 100%;
-	    height: 45px;
-	    line-height: 45px;
+	    height: $navbar-height;
+	    line-height: $navbar-height;
 
 		.brand-logo {
 			padding-left: 20px;
 		}
 
 		.nav-wrapper i, a.button-collapse i {
-		    height: 45px;
-		    line-height: 45px;
+		    height: $navbar-height;
+		    line-height: $navbar-height;
 		}
 	}
 
 	&-mobile {
 		height: initial;
+		top: 0;
+		margin-bottom: 57px;
 
 		.logo {
 			height: 3.64rem;
@@ -54,8 +63,8 @@
 		}
 
 		&-menus {
+			@extend .grey, .lighten-3;
 			text-align: center;
-			background-color: $primary-color-light;
 			line-height: 364%;
 			position: fixed;
 			width: 100%;

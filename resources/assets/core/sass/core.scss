@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+// ==========================================================================
+// Viender - Materialize variables
+// ==========================================================================
+
 // Mixins
 // @import "components/prefixer";
 @import "node_modules/materialize-css/sass/components/mixins";
@@ -41,9 +45,19 @@
 @import "node_modules/materialize-css/sass/components/date_picker/default.date";
 @import "node_modules/materialize-css/sass/components/date_picker/default.time";
 
+// ==========================================================================
+// Viender - Materialize variables
+// ==========================================================================
+
+@import "node_modules/font-awesome/scss/font-awesome";
+
+
+// ==========================================================================
+// Viender
+// ==========================================================================
+
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
-// Viender styles
 @import "components/navbar";
 @import "components/collections";
 @import "components/cards";

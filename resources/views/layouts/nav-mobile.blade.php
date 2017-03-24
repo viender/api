@@ -3,7 +3,7 @@
         <div class="nav-wrapper">
             <div class="row navbar-mobile-header">
                 <div class="col s3">
-                    <i class="material-icons menu-button">menu</i>
+                    {{-- <i class="material-icons menu-button">menu</i> --}}
                 </div>
                 <div class="col s6">
                     <div class="logo">

@@ -94,8 +94,6 @@ export default {
 				        _this.$store.commit('editor/' + types.UPDATE_EDITOR_CONTENT, null);
 				        _this.$store.commit('questionList/' + types.SET_AS_ANSWERED, _this.question);
 				        $(_this.$refs.editor).summernote('code', '');
-				        console.log(_this.getUrl('self_html', response.data));
-				        // document.location = _this.getUrl('self_html', response.data);
 				    }
 				    _this.requesting = false;
 				})

@@ -16,6 +16,12 @@ export default {
         },
 
         [types.SET_SHOW_PANEL] (state, showPanel) {
+            if(showPanel) {
+                document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+            } else {
+                document.getElementsByTagName('body')[0].style.overflow = 'scroll';
+            }
+
             state.showPanel = showPanel;
         },
 

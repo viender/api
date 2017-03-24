@@ -21,6 +21,20 @@ export default {
         },
     },
 
+    watch: {
+        showModal() {
+            let _this = this;
+
+            console.log(this);
+
+            if(this.showModal) {
+                Vue.nextTick(function () {
+                    $(_this.$refs.answerCreateModal.$refs.editor).summernote('editor.focus');
+                });
+            }
+        }
+    },
+
     methods: {
         modalClickHandle(event) {
             event.stopPropagation();

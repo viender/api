@@ -1,0 +1,59 @@
+$modal-action-height: 36px;
+
+.modal-action {
+	@extend .grey, .lighten-3;
+	@extend .grey-text, .text-darken-4;
+	width: 100%;
+	position: fixed;
+	z-index: 1042;
+	top: calc(100% - #{$modal-action-height});
+	text-align: center;
+	height: $modal-action-height;
+	line-height: $modal-action-height;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100%;
+	overflow: scroll;
+	z-index: 1042;
+	background-color: white;
+}
+
+.overlay-header {
+	height: 3rem;
+	background-color: #0097a7;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+}
+
+.overlay-header .search-bar{
+	display: inline-block;
+    width: calc(100% - 32px);
+    vertical-align: top;
+}
+
+.overlay-header form input{
+    background-color: #006064;
+    color: #b2ebf2;
+    border-radius: 5px;
+    height: 2rem;
+    margin-top: 7px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: calc(100% - 10px);
+    border-bottom: 0;
+}
+
+.back-button {
+    display: inline-block;
+    padding-left: 7px;
+    padding-right: 5px;
+    color: white;
+    line-height: 3.57;
+}

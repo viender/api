@@ -46,15 +46,3 @@
     overflow-y: scroll;
     overflow-x: auto;
 }
-
-.modal-action {
-	@extend .grey, .lighten-3;
-	@extend .grey-text, .text-darken-4;
-	width: 100%;
-	position: fixed;
-	z-index: 1042;
-	top: calc(100% - 32px);
-	text-align: center;
-	height: 32px;
-	line-height: 32px;
-}
