@@ -10,4 +10,24 @@ class ProfileController extends Controller
 	{
 		return view('viender.profile.profile::index')->with(compact('user'));
 	}
+
+	public function questions(User $user)
+	{
+		return view('viender.profile.profile::questions')->with(compact('user'));
+	}
+
+	public function topics(User $user)
+	{
+		return view('viender.profile.profile::topics')->with(compact('user'));
+	}
+
+	public function followings(User $user)
+	{
+		return view('viender.profile.profile::followings')->with(compact('user'));
+	}
+
+	public function followers(User $user)
+	{
+		return view('viender.profile.profile::followers')->with(compact('user'));
+	}
 }

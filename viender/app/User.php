@@ -3,16 +3,17 @@
 namespace App;
 
 use Viender\Dealer\Dealerable;
-use Viender\Socialite\Traits\Sociable;
-use Viender\Address\Traits\HasAddress;
 use Laravel\Passport\HasApiTokens;
+use Viender\Follow\Traits\Followable;
 use Viender\Mytutor\Traits\Tutorable;
+use Viender\Address\Traits\HasAddress;
+use Viender\Socialite\Traits\Sociable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Dealerable, HasAddress, Sociable, HasApiTokens, Notifiable, Tutorable;
+    use Dealerable, HasAddress, Sociable, HasApiTokens, Notifiable, Tutorable, Followable;
 
     /**
      * The attributes that are mass assignable.

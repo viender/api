@@ -185,6 +185,7 @@ return [
         Viender\Dealer\DealerServiceProvider::class,
         Viender\Mytutor\Init::class,
         Viender\Profile\Init::class,
+        Viender\Follow\Init::class,
     ],
 
     /*

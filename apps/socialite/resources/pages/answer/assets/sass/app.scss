@@ -3,118 +3,30 @@
 
 @import "~viender_core/sass/core";
 @import "variables";
+@import "~viender_socialite/core/sass/desktop/components/answer-create-modal";
+@import "~viender_socialite/core/sass/desktop/components/answer-create-form";
+
+#app {
+    line-height: 1.5;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.87);
+}
 
 a {
     text-decoration: none;
+    color: $link-color;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:focus {
+        text-decoration: none;
+    }
 }
 
 .z-depth-4, .modal {
 	box-shadow: none;
 	background: none;
-}
-
-.answer-create-modal {
-    position: relative;
-    margin: 12px auto;
-    width: 775px;
-    padding: 25px 75px 25px 75px;
-    background-color: white;
-    z-index: 1042;
-    border-radius: 5px;
-}
-
-.answer-create-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.65);
-    z-index: 1041;
-    overflow-y: scroll;
-    overflow-x: auto;
-}
-
-.answer-create-modal .note-editing-area ul {
-	padding-left: 40px;
-	list-style-type: disc;
-}
-
-.answer-create-modal .note-editing-area ul li {
-	list-style-type: disc;
-}
-
-.answer-create-modal .modal-open .modal {
-    overflow-x: visible;
-    overflow-y: visible;
-}
-
-.answer-create-modal .note-editor.note-frame.panel.panel-default{
-	border: none;
-}
-
-.answer-create-modal .panel-heading.note-toolbar {
-	background-color: #fff;
-}
-
-.answer-create-modal .note-btn.btn.btn-default {
-	@extend .grey-text, .text-darken-3;
-    background-color: transparent;
-    border: solid 1px;
-    border-color: transparent;
-    box-shadow: none;
-    line-height: 6px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 3px !important;
-}
-
-.answer-create-modal .btn i{
-	font-size: 1.2rem;
-}
-
-.answer-create-modal .note-btn.btn.btn-default:hover {
-    border: solid 1px;
-    border-color: #e0e0e0;
-}
-
-.answer-create-modal .note-btn.btn.btn-default.active {
-	color: #29b6f6 !important;
-	border: solid 1px;
-    border-color: #e0e0e0;
-}
-
-.answer-create-modal .panel-heading {
-    border-top: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-    border-color: #eeeeee;
-}
-
-.answer-create-modal .collection {
-	border: none;
-	margin: 0;
-}
-
-.answer-create-modal .note-btn-group.btn-group.note-insert {
-	float: right;
-}
-
-.answer-create-modal .modal {
-	max-height: 100%;
-	overflow: visible;
-}
-
-.answer-create-modal .modal.in {
-    width: 100%;
-}
-
-.modal-backdrop.in {
-	display: none;
-}
-
-[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
-    position: absolute;
-    left: 20px;
-    opacity: 1;
-    margin-top: 1px;
 }

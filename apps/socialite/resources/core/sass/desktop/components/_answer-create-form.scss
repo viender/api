@@ -1,0 +1,12 @@
+.answerCreateForm {
+    &-questionDetail {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+
+        &.shrinked {
+            white-space: nowrap;
+            cursor: pointer;
+        }
+    }
+}

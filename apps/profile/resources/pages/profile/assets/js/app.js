@@ -1,4 +1,5 @@
 import store from './store';
+import changeableMenuMixin from 'viender_profile/core/js/mixins/changeableMenuMixin';
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -18,6 +19,10 @@ Vue.component('comment', require('viender_socialite/core/js/components/comment.v
 Vue.component('comment-list', require('viender_socialite/core/js/components/comment-list.vue'));
 Vue.component('comment-create-form', require('viender_socialite/core/js/components/comment-create-form.vue'));
 Vue.component('answer-preview', require('viender_socialite/core/js/components/answer-preview.vue'));
+Vue.component('feed-list', require('viender_socialite/core/js/components/feed-list.vue'));
+Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
+Vue.component('answer-show-modal', require('viender_socialite/core/js/components/answer-show-modal.vue'));
+
 Vue.component('question', require('viender_socialite/core/js/components/question.vue'));
 Vue.component('question-list', require('viender_socialite/core/js/components/question-list.vue'));
 Vue.component('answer-create-form', require('viender_socialite/core/js/components/answer-create-form.vue'));
@@ -27,4 +32,6 @@ const feed = new Vue({
     el: '#app',
 
     store: store,
+
+    mixins: [changeableMenuMixin],
 });

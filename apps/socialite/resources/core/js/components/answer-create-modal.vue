@@ -1,8 +1,8 @@
 <template>
-    <div class="answer-create-modal-overlay" @click="hideAnswerCreateModal()" v-show="showModal">
-        <div class="answer-create-modal" @click="modalClickHandle($event)">
-            <div class="answer-create-modal-content">
-                <answer-create-form ref="answerCreateModal" @answer-posted="hideAnswerCreateModal()"></answer-create-form>
+    <div class="answerCreateModal-overlay" @click="hideAnswerCreateModal()" v-show="showModal">
+        <div class="answerCreateModal" @click="modalClickHandle($event)">
+            <div class="answerCreateModal-content">
+                <answer-create-form ref="form" @answer-posted="hideAnswerCreateModal()"></answer-create-form>
             </div>
         </div>
         <div class="modal-action">
@@ -25,11 +25,9 @@ export default {
         showModal() {
             let _this = this;
 
-            console.log(this);
-
             if(this.showModal) {
                 Vue.nextTick(function () {
-                    $(_this.$refs.answerCreateModal.$refs.editor).summernote('editor.focus');
+                    $(_this.$refs.form.$refs.editor).summernote('editor.focus');
                 });
             }
         }

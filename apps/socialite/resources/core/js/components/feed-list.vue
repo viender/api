@@ -1,6 +1,7 @@
 <template>
     <div class="">
-        <answer-preview :answer="answer" v-for="answer in answers"></answer-preview>
+        <answer-preview :answer="answer" v-for="answer in answers" v-if="answers[0] ? answers[0].preview : true"></answer-preview>
+        <answer :answer="answer" v-for="answer in answers" v-else></answer>
         <div class="preloader preloader-wrapper small active" v-show="requesting">
             <div class="spinner-layer spinner-blue-only">
                 <div class="circle-clipper left">

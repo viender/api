@@ -2,7 +2,9 @@
 	<div>
 		<div style="padding-bottom: 20px;">
 			<h4><a :href="question ? getUrl('self_html', question) : ''">{{ question ? question.title : '' }}</a></h4>
-			<div>{{ question ? question.body : '' }}</div>
+			<div :class="showQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" @click=toggleQuestionDetail()>
+				{{ question ? question.body : '' }}
+			</div>
 			<hr>
 			<ul class="collection">
 				<li class="collection-item avatar">
@@ -28,16 +30,9 @@ export default {
 	data() {
 		return {
 			requesting: false,
+			showQuestionDetail: false,
 			user: null
 		}
-	},
-
-	created() {
-		var _this = this;
-
-		document.addEventListener('userFetched', function () {
-		    _this.user = window.treasure.user;
-		});
 	},
 
     computed: {
@@ -50,14 +45,26 @@ export default {
         }
     },
 
+    watch: {
+        question() {
+            this.showQuestionDetail = false;
+        }
+    },
+
+	created() {
+		var _this = this;
+
+		document.addEventListener('userFetched', function () {
+		    _this.user = window.treasure.user;
+		});
+	},
+
 	mounted() {
 		var _this = this;
 
 		$(document).ready(function() {
 			$(_this.$refs.editor).summernote({
-				height: 400,
 				minHeight: 400,
-				maxHeight: 400,
 				toolbar: [
 					['style', ['bold', 'italic']],
 					['para', ['ul', 'ol']],
@@ -105,6 +112,10 @@ export default {
 					}
 				    _this.requesting = false;
 			});
+		},
+
+		toggleQuestionDetail() {
+			this.showQuestionDetail = ! this.showQuestionDetail;
 		}
 	}
 }

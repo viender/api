@@ -13,7 +13,7 @@ class Address
         };
 
         $options = array_merge([
-            'namespace' => '\Viender\Profile\Http\Controllers',
+            'namespace' => '\Viender\Address\Http\Controllers',
             'middleware' => 'api'
         ]);
 

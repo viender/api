@@ -10,9 +10,9 @@
 				  	<ul class="collection">
 						<li class="collection-item avatar">
 							<img :src="getUrl('avatar', answer.owner)" alt="" class="circle">
-							<span class="card-title">
-								{{ answer.owner.name }}
-							</span>
+							<a :href="getUrl('self_html', answer.owner)">
+								<span class="card-title">{{ answer.owner.name }}</span>
+							</a>
 						</li>
 					</ul>
 					<div class="answer-content" v-html="answer.body"></div>

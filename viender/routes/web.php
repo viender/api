@@ -12,6 +12,4 @@
 */
 Auth::routes();
 
-Route::get('/jobs', 'JobsController@index');
-
 Route::get('/home', 'HomeController@index');

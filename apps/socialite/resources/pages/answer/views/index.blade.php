@@ -4,16 +4,7 @@
 <div class="" style="padding-top: 5px;">
 	<div class="row">
 		<div class="col s3">
-			<div style="float: right; width: 200px">
-				<strong>Feeds</strong>
-				<div class="collection">
-					<a href="#" class="collection-item">Top stories</a>
-					<a href="#" class="collection-item">Cooking</a>
-					<a href="#" class="collection-item">Golf</a>
-					<a href="#" class="collection-item">Business</a>
-					<a href="#" class="collection-item">Technol</a>
-				</div>
-			</div>
+
 		</div>
 		<div class="col s6">
 			<question-list question-url="{{ route('api.viender.socialite.questions.index') }}"></question-list>

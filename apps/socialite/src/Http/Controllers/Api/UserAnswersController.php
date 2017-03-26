@@ -3,13 +3,21 @@
 namespace Viender\Socialite\Http\Controllers\Api;
 
 use App\User;
-use Viender\Socialite\Models\Answer;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use Viender\Socialite\Transformers\AnswerTransformer;
+use Viender\Socialite\Models\Answer;
+use Viender\Socialite\Repositories\AnswersRepository;
+use Viender\Socialite\Transformers\AnswerPreviewTransformer;
 
 class UserAnswersController extends ApiController
 {
+    protected $answers;
+
+    public function __construct(AnswersRepository $answers) {
+        parent::__construct();
+        $this->answers = $answers;
+    }
+
     /** 
      * @api {get} /users/:username/answers Get User Answer
      * @apiName UserAnswersIndex
@@ -27,7 +35,7 @@ class UserAnswersController extends ApiController
     {
         $paginator = $user->answers()->paginate();
 
-        return $this->respondWithPagination($paginator, new AnswerTransformer);
+        return $this->respondWithPagination($paginator, new AnswerPreviewTransformer($this->answers));
     }
 
     /**

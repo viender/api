@@ -28,6 +28,10 @@ class UserTransformer extends Transformer
                     'url' => url('/users') . '/' . $user->username,
                 ],
                 [
+                    'rel' => 'self_html',
+                    'url' => route('web.viender.profile.pages.profile', $user->username),
+                ],
+                [
                     'rel' => 'avatar',
                     'url' => $user->avatar_url,
                 ],

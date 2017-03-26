@@ -3,62 +3,32 @@
 @section('content')
 <div class="">
 	<div class="row profile-header">
-		<div class="col s8 offset-s2 profile-avatar">
+		<div class="col s3 profile-avatar left-column">
 			<img src="{{ $user->avatar_url }}" alt="">
 		</div>
 	</div>
 
 	<div class="row profile-nav">
-		<div class="col s8 offset-s2">
-			<div class="row">
-				<div class="col s9 offset-s3">
-					<ul class="profileNavigation-list">
-						<li class="profileNavigation-item">
-							<a href="#Answers">
-								<span class="profileNavigation-label">Answers</span>
-								<span class="profileNavigation-value">{{ $user->answers->count() }}</span>
-							</a>
-						</li>
-						<li class="profileNavigation-item">
-							<a href="#Questions">
-								<span class="profileNavigation-label">Questions</span>
-								<span class="profileNavigation-value">{{ $user->questions->count() }}</span>
-							</a>
-						</li>
-						<li class="profileNavigation-item">
-							<a href="#Questions">
-								<span class="profileNavigation-label">Following</span>
-								<span class="profileNavigation-value">{{ $user->following->count() }}</span>
-							</a>
-						</li>
-						<li class="profileNavigation-item">
-							<a href="#Questions">
-								<span class="profileNavigation-label">Followers</span>
-								<span class="profileNavigation-value">{{ $user->followers->count() }}</span>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+		<div class="col s8 offset-s3">
+			@include('viender.profile.layouts::profileNav', ['currentMenu' => 0])
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col s2">
-		</div>
-		<div class="col s8">
-			<div class="row">
-				<div class="col s3">
-					<div class="profile-content__name">
-						{{ $user->fullName() }}
-					</div>
-				</div>
-				<div class="col s9">
-					
-				</div>
+		<div class="col s3 left-column">
+			<div class="profile-content__userDetail">
+				<span>{{ $user->fullName() }}</span>
 			</div>
 		</div>
-		<div class="col s2">
+
+		<div class="col s6">
+			<div class="profile-content">
+			<feed-list :feed-urls="{ answers: '{{ route('api.viender.socialite.users.answers.index', $user->username) }}' }"></feed-list>
+			<answer-show-modal></answer-show-modal>
+			</div>
+		</div>
+
+		<div class="col s3">
 		</div>
 	</div>
 </div>

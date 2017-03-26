@@ -4,14 +4,14 @@
 			<div class="card u-margin--none u-box-shadow--none">
 				<div class="card-content" @click="showAnswer()">
 					<span class="card-title">
-						<h4><a :href="getUrl('self_html', answer.question)" @click="titleClickHandle($event)">{{ answer.question.title }}</a></h4>
+						<h4><a :href="getUrl('self_html', answer.question)" @click="stopPropagation($event)">{{ answer.question.title }}</a></h4>
 					</span>
 				  	<ul class="collection">
 						<li class="collection-item avatar">
 							<img :src="getUrl('avatar', answer.owner)" alt="" class="circle">
-							<span class="card-title">
-								{{ answer.owner.name }}
-							</span>
+							<a :href="getUrl('self_html', answer.owner)" @click="stopPropagation($event)">
+								<span class="card-title">{{ answer.owner.name }}</span>
+							</a>
 						</li>
 					</ul>
 					<div class="answer-content">
@@ -59,7 +59,7 @@ export default {
     },
 
     methods: {
-    	titleClickHandle(event) {
+    	stopPropagation(event) {
             event.stopPropagation();
         },
 
