@@ -12,11 +12,17 @@ class Follower extends Model
      * @var array
      */
     protected $fillable = [
-    	
+    	'followee_id',
+        'followee_type',
     ];
 
-    public function followed()
+    public function followee()
     {
-    	return $this->belongsTo('App\User', 'user_id');
+    	return $this->morphTo();
+    }
+
+    public function follower()
+    {
+        return $this->morphTo();
     }
 }

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 219);
+/******/ 	return __webpack_require__(__webpack_require__.s = 229);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -52219,7 +52219,18 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 86 */,
+/* 86 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return INCREMENT_FOLLOWER_COUNT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return DECREMENT_FOLLOWER_COUNT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SET_FOLLOWER_COUNT; });
+var INCREMENT_FOLLOWER_COUNT = 'INCREMENT_FOLLOWER_COUNT';
+var DECREMENT_FOLLOWER_COUNT = 'DECREMENT_FOLLOWER_COUNT';
+var SET_FOLLOWER_COUNT = 'SET_FOLLOWER_COUNT';
+
+/***/ }),
 /* 87 */,
 /* 88 */,
 /* 89 */,
@@ -52249,7 +52260,38 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* 113 */,
 /* 114 */,
 /* 115 */,
-/* 116 */
+/* 116 */,
+/* 117 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__(86);
+var _mutations;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = {
+    namespaced: true,
+
+    state: {
+        followerCount: 0
+    },
+
+    mutations: (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* SET_FOLLOWER_COUNT */], function (state, followerCount) {
+        state.followerCount = followerCount;
+    }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* INCREMENT_FOLLOWER_COUNT */], function (state) {
+        state.followerCount++;
+    }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* DECREMENT_FOLLOWER_COUNT */], function (state) {
+        state.followerCount--;
+    }), _mutations),
+
+    actions: {}
+};
+
+/***/ }),
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(37);
@@ -52257,7 +52299,7 @@ __webpack_require__(75);
 __webpack_require__(85);
 
 /***/ }),
-/* 117 */
+/* 119 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52268,6 +52310,9 @@ __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_viender_socialite_core_js_store_modules_questionList__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_viender_socialite_core_js_store_modules_editor__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_viender_socialite_core_js_store_modules_feed__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_viender_profile_core_js_store_modules_userStats__ = __webpack_require__(117);
+
+
 
 
 
@@ -52281,15 +52326,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
   modules: Object.assign(__WEBPACK_IMPORTED_MODULE_2_viender_core_js_store_modules_js__["a" /* default */], {
     questionList: __WEBPACK_IMPORTED_MODULE_3_viender_socialite_core_js_store_modules_questionList__["a" /* default */],
     editor: __WEBPACK_IMPORTED_MODULE_4_viender_socialite_core_js_store_modules_editor__["a" /* default */],
-    feed: __WEBPACK_IMPORTED_MODULE_5_viender_socialite_core_js_store_modules_feed__["a" /* default */]
+    feed: __WEBPACK_IMPORTED_MODULE_5_viender_socialite_core_js_store_modules_feed__["a" /* default */],
+    userStats: __WEBPACK_IMPORTED_MODULE_6_viender_profile_core_js_store_modules_userStats__["a" /* default */]
   }),
 
   actions: __webpack_require__(55)
 });
 
 /***/ }),
-/* 118 */,
-/* 119 */,
 /* 120 */,
 /* 121 */,
 /* 122 */,
@@ -52313,12 +52357,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 /* 140 */,
 /* 141 */,
 /* 142 */,
-/* 143 */
+/* 143 */,
+/* 144 */,
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store__ = __webpack_require__(119);
 
 
 /**
@@ -52327,7 +52373,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(116);
+__webpack_require__(118);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -52342,8 +52388,6 @@ var feed = new Vue({
 });
 
 /***/ }),
-/* 144 */,
-/* 145 */,
 /* 146 */,
 /* 147 */,
 /* 148 */,
@@ -52417,10 +52461,20 @@ var feed = new Vue({
 /* 216 */,
 /* 217 */,
 /* 218 */,
-/* 219 */
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(143);
+module.exports = __webpack_require__(145);
 
 
 /***/ })

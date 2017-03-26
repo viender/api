@@ -52,7 +52,29 @@ class Urls
         $namePrefix = 'api' . (isset($option['showVersionPrefix']) ? ($option['showVersionPrefix'] ? '.v1' : '') : '.v1') . '.viender.follow';
 
         $this->router->group(array_merge($option, ['domain' => config('app.api_domain'), 'namespace' => 'Api', 'middleware' => 'api']), function() use ($namePrefix) {
+            
+            $this->router->resource(
+                'users.followers',
+                'UserFollowersController',
+                [
+                    'as' => $namePrefix,
+                    'only' => ['index']
+                ]
+            );
 
+            $this->router->resource(
+                'users.followings',
+                'UserFollowingsController',
+                [
+                    'as' => $namePrefix,
+                    'only' => ['index', 'store']
+                ]
+            );
+
+            $this->router->delete(
+                'users/{user1}/followings/{user2}',
+                'UserFollowingsController@destroy'
+            )->name($namePrefix . '.users.followings.destroy');
         });
     }
 }

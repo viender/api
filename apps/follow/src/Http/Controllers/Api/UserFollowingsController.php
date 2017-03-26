@@ -1,21 +1,23 @@
 <?php
 
-namespace Viender\Socialite\Http\Controllers\Api;
+namespace Viender\Follow\Http\Controllers\Api;
 
+use App\User;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Follow\Models\Follower;
-use Viender\Follow\Models\Following;
-use Viender\Follow\Transformers\FollowingTransformer;
+use Illuminate\Auth\Access\AuthorizationException;
+use Viender\Follow\Repositories\FollowersRepository;
+use Viender\Follow\Transformers\FollowerTransformer;
 
-class UserFollowersController extends ApiController
+class UserFollowingsController extends ApiController
 {
-    private $followings;
+    private $followers;
 
-    public function __construct(FollowersRepository $followings)
+    public function __construct(FollowersRepository $followers)
     {
         parent::__construct();
-        $this->followings = $followings;
+        $this->followers = $followers;
     }
 
     /** 
@@ -25,7 +27,7 @@ class UserFollowersController extends ApiController
     {
         $paginator = $user->followings()->paginate();
 
-        return $this->respondWithPagination($paginator, new FollowingTransformer);
+        return $this->respondWithPagination($paginator, new FollowerTransformer);
     }
 
     /**
@@ -35,8 +37,15 @@ class UserFollowersController extends ApiController
      */
     public function store(Request $request, User $user)
     {
-        $follower = $this->followings->userFollowUser($user, User::find($request->follower_id));
-        return $follower;
+        $this->authorize('create', Follower::class);
+
+        if(\Auth::user()->id !== $user->id) throw new AuthorizationException('This action is unauthorized.');
+
+        if($this->followers->userFollowUser($user, User::find($request->followee_id))) {
+            return $this->respondCreated();
+        }
+
+        return $this->respondDeleted();
     }
 
     /**
@@ -44,12 +53,15 @@ class UserFollowersController extends ApiController
      * 
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Follower $follower)
+    public function destroy(User $user1, User $user2)
     {
-        $upvotes = $answer->upvotes()->findOrFail($upvotes);
+        $this->authorize('delete', $user1->followings()->where([
+            'followee_id'   => $user2->id, 
+            'followee_type' => User::class])->firstOrFail()
+        );
 
-        $upvotes->delete();
-
+        $this->followers->userUnfollowUser($user1, $user2);
+        
         return $this->respondDeleted();
     }
 }

@@ -8,3 +8,4 @@ Viender\Mytutor\Mytutor::routes(['prefix' => 'v1/jobs'], function ($router) {
 Viender\Address\Address::routes();
 Viender\Socialite\Socialite::routes();
 Viender\Profile\Profile::routes(['prefix' => 'profile']);
+Viender\Follow\Follow::routes();

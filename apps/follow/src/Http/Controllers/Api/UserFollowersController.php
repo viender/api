@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Socialite\Http\Controllers\Api;
+namespace Viender\Follow\Http\Controllers\Api;
 
 use App\User;
 use Illuminate\Http\Request;
@@ -28,30 +28,5 @@ class UserFollowersController extends ApiController
         $paginator = $user->followers()->paginate();
 
         return $this->respondWithPagination($paginator, new FollowerTransformer);
-    }
-
-    /**
-     * Follow user
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
-    {
-        $follower = $this->followers->userFollowUser($user, User::find($request->follower_id));
-        return $follower;
-    }
-
-    /**
-     * Unfollow user
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Follower $follower)
-    {
-        $upvotes = $answer->upvotes()->findOrFail($upvotes);
-
-        $upvotes->delete();
-
-        return $this->respondDeleted();
     }
 }

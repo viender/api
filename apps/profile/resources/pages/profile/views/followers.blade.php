@@ -23,7 +23,12 @@
 
 		<div class="col s6">
 			<div class="profile-content">
-				<span>Your followers:</span>
+				@if(\Auth::user()->id === $user->id)
+					<span>Your followers:</span>
+				@else
+					<span>{{ $user->first_name }}'s followers:</span>
+				@endif
+				<div>{{ $user->followers()->with('follower')->get() }}</div>
 			</div>
 		</div>
 

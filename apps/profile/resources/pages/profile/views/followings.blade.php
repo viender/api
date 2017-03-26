@@ -23,7 +23,14 @@
 
 		<div class="col s6">
 			<div class="profile-content">
-				<span>People you follow:</span>
+				@if(\Auth::user()->id === $user->id)
+					<span>People you follow:</span>
+				@else
+					<span>People followed by {{ $user->first_name }}:</span>
+				@endif
+				<div>
+					{{ $user->followings }}
+				</div>
 			</div>
 		</div>
 

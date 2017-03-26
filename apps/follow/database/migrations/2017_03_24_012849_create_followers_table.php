@@ -14,11 +14,15 @@ class CreateFollowersTable extends Migration
     public function up()
     {
         Schema::create('followers', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+            $table->increments('id');
+            $table->integer('followee_id')->unsigned();
+            $table->string('followee_type');
             $table->integer('follower_id')->unsigned();
-            $table->primary(['user_id', 'follower_id']);
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('follower_type');
+            $table->unique(['followee_type', 'followee_id', 'follower_id']);
+            $table->foreign('followee_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('follower_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

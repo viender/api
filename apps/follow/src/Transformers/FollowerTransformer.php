@@ -12,7 +12,7 @@ class FollowerTransformer extends Transformer
      * @var array
      */
     protected $availableIncludes = [
-        
+        'follower', 'followee'
     ];
     
     /**
@@ -23,7 +23,32 @@ class FollowerTransformer extends Transformer
     public function transform(Follower $follower)
     {
         return [
-            'user_id' => $follower->follower_id,
+            'followee_id' => $follower->follower_id,
+            'follower_id' => $follower->followee_id,
         ];
+    }
+
+    /**
+     * Include Follower User
+     *
+     * @return League\Fractal\ItemResource
+     */
+    public function includeFollower($follower)
+    {
+        $user = $follower->follower;
+
+        return $this->item($user, new UserTransformer);
+    }
+
+    /**
+     * Include Followee User
+     *
+     * @return League\Fractal\ItemResource
+     */
+    public function includeFollowee($follower)
+    {
+        $user = $follower->followee;
+
+        return $this->item($user, new UserTransformer);
     }
 }
