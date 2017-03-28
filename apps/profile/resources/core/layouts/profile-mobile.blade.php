@@ -11,15 +11,27 @@
 	<div class="row profile-userDetail">
 		<div class="col s12">
 			<span class="profile-userDetail__name">{{ $user->fullName() }}</span>
+			
+			@if($followed = \Auth::user()->followings()->where([
+	            'follower_id'   => \Auth::user()->id,
+	            'followee_id'   => $user->id,
+	            'followee_type' => \App\User::class,
+	        ])->exists() && \Auth::user() ? \Auth::user()->id != $user->id : false)
+	        	<div class="followUserButton" v-if="notMounted">
+	        		<button class="btn followed">Unfollow</button>
+	        	</div>
+	        @elseif(\Auth::user() ? \Auth::user()->id != $user->id : false)
+	        	<div class="followUserButton" v-if="notMounted">
+	        		<button class="btn">Follow</button>
+	        	</div>
+	        @endif
+
 			@if(\Auth::user() ? \Auth::user()->id != $user->id : false)
 				<follow-user-button
 					followee_id="{{ $user->id }}"
 					url="{{ route('api.viender.follow.users.followings.store', \Auth::user()) }}"
-					followed="{{ (\Auth::user()->followings()->where([
-				            'follower_id'   => \Auth::user()->id,
-				            'followee_id'   => $user->id,
-				            'followee_type' => \App\User::class,
-				        ])->exists()) }}">
+					followed="{{ $followed }}"
+					@mounted="hideBeforeMountedPreloaders()">
 				</follow-user-button>
 			@endif
 		</div>

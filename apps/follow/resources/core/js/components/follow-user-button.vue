@@ -21,8 +21,12 @@ export default {
 		}
 	},
 
-	mounted() {
+	created() {
 		this.user.followed = this.followed ? this.followed : false;
+	},
+
+	mounted() {
+		this.$emit('mounted');
 	},
 
 	methods: {

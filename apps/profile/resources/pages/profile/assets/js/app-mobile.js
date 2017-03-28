@@ -45,13 +45,17 @@ const feed = new Vue({
 
     data() {
     	return {
-    		showFollowerCountPreloader: true,
+    		notMounted: true,
     	};
     },
 
+    mounted() {
+        this.$refs.profileContentMobile.style.display = 'block';
+    },
+
     methods: {
-    	hideFollowerCountPreloader() {
-    		this.showFollowerCountPreloader = false;
+    	hideBeforeMountedPreloaders() {
+    		this.notMounted = false;
     	}
     }
 });

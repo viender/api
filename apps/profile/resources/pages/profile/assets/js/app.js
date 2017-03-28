@@ -45,13 +45,13 @@ const feed = new Vue({
 
     data() {
     	return {
-    		showFollowerCountPreloader: true,
+    		notMounted: true,
     	};
     },
 
     methods: {
-    	hideFollowerCountPreloader() {
-    		this.showFollowerCountPreloader = false;
+    	hideBeforeMountedPreloaders() {
+    		this.notMounted = false;
     	}
     }
 });

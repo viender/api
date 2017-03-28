@@ -20,15 +20,15 @@
 	<li class="profileNavigation-item">
 		<a :class="currentMenu(3) ? 'navigationLink is-active' : 'navigationLink'" href="{{ route('web.viender.profile.pages.followings', $user->username) }}" page ="followings" @click="setCurrentMenu(3)" @click.prevent="">
 			<span class="profileNavigation-label">Followings</span>
-			<following-count following-count="{{ $user->followings->count() }}" @mounted="hideFollowerCountPreloader()"></following-count>
-			<span class="profileNavigation-value" v-if="showFollowerCountPreloader">{{ $user->followings->count() }}</span>
+			<following-count following-count="{{ $user->followings->count() }}" @mounted="hideBeforeMountedPreloaders()"></following-count>
+			<span class="profileNavigation-value" v-if="notMounted">{{ $user->followings->count() }}</span>
 		</a>
 	</li>
 	<li class="profileNavigation-item">
 		<a :class="currentMenu(4) ? 'navigationLink is-active' : 'navigationLink'" href="{{ route('web.viender.profile.pages.followers', $user->username) }}" page ="followers" @click="setCurrentMenu(4)" @click.prevent="">
 			<span class="profileNavigation-label">Followers</span>
-			<follower-count follower-count="{{ $user->followers->count() }}" @mounted="hideFollowerCountPreloader()"></follower-count>
-			<span class="profileNavigation-value" v-if="showFollowerCountPreloader">{{ $user->followers->count() }}</span>
+			<follower-count follower-count="{{ $user->followers->count() }}" @mounted="hideBeforeMountedPreloaders()"></follower-count>
+			<span class="profileNavigation-value" v-if="notMounted">{{ $user->followers->count() }}</span>
 		</a>
 	</li>
 </ul>
