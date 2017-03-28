@@ -5,6 +5,7 @@ export default {
     
     state: { 
         page: 1,
+        totalPages: 2,
         requesting: false,
         answers: [],
         feedUrls:{},
@@ -58,6 +59,7 @@ export default {
                 }
             })
             .then(function (response) {
+                state.totalPages = response.data.meta.pagination.total_pages;
                 commit('addAnswers', response.data.data);
                 commit('incrementPage');
                 commit('updateRequesting', false);

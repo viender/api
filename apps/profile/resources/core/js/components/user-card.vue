@@ -32,7 +32,6 @@ export default {
 
 	created() {
 		this.followed = this.user.followed;
-		console.log(this);
 	},
 
     methods: {

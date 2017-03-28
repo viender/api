@@ -2,7 +2,6 @@
 
 use Jenssegers\Agent\Agent;
 use Illuminate\Contracts\View\Factory as ViewFactory;
-use InvalidArgumentException;
 
 if (! function_exists('view')) {
     /**
@@ -28,7 +27,7 @@ if (! function_exists('view')) {
                 $a = $factory->make($view . '-mobile', $data, $mergeData);
                 return $a;
             } catch (InvalidArgumentException $e) {
-                return $factory->make($view, $data, $mergeData);
+                return $factory->make('viender::no-mobile-view', $data, $mergeData);
             }
         }
 

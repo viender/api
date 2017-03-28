@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <button style="width: 100%; padding-left: 0;" class="btn btn-default" @click="fetchData()" v-show=" ! requesting">Load more</button>
+        <button style="width: 100%; padding-left: 0;" class="btn btn-default" @click="fetchData()" v-show=" ! requesting && page < totalPages">Load more</button>
         <answer-create-modal></answer-create-modal>
     </div>
 </template>
@@ -38,7 +38,15 @@ export default {
 
         questions() {
             return this.$store.state.questionList.questions;
-        }
+        },
+
+        page() {
+            return this.$store.state.questionList.page - 1;
+        },
+
+        totalPages() {
+            return this.$store.state.questionList.totalPages;
+        },
     },
 
     mounted() {

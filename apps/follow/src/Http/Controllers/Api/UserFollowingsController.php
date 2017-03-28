@@ -25,7 +25,7 @@ class UserFollowingsController extends ApiController
      */
     public function index(User $user)
     {
-        $paginator = $user->followings()->paginate();
+        $paginator = $user->followings()->paginate(20);
 
         return $this->respondWithPagination($paginator, new FollowingTransformer);
     }
@@ -40,6 +40,8 @@ class UserFollowingsController extends ApiController
         $this->authorize('create', Follower::class);
 
         if(\Auth::user()->id !== $user->id) throw new AuthorizationException('This action is unauthorized.');
+
+        if(\Auth::user()->id == $request->followee_id) abort(422, 'Cannot follow your self');
 
         if($this->followers->userFollowUser($user, User::find($request->followee_id))) {
             return $this->respondCreated();

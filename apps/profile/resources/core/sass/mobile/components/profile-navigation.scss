@@ -1,0 +1,48 @@
+.profileNavigation {
+	&-list {
+		margin: 0;
+		white-space: nowrap;
+		overflow: scroll;
+
+		&::-webkit-scrollbar { 
+		    display: none; 
+		}
+	}
+
+	&-item {
+		display: inline-block;
+
+		a {
+			@extend .grey-text, .text-darken-3;
+			height: 60px;
+			padding: 10px 12px 12px 12px;
+			display: block;
+			text-align: center;
+			transition: all .15s ease-in-out;
+
+			&.is-active {
+				border-bottom: solid 4px #{$secondary-color};
+			}
+
+			&:focus {
+				border-bottom: solid 4px #{$secondary-color};
+			}
+
+			&:hover {
+				border-bottom: solid 4px #{$secondary-color};
+			}
+		}
+
+		span {
+			display: block;
+		}
+	}
+
+	&-label {
+
+	}
+
+	&-value {
+		font-weight: 600;
+	}
+}

@@ -1,4 +1,5 @@
 import store from './store';
+import changeableMenuMixin from 'viender_profile/core/js/mixins/changeableMenuMixin';
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -14,9 +15,43 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('comment', require('viender_socialite/core/js/components/comment.vue'));
+Vue.component('comment-list', require('viender_socialite/core/js/components/comment-list.vue'));
+Vue.component('comment-create-form', require('viender_socialite/core/js/components/comment-create-form.vue'));
+Vue.component('answer-preview', require('viender_socialite/core/js/components/answer-preview.vue'));
+Vue.component('feed-list', require('viender_socialite/core/js/components/feed-list.vue'));
+Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
+Vue.component('answer-show-modal', require('viender_socialite/core/js/components/answer-show-modal.vue'));
+
+Vue.component('question', require('viender_socialite/core/js/components/question.vue'));
+Vue.component('question-list', require('viender_socialite/core/js/components/question-list.vue'));
+Vue.component('answer-create-form', require('viender_socialite/core/js/components/answer-create-form.vue'));
+Vue.component('answer-create-modal', require('viender_socialite/core/js/components/answer-create-modal.vue'));
+
+Vue.component('follow-user-button', require('viender_follow/core/js/components/follow-user-button.vue'));
+Vue.component('follower-count', require('viender_profile/core/js/components/follower-count.vue'));
+Vue.component('following-count', require('viender_profile/core/js/components/following-count.vue'));
+Vue.component('following-list', require('viender_profile/core/js/components/following-list.vue'));
+Vue.component('follower-list', require('viender_profile/core/js/components/follower-list.vue'));
+Vue.component('user-card', require('viender_profile/core/js/components/user-card.vue'));
+
 
 const feed = new Vue({
     el: '#app',
 
     store: store,
+
+    mixins: [changeableMenuMixin],
+
+    data() {
+    	return {
+    		showFollowerCountPreloader: true,
+    	};
+    },
+
+    methods: {
+    	hideFollowerCountPreloader() {
+    		this.showFollowerCountPreloader = false;
+    	}
+    }
 });

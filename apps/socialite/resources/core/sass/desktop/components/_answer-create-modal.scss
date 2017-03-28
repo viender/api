@@ -6,6 +6,11 @@
     background-color: white;
     z-index: 1042;
     border-radius: 5px;
+
+    .z-depth-4, .modal {
+        box-shadow: none;
+        background: none;
+    }
     
     &-overlay {
         position: fixed;

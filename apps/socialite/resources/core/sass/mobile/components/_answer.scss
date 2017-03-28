@@ -1,0 +1,28 @@
+.answer {
+    .card {
+        &.card-content {
+        	padding-left: 0;
+        	padding-right: 0;
+        }
+
+        &.card-action {
+        	padding-left: 0;
+        	padding-right: 0;
+        }
+    }
+    
+    &-content {
+        ul {
+        	padding-left: 40px;
+        	list-style-type: disc;
+        }
+
+        img {
+        	width: 100% !important;
+        }
+
+        ul li {
+        	list-style-type: disc;
+        }
+    }
+}

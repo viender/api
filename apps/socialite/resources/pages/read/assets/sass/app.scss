@@ -1,3 +1,5 @@
 @import "~viender_core/sass/core";
-@import "~viender_socialite/core/sass/app";
 @import "variables";
+
+@import "~viender_socialite/core/sass/desktop/components/answer";
+@import "~viender_socialite/core/sass/desktop/components/answer-show-modal";

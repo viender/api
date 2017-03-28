@@ -2,11 +2,15 @@
 @import "node_modules/summernote/dist/summernote";
 
 @import "~viender_core/sass/core";
-@import "~viender_socialite/core/sass/app";
+@import "variables";
+
+@import "~viender_socialite/core/sass/desktop/components/answer";
+@import "~viender_socialite/core/sass/desktop/components/answer-show-modal";
 @import "~viender_socialite/core/sass/desktop/components/answer-create-modal";
 @import "~viender_socialite/core/sass/desktop/components/answer-create-form";
 @import "~viender_profile/core/sass/desktop/components/user-card";
-@import "variables";
+@import "~viender_profile/core/sass/desktop/components/profile-navigation";
+@import "~viender_follow/core/sass/desktop/components/follow-user-button";
 
 #app {
 	line-height: 1.5;
@@ -66,45 +70,4 @@ a {
 	}
 }
 
-.profileNavigation {
-	&-list {
-		margin: 0;
-	}
 
-	&-item {
-		display: inline-block;
-
-		a {
-			@extend .grey-text, .text-darken-3;
-			height: 60px;
-			padding: 10px 12px 12px 12px;
-			display: block;
-			text-align: center;
-			transition: all .15s ease-in-out;
-
-			&.is-active {
-				border-bottom: solid 4px #{$secondary-color};
-			}
-
-			&:focus {
-				border-bottom: solid 4px #{$secondary-color};
-			}
-
-			&:hover {
-				border-bottom: solid 4px #{$secondary-color};
-			}
-		}
-
-		span {
-			display: block;
-		}
-	}
-
-	&-label {
-
-	}
-
-	&-value {
-		font-weight: 600;
-	}
-}

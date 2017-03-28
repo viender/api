@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <button v-show="! requesting" style="width: 100%; padding-left: 0;" class="btn btn-default" @click="fetchData()">Load more</button>
+        <button v-show="! requesting && page < totalPages" style="width: 100%; padding-left: 0;" class="btn btn-default" @click="fetchData()">Load more</button>
     </div>
 </template>
 
@@ -27,9 +27,18 @@ export default {
         requesting() {
             return this.$store.state.feed.requesting;
         },
+
         answers() {
             return this.$store.state.feed.answers;
-        }
+        },
+
+        page() {
+            return this.$store.state.feed.page - 1;
+        },
+
+        totalPages() {
+            return this.$store.state.feed.totalPages;
+        },
     },
 
     mounted() {

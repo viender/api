@@ -31,7 +31,8 @@ Vue.component('answer-create-modal', require('viender_socialite/core/js/componen
 Vue.component('follow-user-button', require('viender_follow/core/js/components/follow-user-button.vue'));
 Vue.component('follower-count', require('viender_profile/core/js/components/follower-count.vue'));
 Vue.component('following-count', require('viender_profile/core/js/components/following-count.vue'));
-Vue.component('user-list', require('viender_profile/core/js/components/user-list.vue'));
+Vue.component('following-list', require('viender_profile/core/js/components/following-list.vue'));
+Vue.component('follower-list', require('viender_profile/core/js/components/follower-list.vue'));
 Vue.component('user-card', require('viender_profile/core/js/components/user-card.vue'));
 
 

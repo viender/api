@@ -1,5 +1,5 @@
 <template>
-	<div class="followUserButton follow-user-button">
+	<div class="followUserButton">
 		<button class="btn" @click="follow()" v-if="! user.followed">Follow</button>
 		<button class="btn followed" @click="unfollow()" v-else>Unfollow</button>
 	</div>
@@ -59,14 +59,3 @@ export default {
 	},
 }
 </script>
-
-<style>
-	.follow-user-button {
-		display: inline-block;
-
-	}
-
-	.follow-user-button	button.followed {
-		background-color: grey;
-	}
-</style>

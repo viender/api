@@ -1,0 +1,25 @@
+.answer-show-modal {
+    position: relative;
+    margin: 12px auto;
+    width: 775px;
+    padding: 25px 75px 25px 75px;
+    background-color: white;
+    z-index: 1042;
+    border-radius: 5px;
+    
+    &-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.65);
+        z-index: 1041;
+        overflow-y: scroll;
+        overflow-x: auto;
+    }
+
+    .modal-action {
+        display: none;
+    }
+}

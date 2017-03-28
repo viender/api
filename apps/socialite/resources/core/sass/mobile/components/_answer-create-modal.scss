@@ -1,0 +1,150 @@
+.answerCreateModal {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    padding: 15px 15px 15px 15px;
+    background-color: white;
+    z-index: 1042;
+    margin-bottom: 32px;
+    
+    .z-depth-4, .modal {
+    	box-shadow: none;
+    	background: none;
+    }
+
+    &-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.65);
+        z-index: 1041;
+        overflow-y: scroll;
+        overflow-x: auto;
+    }
+
+    .note-editing-area ul {
+        padding-left: 40px;
+        list-style-type: disc;
+    }
+
+    .note-editing-area ul li {
+        list-style-type: disc;
+    }
+
+    .modal-open .modal {
+        overflow-x: visible;
+        overflow-y: visible;
+    }
+
+    .note-editor.note-frame.panel.panel-default{
+        border: none;
+    }
+
+    .panel-heading.note-toolbar {
+        background-color: #fff;
+    }
+
+    .note-btn.btn.btn-default {
+        @extend .grey-text, .text-darken-3;
+        background-color: transparent;
+        border: solid 1px;
+        border-color: transparent;
+        box-shadow: none;
+        line-height: 6px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 3px !important;
+    }
+
+    .btn i{
+        font-size: 1.2rem;
+    }
+
+    .note-btn.btn.btn-default:hover {
+        border: solid 1px;
+        border-color: #e0e0e0;
+    }
+
+    .note-btn.btn.btn-default.active {
+        color: #29b6f6 !important;
+        border: solid 1px;
+        border-color: #e0e0e0;
+    }
+
+    .panel-heading {
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+        border-color: #eeeeee;
+    }
+
+    .collection {
+        border: none;
+        margin: 0;
+    }
+
+    .note-btn-group.btn-group.note-style {
+        display: inline-block;
+    }
+
+    .note-btn-group.btn-group.note-para {
+        display: inline-block;
+    }
+
+    .note-btn-group.btn-group.note-insert {
+        float: right;
+    }
+
+    .modal {
+        min-height: 100%;
+        overflow: visible;
+        width: 100%;
+        top: 0;
+        background: rgba(5,5,5,0.8);
+    }
+
+    .modal .modal-dialog {
+        background-color: white;
+        min-height: 100%;
+        position: absolute;
+        width: 100%;
+        margin: 0;
+    }
+
+    .modal .modal-content {
+        padding-top: 40px;
+    }
+
+    .modal-backdrop.in {
+    	display: none;
+    }
+
+    .modal-action {
+    	@extend .grey, .lighten-3;
+    	@extend .grey-text, .text-darken-4;
+    	width: 100%;
+    	position: fixed;
+    	z-index: 1042;
+    	top: calc(100% - #{$modal-action-height});
+    	text-align: center;
+    	height: $modal-action-height;
+    	line-height: $modal-action-height;
+    }
+
+    .modal-header .close {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 20px;
+    }
+
+    [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: absolute;
+        left: 8px;
+        opacity: 1;
+        margin-top: 5px;
+    }
+}

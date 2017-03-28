@@ -1,5 +1,5 @@
 <template>
-	<div class="row u-margin--none">
+	<div class="row u-margin--none answer">
 		<div class="col s12">
 			<div class="card u-margin--none u-box-shadow--none" v-if="answer">
 				<div class="card-content">

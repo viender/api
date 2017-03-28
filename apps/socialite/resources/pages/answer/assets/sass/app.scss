@@ -3,6 +3,7 @@
 
 @import "~viender_core/sass/core";
 @import "variables";
+
 @import "~viender_socialite/core/sass/desktop/components/answer-create-modal";
 @import "~viender_socialite/core/sass/desktop/components/answer-create-form";
 
@@ -24,9 +25,4 @@ a {
     &:focus {
         text-decoration: none;
     }
-}
-
-.z-depth-4, .modal {
-	box-shadow: none;
-	background: none;
 }

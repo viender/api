@@ -1,0 +1,20 @@
+.answer {
+    .card .card-content {
+    	padding-left: 0;
+    	padding-right: 0;
+    }
+
+    .card .card-action {
+    	padding-left: 0;
+    	padding-right: 0;
+    }
+
+    &-content ul {
+        padding-left: 40px;
+        list-style-type: disc;
+    }
+
+    &-content ul li {
+    	list-style-type: disc;
+    }
+}
