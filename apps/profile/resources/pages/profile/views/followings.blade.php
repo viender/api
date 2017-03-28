@@ -23,14 +23,12 @@
 
 		<div class="col s6">
 			<div class="profile-content">
-				@if(\Auth::user()->id === $user->id)
+				@if(\Auth::user() ? \Auth::user()->id === $user->id : false)
 					<span>People you follow:</span>
 				@else
 					<span>People followed by {{ $user->first_name }}:</span>
 				@endif
-				<div>
-					{{ $user->followings }}
-				</div>
+				<user-list url="{{ route('api.viender.follow.users.followings.index', $user) }}"></user-list>
 			</div>
 		</div>
 

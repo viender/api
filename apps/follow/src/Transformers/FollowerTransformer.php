@@ -12,7 +12,7 @@ class FollowerTransformer extends Transformer
      * @var array
      */
     protected $availableIncludes = [
-        'follower', 'followee'
+        
     ];
     
     /**
@@ -22,33 +22,30 @@ class FollowerTransformer extends Transformer
      */
     public function transform(Follower $follower)
     {
-        return [
-            'followee_id' => $follower->follower_id,
-            'follower_id' => $follower->followee_id,
-        ];
-    }
-
-    /**
-     * Include Follower User
-     *
-     * @return League\Fractal\ItemResource
-     */
-    public function includeFollower($follower)
-    {
         $user = $follower->follower;
 
-        return $this->item($user, new UserTransformer);
-    }
-
-    /**
-     * Include Followee User
-     *
-     * @return League\Fractal\ItemResource
-     */
-    public function includeFollowee($follower)
-    {
-        $user = $follower->followee;
-
-        return $this->item($user, new UserTransformer);
+        return [
+            'id'        => $user->id,
+            'name'      => $user->first_name . ' ' . $user->last_name,
+            'followed'  => \Auth::user()->followings()->where([
+                    'follower_id'   => \Auth::user()->id,
+                    'followee_id'   => $user->id,
+                    'followee_type' => \App\User::class,
+                ])->exists(),
+            'links'     => [
+                [
+                    'rel' => 'self_html',
+                    'url' => route('web.viender.profile.pages.profile', $user->username),
+                ],
+                [
+                    'rel' => 'avatar',
+                    'url' => $user->avatar_url,
+                ],
+                [
+                    'rel' => 'follow',
+                    'url' => route('api.viender.follow.users.followings.store', \Auth::user()),
+                ],
+            ],
+        ];
     }
 }

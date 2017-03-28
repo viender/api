@@ -1,0 +1,27 @@
+.userCard {
+	width: 240px;
+	display: inline-block;
+	padding-right: 24px;
+
+	ul {
+		border: none;
+	}
+
+	.followButton {
+		height: 24px;
+		line-height: 24px;
+		text-transform: none;
+		width: 76px;
+		padding: 0;
+	}
+
+	.unfollowButton {
+		@extend .grey, .lighten-2;
+		@extend .grey-text, .text-darken-4;
+		height: 24px;
+		line-height: 24px;
+		text-transform: none;
+		width: 76px;
+		padding: 0;
+	}
+}

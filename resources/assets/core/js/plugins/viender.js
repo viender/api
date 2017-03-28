@@ -1,5 +1,6 @@
 export default {
 	install(Vue, options) {
-		Vue.treasure = window.treasure;
+		if(! Vue.prototype.$viender) Vue.prototype.$viender = {};
+		Vue.prototype.$viender.treasure = window.treasure;
 	}
 }

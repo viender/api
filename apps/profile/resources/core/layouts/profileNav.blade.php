@@ -20,7 +20,8 @@
 	<li class="profileNavigation-item">
 		<a :class="currentMenu(3) ? 'is-active' : ''" href="{{ route('web.viender.profile.pages.followings', $user->username) }}" @click="setCurrentMenu(3)">
 			<span class="profileNavigation-label">Followings</span>
-			<span class="profileNavigation-value">{{ $user->followings->count() }}</span>
+			<following-count following-count="{{ $user->followings->count() }}" @mounted="hideFollowerCountPreloader()"></following-count>
+			<span class="profileNavigation-value" v-if="showFollowerCountPreloader">{{ $user->followings->count() }}</span>
 		</a>
 	</li>
 	<li class="profileNavigation-item">

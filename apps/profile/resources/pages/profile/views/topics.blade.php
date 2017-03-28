@@ -23,7 +23,7 @@
 
 		<div class="col s6">
 			<div class="profile-content">
-				@if(\Auth::user()->id === $user->id)
+				@if(\Auth::user() ? \Auth::user()->id === $user->id : false)
 					<span>Topics you follow:</span>
 				@else
 					<span>Topics followed by {{ $user->first_name }}:</span>

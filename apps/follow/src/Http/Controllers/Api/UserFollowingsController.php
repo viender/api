@@ -8,7 +8,7 @@ use League\Fractal\Resource\Item;
 use Viender\Follow\Models\Follower;
 use Illuminate\Auth\Access\AuthorizationException;
 use Viender\Follow\Repositories\FollowersRepository;
-use Viender\Follow\Transformers\FollowerTransformer;
+use Viender\Follow\Transformers\FollowingTransformer;
 
 class UserFollowingsController extends ApiController
 {
@@ -27,7 +27,7 @@ class UserFollowingsController extends ApiController
     {
         $paginator = $user->followings()->paginate();
 
-        return $this->respondWithPagination($paginator, new FollowerTransformer);
+        return $this->respondWithPagination($paginator, new FollowingTransformer);
     }
 
     /**

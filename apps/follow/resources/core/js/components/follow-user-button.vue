@@ -1,5 +1,5 @@
 <template>
-	<div class="follow-user-button">
+	<div class="followUserButton follow-user-button">
 		<button class="btn" @click="follow()" v-if="! user.followed">Follow</button>
 		<button class="btn followed" @click="unfollow()" v-else>Unfollow</button>
 	</div>

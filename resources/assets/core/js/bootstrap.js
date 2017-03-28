@@ -8,6 +8,10 @@ window.Vue = require('vue');
 
 window.Vuex = require('vuex');
 
+window.Viender = require('./plugins/viender').default;
+
+window.Vue.use(window.Viender);
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -63,11 +67,20 @@ require('./services');
  */
 var event = new Event('userFetched');
 
+let guestUrls = [
+	url('login'),
+	url('register'),
+];
+
 axios.get(api('/user'), {})
 .then(function (response) {
     treasure.user = response.data;
     document.dispatchEvent(event);
 })
 .catch(function (error) {
-    console.log(error);
+     if (error.response.status == 401) {
+		if (! guestUrls.include(window.location.href)) {
+    		document.location = url('login');
+		}
+    }
 });
