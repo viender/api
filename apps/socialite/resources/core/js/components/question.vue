@@ -1,17 +1,17 @@
 <template>
-	<div class="row u-margin--none">
+	<div class="row u-margin--none question">
 		<div class="col s12">
 			<div class="card u-margin--none u-box-shadow--none" v-if="! question.downvoted">
 				<div class="card-content">
 					<span class="card-title"><h4><a :href="getUrl('self_html', question)">{{ question.title }}</a></h4></span>
 				</div>
-				<div class="card-action u-border--only-bottom" v-if=" ! question.answered">
+				<div class="card-action" v-if=" ! question.answered">
 			    	<button class="btn btn-default" @click="showAnswerCreateModal()">Answer</button>
 			    	<a @click="downvote">Downvote</a>
 			    	<a @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
 					<comment-list :comments-url="getUrl('comments', question)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
 				</div>
-				<div class="card-action u-border--only-bottom" v-else>
+				<div class="card-action" v-else>
 					Answered
 				</div>
 			</div>
@@ -20,7 +20,7 @@
 					<strong>You downvoted this question</strong>
 					<p>Downvoting low-quality content improves Viender for everyone.</p>
 				</div>
-				<div class="card-action u-border--only-bottom" v-if=" ! question.answered">
+				<div class="card-action" v-if=" ! question.answered">
 			    	<a @click="downvote">Undo</a>
 			    	<a @click="downvote">Report</a>
 				</div>

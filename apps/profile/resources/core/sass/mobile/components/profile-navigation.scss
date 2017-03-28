@@ -3,6 +3,7 @@
 		margin: 0;
 		white-space: nowrap;
 		overflow: scroll;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14);
 
 		&::-webkit-scrollbar { 
 		    display: none; 
@@ -21,14 +22,6 @@
 			transition: all .15s ease-in-out;
 
 			&.is-active {
-				border-bottom: solid 4px #{$secondary-color};
-			}
-
-			&:focus {
-				border-bottom: solid 4px #{$secondary-color};
-			}
-
-			&:hover {
 				border-bottom: solid 4px #{$secondary-color};
 			}
 		}

@@ -38,8 +38,11 @@
 	</div>
 
 	<div class="row">
+		@include('viender.profile.layouts::profileNav-mobile', ['currentMenu' => $currentMenu])
+	</div>
+
+	<div class="row">
 		<div class="col s12">
-			@include('viender.profile.layouts::profileNav-mobile', ['currentMenu' => $currentMenu])
 			<div class="profile-content">
 				@yield('profile-content')
 			</div>

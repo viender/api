@@ -1,12 +1,23 @@
-.answer {
-    .card .card-content {
-    	padding-left: 0;
-    	padding-right: 0;
-    }
+.answer, .question {
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(160, 160, 160, 0.2);
 
-    .card .card-action {
-    	padding-left: 0;
-    	padding-right: 0;
+    .card {
+        .card-content {
+            padding: 0;
+
+            .card-title {
+                h4 {
+                    margin-top: 0;
+                }
+            }
+        }
+
+        .card-action {
+            border-top: none;
+        	padding-left: 0;
+        	padding-right: 0;
+        }
     }
 
     &-content ul {

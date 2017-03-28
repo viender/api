@@ -19,7 +19,7 @@
 						<a style="cursor: pointer" v-if="answer.preview.length >= 258">(more)</a>
 					</div>
 				</div>
-				<div class="card-action u-border--only-bottom">
+				<div class="card-action">
 			    	<span style="cursor: pointer;" @click="upvote">
 				    	<span style="padding-right: 5px;">{{ upvoteCount }}</span>
 				    	<a :style="! answer.upvoted ? 'color: grey;' : ''" class="material-icons dp48">thumb_up</a>
