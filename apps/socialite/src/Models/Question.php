@@ -2,6 +2,7 @@
 
 namespace Viender\Socialite\Models;
 
+use Viender\Topic\Traits\HasTopics;
 use Viender\Socialite\Traits\HasTags;
 use Viender\Socialite\Traits\HasVotes;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ use Viender\Socialite\Contracts\Post\Commentable;
 
 class Question extends Model implements Upvotable, Commentable, Answerable, Taggable
 {
-    use HasComments, HasVotes, HasTags;
+    use HasComments, HasVotes, HasTags, HasTopics;
 
     /**
      * The attributes that are mass assignable.

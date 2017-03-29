@@ -4,8 +4,8 @@ export default {
     namespaced: true,
     
     state: { 
-        page: 1,
-        totalPages: 2,
+        page: 0,
+        totalPages: 1,
         requesting: false,
         followings: [],
         url: '',
@@ -23,13 +23,13 @@ export default {
 
     actions: {
         fetchData({ state, commit, rootState }) {
-            if (state.requesting || state.page > state.totalPages) return;
+            if (state.requesting || state.page + 1 > state.totalPages) return;
 
             state.requesting = true;
 
             axios.get(state.url, {
                 params: {
-                    page: state.page
+                    page: state.page + 1
                 }
             })
             .then(function (response) {

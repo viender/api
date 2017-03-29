@@ -186,6 +186,7 @@ return [
         Viender\Mytutor\Init::class,
         Viender\Profile\Init::class,
         Viender\Follow\Init::class,
+        Viender\Topic\Init::class,
     ],
 
     /*

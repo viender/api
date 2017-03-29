@@ -1,0 +1,53 @@
+.topicCard {
+    display: block;
+    margin-bottom: 30px;
+    border-bottom: solid 1px #eee;
+    padding-top: 10px;
+    padding-bottom: 20px;
+
+	&-thumbnail {
+		height: 30px;
+		width: 30px;
+		border-radius: 5px;
+		margin-bottom: 30px;
+		margin-right: 10px;
+	}
+
+	&-name {
+		font-weight: 600;
+		position: relative;
+		top: -15px;
+		display: inline-block;
+		overflow: hidden;
+		white-space: nowrap;
+    	text-overflow: ellipsis;
+    	width: calc(100% - 45px);
+
+    	a {
+			@extend .grey-text, .text-darken-4;
+    	}
+	}
+
+	&-action {
+		.followButton {
+			height: 24px;
+			line-height: 24px;
+			text-transform: none;
+			width: 76px;
+			padding: 0;
+			display: block;
+		}
+
+		.unfollowButton {
+			@extend .grey, .lighten-2;
+			@extend .grey-text, .text-darken-4;
+			height: 24px;
+			line-height: 24px;
+			text-transform: none;
+			width: 76px;
+			padding: 0;
+			display: block;
+		}
+	}
+
+}

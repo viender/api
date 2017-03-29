@@ -1,18 +1,4 @@
 /**
- * Vue is a modern JavaScript library for building interactive web interfaces
- * using reactive data binding and reusable components. Vue's API is clean
- * and simple, leaving you to focus on building your next great project.
- */
-
-window.Vue = require('vue');
-
-window.Vuex = require('vuex');
-
-window.Viender = require('./plugins/viender').default;
-
-window.Vue.use(window.Viender);
-
-/**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
@@ -26,6 +12,20 @@ window.axios.defaults.headers.common = {
     'X-CSRF-TOKEN': window.Laravel.csrfToken,
     'X-Requested-With': 'XMLHttpRequest'
 };
+
+/**
+ * Vue is a modern JavaScript library for building interactive web interfaces
+ * using reactive data binding and reusable components. Vue's API is clean
+ * and simple, leaving you to focus on building your next great project.
+ */
+
+window.Vue = require('vue');
+
+window.Vuex = require('vuex');
+
+window.Viender = require('./plugins/viender').default;
+
+window.Vue.use(window.Viender);
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -63,24 +63,10 @@ require('./services');
 
 
 /**
- * Get Authenticated user
+ * Guest Urls
  */
-var event = new Event('userFetched');
 
 let guestUrls = [
 	url('login'),
 	url('register'),
 ];
-
-axios.get(api('/user'), {})
-.then(function (response) {
-    treasure.user = response.data;
-    document.dispatchEvent(event);
-})
-.catch(function (error) {
-     if (error.response.status == 401) {
-		if (! guestUrls.include(window.location.href)) {
-    		document.location = url('login');
-		}
-    }
-});

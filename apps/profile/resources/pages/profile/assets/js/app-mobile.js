@@ -34,7 +34,9 @@ Vue.component('following-count', require('viender_profile/core/js/components/fol
 Vue.component('following-list', require('viender_profile/core/js/components/following-list.vue'));
 Vue.component('follower-list', require('viender_profile/core/js/components/follower-list.vue'));
 Vue.component('user-card', require('viender_profile/core/js/components/user-card.vue'));
-
+Vue.component('topic-count', require('viender_profile/core/js/components/topic-count.vue'));
+Vue.component('topic-list', require('viender_profile/core/js/components/topic-list.vue'));
+Vue.component('topic-card', require('viender_profile/core/js/components/topic-card.vue'));
 
 const feed = new Vue({
     el: '#app',

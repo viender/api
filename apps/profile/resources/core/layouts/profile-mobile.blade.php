@@ -12,11 +12,11 @@
 		<div class="col s12">
 			<span class="profile-userDetail__name">{{ $user->fullName() }}</span>
 			
-			@if($followed = \Auth::user()->followings()->where([
+			@if(\Auth::user() ? $followed = \Auth::user()->followings()->where([
 	            'follower_id'   => \Auth::user()->id,
 	            'followee_id'   => $user->id,
 	            'followee_type' => \App\User::class,
-	        ])->exists() && \Auth::user() ? \Auth::user()->id != $user->id : false)
+	        ])->exists() && \Auth::user() ? \Auth::user()->id != $user->id : false : false)
 	        	<div class="followUserButton" v-if="notMounted">
 	        		<button class="btn followed">Unfollow</button>
 	        	</div>

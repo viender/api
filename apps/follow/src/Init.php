@@ -2,7 +2,7 @@
 
 namespace Viender\Follow;
 
-use Viender\Follow\Models\Follower;
+use Viender\Follow\Models\Follow;
 use Viender\Follow\Policies\FollowingPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -14,7 +14,7 @@ class Init extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Follower::class => FollowingPolicy::class,
+        Follow::class => FollowingPolicy::class,
     ];
 
     /**

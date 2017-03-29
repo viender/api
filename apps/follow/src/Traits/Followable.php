@@ -2,17 +2,17 @@
 
 namespace Viender\Follow\Traits;
 
-use Viender\Follow\Models\Follower;
+use Viender\Follow\Models\Follow;
 
 trait Followable
 {
 	public function followers()
 	{
-		return $this->hasMany('Viender\Follow\Models\Follower', 'followee_id');
+		return $this->hasMany('Viender\Follow\Models\Follow', 'followee_id');
 	}
 
 	public function followings()
 	{
-		return $this->morphMany(Follower::class, 'follower');
+		return $this->morphMany(Follow::class, 'follower');
 	}
 }

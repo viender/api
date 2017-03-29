@@ -34,7 +34,8 @@
             "Viender\\Dealer\\": "apps/dealer/src/",
             "Viender\\Utilities\\": "apps/utilities/src/",
             "Viender\\Mytutor\\": "apps/mytutor/src/",
-            "Viender\\Follow\\": "apps/follow/src/"
+            "Viender\\Follow\\": "apps/follow/src/",
+            "Viender\\Topic\\": "apps/topic/src/"
         }
     },
     "autoload-dev": {

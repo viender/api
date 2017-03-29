@@ -2,15 +2,16 @@
 
 namespace Viender\Socialite\Models;
 
+use Viender\Topic\Traits\HasTopics;
 use Viender\Socialite\Traits\HasVotes;
-use Viender\Socialite\Traits\HasComments;
 use Illuminate\Database\Eloquent\Model;
+use Viender\Socialite\Traits\HasComments;
 use Viender\Socialite\Contracts\Post\Upvotable;
 use Viender\Socialite\Contracts\Post\Commentable;
 
 class Answer extends Model implements Upvotable, Commentable
 {
-    use HasComments, HasVotes;
+    use HasComments, HasVotes, HasTopics;
 
     /**
      * The attributes that are mass assignable.

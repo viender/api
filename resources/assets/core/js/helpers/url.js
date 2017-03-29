@@ -32,3 +32,23 @@ window.getUrl = function getUrl(rel, obj) {
 		return link.rel == rel;
 	})[0].url;
 }
+
+/**
+ * Helper function to clean host path from url
+ *
+ * @param  String path
+ * @return String
+ */
+
+window.relativeUrl = function url(path) {
+    
+
+    return path.replace(treasure.env.url, '');
+}
+
+export default {
+    url: url,
+    api: api,
+    getUrl: getUrl,
+    relativeUrl: relativeUrl,
+}

@@ -14,14 +14,15 @@
 	<li class="profileNavigation-item">
 		<a :class="currentMenu(2) ? 'navigationLink is-active' : 'navigationLink'" href="{{ route('web.viender.profile.pages.topics', $user->username) }}" @click="setCurrentMenu(2)">
 			<span class="profileNavigation-label">Topics</span>
-			<span class="profileNavigation-value">0</span>
+			<topic-count topic-count="{{ $user->followedTopics()->count() }}" @mounted="hideBeforeMountedPreloaders()"></topic-count>
+			<span class="profileNavigation-value" v-if="notMounted">{{ $user->followedTopics()->count() }}</span>
 		</a>
 	</li>
 	<li class="profileNavigation-item">
 		<a :class="currentMenu(3) ? 'navigationLink is-active' : 'navigationLink'" href="{{ route('web.viender.profile.pages.followings', $user->username) }}" @click="setCurrentMenu(3)">
 			<span class="profileNavigation-label">Followings</span>
-			<following-count following-count="{{ $user->followings->count() }}" @mounted="hideBeforeMountedPreloaders()"></following-count>
-			<span class="profileNavigation-value" v-if="notMounted">{{ $user->followings->count() }}</span>
+			<following-count following-count="{{ $user->followedUsers()->count() }}" @mounted="hideBeforeMountedPreloaders()"></following-count>
+			<span class="profileNavigation-value" v-if="notMounted">{{ $user->followedUsers()->count() }}</span>
 		</a>
 	</li>
 	<li class="profileNavigation-item">

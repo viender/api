@@ -2,11 +2,11 @@
 	<div class="userCard">
 		<ul class="collection">
 			<li class="collection-item avatar">
-				<img :src="getUrl('avatar', user)" alt="" class="circle">
-				<a :href="getUrl('self_html', user)">
+				<img :src="$viender.helpers.getUrl('avatar', user)" alt="" class="circle">
+				<a :href="$viender.helpers.getUrl('self_html', user)">
 					<span class="card-title">{{ user.name }}</span>
 				</a>
-				<div v-if="$viender.treasure.user ? $viender.treasure.user.id !== user.id : false">
+				<div v-if="$viender.user ? $viender.user.id !== user.id : false">
 					<button class="btn followButton" v-show="! followed" @click="follow()">Follow</button>
 					<button class="btn unfollowButton" v-show="followed" @click="unfollow()">Unfollow</button>
 				</div>
@@ -42,7 +42,7 @@ export default {
 
     		_this.requesting = true;
 
-    		axios.post(_this.getUrl('follow', _this.user), {'followee_id': _this.user.id})
+    		axios.post(_this.$viender.helpers.getUrl('follow', _this.user), {'followee_id': _this.user.id})
 				.then(function (response) {
 					_this.followed = ! _this.followed;
 

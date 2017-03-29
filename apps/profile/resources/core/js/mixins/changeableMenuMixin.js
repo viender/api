@@ -28,13 +28,19 @@ export default {
             localStorage.setItem('profileNavigation.scrollLeft', this.$refs.profileNav.scrollLeft);
     		this.selectedMenu = selectedMenu;
 
+            const page = this.$refs.profileNav.getElementsByClassName('navigationLink')[selectedMenu].getAttribute('page');
+            const url = this.$refs.profileNav.getElementsByClassName('navigationLink')[selectedMenu].getAttribute('href');
+
             if (window.history ? window.history.pushState : false) {
-                const page = this.$refs.profileNav.getElementsByClassName('navigationLink')[selectedMenu].getAttribute('page');
-                const url = this.$refs.profileNav.getElementsByClassName('navigationLink')[selectedMenu].getAttribute('href');
                 window.history.pushState({
                     Page: page,
                     Url: url,
                 }, page, url)
+            }
+
+            if (window.ga) {
+                ga('set', 'page', relativeUrl(url));
+                ga('send', 'pageview');
             }
     	}
     }

@@ -27,7 +27,7 @@ export default {
 
             if(this.showModal) {
                 Vue.nextTick(function () {
-                    $(_this.$refs.form.$refs.editor).summernote('editor.focus');
+                    // $(_this.$refs.form.$refs.editor).summernote('editor.focus');
                 });
             }
         }

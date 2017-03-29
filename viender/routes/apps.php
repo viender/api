@@ -9,3 +9,4 @@ Viender\Address\Address::routes();
 Viender\Socialite\Socialite::routes();
 Viender\Profile\Profile::routes(['prefix' => 'profile']);
 Viender\Follow\Follow::routes();
+Viender\Topic\Topic::routes();

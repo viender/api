@@ -9,11 +9,21 @@ use Viender\Mytutor\Traits\Tutorable;
 use Viender\Address\Traits\HasAddress;
 use Viender\Socialite\Traits\Sociable;
 use Illuminate\Notifications\Notifiable;
+use Viender\Follow\Traits\CanFollowUsers;
+use Viender\Topic\Traits\CanFollowTopics;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Dealerable, HasAddress, Sociable, HasApiTokens, Notifiable, Tutorable, Followable;
+    use Dealerable,
+        HasAddress,
+        Sociable,
+        HasApiTokens,
+        Notifiable,
+        Tutorable,
+        Followable,
+        CanFollowUsers,
+        CanFollowTopics;
 
     /**
      * The attributes that are mass assignable.

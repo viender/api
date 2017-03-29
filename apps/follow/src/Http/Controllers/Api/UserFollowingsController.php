@@ -5,7 +5,7 @@ namespace Viender\Follow\Http\Controllers\Api;
 use App\User;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use Viender\Follow\Models\Follower;
+use Viender\Follow\Models\Follow;
 use Illuminate\Auth\Access\AuthorizationException;
 use Viender\Follow\Repositories\FollowersRepository;
 use Viender\Follow\Transformers\FollowingTransformer;
@@ -25,7 +25,7 @@ class UserFollowingsController extends ApiController
      */
     public function index(User $user)
     {
-        $paginator = $user->followings()->paginate(20);
+        $paginator = $user->followedUsers()->paginate(20);
 
         return $this->respondWithPagination($paginator, new FollowingTransformer);
     }
@@ -37,7 +37,7 @@ class UserFollowingsController extends ApiController
      */
     public function store(Request $request, User $user)
     {
-        $this->authorize('create', Follower::class);
+        $this->authorize('create', Follow::class);
 
         if(\Auth::user()->id !== $user->id) throw new AuthorizationException('This action is unauthorized.');
 

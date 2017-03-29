@@ -6,6 +6,7 @@ export default {
     state: { 
         followerCount: 0,
         followingCount: 0,
+        topicCount: 0,
     },
 
     mutations: { 
@@ -20,6 +21,7 @@ export default {
         [types.DECREMENT_FOLLOWER_COUNT] (state) {
             state.followerCount--;
         },
+
         [types.SET_FOLLOWING_COUNT] (state, followingCount) {
             state.followingCount = followingCount;
         },
@@ -30,6 +32,18 @@ export default {
 
         [types.DECREMENT_FOLLOWING_COUNT] (state) {
             state.followingCount--;
+        },
+
+        [types.SET_TOPIC_COUNT] (state, topicCount) {
+            state.topicCount = topicCount;
+        },
+
+        [types.INCREMENT_TOPIC_COUNT] (state) {
+            state.topicCount++;
+        },
+
+        [types.DECREMENT_TOPIC_COUNT] (state) {
+            state.topicCount--;
         },
     },
 

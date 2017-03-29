@@ -62,6 +62,13 @@ export default {
 	mounted() {
 		var _this = this;
 
+		var popOver = document.getElementsByClassName('note-popover');
+
+		for (var i = 0; i < popOver.length; i++) {
+			var p = popOver[i];
+			p.parentNode.removeChild(p);
+		}
+
 		$(document).ready(function() {
 			$(_this.$refs.editor).summernote({
 				minHeight: 400,

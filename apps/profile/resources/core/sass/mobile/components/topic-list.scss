@@ -1,0 +1,9 @@
+@media #{$small-and-down} {
+	.topic-list {
+		.col {
+			&.s6 {
+				width: 100%;
+			}
+		}
+	}
+}

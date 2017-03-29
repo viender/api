@@ -14,6 +14,7 @@
 		@else
 			<span>Topics followed by {{ $user->first_name }}:</span>
 		@endif
+		<topic-list url="{{ route('api.viender.topic.users.topics.index', $user) }}"></topic-list>
 	</div>
 
 	<div v-if=currentMenu(3)>

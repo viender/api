@@ -2,7 +2,7 @@
 
 namespace Viender\Follow\Transformers;
 
-use Viender\Follow\Models\Follower;
+use Viender\Follow\Models\Follow;
 
 class FollowerTransformer extends Transformer
 {
@@ -20,7 +20,7 @@ class FollowerTransformer extends Transformer
      *
      * @return array
      */
-    public function transform(Follower $follower)
+    public function transform(Follow $follower)
     {
         $user = $follower->follower;
 
