@@ -71,9 +71,45 @@ class Urls
 
             // Relationships
             // Relationships - Ask
-            $this->router->resource('users.questions', 'UserQuestionsController', ['as' => $namePrefix,'except' => ['create', 'edit']]);
-            $this->router->resource('users.answers', 'UserAnswersController', ['as' => $namePrefix,'except' => ['create', 'edit']]);
-            $this->router->resource('questions.answers', 'QuestionAnswersController', ['as' => $namePrefix,'except' => ['create', 'edit']]);
+            $this->router->resource(
+                'users.questions', 
+                'UserQuestionsController', [
+                    'as' => $namePrefix,
+                    'except' => ['create', 'edit']
+                ]
+            );
+
+            $this->router->resource(
+                'users.answers', 
+                'UserAnswersController', [
+                    'as' => $namePrefix,
+                    'except' => ['create', 'edit']
+                ]
+            );
+
+            $this->router->resource(
+                'questions.answers', 
+                'QuestionAnswersController', [
+                    'as' => $namePrefix,
+                    'except' => ['create', 'edit']
+                ]
+            );
+
+            $this->router->resource(
+                'topics.answers', 
+                'TopicAnswersController', [
+                    'as' => $namePrefix,
+                    'only' => ['index']
+                ]
+            );
+
+            $this->router->resource(
+                'topics.questions', 
+                'TopicQuestionsController', [
+                    'as' => $namePrefix,
+                    'only' => ['index']
+                ]
+            );
 
 
             // Relationships - Tag

@@ -39,7 +39,20 @@ class Urls
     {
         $this->router->group(array_merge($option, ['domain' => config('app.domain'), 'middleware' => 'web']), function() {
 
-            $this->router->get('topics/{topic}', 'TopicsController@landingPage')->name('web.viender.topic.topics.show');
+            $this->router->get(
+                'topics/{topic}', 
+                'TopicsController@landingPage'
+            )->name('web.viender.topic.pages.topic.index');
+
+            $this->router->get(
+                'topics/{topic}/questions', 
+                'TopicsController@questions'
+            )->name('web.viender.topic.pages.topic.questions');
+
+            $this->router->get(
+                'topics/{topic}/followers', 
+                'TopicsController@followers'
+            )->name('web.viender.topic.pages.topic.followers');
 
         });
     }

@@ -44,7 +44,7 @@ class TopicsController extends ApiController
 
     public function show(Topic $topic)
     {
-        return $this->respond(new Item($model, new TopicTransformer));
+        return $this->respond(new Item($topic, new TopicTransformer));
     }
 
     public function edit(Topic $topic)

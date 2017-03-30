@@ -46,19 +46,7 @@ const feed = new Vue({
 
     mixins: [changeableMenuMixin],
 
-    data() {
-    	return {
-    		notMounted: true,
-    	};
-    },
-
     mounted() {
-        console.log(this);
-    },
-
-    methods: {
-    	hideBeforeMountedPreloaders() {
-    		this.notMounted = false;
-    	}
+        this.initTab(this.$refs.profileNav, 'profileNavigation');
     }
 });

@@ -38,7 +38,7 @@
 	</div>
 
 	<div class="row">
-		@include('viender.profile.layouts::profileNav-mobile', ['currentMenu' => $currentMenu])
+		@include('viender.profile.layouts::profileNav-mobile', ['currentMenu' => $currentMenu, 'obj' => $user])
 	</div>
 
 	<div class="row">

@@ -75,6 +75,15 @@ class Urls
                 'users/{user1}/followings/{user2}',
                 'UserFollowingsController@destroy'
             )->name($namePrefix . '.users.followings.destroy');
+
+            $this->router->resource(
+                'topics.followers',
+                'TopicFollowersController',
+                [
+                    'as' => $namePrefix,
+                    'only' => ['index']
+                ]
+            );
         });
     }
 }
