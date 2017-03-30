@@ -3,9 +3,7 @@ if (typeof Promise === 'undefined') {
 	window.Promise = require('promise/lib/es6-extensions.js');
 }
 
-if (Object.assign === 'undefined') {
-	Object.assign = require('object-assign');
-}
+Object.assign = require('object-assign');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
