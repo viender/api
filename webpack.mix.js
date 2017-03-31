@@ -13,7 +13,7 @@ var config = {
     resolve: {
         alias: {
           viender: path.resolve(__dirname, 'viender'),
-          viender_core: path.resolve(__dirname, 'resources/assets/core'),
+          viender_core: path.resolve(__dirname, 'resources/assets'),
         }
     },
     plugins: [
@@ -47,7 +47,9 @@ mix.webpackConfig(config);
  | 
  */ 
  
-mix.js('viender/resources/assets/js/app.js', 'js') 
+mix.js('resources/assets/js/core.js', 'js');
+
+mix.js('viender/resources/assets/js/app.js', 'js')
    .sass('viender/resources/assets/sass/app-mobile.scss', 'css')
    .sass('viender/resources/assets/sass/app.scss', 'css');
 

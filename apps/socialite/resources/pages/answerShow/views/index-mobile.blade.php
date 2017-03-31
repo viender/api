@@ -11,5 +11,5 @@
 @endsection
 
 @section('scripts')
-<script src={{ mix('js/viender/socialite/answerShow/app.js') }} async="1"></script>
+<script src={{ mix('js/viender/socialite/answerShow/app.js') }} async defer></script>
 @endsection

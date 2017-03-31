@@ -35,6 +35,6 @@
 <link rel="stylesheet" href={{ mix('css/viender/mytutor/showBid/app.css') }}>
 @endsection
 
-@section('head-scripts')
-<script src={{ mix('js/viender/mytutor/showBid/app.js') }} async="1"></script>
+@section('scripts')
+<script src={{ mix('js/viender/mytutor/showBid/app.js') }} async defer></script>
 @endsection

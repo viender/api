@@ -21,8 +21,6 @@ window.axios.defaults.headers.common = {
 
 window.Vue = require('vue');
 
-window.Vuex = require('vuex');
-
 window.Viender = require('./plugins/viender').default;
 
 window.Vue.use(window.Viender);

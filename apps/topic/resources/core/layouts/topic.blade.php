@@ -40,6 +40,6 @@
 <link rel="stylesheet" href={{ mix('css/viender/topic/topic/app.css') }}>
 @endsection
 
-@section('head-scripts')
-<script src={{ mix('js/viender/topic/topic/app.js') }} async="1"></script>
+@section('scripts')
+<script src={{ mix('js/viender/topic/topic/app.js') }} async defer></script>
 @endsection

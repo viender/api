@@ -55,6 +55,6 @@
 <link rel="stylesheet" href={{ mix('css/viender/profile/profile/app-mobile.css') }}>
 @endsection
 
-@section('head-scripts')
-<script src={{ mix('js/viender/profile/profile/app-mobile.js') }} async="1"></script>
+@section('scripts')
+<script src={{ mix('js/viender/profile/profile/app-mobile.js') }} async defer></script>
 @endsection

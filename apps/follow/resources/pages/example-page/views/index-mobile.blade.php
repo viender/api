@@ -17,6 +17,6 @@
 <link rel="stylesheet" href={{ mix('css/viender/socialite/read/app-mobile.css') }}>
 @endsection
 
-@section('head-scripts')
-<script src={{ mix('js/viender/socialite/read/app-mobile.js') }} async="1"></script>
+@section('scripts')
+<script src={{ mix('js/viender/socialite/read/app-mobile.js') }} async defer></script>
 @endsection

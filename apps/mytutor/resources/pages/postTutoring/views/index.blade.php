@@ -14,6 +14,6 @@
 <link rel="stylesheet" href={{  mix('css/viender/mytutor/postTutoring/app.css') }}>
 @endsection
 
-@section('head-scripts')
-<script src={{ mix('js/viender/mytutor/postTutoring/app.js') }} async="1"></script>
+@section('scripts')
+<script src={{ mix('js/viender/mytutor/postTutoring/app.js') }} async defer></script>
 @endsection
