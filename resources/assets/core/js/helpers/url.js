@@ -28,6 +28,8 @@ window.api = function api(path) {
 }
 
 window.getUrl = function getUrl(rel, obj) {
+    if (! obj) return '';
+    
 	return obj.links.filter(function(link) {
 		return link.rel == rel;
 	})[0].url;

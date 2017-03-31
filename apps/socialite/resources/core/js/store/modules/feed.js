@@ -43,7 +43,11 @@ export default {
 
         [types.SET_SHOWED_ANSWER] (state, showedAnswer) {
             state.showedAnswer = showedAnswer;
-        }
+        },
+
+        addAnswer(state, answer) {
+            state.answers.unshift(answer);
+        },
     },
 
     actions: {

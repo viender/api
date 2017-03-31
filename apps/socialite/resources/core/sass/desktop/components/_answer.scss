@@ -2,6 +2,11 @@
     margin-bottom: 10px;
     border-bottom: 1px solid rgba(160, 160, 160, 0.2);
 
+    .col.s12 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
     .card {
         .card-content {
             padding: 0;

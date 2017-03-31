@@ -8,6 +8,7 @@ use Viender\Socialite\Models\Answer;
 use Viender\Socialite\Models\Question;
 use Viender\Socialite\Repositories\AnswersRepository;
 use Viender\Socialite\Transformers\AnswerTransformer;
+use Viender\Socialite\Transformers\AnswerPreviewTransformer;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class QuestionAnswersController extends ApiController
@@ -37,7 +38,7 @@ class QuestionAnswersController extends ApiController
     {
         $paginator = $question->answers()->orderBy('created_at', 'desc')->paginate();
 
-        return $this->respondWithPagination($paginator, new AnswerTransformer);
+        return $this->respondWithPagination($paginator, new AnswerPreviewTransformer($this->answers));
     }
 
     /**
@@ -64,7 +65,7 @@ class QuestionAnswersController extends ApiController
 
         $answer = $this->answers->createByUser(\Auth::user()->id, $question, $request->all());
 
-        return $this->respond(new Item($answer, new AnswerTransformer));
+        return $this->respond(new Item($answer, new AnswerPreviewTransformer($this->answers)));
     }
 
     /**

@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <answer-preview :answer="answer" v-for="answer in answers" v-if="answers[0] ? answers[0].preview : true"></answer-preview>
+        <answer-preview :answer="answer" v-for="answer in answers" v-if="answers[0] ? answers[0].preview : true" :show-question="options.answers.showQuestion"></answer-preview>
         <answer :answer="answer" v-for="answer in answers" v-else></answer>
         <div class="preloader preloader-wrapper small active" v-show="requesting">
             <div class="spinner-layer spinner-blue-only">
@@ -21,7 +21,22 @@
 
 <script>
 export default {
-    props: ['feedUrls'],
+    props: {
+        feedUrls: {
+            type: Object,
+            default: null,
+        },
+        options: {
+            type: Object,
+            default: function() {
+                return {
+                    answers: {
+                        showQuestion: true,
+                    }
+                }
+            },
+        }
+    },
 
     computed: {
         requesting() {

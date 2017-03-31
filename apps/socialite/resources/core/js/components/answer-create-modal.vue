@@ -2,7 +2,7 @@
     <div class="answerCreateModal-overlay" @click="hideAnswerCreateModal()" v-show="showModal">
         <div class="answerCreateModal" @click="modalClickHandle($event)">
             <div class="answerCreateModal-content">
-                <answer-create-form ref="form" @answer-posted="hideAnswerCreateModal()"></answer-create-form>
+                <answer-create-form ref="form" @answer-posted="hideAnswerCreateModal($event)"></answer-create-form>
             </div>
         </div>
         <div class="modal-action">
@@ -38,8 +38,12 @@ export default {
             event.stopPropagation();
         },
 
-        hideAnswerCreateModal() {
+        hideAnswerCreateModal(answer) {
             this.$store.commit('questionList/' + types.SET_SHOW_ANSWER_CREATE_MODAL, false);
+
+            if (this.$store.state.feed) {
+                this.$store.commit('feed/addAnswer', answer);
+            }
         }
     }
 }

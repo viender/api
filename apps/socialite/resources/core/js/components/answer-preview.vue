@@ -3,7 +3,7 @@
 		<div class="col s12">
 			<div class="card u-margin--none u-box-shadow--none">
 				<div class="card-content" @click="showAnswer()">
-					<span class="card-title">
+					<span class="card-title" v-if="showQuestion">
 						<h4><a :href="getUrl('self_html', answer.question)" @click="stopPropagation($event)">{{ answer.question.title }}</a></h4>
 					</span>
 				  	<ul class="collection">
@@ -37,7 +37,16 @@
 import * as types from '../store/mutation-types';
 
 export default {
-    props: ['answer'],
+	props: {
+    	answer: {
+    		type: Object,
+    		default: null,
+    	},
+    	showQuestion: {
+    		type: Boolean,
+    		default: true,
+    	},
+    },
 
     mixins: [require('viender_core/js/mixins/urlHelper')],
 

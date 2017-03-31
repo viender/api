@@ -2,7 +2,7 @@
 	<div>
 		<div style="padding-bottom: 20px;">
 			<h4><a :href="question ? getUrl('self_html', question) : ''">{{ question ? question.title : '' }}</a></h4>
-			<div :class="showQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" @click=toggleQuestionDetail()>
+			<div :class="showQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" @click="toggleQuestionDetail()">
 				{{ question ? question.body : '' }}
 			</div>
 			<hr>
@@ -104,7 +104,7 @@ export default {
 			axios.post(this.getUrl('answers', this.question) + '?with=owner', _this.content)
 				.then(function (response) {
 				    if(response.status == 200) {
-				        _this.$emit('answer-posted', response);
+				        _this.$emit('answer-posted', response.data);
 				        _this.$store.commit('editor/' + types.UPDATE_EDITOR_CONTENT, null);
 				        _this.$store.commit('questionList/' + types.SET_AS_ANSWERED, _this.question);
 				        $(_this.$refs.editor).summernote('code', '');

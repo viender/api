@@ -3,7 +3,7 @@
 		<div class="col s12">
 			<div class="card u-margin--none u-box-shadow--none" v-if="answer">
 				<div class="card-content">
-					<span class="card-title">
+					<span class="card-title" v-if="showQuestion">
 						<h4><a :href="getUrl('self_html', answer.question)">{{ answer.question.title }}</a></h4>
 					</span>
 					<hr style="margin-bottom: 30px;">
@@ -33,7 +33,16 @@
 
 <script>
 export default {
-    props: ['answer'],
+    props: {
+    	answer: {
+    		type: Object,
+    		default: null,
+    	},
+    	showQuestion: {
+    		type: Boolean,
+    		default: true,
+    	}
+    },
 
     mixins: [require('viender_core/js/mixins/urlHelper')],
 
