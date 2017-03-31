@@ -1,10 +1,3 @@
-if (typeof Promise === 'undefined') {
-	require('promise/lib/rejection-tracking').enable();
-	window.Promise = require('promise/lib/es6-extensions.js');
-}
-
-Object.assign = require('object-assign');
-
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

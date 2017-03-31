@@ -35,7 +35,8 @@
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
     @yield('head-styles')
-
+    @yield('head-scripts')
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 </head>
 <body>
     <div id="app" class="main-content">
@@ -48,7 +49,6 @@
         @yield('content')
     </div>
     <!-- Scripts -->
-    @yield('head-scripts')
     @yield('scripts')
 </body>
 </html>

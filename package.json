@@ -16,8 +16,6 @@
     "dotenv": "^4.0.0",
     "font-awesome": "^4.7.0",
     "materialize-css": "^0.98.0",
-    "object-assign": "^4.1.1",
-    "promise": "^7.1.1",
     "summernote": "^0.8.2",
     "vue": "^2.1.10",
     "vue-cookie": "^1.1.3",
