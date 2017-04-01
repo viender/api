@@ -16,7 +16,6 @@
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>;
-
         window.treasure = {!! json_encode([
             'env'       => [
                 'env'       => config('app.env'),
