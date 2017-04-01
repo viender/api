@@ -33,11 +33,6 @@
         list-style-type: disc;
     }
 
-    .modal-open .modal {
-        overflow-x: visible;
-        overflow-y: visible;
-    }
-
     .note-editor.note-frame.panel.panel-default{
         border: none;
     }
@@ -102,43 +97,49 @@
         width: 100%;
         top: 0;
         background: rgba(5,5,5,0.8);
-    }
 
-    .modal .modal-dialog {
-        background-color: white;
-        min-height: 100%;
-        position: absolute;
-        width: 100%;
-        margin: 0;
-    }
+        .modal .modal-dialog {
+            background-color: white;
+            min-height: 100%;
+            position: absolute;
+            width: 100%;
+            margin: 0;
+        }
 
-    .modal .modal-content {
-        padding-top: 40px;
-    }
+        &.modal-content {
+            padding-top: 40px;
+        }
 
-    .modal-backdrop.in {
-    	display: none;
-    }
+        &-backdrop.in {
+            display: none;
+        }
 
-    .modal-action {
-    	@extend .grey, .lighten-3;
-    	@extend .grey-text, .text-darken-4;
-    	width: 100%;
-    	position: fixed;
-    	z-index: 1042;
-    	top: calc(100% - #{$modal-action-height});
-    	text-align: center;
-    	height: $modal-action-height;
-    	line-height: $modal-action-height;
-    }
+        &-action {
+            @extend .grey, .lighten-3;
+            color: #657786;
+            width: 100%;
+            position: fixed;
+            z-index: 1042;
+            top: calc(100% - #{$modal-action-height});
+            text-align: center;
+            height: $modal-action-height;
+            line-height: $modal-action-height;
+            border-top: solid 1px #ddd;
+        }
 
-    .modal-header .close {
-        position: absolute;
-        top: 5px;
-        right: 10px;
-        background: none;
-        border: none;
-        font-size: 20px;
+        &-header .close {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+        }
+
+        &-open .modal {
+            overflow-x: visible;
+            overflow-y: visible;
+        }
     }
 
     [type="checkbox"]:not(:checked), [type="checkbox"]:checked {

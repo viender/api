@@ -1,4 +1,4 @@
-<div id="navbar-mobile" class="navbar-fixed navbar-mobile" style="margin-top: -1px;">
+<div id="navbar-mobile" class="navbar-fixed navbar-mobile">
     <nav class="navbar-mobile">
         <div class="nav-wrapper">
             <div class="row navbar-mobile-header">

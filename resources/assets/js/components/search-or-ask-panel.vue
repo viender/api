@@ -1,5 +1,5 @@
 <template>
-	<div class="overlay grey lighten-3" v-show="showPanel">
+	<div class="overlay" v-show="showPanel">
 		<div class="container">
 			<div class="row overlay-header">
 				<div class="col s12">

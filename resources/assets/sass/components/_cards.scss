@@ -21,15 +21,17 @@
 		}
 
 		.card-title {
+			@extend .grey-text, .text-darken-4;
 		    display: block;
 		    line-height: 20px;
 		    margin-bottom: 8px;
 		    font-size: 14px;
-		    font-weight: 300;
+		    font-weight: 600;
 		}
 	}
 
 	.card-action a {
+		color: #657786 !important;
 		margin-left: 0;
 		margin-right: 13px !important;
 		cursor: pointer;

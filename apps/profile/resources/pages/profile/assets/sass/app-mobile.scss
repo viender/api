@@ -38,7 +38,8 @@ a {
 	&-header {
 		padding-top: 10px;
 		background-color: grey;
-		margin-bottom: 70px;
+		margin-bottom: 70px !important;
+		background-color: $secondary-color;
 	}
 
 	&-avatar {
@@ -65,5 +66,9 @@ a {
 			text-align: center;
 			font-weight: 600;
 		}
+	}
+
+	&-content {
+		padding: 0 !important;
 	}
 }

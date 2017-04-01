@@ -42,10 +42,8 @@
 	</div>
 
 	<div class="row">
-		<div class="col s12">
-			<div class="profile-content">
-				@yield('profile-content')
-			</div>
+		<div class="col s12 profile-content">
+			@yield('profile-content')
 		</div>
 	</div>
 </div>

@@ -50,13 +50,17 @@
 </head>
 <body>
     <div id="app" class="main-content">
-        @if(\Agent::isDesktop())
-            @include('viender::layouts.nav')
-        @else
-            @include('viender::layouts.nav-mobile')
-        @endif
-
-        @yield('content')
+        <header>
+            @if(\Agent::isDesktop())
+                @include('viender::layouts.nav')
+            @else
+                @include('viender::layouts.nav-mobile')
+            @endif
+        </header>
+        
+        <main>
+            @yield('content')
+        </main>
     </div>
     <!-- Scripts -->
     @yield('scripts')
