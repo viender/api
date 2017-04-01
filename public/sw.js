@@ -1,4 +1,4 @@
-var CACHE_NAME = 'viender-cache-v1';
+var CACHE_NAME = 'viender-cache-v1.0.1';
 var urlsToCache = [
 
 ];
