@@ -1,8 +1,6 @@
-var CACHE_NAME = 'viender-cache-v2';
+var CACHE_NAME = 'viender-cache-v1';
 var urlsToCache = [
-	'/',
-	'/css/core.859f9e890e20f7423789.css',
-	'/js/core.9f80eda2ef79e911ccb9.js',
+
 ];
 
 self.addEventListener('install', function(event) {
@@ -58,7 +56,7 @@ self.addEventListener('fetch', function(event) {
 
 self.addEventListener('activate', function(event) {
 
-  var cacheWhitelist = ['viender-cache-v2'];
+  var cacheWhitelist = [CACHE_NAME];
 
   event.waitUntil(
     caches.keys().then(function(cacheNames) {

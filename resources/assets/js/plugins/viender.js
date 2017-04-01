@@ -1,5 +1,12 @@
 import helpers from '../helpers/url';
 
+window.guestUrls = [
+	url('login'),
+	url('register'),
+];
+
+const userFetched = new Event('userFetched');
+
 export default {
 	install(Vue, options) {
 		if(! Vue.prototype.$viender) Vue.prototype.$viender = {};
@@ -10,23 +17,34 @@ export default {
 			helpers
 		);
 
-		const userFetched = new Event('userFetched');
+		Vue.prototype.$viender.helpers.fetchAuthenticatedUser = function fetchAuthenticatedUser(argument) {
+			axios.get(api('/user'), {})
+			.then(function (response) {
+			    treasure.user = response.data;
+			    Vue.prototype.$viender.user = response.data;
+			    document.dispatchEvent(userFetched);
 
-		axios.get(api('/user'), {})
-		.then(function (response) {
-		    treasure.user = response.data;
-		    Vue.prototype.$viender.user = response.data;
-		    document.dispatchEvent(userFetched);
-		})
-		.catch(function (error) {
-		     if (error.response.status == 401) {
-				if (! [
-					url('login'),
-					url('register'),
-				].include(window.location.href)) {
-		    		document.location = url('login');
-				}
-		    }
-		});
+	            if ('serviceWorker' in navigator) {
+		            window.addEventListener('load', function() {
+		                navigator.serviceWorker.register('/sw.js').then(function(registration) {
+		                    // Registration was successful
+		                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+		                }).catch(function(err) {
+		                    // registration failed :(
+		                    console.log('ServiceWorker registration failed: ', err);
+		                });
+		            });
+		        }
+			})
+			.catch(function (error) {
+			     if (error.response.status == 401) {
+					if (guestUrls.indexOf(window.location.href) == -1) {
+			    		document.location = url('login');
+					}
+			    }
+			});
+		}
+
+		Vue.prototype.$viender.helpers.fetchAuthenticatedUser();
 	}
 }
