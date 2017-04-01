@@ -6,7 +6,6 @@ import questionList from 'viender_socialite/core/js/store/modules/questionList';
 import editor from 'viender_socialite/core/js/store/modules/editor';
 import feed from 'viender_socialite/core/js/store/modules/feed';
 
-
 export default new Vuex.Store({
   modules: Object.assign(coreModules, {
     questionList: questionList,

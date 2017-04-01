@@ -47,7 +47,9 @@ mix.webpackConfig(config);
  | 
  */ 
  
-mix.js('resources/assets/js/core.js', 'js');
+mix.js('resources/assets/js/core.js', 'js')
+   .sass('resources/assets/sass/core.scss', 'css')
+   .sass('resources/assets/sass/core-mobile.scss', 'css');
 
 mix.js('viender/resources/assets/js/app.js', 'js')
    .sass('viender/resources/assets/sass/app-mobile.scss', 'css')

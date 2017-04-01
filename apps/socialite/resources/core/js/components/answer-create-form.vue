@@ -8,9 +8,9 @@
 			<hr>
 			<ul class="collection">
 				<li class="collection-item avatar">
-					<img :src="user ? getUrl('avatar', user) : ''" alt="" class="circle">
+					<img :src="$viender.treasure.user ? getUrl('avatar', $viender.treasure.user) : ''" alt="" class="circle">
 					<span class="card-title">
-						{{ user ? user.name : '' }}
+						{{ $viender.treasure.user ? $viender.treasure.user.name : '' }}
 					</span>
 				</li>
 			</ul>
@@ -31,7 +31,6 @@ export default {
 		return {
 			requesting: false,
 			showQuestionDetail: false,
-			user: null
 		}
 	},
 
@@ -50,14 +49,6 @@ export default {
             this.showQuestionDetail = false;
         }
     },
-
-	created() {
-		var _this = this;
-
-		document.addEventListener('userFetched', function () {
-		    _this.user = window.treasure.user;
-		});
-	},
 
 	mounted() {
 		var _this = this;
