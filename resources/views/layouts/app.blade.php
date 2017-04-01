@@ -40,9 +40,10 @@
         }
 
         window.addEventListener("load", function(event) {
+            const timeoutTime = (document.getElementsByClassName('splash-text')[0]) ? 30000 : 1;
             setTimeout(function() {
                 hideSplash();
-            }, 30000);
+            }, timeoutTime);
         });
     </script>
 
@@ -116,24 +117,28 @@
             @if(\Agent::isDesktop())
                 @include('viender::layouts.nav')
             @else
-                @php
-                    $http = new GuzzleHttp\Client;
-                    $response = $http->post('http://api.forismatic.com/api/1.0/', [
-                        'form_params' => [
-                            'method'    => 'getQuote',
-                            'key'       => '457653',
-                            'format'    => 'json',
-                            'lang'      => 'en'
-                        ],
-                    ]);
-                    $quote = json_decode((string) $response->getBody(), true);
-                @endphp
-                <div id="splash" class="splash">
-                    <span class="splash-text splash-logo">Viender</span>
-                    <span class="splash-text">"{{ strip_tags($quote['quoteText']) }}"</span>
-                    <span class="splash-text splash-text-author">- {{ $quote['quoteAuthor'] }}</span>
-                    <span class="splash-text splash-action" onclick="hideSplash()">Continue to viender >>></span>
-                </div>
+                @if(rand(0,10) > 9)
+                    @php
+                        $http = new GuzzleHttp\Client;
+                        $response = $http->post('http://api.forismatic.com/api/1.0/', [
+                            'form_params' => [
+                                'method'    => 'getQuote',
+                                'key'       => '457653',
+                                'format'    => 'json',
+                                'lang'      => 'en'
+                            ],
+                        ]);
+                        $quote = json_decode((string) $response->getBody(), true);
+                    @endphp
+                    <div id="splash" class="splash">
+                        <span class="splash-text splash-logo">Viender</span>
+                        <span class="splash-text">"{{ strip_tags($quote['quoteText']) }}"</span>
+                        <span class="splash-text splash-text-author">- {{ $quote['quoteAuthor'] }}</span>
+                        <span class="splash-text splash-action" onclick="hideSplash()">Continue to viender >>></span>
+                    </div>
+                @else
+                    <div id="splash" class="splash"></div>
+                @endif
                 <script>
                     document.getElementById('splash').className = 'splash splash-visible';
                 </script>
