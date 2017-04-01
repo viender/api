@@ -30,6 +30,20 @@
             ],
         ])
         !!};
+
+        function hideSplash() {
+            var el = document.getElementById('splash');
+            if (el) {
+                el.className = 'splash splash-hidden';
+                document.getElementsByTagName('body')[0].style.overflow = 'scroll';
+            }
+        }
+
+        window.addEventListener("load", function(event) {
+            setTimeout(function() {
+                hideSplash();
+            }, 30000);
+        });
     </script>
 
     <link rel="manifest" href="/manifest.json">
@@ -42,18 +56,87 @@
         <link rel="stylesheet" href={{ mix('css/core.css') }}>
     @else
         <link rel="stylesheet" href={{ mix('css/core-mobile.css') }}>
+        <style>
+            .splash {
+                position: fixed;
+                z-index: 999;
+                width: 100%;
+                height: 100%;
+                background-color: #50a7e6;
+                padding: 10px;
+                visibility: hidden;
+            }
+
+            .splash-text {
+                display: block;
+                font-weight: 600;
+                color: #fff;
+                text-align: center;
+                font-size: 1.3rem;
+            }
+
+            .splash-logo {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+                text-align: left;
+                font-size: 2rem;
+            }
+
+            .splash-text-author {
+                text-align: right;
+                padding-top: 20px;
+            }
+
+            .splash-action {
+                padding-top: 20px;
+                font-style: italic; 
+            }
+
+            .splash-visible {
+              visibility: visible;
+              opacity: 1;
+              transition: opacity 0.25s linear;
+            }
+
+            .splash-hidden {
+              visibility: hidden;
+              opacity: 0;
+              transition: visibility 0s 0.25s, opacity 0.25s linear;
+            }
+        </style>
     @endif
 
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js" defer async></script>
     <script src={{ mix('js/core.js') }}></script>
     @yield('head-scripts')
 </head>
-<body>
+<body style="{{ ! \Agent::isDesktop() ? 'overflow: hidden;' : '' }}">
     <div id="app" class="main-content">
         <header>
             @if(\Agent::isDesktop())
                 @include('viender::layouts.nav')
             @else
+                @php
+                    $http = new GuzzleHttp\Client;
+                    $response = $http->post('http://api.forismatic.com/api/1.0/', [
+                        'form_params' => [
+                            'method'    => 'getQuote',
+                            'key'       => '457653',
+                            'format'    => 'json',
+                            'lang'      => 'en'
+                        ],
+                    ]);
+                    $quote = json_decode((string) $response->getBody(), true);
+                @endphp
+                <div id="splash" class="splash">
+                    <span class="splash-text splash-logo">Viender</span>
+                    <span class="splash-text">"{{ strip_tags($quote['quoteText']) }}"</span>
+                    <span class="splash-text splash-text-author">- {{ $quote['quoteAuthor'] }}</span>
+                    <span class="splash-text splash-action" onclick="hideSplash()">Continue to viender >>></span>
+                </div>
+                <script>
+                    document.getElementById('splash').className = 'splash splash-visible';
+                </script>
                 @include('viender::layouts.nav-mobile')
             @endif
         </header>
