@@ -19,7 +19,6 @@
         window.treasure = {!! json_encode([
             'env'       => [
                 'env'       => config('app.env'),
-                'url'       => config('app.url'),
                 'api_url'   => config('app.api_url'),
                 'domain'    => config('app.domain'),
             ],

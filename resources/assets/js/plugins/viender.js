@@ -20,7 +20,10 @@ export default {
 		})
 		.catch(function (error) {
 		     if (error.response.status == 401) {
-				if (! guestUrls.include(window.location.href)) {
+				if (! [
+					url('login'),
+					url('register'),
+				].include(window.location.href)) {
 		    		document.location = url('login');
 				}
 		    }

@@ -1,5 +1,3 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
 import coreModules from 'viender_core/js/store/modules.js';
 
 export default new Vuex.Store({

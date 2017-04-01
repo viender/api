@@ -20,5 +20,6 @@
 	],
 	"start_url": "/?launcher=true",
 	"background_color": "#00acc1",
-	"theme_color": "#00acc1"
+	"theme_color": "#00acc1",
+	"orientation": "portrait-primary"
 }

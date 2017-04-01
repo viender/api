@@ -60,13 +60,3 @@ require('./callbacks');
  * Services
  */
 require('./services');
-
-
-/**
- * Guest Urls
- */
-
-let guestUrls = [
-	url('login'),
-	url('register'),
-];

@@ -7,10 +7,10 @@
 
 window.url = function url(path) {
     if(path[0] === '/') {
-        return treasure.env.url + path;
+        return window.location.origin + path;
     }
 
-    return treasure.env.url + '/' + path;
+    return window.location.origin + '/' + path;
 }
 
 /**
