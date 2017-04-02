@@ -19,28 +19,20 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     $genders = ['male', 'female'];
     $name = $faker->name;
 
-    $profilePictures = [
-        "/img/profile-1.jpg",
-        "/img/profile-2.jpg",
-        "/img/profile-3.jpg",
-        "/img/profile-4.jpg",
-        "/img/profile-5.jpg",
-        "/img/profile-6.jpg",
-        "/img/profile-7.jpg",
-        "/img/profile-8.jpg",
-        "/img/profile-9.jpg",
-    ];
+    $http = new GuzzleHttp\Client;
+    $response = $http->get('https://randomuser.me/api');
+    $user = json_decode((string) $response->getBody(), true)['results'][0];
 
     return [
-        'first_name' => explode(' ', $name)[0],
-        'last_name' => explode(' ', $name)[1],
-        'avatar_url' => $faker->randomElement($profilePictures),
-        'username' => function(array $me) {
-            return Text::clean($me['first_name']) . Text::clean($me['last_name']) ;
-        },
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'gender' => $faker->randomElement($genders),
-        'remember_token' => str_random(10),
+        'first_name'        => $user['name']['first'],
+        'last_name'         => $user['name']['last'],
+        'avatar_url'        => $user['picture']['thumbnail'],
+        'avatar_medium_url' => $user['picture']['medium'],
+        'avatar_large_url'  => $user['picture']['large'],
+        'username'          => $user['login']['username'],
+        'email'             => $user['email'],
+        'password'          => $password ?: $password = bcrypt('secret'),
+        'gender'            => $user['gender'],
+        'remember_token'    => $user['login']['md5'],
     ];
 });

@@ -75,6 +75,8 @@ class RegisterController extends Controller
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'avatar_url' => "/img/profile.jpg",
+            'avatar_medium_url' => "/img/profile-medium.jpg",
+            'avatar_large_url' => "/img/profile-large.jpg",
             'username' => $username,
             'email' => $data['email'],
             'password' => bcrypt($data['password']),

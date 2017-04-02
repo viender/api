@@ -36,6 +36,14 @@ class UserTransformer extends Transformer
                     'url' => $user->avatar_url,
                 ],
                 [
+                    'rel' => 'avatar_medium',
+                    'url' => $user->avatar_medium_url,
+                ],
+                [
+                    'rel' => 'avatar_large',
+                    'url' => $user->avatar_large_url,
+                ],
+                [
                     'rel' => 'notifications',
                     'url' => url('/users') . '/' . $user->username . '/notifications',
                 ]
