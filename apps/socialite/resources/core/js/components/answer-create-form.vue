@@ -2,7 +2,7 @@
 	<div>
 		<div style="padding-bottom: 20px;">
 			<h4><a :href="question ? getUrl('self_html', question) : ''">{{ question ? question.title : '' }}</a></h4>
-			<div :class="showQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" @click="toggleQuestionDetail()">
+			<div :class="showQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" @click="showQuestionDetail = !showQuestionDetail">
 				{{ question ? question.body : '' }}
 			</div>
 			<hr>

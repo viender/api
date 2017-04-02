@@ -5,6 +5,9 @@
 				<div class="card-content">
 					<span class="card-title"><h4><a :href="$viender.helpers.getUrl('self_html', questionObj)">{{ questionObj ? questionObj.title : '' }}</a></h4></span>
 				</div>
+                <div :class="expandQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" @click="expandQuestionDetail = !expandQuestionDetail">
+                    {{ questionObj ? questionObj.body : '' }}
+                </div>
 				<div class="card-action">
 			    	<button class="btn btn-default" @click="showAnswerCreateModal()"
 			    		v-if=" ! (questionObj ? questionObj.answered : true)">
@@ -40,24 +43,29 @@ export default {
 
     data() {
     	return {
-    		questionObj: null,
-    		requesting: false,
-    		upvoteCount: 0,
-    		commentCount: 0,
-    		showComments: false,
-    		answerText: {
-    			body: null
-    		}
+            expandQuestionDetail: false,
+            questionObj: null,
+            requesting: false,
+            upvoteCount: 0,
+            commentCount: 0,
+            showComments: false,
+            staticPreloaders: document.getElementsByClassName('question-static-preloader'),
+            answerText: {
+                body: null
+            }
     	}
     },
 
     mounted() {
     	var _this = this;
 
+        // if the argument is an question object, use it.
+        // if the argument is an url, feth question from there.
     	if (_this.question) {
     		_this.questionObj = _this.question;
 	    	_this.upvoteCount = _this.question.upvote_count;
 	    	_this.commentCount = _this.question.comment_count;
+            _this.hideStaticPreloaders();
     	} else if (_this.url) {
     		var url = _this.url;
 
@@ -70,6 +78,7 @@ export default {
                 _this.questionObj = response.data;
                 _this.upvoteCount = response.data.upvote_count;
     			_this.commentCount = response.data.comment_count;
+                _this.hideStaticPreloaders();
             })
             .catch(function (error) {
                 console.log(error);
@@ -77,10 +86,19 @@ export default {
     	} else {
     		throw 'question and url not defined.';
     	}
-    	
+
+        for (var i = 0; i < this.staticPreloaders.length; i++) {
+            this.staticPreloaders[i].style.borderBottom = '0';
+        }
     },
 
     methods: {
+        hideStaticPreloaders() {
+            for (var i = 0; i < this.staticPreloaders.length; i++) {
+                this.staticPreloaders[i].style.display = 'none';
+            }
+        },
+
     	showAnswerCreateModal() {
     		this.$store.commit('questionList/' + types.SET_SHOW_ANSWER_CREATE_MODAL, true);
     		this.$store.dispatch('editor/setQuestion', {
