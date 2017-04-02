@@ -46,17 +46,28 @@ mix.webpackConfig(config);
  | file for the application as well as bundling up all the JS files. 
  | 
  */ 
- 
-mix.js('resources/assets/js/core.js', 'js')
-   .sass('resources/assets/sass/core.scss', 'css')
-   .sass('resources/assets/sass/core-mobile.scss', 'css');
-
-mix.js('viender/resources/assets/js/app.js', 'js')
-   .sass('viender/resources/assets/sass/app-mobile.scss', 'css')
-   .sass('viender/resources/assets/sass/app.scss', 'css');
 
 var pages = '';
 var pagesPath = '';
+var compileds = [];
+var publicPath = '';
+
+compileds.push(
+  publicPath + 'js/core.js',
+  publicPath + 'css/core.css',
+  publicPath + 'css/core-mobile.css',
+  publicPath + 'js/app.js',
+  publicPath + 'css/app-mobile.css',
+  publicPath + 'css/app.css'
+);
+ 
+mix.js('resources/assets/js/core.js', 'js/core.js')
+   .sass('resources/assets/sass/core.scss', 'css/core.css')
+   .sass('resources/assets/sass/core-mobile.scss', 'css/core-mobile.css');
+
+mix.js('viender/resources/assets/js/app.js', 'js/app.js')
+   .sass('viender/resources/assets/sass/app-mobile.scss', 'css/app-mobile.css')
+   .sass('viender/resources/assets/sass/app.scss', 'css/app.css');
 
 for(var i=0; i < apps.length; i++) {
   pagesPath = path.resolve(__dirname, 'apps/' + apps[i] + '/resources/pages');
@@ -65,12 +76,28 @@ for(var i=0; i < apps.length; i++) {
     pages = fileSystem.readdirSync(pagesPath);
 
     for(var j=0; j < pages.length; j++) {
-      mix.js('apps/' + apps[i] + '/resources/pages/' + pages[j] + '/assets/js/app.js', 'js/viender/' + apps[i] + '/' + pages[j] + '/app.js')
-         .js('apps/' + apps[i] + '/resources/pages/' + pages[j] + '/assets/js/app-mobile.js', 'js/viender/' + apps[i] + '/' + pages[j] + '/app-mobile.js')
-         .sass('apps/' + apps[i] + '/resources/pages/' + pages[j] + '/assets/sass/app.scss', 'css/viender/' + apps[i] + '/' + pages[j] + '/app.css')
-         .sass('apps/' + apps[i] + '/resources/pages/' + pages[j] + '/assets/sass/app-mobile.scss', 'css/viender/' + apps[i] + '/' + pages[j] + '/app-mobile.css');
+      var compiled_app_js_path = 'js/viender/' + apps[i] + '/' + pages[j] + '/app.js';
+      var compiled_app_mobile_js_path = 'js/viender/' + apps[i] + '/' + pages[j] + '/app-mobile.js';
+      var compiled_app_css_path = 'css/viender/' + apps[i] + '/' + pages[j] + '/app.css';
+      var compiled_app_mobile_css_path = 'css/viender/' + apps[i] + '/' + pages[j] + '/app-mobile.css';
+
+      compileds.push(
+        publicPath + compiled_app_js_path,
+        publicPath + compiled_app_mobile_js_path,
+        publicPath + compiled_app_css_path,
+        publicPath + compiled_app_mobile_css_path
+      );
+
+      mix.js('apps/' + apps[i] + '/resources/pages/' + pages[j] + '/assets/js/app.js', compiled_app_js_path)
+         .js('apps/' + apps[i] + '/resources/pages/' + pages[j] + '/assets/js/app-mobile.js', compiled_app_mobile_js_path)
+         .sass('apps/' + apps[i] + '/resources/pages/' + pages[j] + '/assets/sass/app.scss', compiled_app_css_path)
+         .sass('apps/' + apps[i] + '/resources/pages/' + pages[j] + '/assets/sass/app-mobile.scss', compiled_app_mobile_css_path);
     }
   }
 }
 
-mix.version();
+mix.copy('node_modules/sw-toolbox/sw-toolbox.js', 'public/js/vendor/sw-toolbox/sw-toolbox.js');
+
+if (mix.config.inProduction) {
+  mix.version();
+}

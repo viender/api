@@ -21,6 +21,7 @@ class CreateAnswersTable extends Migration
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->string('title')->nullable();
             $table->string('slug');
+            $table->unique(['question_id', 'slug']);
             $table->text('body');
             $table->timestamps();
         });

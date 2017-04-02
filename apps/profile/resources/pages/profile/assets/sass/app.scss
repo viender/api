@@ -40,9 +40,9 @@ a {
 .profile {
 	&-header {
 		height: 180px;
-		background-color: grey;
+		background-color: #1da1f2;
 		position: relative;
-		margin-bottom: 0;
+		margin-bottom: 0 !important;
 	}
 
 	&-nav {

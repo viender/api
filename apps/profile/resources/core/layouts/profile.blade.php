@@ -4,7 +4,7 @@
 <div class="">
 	<div class="row profile-header">
 		<div class="col s3 profile-avatar left-column">
-			<img src="{{ $user->avatar_url }}" alt="">
+			<img src="{{ $user->avatar_large_url }}" alt="">
 		</div>
 	</div>
 

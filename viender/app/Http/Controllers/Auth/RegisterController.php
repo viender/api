@@ -63,11 +63,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $data['first_name'] = ucwords(strtolower($data['first_name']));
+        $data['last_name'] = ucwords(strtolower($data['last_name']));
+
         $username = str_replace(' ', '-', $data['first_name'] . '-' . $data['last_name']);
 
         $username = preg_replace('/[^A-Za-z0-9\-]/', '', $username); // Removes special chars.
 
-        $suffix = User::where('username', $username)->count() + 1;
+        $suffix = User::where([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+        ])->count() + 1;
 
         $username = $username . '-' . $suffix;
 

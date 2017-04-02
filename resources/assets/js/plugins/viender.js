@@ -23,18 +23,6 @@ export default {
 			    treasure.user = response.data;
 			    Vue.prototype.$viender.user = response.data;
 			    document.dispatchEvent(userFetched);
-
-	            if ('serviceWorker' in navigator) {
-		            window.addEventListener('load', function() {
-		                navigator.serviceWorker.register('/sw.js').then(function(registration) {
-		                    // Registration was successful
-		                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-		                }).catch(function(err) {
-		                    // registration failed :(
-		                    console.log('ServiceWorker registration failed: ', err);
-		                });
-		            });
-		        }
 			})
 			.catch(function (error) {
 			     if (error.response.status == 401) {

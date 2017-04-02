@@ -38,7 +38,7 @@ class AnswerTransformer extends Transformer
             'links'   => [
                 [
                     'rel' => 'self',
-                    'url' => route('api.viender.socialite.answers.show', $answer->id),
+                    'url' => route('api.viender.socialite.questions.answers.show', [$answer->question, $answer->slug]),
                 ],
                 [
                     'rel' => 'self_html',

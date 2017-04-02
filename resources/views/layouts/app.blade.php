@@ -31,20 +31,12 @@
         ])
         !!};
 
-        function hideSplash() {
-            var el = document.getElementById('splash');
-            if (el) {
-                el.className = 'splash splash-hidden';
-                document.getElementsByTagName('body')[0].style.overflow = 'scroll';
-            }
+    
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js');
+            });
         }
-
-        window.addEventListener("load", function(event) {
-            const timeoutTime = (document.getElementsByClassName('splash-text')[0]) ? 30000 : 1;
-            setTimeout(function() {
-                hideSplash();
-            }, timeoutTime);
-        });
     </script>
 
     <link rel="manifest" href="/manifest.json">
@@ -111,34 +103,7 @@
     <script src={{ mix('js/core.js') }}></script>
     @yield('head-scripts')
 </head>
-<body style="{{ ! \Agent::isDesktop() ? 'overflow: hidden;' : '' }}">
-    @if( ! \Agent::isDesktop())
-        @if(rand(0,10) > 9)
-            @php
-                $http = new GuzzleHttp\Client;
-                $response = $http->post('http://api.forismatic.com/api/1.0/', [
-                    'form_params' => [
-                        'method'    => 'getQuote',
-                        'key'       => '457653',
-                        'format'    => 'json',
-                        'lang'      => 'en'
-                    ],
-                ]);
-                $quote = json_decode((string) $response->getBody(), true);
-            @endphp
-            <div id="splash" class="splash">
-                <span class="splash-text splash-logo">Viender</span>
-                <span class="splash-text">"{{ strip_tags($quote['quoteText']) }}"</span>
-                <span class="splash-text splash-text-author">- {{ $quote['quoteAuthor'] }}</span>
-                <span class="splash-text splash-action" onclick="hideSplash()">Continue to viender >>></span>
-            </div>
-        @else
-            <div id="splash" class="splash"></div>
-        @endif
-        <script>
-            document.getElementById('splash').className = 'splash splash-visible';
-        </script>
-    @endif
+<body>
     <div id="app" class="main-content">
         <header>
             @if(\Agent::isDesktop())

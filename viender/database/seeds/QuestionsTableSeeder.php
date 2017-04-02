@@ -11,7 +11,7 @@ class QuestionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\Viender\Socialite\Models\Question::class, 50)->create()->each(function($u) {
+        factory(\Viender\Socialite\Models\Question::class, 250)->create()->each(function($u) {
             
             $faker = Faker\Factory::create();
             

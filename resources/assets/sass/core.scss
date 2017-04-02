@@ -72,15 +72,24 @@ nav {
 	padding-left: 140px;
 	padding-right: 140px;
 
-	ul, ul li {
-		height: 100%;
-	}
+    a {
+        color: #66757f;
+    }
 
-	.logo {
-		font-weight: bold;
-		margin-right: 25px;
-		font-size: 22px;
-	}
+    ul, ul li {
+        height: 100%;
+
+        a {
+            color: #66757f;
+        }
+    }
+
+    .logo {
+        font-weight: bold;
+        margin-right: 25px;
+        font-size: 22px;
+    }
+
 }
 
 .search-form {
