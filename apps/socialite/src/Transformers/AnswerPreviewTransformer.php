@@ -37,7 +37,6 @@ class AnswerPreviewTransformer extends Transformer
         return [
             'id'            => (int) $answer->id,
             'title'         => $answer->title,
-            'body'          => $answer->body,
             'preview'       => $this->answers->getPreview($answer),
             'preview_image' => $this->answers->getPreviewImage($answer),
             'upvoted'       => \Auth::user() ? $answer->upvotes()->where('user_id', \Auth::user()->id)->exists() : false,

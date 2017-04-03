@@ -15,10 +15,14 @@ class Topic extends Model
      * @var array
      */
     protected $fillable = [
+        'parent_id',
         'slug',
         'name',
+        'class',
         'description',
-    	'thumbnail',
+        'thumbnail',
+        'thumbnail_medium',
+    	'thumbnail_large',
     ];
 
     /**

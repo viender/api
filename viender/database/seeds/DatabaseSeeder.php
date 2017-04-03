@@ -23,9 +23,11 @@ class DatabaseSeeder extends Seeder
         'questions',
         'password_resets',
         'users',
+        'topics',
     ];
 
     public $seeders = [
+        TopicsTableSeeder::class,
         CountriesTableSeeder::class,
         StatesTableSeeder::class,
         CitiesTableSeeder::class,

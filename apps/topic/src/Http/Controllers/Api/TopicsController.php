@@ -9,6 +9,7 @@ use League\Fractal\Resource\Item;
 use Viender\Topic\Repositories\TopicsRepository;
 use Viender\Topic\Transformers\TopicTransformer;
 use Illuminate\Auth\Access\AuthorizationException;
+use Viender\Topic\Transformers\SimpleTopicTransformer;
 
 class TopicsController extends ApiController
 {
@@ -23,8 +24,15 @@ class TopicsController extends ApiController
     /** 
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ((boolean) $request->simple) {
+
+            $paginator = Topic::paginate(Topic::all()->count());
+
+            return $this->respondWithPagination($paginator, new SimpleTopicTransformer);
+        }
+
         $paginator = Topic::paginate(20);
 
         return $this->respondWithPagination($paginator, new TopicTransformer);

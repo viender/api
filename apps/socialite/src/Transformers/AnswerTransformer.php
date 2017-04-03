@@ -27,6 +27,12 @@ class AnswerTransformer extends Transformer
      */
     public function transform(Answer $answer)
     {
+        if (isset($_GET['only']) ? $_GET['only'] == 'body' : false) {
+            return [
+                'body'      => $answer->body,
+            ];
+        }
+
         return [
             'id'            => (int) $answer->id,
             'title'         => $answer->title,

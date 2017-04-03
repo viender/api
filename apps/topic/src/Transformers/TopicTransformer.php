@@ -24,9 +24,11 @@ class TopicTransformer extends Transformer
     {
         return [
             'id'            => $topic->id,
+            'parent_id'     => $topic->parent_id,
             'name'          => $topic->name,
             'description'   => $topic->description,
             'followed'      => $topic->followed,
+            'slug'          => $topic->slug,
             'links'         => [
                 [
                     'rel'   => 'self',

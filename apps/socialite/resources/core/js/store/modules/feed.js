@@ -82,21 +82,22 @@ export default {
 
                 axios.get(getUrl('self', showedAnswer), {
                     params: {
-                        with: ['owner', 'question'],
-                        page: state.page
+                        only: ['body'],
                     }
                 })
                 .then(function (response) {
                     showedAnswer.body = response.data.body;
+                    commit(types.SET_SHOWED_ANSWER, showedAnswer);
                     commit('updateRequesting', false);
                 })
                 .catch(function (error) {
                     console.log(error);
                     commit('updateRequesting', false);
                 });
+            } else {
+                commit(types.SET_SHOWED_ANSWER, showedAnswer);
             }
 
-            commit(types.SET_SHOWED_ANSWER, showedAnswer);
         }
     }
 }

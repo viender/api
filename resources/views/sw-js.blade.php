@@ -10,7 +10,6 @@ toolbox.precache([
 	'{{ \Agent::isDesktop() ? $mixManifest['/css/core.css'] : $mixManifest['/css/core-mobile.css'] }}'
 ]);
 
-toolbox.router.get('/sw.js', toolbox.networkFirst);
 toolbox.router.get('/css*', toolbox.cacheFirst);
 toolbox.router.get('/js*', toolbox.cacheFirst);
 toolbox.router.get('/fonts*', toolbox.cacheFirst);
