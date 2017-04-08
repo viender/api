@@ -50,7 +50,7 @@ class Urls
                 ]);
             });
 
-            $this->router->get('tutorings/{tutoring}/bids', function() {abort(404);})->name('web.viender.mytutor.tutorings.bids.index');
+            // $this->router->get('tutorings/{tutoring}/bids', function() {abort(404);})->name('web.viender.mytutor.tutorings.bids.index');
 
             $this->router->group(['middleware' => 'auth'], function() {
                 $this->router->resource('tutorings/{tutoring}/bids', 'Api\TutoringBidsController', [
