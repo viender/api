@@ -5,7 +5,7 @@
   "globals": {
     "axios": true,
     "Vue": true,
-    "app": true
+    "app": true,
   },
   "settings": {
     "import/resolver": {
