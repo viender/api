@@ -1,5 +1,7 @@
 /node_modules
 /vendor
+/public/js
+/public/css
 /viender/vendor
 /src/viender/vendor
 /viender/node_modules
