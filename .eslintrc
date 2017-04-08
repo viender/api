@@ -10,7 +10,7 @@
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": "webpack.mix.js"
+        "config": "webpack.mix.js",
       }
     }
   },
