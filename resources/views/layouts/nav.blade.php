@@ -84,9 +84,11 @@
     </nav>
 </div>
 
-<div class="searchOverlay" v-show="$store ? ($store.state.searchOrAskOverlay ? $store.state.searchOrAskOverlay.show : false) : false"
+<div
+    class="searchOverlay" v-show="$store ? ($store.state.searchOrAskOverlay ? $store.state.searchOrAskOverlay.show : false) : false"
     @click="$store.commit('searchOrAskOverlay/SET_SHOW', false); $store.commit('searchOrAskOverlay/SET_SHOW_MORE_FIELDS', false);"
-    ref="overlay" style="display: none;">
+    ref="overlay" style="display: none;"
+    >
     <div class="searchOverlay-content" v-show="$store ? ($store.state.searchOrAskOverlay ? $store.state.searchOrAskOverlay.show : false) : false">
     </div>
 </div>

@@ -29,4 +29,6 @@
         </div>
     </nav>
 </div>
+
 <search-or-ask-panel></search-or-ask-panel>
+<create-question-overlay></create-question-overlay>

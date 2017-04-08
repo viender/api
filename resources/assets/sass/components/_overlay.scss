@@ -18,7 +18,7 @@ $modal-action-height: 36px;
 	left: 0;
 	width: 100%;
 	min-height: 100%;
-	overflow: scroll;
+	overflow-x: auto;
 	z-index: 1042;
 	background-color: #f5f8fa;
 
@@ -39,13 +39,15 @@ $modal-action-height: 36px;
 	}
 
 	&-header form input{
-	    background-color: #fff;
 	    height: 2rem;
 	    margin-top: 7px;
 	    padding-left: 5px;
 	    padding-right: 5px;
 	    width: calc(100% - 10px);
-	    border-bottom: 0;
+
+        &.no-border {
+            border: 0;
+        }
 	}
 
 	.back-button {
@@ -54,5 +56,12 @@ $modal-action-height: 36px;
 	    padding-right: 5px;
 	    line-height: 3.57;
 	}
+
+    .container {
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
 }
 

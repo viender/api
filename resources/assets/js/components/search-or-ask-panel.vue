@@ -7,7 +7,7 @@
 						<i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
 					</div>
 					<form class="search-bar">
-						<input ref="searchBar" type="text" v-model="inputText">	
+						<input ref="searchBar" type="text" :value="searchText" @input="updateSearchText">
 					</form>
 				</div>
 			</div>
@@ -15,7 +15,13 @@
 				<div class="col s12" style="border-bottom: 1px solid #f5f5f5; padding-bottom: 10px; padding-left: 0;">
 					<div>
 						<span>Don't see your question?</span>
-						<button class="btn" style="line-height: 20px; padding-left: 5px; padding-right: 5px; float: right; margin-top: -8px;">Add it</button>
+						<button
+                            class="btn"
+                            style="line-height: 20px; padding-left: 5px; padding-right: 5px; float: right; margin-top: -8px;"
+                            @click="setShowCreateQuestionOverlay(true)"
+                            >
+                            Add it
+                        </button>
 					</div>
 				</div>
 			</div>
@@ -25,19 +31,20 @@
 
 <script>
 import * as types from '../store/mutation-types';
+import setSearchTextMixin from '../mixins/setSearchTextMixin';
 
 export default {
-	data() {
-		return {
-			inputText: null,
-		}
-	},
+    mixins: [setSearchTextMixin],
 
-	computed: {
-		showPanel() {
-			return this.$store.state.searchOrAskPanel.showPanel;
-		}
-	},
+	computed: Object.assign(Vuex.mapState('searchOrAskOverlay', [
+        'searchText',
+    ]), Vuex.mapState('searchOrAskPanel', [
+        'showPanel',
+    ]), {
+        showCreateQuestionOverlay() {
+            return this.$store.state.searchOrAskOverlay.show;
+        }
+    }),
 
 	watch: {
 		showPanel(newShowPanel) {
@@ -55,12 +62,11 @@ export default {
 
 	methods: {
 		hidePanel() {
-			this.$store.commit('searchOrAskPanel/' + types.SET_SHOW_PANEL, false);
+			this.$store.commit(`searchOrAskPanel/${types.SET_SHOW_PANEL}`, false);
 		},
+        setShowCreateQuestionOverlay(show) {
+            this.$store.commit(`searchOrAskOverlay/${types.SET_SHOW}`, show);
+        },
 	}
 }
 </script>
-
-<style>
-
-</style>

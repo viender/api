@@ -74,6 +74,13 @@ export default {
                 commit(types.SET_REQUESTING, false);
             })
             .catch(function (error) {
+                if (error.response.status === 409) {
+                    let slug = state.searchText.replace(/[\s]/g, '-').replace(/[|&;$%@"<>()+,?]/g, "");
+                    const questionUrl = Vue.prototype.$viender.helpers.url(`questions/${slug}`);
+                    console.log(questionUrl);
+                    document.location = questionUrl;
+                }
+
                 commit(types.SET_REQUESTING, false);
             });
         }
