@@ -1,0 +1,23 @@
+{
+  "extends": ["airbnb"],
+  "parser": "babel-eslint",
+  "plugins": ["vue"],
+  "globals": {
+    "axios": true,
+    "Vue": true,
+    "app": true
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.mix.js"
+      }
+    }
+  },
+  "rules": {
+    "vue/jsx-uses-vars": 2,
+    "max-len": [2, {
+      "code": 110,
+    }],
+  }
+}
