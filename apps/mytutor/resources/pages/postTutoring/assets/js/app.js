@@ -21,5 +21,5 @@ Vue.component('tutoring-create-form', require('viender_mytutor/core/js/component
 const postTutoring = new Vue({
     el: '#app',
 
-
+    store: store,
 });

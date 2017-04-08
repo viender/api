@@ -19,4 +19,6 @@ Vue.component('tutoring-row', require('viender_mytutor/core/js/components/tutori
 
 const feed = new Vue({
     el: '#app',
+
+    store: store,
 });

@@ -20,4 +20,6 @@ Vue.component('bid-create-form', require('viender_mytutor/core/js/components/bid
 
 const showBid = new Vue({
     el: '#app',
+
+    store: store,
 });

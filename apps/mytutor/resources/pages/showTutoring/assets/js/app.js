@@ -17,5 +17,7 @@ require('./bootstrap');
 Vue.component('bid-row', require('viender_mytutor/core/js/components/bid-row.vue'));
 
 const postTutoring = new Vue({
-    el: '#app'
+    el: '#app',
+
+    store: store,
 });
