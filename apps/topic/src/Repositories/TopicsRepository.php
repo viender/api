@@ -16,15 +16,13 @@ class TopicsRepository extends Repository
     public function userFollowTopic(User $user, Topic $topic)
     {
 		if($user->followedTopics()->where([
-            'follower_id'   => $user->id,
-            'followee_id'   => $topic->id,
-            'followee_type' => Topic::class,
+            'followable_id' => $topic->id,
         ])->exists()) {
-            $following = $user->followedTopics()->where('followee_id', $topic->id)->first();
-            if ($following) $following->delete();
+            $user->followedTopics()->detach($topic);
             return false;
         } else {
-            return $user->followedTopics()->save(new Follow(['followee_id' => $topic->id, 'followee_type' => Topic::class]));
+            $user->followedTopics()->attach($topic);
+            return true;
         }
 
         return false;

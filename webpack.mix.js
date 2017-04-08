@@ -1,14 +1,14 @@
 var webpack = require('webpack');
-const { mix } = require('laravel-mix'); 
-var path = require('path'); 
+const { mix } = require('laravel-mix');
+var path = require('path');
 var fileSystem = require('fs');
 require('dotenv').config({path: './viender/.env'});
 
 var apps = fileSystem.readdirSync(path.resolve(__dirname, 'apps/'));
 
-var config = { 
-    output: { 
-        path: path.resolve(__dirname, "public/") 
+var config = {
+    output: {
+        path: path.resolve(__dirname, "public/")
     },
     resolve: {
         alias: {
@@ -35,17 +35,17 @@ for(var i=0; i < apps.length; i++) {
 }
 
 mix.webpackConfig(config);
- 
-/* 
- |-------------------------------------------------------------------------- 
- | Mix Asset Management 
- |-------------------------------------------------------------------------- 
- | 
- | Mix provides a clean, fluent API for defining some Webpack build steps 
- | for your Laravel application. By default, we are compiling the Sass 
- | file for the application as well as bundling up all the JS files. 
- | 
- */ 
+
+/*
+ |--------------------------------------------------------------------------
+ | Mix Asset Management
+ |--------------------------------------------------------------------------
+ |
+ | Mix provides a clean, fluent API for defining some Webpack build steps
+ | for your Laravel application. By default, we are compiling the Sass
+ | file for the application as well as bundling up all the JS files.
+ |
+ */
 
 var pages = '';
 var pagesPath = '';
@@ -60,7 +60,7 @@ compileds.push(
   publicPath + 'css/app-mobile.css',
   publicPath + 'css/app.css'
 );
- 
+
 mix.js('resources/assets/js/core.js', 'js/core.js')
    .sass('resources/assets/sass/core.scss', 'css/core.css')
    .sass('resources/assets/sass/core-mobile.scss', 'css/core-mobile.css');
@@ -100,4 +100,6 @@ mix.copy('node_modules/sw-toolbox/sw-toolbox.js', 'public/js/vendor/sw-toolbox/s
 
 if (mix.config.inProduction) {
   mix.version();
+} else {
+  mix.sourceMaps();
 }

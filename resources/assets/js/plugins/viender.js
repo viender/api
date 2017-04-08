@@ -1,4 +1,6 @@
-import helpers from '../helpers/url';
+import urlHelpers from '../helpers/url';
+import styleHelpers from '../helpers/style';
+import eventHelpers from '../helpers/event';
 
 window.guestUrls = [
 	url('login'),
@@ -14,7 +16,9 @@ export default {
 		Vue.prototype.$viender.treasure = window.treasure;
 
 		Vue.prototype.$viender.helpers = Object.assign(
-			helpers
+			urlHelpers,
+            styleHelpers,
+            eventHelpers
 		);
 
 		Vue.prototype.$viender.helpers.fetchAuthenticatedUser = function fetchAuthenticatedUser(argument) {

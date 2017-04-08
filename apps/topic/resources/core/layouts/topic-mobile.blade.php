@@ -11,8 +11,23 @@
 		</div>
 	</div>
 	<div class="topicShow-description">
-		<h5>About</h5>
 		<p>{{ $topic->description }}</p>
+
+        @if(\Auth::user())
+            <div>
+                <ajax-button
+                    ref="followTopicButton"
+                    class="btn followButton {{ \Auth::user()->followedTopics()->where('followable_id', $topic->id)->exists() ? 'followed' : '' }}"
+                    url="{{ route('api.viender.topic.users.topics.store', \Auth::user()) }}"
+                    action="post"
+                    :data="{ topic_id: {{ $topic->id }} }"
+                    @success="followSuccessHandle($event)"
+                    @error="followErrorHandle($event)"
+                    >
+                    {{ \Auth::user()->followedTopics()->where('followable_id', $topic->id)->exists() ? 'Unfollow' : 'Follow' }}
+                </ajax-button>
+            </div>
+        @endif
 	</div>
 	@include('viender.topic.layouts::topicNav-mobile', ['currentMenu' => $currentMenu, 'obj' => $topic])
 	<div class="topicShow-content">

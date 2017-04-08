@@ -1,23 +1,105 @@
 $navbar-height: 45px;
 
+@media #{$medium-and-down} {
+    .navbar {
+        background-color: red;
+        &-desktop {
+            .navbar-section {
+                &-brand {
+                    padding-left: 0;
+                }
+
+                &-menu {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+}
+
 .navbar {
-	&-fixed {
-		height: $navbar-height;
-	}
+    &-fixed {
+        height: $navbar-height;
+    }
 
-	&-desktop {
-		top: 0;
-	    width: 100%;
-	    height: $navbar-height;
-	    line-height: $navbar-height;
 
-	    .logo {
-			height: 3.64rem;
+    &-desktop {
+        min-width: 960px;
+        top: 0;
+        width: 100%;
+        height: $navbar-height;
+        line-height: $navbar-height;
 
-			a {
-				color: #657786;
-			}
-		}
+        .nav-wrapper {
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
+
+        .logo {
+            height: 3.64rem;
+
+            a {
+                color: #657786;
+            }
+        }
+
+        .navbar-section {
+
+            &-brand {
+                width: 25%;
+                display: inline-block;
+                height: 100%;
+                padding-left: 80px;
+            }
+
+            &-search {
+                width: 45%;
+                display: inline-block;
+                height: 100%;
+
+                &.full {
+                    width: 65%;
+                }
+
+                .search-form {
+                    height: 100%;
+                    border-radius: 3px;
+                    position: relative;
+
+                    div {
+                        height: 100%;
+                    }
+
+                    .search-form-textfield {
+                        height: 27px;
+                        background-color: #f5f5f5;
+                        border-bottom: 0;
+                        width: calc(100% - 230px);
+                        padding-right: 110px;
+                        margin-bottom: 0;
+                    }
+
+                    .search-form-submit {
+                        height: 27px;
+                        line-height: 27px;
+                        position: absolute;
+                        right: 120px;
+                        top: 9px;
+                        box-shadow: none;
+                        text-transform: none;
+                        padding: 0 10px;
+                    }
+                }
+            }
+
+            &-menu {
+                width: 30%;
+                display: inline-block;
+                height: 100%;
+                padding-right: 80px;
+            }
+        }
 
 		.brand-logo {
 			padding-left: 20px;

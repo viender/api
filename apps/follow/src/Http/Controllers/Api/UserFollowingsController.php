@@ -20,7 +20,7 @@ class UserFollowingsController extends ApiController
         $this->followers = $followers;
     }
 
-    /** 
+    /**
      * @return \Illuminate\Http\Response
      */
     public function index(User $user)
@@ -32,7 +32,7 @@ class UserFollowingsController extends ApiController
 
     /**
      * Follow user
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, User $user)
@@ -52,18 +52,17 @@ class UserFollowingsController extends ApiController
 
     /**
      * Unfollow user
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user1, User $user2)
     {
-        $this->authorize('delete', $user1->followings()->where([
-            'followee_id'   => $user2->id, 
-            'followee_type' => User::class])->firstOrFail()
-        );
+        $this->authorize('delete', $user1->followedUsers()->where([
+            'followable_id'   => $user2->id,
+        ])->firstOrFail());
 
         $this->followers->userUnfollowUser($user1, $user2);
-        
+
         return $this->respondDeleted();
     }
 }

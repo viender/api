@@ -3,8 +3,9 @@
 namespace Viender\Socialite\Repositories;
 
 use App\User;
-use Viender\Socialite\Models\Question;
 use Viender\Utilities\Text;
+use Viender\Topic\Models\Topic;
+use Viender\Socialite\Models\Question;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 class QuestionsRepository extends Repository
@@ -16,23 +17,29 @@ class QuestionsRepository extends Repository
 
     /**
      * Create answer writen by Authenticated user
-     * 
-     * @param  int     $user_id    
-     * @param  array      $data       
+     *
+     * @param  int     $user_id
+     * @param  array      $data
      * @return App\Question
      */
     public function createByUser(User $user, array $data)
     {
-        $slug = Text::clean($data['title']);
+        $data['slug'] = Text::clean($data['title']);
 
-        if(Question::where('slug', $slug)->exists()) {
+        if(Question::where('slug', $data['slug'])->exists()) {
             throw new ConflictHttpException;
         }
 
-        $question = new Question($data);
+        $question = $user->questions()->save(new Question($data));
 
-        $question->slug = Text::clean($data['title']);
+        foreach ($data['topics'] as $topicData) {
+            $topic = Topic::where('id', $topicData['id'])->first();
 
-        return $user->questions()->save($question);
+            if ($topic) {
+                $question->topics()->attach($topic);
+            }
+        }
+
+        return $question;
     }
 }

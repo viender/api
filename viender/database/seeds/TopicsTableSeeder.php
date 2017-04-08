@@ -186,7 +186,7 @@ class TopicsTableSeeder extends Seeder
 		    	if ($count > 0) {
 		    		$slug = $slug . '-' . ++$count;
 		    	}
-		    	
+
 				Topic::create([
 					'parent_id'			=> $parent->id,
 			        'slug'				=> $slug,

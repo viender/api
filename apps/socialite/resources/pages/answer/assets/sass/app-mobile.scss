@@ -7,3 +7,23 @@
 @import "~viender_socialite/core/sass/mobile/components/answer";
 @import "~viender_socialite/core/sass/mobile/components/answer-create-modal";
 @import "~viender_socialite/core/sass/desktop/components/answer-create-form";
+
+#app {
+    line-height: 1.5;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+a {
+    text-decoration: none;
+    color: $link-color;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:focus {
+        text-decoration: none;
+    }
+}

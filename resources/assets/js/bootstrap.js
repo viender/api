@@ -10,7 +10,7 @@ window.axios.defaults.withCredentials = true;
 
 window.axios.defaults.headers.common = {
     'X-CSRF-TOKEN': window.Laravel.csrfToken,
-    'X-Requested-With': 'XMLHttpRequest'
+    'X-Requested-With': 'XMLHttpRequest',
 };
 
 /**

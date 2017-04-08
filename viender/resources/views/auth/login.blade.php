@@ -75,6 +75,6 @@
     @endif
 @endsection
 
-@section('head-scripts')
+@section('scripts')
 <script src={{ mix('js/app.js') }} aysnc="true"></script>
 @endsection

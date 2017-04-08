@@ -2,6 +2,7 @@
 
 namespace Viender\Topic\Models;
 
+use Viender\Socialite\Models\Answer;
 use Viender\Follow\Traits\Followable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -41,7 +42,7 @@ class Topic extends Model
     {
         if (! \Auth::user()) return false;
 
-        return $this->followers()->where('follower_id', \Auth::user()->id)->exists();
+        return $this->followers()->where('user_id', \Auth::user()->id)->exists();
     }
 
     public function parent()
@@ -56,6 +57,12 @@ class Topic extends Model
 
     public function answers()
     {
-        return $this->morphedByMany('Viender\Socialite\Models\Answer', 'topicable');
+        $slug = $this->slug;
+
+        return Answer::whereHas('question', function($q) use ($slug) {
+            $q->whereHas('topics', function($q) use ($slug) {
+                $q->where('slug', $slug);
+            });
+        });
     }
 }

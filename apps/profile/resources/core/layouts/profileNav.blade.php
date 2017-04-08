@@ -34,15 +34,15 @@
 	</li>
 	@if(\Auth::user() ? \Auth::user()->id != $user->id : false)
 		<li class="profileNavigation-item" style="float: right; padding-top: 12px;">
-			<follow-user-button
+			<follow-button
 				followee_id="{{ $user->id }}"
 				url="{{ route('api.viender.follow.users.followings.store', \Auth::user()) }}"
-				followed="{{ (\Auth::user()->followings()->where([
-			            'follower_id'   => \Auth::user()->id,
-			            'followee_id'   => $user->id,
-			            'followee_type' => \App\User::class,
+				followed="{{ (\Auth::user()->followedUsers()->where([
+			            'user_id'            => \Auth::user()->id,
+			            'followable_id'      => $user->id,
+			            'followable_type'    => \App\User::class,
 			        ])->exists()) }}">
-			</follow-user-button>
+			</follow-button>
 		</li>
 	@endif
 </ul>

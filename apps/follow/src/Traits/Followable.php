@@ -6,13 +6,8 @@ use Viender\Follow\Models\Follow;
 
 trait Followable
 {
-	public function followers()
-	{
-		return $this->hasMany('Viender\Follow\Models\Follow', 'followee_id');
-	}
-
-	public function followings()
-	{
-		return $this->morphMany(Follow::class, 'follower');
-	}
+    public function followers()
+    {
+        return $this->morphToMany('App\User', 'followable');
+    }
 }

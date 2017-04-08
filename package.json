@@ -7,6 +7,16 @@
     "production": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
+    "babel-eslint": "^7.2.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-google": "^0.7.1",
+    "eslint-config-vue": "^2.0.2",
+    "eslint-import-resolver-webpack": "^0.8.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-vue": "^2.0.1",
     "laravel-mix": "^0.8.8"
   },
   "dependencies": {

@@ -11,63 +11,68 @@
 @import "~viender_profile/core/sass/desktop/components/user-card";
 @import "~viender_profile/core/sass/desktop/components/topic-card";
 @import "~viender_profile/core/sass/desktop/components/profile-navigation";
-@import "~viender_follow/core/sass/desktop/components/follow-user-button";
+@import "~viender_follow/core/sass/desktop/components/follow-button";
 
 #app {
-	line-height: 1.5;
-	font-family: "Roboto", sans-serif;
-	font-weight: normal;
-	color: rgba(0, 0, 0, 0.87);
+    line-height: 1.5;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.87);
 }
 
 a {
-	text-decoration: none;
-	color: $link-color;
+    text-decoration: none;
+    color: $link-color;
 
-	&:hover {
-		text-decoration: none;
-	}
+    &:hover {
+        text-decoration: none;
+    }
 
-	&:focus {
-		text-decoration: none;
-	}
+    &:focus {
+        text-decoration: none;
+    }
 }
 
 .left-column {
-	padding-left: 130px !important;
+    padding-left: 130px !important;
 }
 
 .topic {
-	h5 {
-		font-size: 1rem;
-		padding-bottom: 1rem;
-		border-bottom: solid 1px #eee;
-	}
+    h5 {
+        font-size: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: solid 1px #eee;
+    }
 
-	&-header {
-		padding-top: 20px;
+    &-header {
+        padding-top: 20px;
 
-		&__name {
-			padding-left: 20px;
-			display: inline;
-		}
+        &__name {
+            padding-left: 20px;
+            display: inline;
+        }
 
-		img {
-			width: 120px;
-			height: 120px;
-			border-radius: 7px;
-		}
-	}
+        img {
+            width: 120px;
+            height: 120px;
+            border-radius: 7px;
+        }
+    }
 
-	&-nav {
-		border-bottom: solid 1px #eee;
-		border-top: solid 1px #eee;
-	}
+    &-nav {
+        border-bottom: solid 1px #eee;
+        border-top: solid 1px #eee;
 
-	&-content {
+        .followButton {
+            margin-top: 12px;
+        }
+    }
 
-	}
+    &-content {
 
-	&-about {
-	}
+    }
+
+    &-about {
+
+    }
 }

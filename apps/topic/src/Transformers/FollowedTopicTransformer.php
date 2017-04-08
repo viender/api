@@ -15,16 +15,14 @@ class FollowedTopicTransformer extends Transformer
     protected $availableIncludes = [
         'parent',
     ];
-    
+
     /**
      * Turn this item object into a generic array
      *
      * @return array
      */
-    public function transform(Follow $followedTopic)
+    public function transform(Topic $topic)
     {
-        $topic = $followedTopic->followee;
-
         return [
             'id'            => $topic->id,
             'parent_id'     => $topic->parent_id,
@@ -63,5 +61,5 @@ class FollowedTopicTransformer extends Transformer
         $parent = $topic->parent;
 
         return $this->item($parent, new TopicTransformer);
-    }   
+    }
 }

@@ -21,9 +21,9 @@ class QuestionsController extends ApiController
         $this->questions = $questions;
         $this->handler = new BasicHandler($this, Question::class, QuestionTransformer::class);
     }
-        
 
-    /** 
+
+    /**
      * @api {get} /questions Get Questions
      * @apiName QuestionsIndex
      * @apiGroup QuestionGroup
@@ -31,9 +31,9 @@ class QuestionsController extends ApiController
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
-     * 
+     *
      * @apiUse QuestionIndexSuccess
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -55,11 +55,11 @@ class QuestionsController extends ApiController
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
-     * 
+     *
      * @apiUse QuestionRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -82,7 +82,7 @@ class QuestionsController extends ApiController
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
      * @apiUse QuestionShowSuccess
-     * 
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -105,7 +105,7 @@ class QuestionsController extends ApiController
      * @apiUse QuestionRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -127,7 +127,7 @@ class QuestionsController extends ApiController
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

@@ -23,8 +23,8 @@ Vue.component('question-list', require('viender_socialite/core/js/components/que
 Vue.component('answer-create-form', require('viender_socialite/core/js/components/answer-create-form.vue'));
 Vue.component('answer-create-modal', require('viender_socialite/core/js/components/answer-create-modal.vue'));
 
-const feed = new Vue({
+const app = new Vue({
     el: '#app',
-
     store: store,
 });
+

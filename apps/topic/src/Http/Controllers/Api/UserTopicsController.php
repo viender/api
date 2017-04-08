@@ -20,7 +20,7 @@ class UserTopicsController extends ApiController
         $this->topics = $topics;
     }
 
-    /** 
+    /**
      * @return \Illuminate\Http\Response
      */
     public function index(User $user)
@@ -32,14 +32,14 @@ class UserTopicsController extends ApiController
 
     /**
      * Follow Topic
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, User $user)
     {
         $this->authorize('create', Topic::class);
-        
-        if($this->topics->userFollowTopic($user, Topic::find($request->followee_id))) {
+
+        if($this->topics->userFollowTopic($user, Topic::findOrFail($request->topic_id))) {
             return $this->respondCreated();
         }
 
@@ -48,7 +48,7 @@ class UserTopicsController extends ApiController
 
     /**
      * Unfollow user
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user1, User $user2)

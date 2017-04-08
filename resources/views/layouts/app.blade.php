@@ -31,7 +31,7 @@
         ])
         !!};
 
-    
+
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
                 navigator.serviceWorker.register('/sw.js');
@@ -82,7 +82,7 @@
 
             .splash-action {
                 padding-top: 20px;
-                font-style: italic; 
+                font-style: italic;
             }
 
             .splash-visible {
@@ -99,21 +99,90 @@
         </style>
     @endif
 
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        .topic {
+            padding: 2px 5px;
+            margin-right: 5px;
+            border-radius: 4px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .searchOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            opacity: 0.9;
+            z-index: 10;
+            margin-top: 45px;
+        }
+
+        .searchOverlay-content {
+            background-color: #fff;
+            margin-top: 90px;
+            position: relative;
+        }
+
+        .topicRecommendation {
+            width: 273px;
+            background-color: rgb(255, 255, 255);
+            opacity: 1;
+            position: absolute;
+            height: initial !important;
+            z-index: 8;
+        }
+
+        .topicRecommendation .collection {
+            position: relative;
+            max-height: 350px;
+            overflow-y: auto;
+            width: 273px;
+            margin-top: 0;
+        }
+
+        .topicRecommendation .collection-item{
+            float: initial;
+            height: 50px;
+            padding: 0 10px;
+            line-height: 350%;
+            white-space: nowrap;
+        }
+
+        .topicRecommendation .collection-item a {
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .topicRecommendation .collection-item a:hover {
+            background-color: #fff;
+        }
+    </style>
+
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js" defer async></script>
     <script src={{ mix('js/core.js') }}></script>
     @yield('head-scripts')
 </head>
 <body>
     <div id="app" class="main-content">
-        <header>
+        <header role="header">
             @if(\Agent::isDesktop())
                 @include('viender::layouts.nav')
             @else
                 @include('viender::layouts.nav-mobile')
             @endif
         </header>
-        
-        <main>
+
+        <main role="main">
             @yield('content')
         </main>
     </div>

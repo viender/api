@@ -2,7 +2,7 @@
 
 namespace Viender\Follow\Transformers;
 
-use Viender\Follow\Models\Follow;
+use App\User;
 
 class FollowingTransformer extends Transformer
 {
@@ -12,25 +12,21 @@ class FollowingTransformer extends Transformer
      * @var array
      */
     protected $availableIncludes = [
-        
+
     ];
-    
+
     /**
      * Turn this item object into a generic array
      *
      * @return array
      */
-    public function transform(Follow $follower)
+    public function transform(User $user)
     {
-        $user = $follower->followee;
-
         return [
             'id'        => $user->id,
             'name'      => $user->first_name . ' ' . $user->last_name,
-            'followed'  => \Auth::user()->followings()->where([
-                    'follower_id'   => \Auth::user()->id,
-                    'followee_id'   => $user->id,
-                    'followee_type' => \App\User::class,
+            'followed'  => \Auth::user()->followedUsers()->where([
+                    'followable_id'   => $user->id,
                 ])->exists(),
             'links'     => [
                 [

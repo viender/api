@@ -22,9 +22,9 @@ class Question extends Model implements Upvotable, Commentable, Answerable, Tagg
      * @var array
      */
     protected $fillable = [
-        'title', 'body',
+        'title', 'body', 'slug',
     ];
-    
+
     /**
      * Get the route key for the model.
      *
@@ -35,12 +35,12 @@ class Question extends Model implements Upvotable, Commentable, Answerable, Tagg
         return 'slug';
     }
 
-    public function user() 
+    public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    public function answers() 
+    public function answers()
     {
         return $this->hasMany('Viender\Socialite\Models\Answer');
     }

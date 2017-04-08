@@ -1,5 +1,6 @@
 import store from './store';
 import changeableMenuMixin from 'viender_profile/core/js/mixins/changeableMenuMixin';
+import followSuccessHandleMixin from './mixins/followSuccessHandleMixin';
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -28,7 +29,7 @@ Vue.component('question-list', require('viender_socialite/core/js/components/que
 Vue.component('answer-create-form', require('viender_socialite/core/js/components/answer-create-form.vue'));
 Vue.component('answer-create-modal', require('viender_socialite/core/js/components/answer-create-modal.vue'));
 
-Vue.component('follow-user-button', require('viender_follow/core/js/components/follow-user-button.vue'));
+Vue.component('follow-button', require('viender_follow/core/js/components/follow-button.vue'));
 Vue.component('follower-count', require('viender_profile/core/js/components/follower-count.vue'));
 Vue.component('following-count', require('viender_profile/core/js/components/following-count.vue'));
 Vue.component('following-list', require('viender_profile/core/js/components/following-list.vue'));
@@ -41,7 +42,7 @@ Vue.component('topic-card', require('viender_profile/core/js/components/topic-ca
 const feed = new Vue({
     el: '#app',
 
-    mixins: [changeableMenuMixin],
+    mixins: [changeableMenuMixin, followSuccessHandleMixin],
 
     store: store,
 

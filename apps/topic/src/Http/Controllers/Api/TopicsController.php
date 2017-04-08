@@ -21,13 +21,18 @@ class TopicsController extends ApiController
         $this->topics = $topics;
     }
 
-    /** 
+    /**
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        if ((boolean) $request->simple) {
+        if ((boolean) $request->search) {
+            $paginator = Topic::where([['name','like','%'.$request->search.'%'], ['class', '!=', 'root']])->paginate();
 
+            return $this->respondWithPagination($paginator, new SimpleTopicTransformer);
+        }
+
+        if ((boolean) $request->simple) {
             $paginator = Topic::paginate(Topic::all()->count());
 
             return $this->respondWithPagination($paginator, new SimpleTopicTransformer);
@@ -40,14 +45,14 @@ class TopicsController extends ApiController
 
     /**
      * Follow Topic
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $this->authorize('create', Topic::class);
 
-        
+
     }
 
     public function show(Topic $topic)
@@ -67,7 +72,7 @@ class TopicsController extends ApiController
 
     /**
      * Unfollow user
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user1, User $user2)

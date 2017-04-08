@@ -18,4 +18,19 @@
 			<span class="profileNavigation-value" v-if="notMounted">{{ $obj->followers->count() }}</span>
 		</a>
 	</li>
+    @if(\Auth::user())
+        <li class="profileNavigation-item right">
+            <ajax-button
+                ref="followTopicButton"
+                class="btn followButton {{ \Auth::user()->followedTopics()->where('followable_id', $topic->id)->exists() ? 'followed' : '' }}"
+                url="{{ route('api.viender.topic.users.topics.store', \Auth::user()) }}"
+                action="post"
+                :data="{ topic_id: {{ $topic->id }} }"
+                @success="followSuccessHandle($event)"
+                @error="followErrorHandle($event)"
+                >
+                {{ \Auth::user()->followedTopics()->where('followable_id', $topic->id)->exists() ? 'Unfollow' : 'Follow' }}
+            </ajax-button>
+        </li>
+    @endif
 </ul>
