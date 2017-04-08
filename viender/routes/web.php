@@ -16,9 +16,4 @@ Route::group(['domain' => config('app.api_domain')], function() {
 	Route::get('/', 'HomeController@index');
 });
 
-Route::get('/sw.js', function() {
-	$contents = View::make('viender::sw-js');
-	$response = Response::make($contents, 200);
-	$response->header('Content-Type', 'application/javascript');
-	return $response;
-});
+Route::get('/sw.js', 'ServiceWorkerController@index');
