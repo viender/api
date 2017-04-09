@@ -189,6 +189,7 @@ return [
         Viender\Profile\Init::class,
         Viender\Follow\Init::class,
         Viender\Topic\Init::class,
+        Viender\Raa\Init::class,
     ],
 
     /*
