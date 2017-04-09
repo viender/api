@@ -27,7 +27,7 @@
     Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
 </Files>
 
-<Files /manifest.json>
+<Files manifest.json>
    ExpiresActive On
    ExpiresDefault "access plus 1 month"
    Header append Cache-Control "public"
