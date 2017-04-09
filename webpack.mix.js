@@ -105,3 +105,7 @@ if (mix.config.inProduction) {
 } else {
   mix.sourceMaps();
 }
+
+if (process.argv.indexOf('getAppPaths') > -1) {
+    console.log(apps.join(', '));
+}
