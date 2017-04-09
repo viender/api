@@ -28,6 +28,13 @@
 </Files>
 
 <ifmodule mod_expires.c>
+    <Filesmatch "/manifest.json">
+        ExpiresActive on
+        ExpiresDefault "access plus 366 days"
+    </Filesmatch>
+</ifmodule>
+
+<ifmodule mod_expires.c>
     <Filesmatch "\.(jpg|jpeg|png|gif|js|css|swf|ico|woff|mp3)$">
         ExpiresActive on
         ExpiresDefault "access plus 366 days"
