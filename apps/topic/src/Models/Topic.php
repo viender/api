@@ -2,13 +2,14 @@
 
 namespace Viender\Topic\Models;
 
+use Laravel\Scout\Searchable;
 use Viender\Socialite\Models\Answer;
 use Viender\Follow\Traits\Followable;
 use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
-	use Followable;
+	use Followable, Searchable;
 
     /**
      * The attributes that are mass assignable.

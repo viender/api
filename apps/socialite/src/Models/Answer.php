@@ -2,6 +2,7 @@
 
 namespace Viender\Socialite\Models;
 
+use Laravel\Scout\Searchable;
 use Viender\Topic\Traits\HasTopics;
 use Viender\Socialite\Traits\HasVotes;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ use Viender\Socialite\Contracts\Post\Commentable;
 
 class Answer extends Model implements Upvotable, Commentable
 {
-    use HasComments, HasVotes, HasTopics;
+    use HasComments, HasVotes, HasTopics, Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -32,12 +33,12 @@ class Answer extends Model implements Upvotable, Commentable
         return 'id';
     }
 
-    public function user() 
+    public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    public function question() 
+    public function question()
     {
         return $this->belongsTo('Viender\Socialite\Models\Question');
     }
