@@ -27,12 +27,10 @@
     Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
 </Files>
 
-<ifmodule mod_expires.c>
-    <Filesmatch "/manifest.json">
-        ExpiresActive on
-        ExpiresDefault "access plus 366 days"
-    </Filesmatch>
-</ifmodule>
+<FilesMatch "^(manifest.json)$">
+  ExpiresActive on
+  ExpiresDefault "access plus 30 days"
+</FilesMatch>
 
 <ifmodule mod_expires.c>
     <Filesmatch "\.(jpg|jpeg|png|gif|js|css|swf|ico|woff|mp3)$">
