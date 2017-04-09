@@ -2,6 +2,7 @@
 /vendor
 /public/js
 /public/css
+/mix-manifest.json
 /public/mix-manifest.json
 /viender/vendor
 /src/viender/vendor
