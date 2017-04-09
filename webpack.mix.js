@@ -107,6 +107,7 @@ if (mix.config.inProduction) {
 }
 
 if (process.argv.indexOf('getAppPaths') > -1) {
+
     console.log(Object.keys(config.resolve.alias).map((key) => {
         return config.resolve.alias[key];
     }).join(', '));

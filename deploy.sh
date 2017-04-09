@@ -22,7 +22,7 @@ done
 if [ $ASSETS_CHANGED -gt 0 ];
 then
     printf "%s\n" "assets has changed! ($ASSETS_CHANGED)"
-    # npm run production
+    npm run production
 else
     printf "%s\n" "assets has not changed! ($ASSETS_CHANGED)"
 fi
