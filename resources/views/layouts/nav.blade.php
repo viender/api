@@ -3,7 +3,7 @@
         <div class="nav-wrapper">
             <div class="navbar-section-brand left">
                 <a class="logo left" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <h1>{{ config('app.name', 'Laravel') }}</h1>
                 </a>
             </div>
             <div class="navbar-section-search" :class="$store.state.searchOrAskOverlay.show ? 'full' : ''">

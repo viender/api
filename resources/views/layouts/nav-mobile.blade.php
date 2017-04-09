@@ -7,7 +7,7 @@
                 </div>
                 <div class="col s6">
                     <div class="logo">
-                        <a href="/">Viender</a>
+                       <h1><a href="/">Viender</a></h1>
                     </div>
                 </div>
                 <div class="col s3">
