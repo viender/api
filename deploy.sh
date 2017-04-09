@@ -1,5 +1,27 @@
-IFS=', ' read -r -a apps <<< "$(node webpack.mix.js getAppPaths)"
+COMPOSER_JSON_CHANGED=`git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- composer.json | wc -l`
+COMPOSER_LOCK_CHANGED=`git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- composer.lock | wc -l`
+if [ $COMPOSER_JSON_CHANGED -gt 0 ];
+then
+    echo "composer.json has changed!"
+    composer dump-autoload
+else
+    echo "composer.json has not changed!"
+fi
 
+if [ $COMPOSER_LOCK_CHANGED -gt 0 ];
+then
+    echo "composer.lock has changed!"
+    composer install
+else
+    echo "composer.lock has not changed!"
+fi
+
+php manage migrate --force
+php manage optimize --force
+php manage config:cache
+php manage route:cache
+
+IFS=', ' read -r -a apps <<< "$(node webpack.mix.js getAppPaths)"
 ASSETS_CHANGED=0
 let "ASSETS_CHANGED += $(git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- webpack.mix.js | wc -l)"
 let "ASSETS_CHANGED += $(git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- resources/assets | wc -l)"
@@ -28,8 +50,6 @@ else
 fi
 
 YARN_LOCK_CHANGED=`git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- yarn.lock | wc -l`
-COMPOSER_JSON_CHANGED=`git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- composer.json | wc -l`
-COMPOSER_LOCK_CHANGED=`git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- composer.lock | wc -l`
 
 if [ $YARN_LOCK_CHANGED -gt 0 ];
 then
@@ -38,24 +58,3 @@ then
 else
     echo "yarn.lock has not changed!"
 fi
-
-if [ $COMPOSER_JSON_CHANGED -gt 0 ];
-then
-    echo "composer.json has changed!"
-    composer dump-autoload
-else
-    echo "composer.json has not changed!"
-fi
-
-if [ $COMPOSER_LOCK_CHANGED -gt 0 ];
-then
-    echo "composer.lock has changed!"
-    composer install
-else
-    echo "composer.lock has not changed!"
-fi
-
-php manage migrate --force
-php manage optimize --force
-php manage config:cache
-php manage route:cache
