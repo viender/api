@@ -170,6 +170,7 @@ return [
         Laravel\Passport\PassportServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
 
         /*
          * Application Service Providers...
