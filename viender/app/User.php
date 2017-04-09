@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Viender\Dealer\Dealerable;
 use Laravel\Passport\HasApiTokens;
 use Viender\Follow\Traits\Followable;
@@ -11,6 +12,7 @@ use Viender\Socialite\Traits\Sociable;
 use Illuminate\Notifications\Notifiable;
 use Viender\Follow\Traits\CanFollowUsers;
 use Viender\Topic\Traits\CanFollowTopics;
+use Viender\Address\Transformers\UserTransformer;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -23,7 +25,8 @@ class User extends Authenticatable
         Tutorable,
         Followable,
         CanFollowUsers,
-        CanFollowTopics;
+        CanFollowTopics,
+        Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -34,7 +37,7 @@ class User extends Authenticatable
         'first_name', 'last_name', 'username', 'avatar_url', 'avatar_medium_url', 'avatar_large_url', 'email', 'password', 'gender',
     ];
 
-    public function fullName() 
+    public function fullName()
     {
         return $this->first_name . ' ' . $this->last_name;
     }
@@ -47,6 +50,20 @@ class User extends Authenticatable
     public function getRouteKeyName()
     {
         return 'username';
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $transformer = new UserTransformer();
+
+        $array = $transformer->transform($this);
+
+        return $array;
     }
 
     /**

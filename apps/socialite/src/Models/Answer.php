@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Viender\Socialite\Traits\HasComments;
 use Viender\Socialite\Contracts\Post\Upvotable;
 use Viender\Socialite\Contracts\Post\Commentable;
+use Viender\Socialite\Transformers\AnswerTransformer;
 
 class Answer extends Model implements Upvotable, Commentable
 {
@@ -31,6 +32,30 @@ class Answer extends Model implements Upvotable, Commentable
     public function getRouteKeyName()
     {
         return 'id';
+    }
+
+    public function getTopicsAttribute($value)
+    {
+        return $this->morphToMany('Viender\Topic\Models\Topic', 'topicable');
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $transformer = new AnswerTransformer();
+
+        $array = [
+            'id'        => $this->id,
+            'title'     => $this->title,
+            'body'      => $this->body,
+            'topics'    => $this->question()->first()->topics()->get()->toArray(),
+        ];
+
+        return $array;
     }
 
     public function user()

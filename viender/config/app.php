@@ -171,6 +171,7 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
+        ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
 
         /*
          * Application Service Providers...

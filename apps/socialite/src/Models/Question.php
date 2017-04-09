@@ -12,6 +12,7 @@ use Viender\Socialite\Contracts\Post\Taggable;
 use Viender\Socialite\Contracts\Post\Upvotable;
 use Viender\Socialite\Contracts\Post\Answerable;
 use Viender\Socialite\Contracts\Post\Commentable;
+use Viender\Socialite\Transformers\QuestionTransformer;
 
 class Question extends Model implements Upvotable, Commentable, Answerable, Taggable
 {
@@ -34,6 +35,25 @@ class Question extends Model implements Upvotable, Commentable, Answerable, Tagg
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $transformer = new QuestionTransformer();
+
+        $array = [
+            'id'        => $this->id,
+            'title'     => $this->title,
+            'body'      => $this->body,
+            'topics'    => $this->topics()->get()->toArray(),
+        ];
+
+        return $array;
     }
 
     public function user()

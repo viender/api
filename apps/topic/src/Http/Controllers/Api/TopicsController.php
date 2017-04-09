@@ -27,7 +27,7 @@ class TopicsController extends ApiController
     public function index(Request $request)
     {
         if ((boolean) $request->search) {
-            $paginator = Topic::where([['name','like','%'.$request->search.'%'], ['class', '!=', 'root']])->paginate();
+            $paginator = Topic::search($request->search)->paginate();
 
             return $this->respondWithPagination($paginator, new SimpleTopicTransformer);
         }

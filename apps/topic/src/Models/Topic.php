@@ -6,6 +6,7 @@ use Laravel\Scout\Searchable;
 use Viender\Socialite\Models\Answer;
 use Viender\Follow\Traits\Followable;
 use Illuminate\Database\Eloquent\Model;
+use Viender\Topic\Transformers\TopicTransformer;
 
 class Topic extends Model
 {
@@ -35,6 +36,25 @@ class Topic extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $transformer = new TopicTransformer();
+
+        $array = [
+            'id'            => $this->id,
+            'parent'     => $this->parent ? $this->parent ->toArray() : [],
+            'name'          => $this->name,
+            'description'   => $this->description,
+        ];
+
+        return $array;
     }
 
     protected $appends = array('followed');
