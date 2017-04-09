@@ -27,11 +27,21 @@ export default {
 			    treasure.user = response.data;
 			    Vue.prototype.$viender.user = response.data;
 			    document.dispatchEvent(userFetched);
+
+                if ('serviceWorker' in navigator) {
+                    window.addEventListener('load', function() {
+                        navigator.serviceWorker.register('/sw.js');
+                    });
+                }
 			})
 			.catch(function (error) {
-			     if (error.response.status == 401) {
-					if (guestUrls.indexOf(window.location.href) == -1) {
-			    		document.location = url('login');
+                if (error.response.status === 401) {
+                    navigator.serviceWorker.getRegistration().then((r) => {
+                        r.unregister();
+                    });
+
+					if (guestUrls.indexOf(window.location.href) === -1) {
+                        document.location = url('login');
 					}
 			    }
 			});

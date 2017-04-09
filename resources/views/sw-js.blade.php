@@ -10,6 +10,8 @@ importScripts('/js/vendor/sw-toolbox/sw-toolbox.js');
 toolbox.options.debug = true;
 @endif
 
+toolbox.options.cache.name = 'viender_v2';
+
 toolbox.precache([
 	'{{ $mixManifest['/js/core.js'] }}',
 	'{{ $isDesktop ? $mixManifest['/css/core.css'] : $mixManifest['/css/core-mobile.css'] }}'
@@ -18,8 +20,17 @@ toolbox.precache([
 toolbox.router.get('/js*', toolbox.cacheFirst);
 toolbox.router.get('/fonts*', toolbox.cacheFirst);
 toolbox.router.get('/img*', toolbox.cacheFirst); --}}
+
+toolbox.router.get('/login', toolbox.networkFirst);
+
+toolbox.router.get('/user', toolbox.networkFirst, {
+    origin: '{{ config('app.api_url') }}',
+    credentials: 'include',
+});
+
 toolbox.router.get('/(.*)', toolbox.fastest, {
-	origin: '{{ config('app.api_url') }}'
+	origin: '{{ config('app.api_url') }}',
+    credentials: 'include',
 });
 
 toolbox.router.default = toolbox.cacheFirst;
