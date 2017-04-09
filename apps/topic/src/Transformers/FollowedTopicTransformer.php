@@ -25,6 +25,7 @@ class FollowedTopicTransformer extends Transformer
     {
         return [
             'id'            => $topic->id,
+            'type'          => 'topic',
             'parent_id'     => $topic->parent_id,
             'name'          => $topic->name,
             'description'   => $topic->description,

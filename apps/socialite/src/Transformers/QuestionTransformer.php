@@ -19,7 +19,7 @@ class QuestionTransformer extends Transformer
     protected $availableIncludes = [
         'owner', 'answers', 'comments',
     ];
-    
+
     /**
      * Turn this item object into a generic array
      *
@@ -29,6 +29,7 @@ class QuestionTransformer extends Transformer
     {
         return [
             'id'            => (int) $question->id,
+            'type'          => 'question',
             'slug'          => $question->slug,
             'title'         => $question->title,
             'body'          => $question->body,
@@ -66,7 +67,7 @@ class QuestionTransformer extends Transformer
                     'rel' => 'downvotes',
                     'url' => route('api.viender.socialite.questions.downvotes.index', $question->slug),
                 ],
-            ]            
+            ]
         ];
     }
 

@@ -18,7 +18,7 @@ class CommentTransformer extends Transformer
     {
         $this->comments = new CommentsRepository(app(), Collection::make());
     }
-    
+
     /**
      * List of resources possible to include
      *
@@ -37,6 +37,7 @@ class CommentTransformer extends Transformer
     {
         return [
             'id'                => (int) $comment->id,
+            'type'              => 'comment',
             'body'              => $comment->body,
             'upvote_count'      => $comment->upvotes()->count(),
             'comment_count'     => $comment->comments()->count(),

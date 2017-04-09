@@ -36,6 +36,7 @@ class AnswerPreviewTransformer extends Transformer
     {
         return [
             'id'            => (int) $answer->id,
+            'type'          => 'answer',
             'title'         => $answer->title,
             'preview'       => $this->answers->getPreview($answer),
             'preview_image' => $this->answers->getPreviewImage($answer),
@@ -51,7 +52,7 @@ class AnswerPreviewTransformer extends Transformer
                 [
                     'rel' => 'self_html',
                     'url' => route('web.viender.socialite.pages.answerShow', [$answer->question->slug, $answer->id]),
-                ],                
+                ],
                 [
                     'rel' => 'author',
                     'url' => route('api.viender.core.users.show', $answer->user->username),
@@ -86,5 +87,5 @@ class AnswerPreviewTransformer extends Transformer
         $question = $answer->question;
 
         return $this->item($question, new QuestionTransformer);
-    }    
+    }
 }

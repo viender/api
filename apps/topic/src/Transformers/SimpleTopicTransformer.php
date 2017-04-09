@@ -14,7 +14,7 @@ class SimpleTopicTransformer extends Transformer
     protected $availableIncludes = [
         'parent',
     ];
-    
+
     /**
      * Turn this item object into a generic array
      *
@@ -39,5 +39,5 @@ class SimpleTopicTransformer extends Transformer
         $parent = $topic->parent;
 
         return $this->item($parent, new TopicTransformer);
-    }   
+    }
 }
