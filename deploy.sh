@@ -1,5 +1,3 @@
-echo "$1"
-
 IFS=', ' read -r -a apps <<< "$(node webpack.mix.js getAppPaths)"
 
 ASSETS_CHANGED=0
