@@ -26,10 +26,18 @@ export default {
 
     actions: {
         search({state, commit}, searchText) {
-            console.log('searching...');
             return new Promise((resolve, reject) => {
+                console.log('searching...');
+
+                if (searchText === '') {
+                    commit(types.SET_SHOW, false);
+                    reject({ code: 1, error: 'Search text can\'t be empty.'});
+                    return;
+                }
+
                 if(state.requesting) {
                     resolve(null);
+                    reject({code: 2, error: 'Wait for previous request to complete.'});
                     return;
                 }
 
@@ -43,6 +51,7 @@ export default {
                 .then(function (response) {
                     commit(types.SET_SEARCH_RESULTS, response.data.data);
                     commit(types.SET_REQUESTING, false);
+                    commit(types.SET_SHOW, true);
                     resolve(response);
                 })
                 .catch(function (error) {

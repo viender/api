@@ -46,7 +46,7 @@
 @import "node_modules/materialize-css/sass/components/date_picker/default.time";
 
 // ==========================================================================
-// Viender - Materialize variables
+// Font awesome
 // ==========================================================================
 
 @import "node_modules/font-awesome/scss/font-awesome";
@@ -56,6 +56,7 @@
 // Viender
 // ==========================================================================
 
+// commons
 @import "components/navbar";
 @import "components/collections";
 @import "components/cards";
@@ -65,6 +66,9 @@
 @import "utilities/shadows";
 @import "utilities/whitespaces";
 @import "utilities/texts";
+
+// vue components
+@import "vue_components/search-results";
 
 html {
     min-width: 950px;

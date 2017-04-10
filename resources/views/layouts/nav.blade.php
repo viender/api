@@ -12,7 +12,7 @@
                         ref="searchText"
                         type="text"
                         class="search-form-textfield"
-                        @keyup="$store.commit('searchOrAskOverlay/SET_SEARCH_TEXT', $refs.searchText.value); $store.dispatch('raa/search', $refs.searchText.value);">
+                        @keyup="$store.commit('searchOrAskOverlay/SET_SEARCH_TEXT', $refs.searchText.value); $store.dispatch('raa/search', $refs.searchText.value).catch(function (error) {});">
                     <input class="btn btn-default search-form-submit" type="submit" value="Ask Question" @click.prevent="$store.dispatch('searchOrAskOverlay/postQuestion')">
                     <a href="#" role="button" class="right" v-show="$store.state.searchOrAskOverlay.show" @click="$store.commit('searchOrAskOverlay/TOGGLE_SHOW_MORE_FIELDS')">
                         <i class="fa fa-chevron-down" aria-hidden="true" v-show="! $store.state.searchOrAskOverlay.showMoreFields"></i>
@@ -91,7 +91,7 @@
     >
     <div
         class="searchOverlay-content"
-        v-show="$store ? ($store.state.raa.searchResults.length > 0): false"
+        v-show="($store ? ($store.state.raa.searchResults.length > 0): false) && ($store.state.raa.show)"
         @click="$viender.helpers.stopPropagation($event)"
         >
         <search-results></search-results>

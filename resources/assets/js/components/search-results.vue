@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="searchResults">
         <ul class="collection">
             <li class="collection-item" v-if="object.type == 'answer'" v-for="object in searchResults">
                 <a :href="$viender.helpers.getUrl('self_html', object)">{{ object.preview }}</a>
