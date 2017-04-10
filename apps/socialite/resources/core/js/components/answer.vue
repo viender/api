@@ -1,4 +1,5 @@
 <template>
+<div>
 	<div class="row u-margin--none answer">
 		<div class="col s12">
 			<div class="card u-margin--none u-box-shadow--none" v-if="answer">
@@ -20,15 +21,16 @@
 				<div class="card-action">
 			    	<span style="cursor: pointer;" @click="upvote">
 				    	<span style="padding-right: 5px;">{{ upvoteCount }}</span>
-				    	<a :style="! answer.upvoted ? 'color: grey;' : ''" class="material-icons dp48">thumb_up</a>
+				    	<a :style="answer.upvoted ? 'color: #4285f4;' : ''" class="material-icons dp48">thumb_up</a>
 			    	</span>
-			    	<a :style="! answer.downvoted ? 'color: grey;' : ''" @click="downvote" class="material-icons dp48">thumb_down</a>
+			    	<a :style="answer.downvoted ? 'color: #4285f4;' : ''" @click="downvote" class="material-icons dp48">thumb_down</a>
 			    	<a style="color: grey;" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
-					<comment-list :comments-url="getUrl('comments', answer)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<comment-list :comments-url="getUrl('comments', answer)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
+</div>
 </template>
 
 <script>

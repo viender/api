@@ -1,7 +1,21 @@
 @extends('viender::layouts.app')
 
 @section('content')
-{{ $answer }}
+<div class="" style="padding-top: 5px;">
+    <div class="row">
+        <div class="col s3">
+
+        </div>
+        <div class="col s6">
+            <h5><a href="{{ route('web.viender.socialite.pages.questionShow', $answer->question) }}">{{ $answer->question->title }}</a></h5>
+            <p>{!! $answer->body !!}</p>
+            <comment-list comments-url="{{ route('api.viender.socialite.answers.comments.index', $answer) }}"></comment-list>
+        </div>
+        <div class="col s3">
+
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('head-styles')

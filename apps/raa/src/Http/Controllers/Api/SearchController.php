@@ -24,11 +24,17 @@ class SearchController extends ApiController
     public function index(Request $request)
     {
         if ($request->q) {
-            $answers = Answer::search($request->q)->paginate();
+            $topics = Topic::search($request->q)->paginate();
 
-            if ($answers->count() > 0) {
-                return $this->respondWithPagination($answers, new AnswerPreviewTransformer($this->answers));
+            if ($topics->count() > 0) {
+                return $this->respondWithPagination($topics, new TopicTransformer);
             }
+
+            // $answers = Answer::search($request->q)->paginate();
+
+            // if ($answers->count() > 0) {
+            //     return $this->respondWithPagination($answers, new AnswerPreviewTransformer($this->answers));
+            // }
 
             $questions = Question::search($request->q)->paginate();
 
@@ -37,8 +43,5 @@ class SearchController extends ApiController
             }
         }
 
-        $topics = Topic::search($request->q)->paginate();
-
-        return $this->respondWithPagination($topics, new TopicTransformer);
     }
 }

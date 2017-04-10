@@ -18,4 +18,6 @@ Vue.component('question-list', require('viender_socialite/core/js/components/que
 
 const feed = new Vue({
     el: '#app',
+
+    store: store,
 });

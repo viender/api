@@ -1,0 +1,13 @@
+.commentList {
+    @extend .grey, .lighten-4;
+    display: block;
+
+    .collection-item {
+        @extend .grey, .lighten-4;
+    }
+
+    &-commentForm {
+        margin-bottom: 20px !important;
+        padding: 10px 0 !important;
+    }
+}

@@ -14,8 +14,12 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('question-list', require('viender_socialite/core/js/components/question-list.vue'));
+Vue.component('comment', require('viender_socialite/core/js/components/comment.vue'));
+Vue.component('comment-list', require('viender_socialite/core/js/components/comment-list.vue'));
+Vue.component('comment-create-form', require('viender_socialite/core/js/components/comment-create-form.vue'));
 
 const feed = new Vue({
     el: '#app',
+
+    store: store,
 });

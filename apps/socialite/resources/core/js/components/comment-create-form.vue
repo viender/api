@@ -1,15 +1,9 @@
 <template>
-	<form method="POST" :action="commentableCommentsUrl">
-		<div class="row">
-			<div class="col s9">
-				<input type="text" name="body" style="width: 100%;" v-model="formData.body">
-			</div>
-			<div class="col s3">
-				<button class="btn waves-effect waves-light" type="submit" name="action" @click="postComment($event)">
-					Comment
-				</button>
-			</div>
-		</div>
+	<form method="POST" :action="commentableCommentsUrl" class="commentCreateForm">
+		<input type="text" name="body" v-model="formData.body" class="commentCreateForm-textField">
+		<button class="btn waves-effect waves-light commentCreateForm-submitButton" type="submit" name="action" @click="postComment($event)">
+			Comment
+		</button>
 	</form>
 </template>
 

@@ -1,22 +1,24 @@
 <template>
-  <li class="collection-item avatar avatar--small u-border--none">
-    <img :src="getUrl('avatar', comment.owner)" alt="" class="u-dimension--small circle">
-    <span class="title">
-      <strong>
-        <a class="profile-link" :href="$viender.helpers.getUrl('self_html', comment.owner)">{{ comment.owner.name }}</a>
-      </strong>
-    </span>
-    <p style="padding-right: 5px;">{{ comment.body }}</p>
-    <div class="card-action u-border--only-bottom">
-        <span style="cursor: pointer;" @click="upvote">
-          <span style="padding-right: 5px;">{{ upvoteCount }}</span>
-          <a :style="! comment.upvoted ? 'color: grey;' : ''" class="material-icons dp48">thumb_up</a>
+    <div class="comment">
+        <img :src="getUrl('avatar', comment.owner)" alt="" class="u-dimension--small circle comment-avatar">
+        <span class="comment-owner">
+          <strong>
+            <a class="profile-link" :href="$viender.helpers.getUrl('self_html', comment.owner)">{{ comment.owner.name }}</a>
+          </strong>
         </span>
-        <a :style="! comment.downvoted ? 'color: grey;' : ''" @click="downvote" class="material-icons dp48">thumb_down</a>
-        <a style="color: grey;" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
-      <comment-list :comments-url="getUrl('comments', comment)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
+        <div class="comment-body">
+            <p>{{ comment.body }}</p>
+        </div>
+        <div class="comment-action">
+            <span class="comment-action--item" @click="upvote">
+              <span>{{ upvoteCount }}</span>
+              <a class="material-icons dp48" :class="comment.upvoted ? 'active' : ''">thumb_up</a>
+            </span>
+            <a class="comment-action--item material-icons dp48" :class="comment.downvoted ? 'active' : ''" @click="downvote">thumb_down</a>
+            <a class="comment-action--item" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
+          <comment-list :comments-url="getUrl('comments', comment)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
+        </div>
     </div>
-  </li>
 </template>
 
 <script>

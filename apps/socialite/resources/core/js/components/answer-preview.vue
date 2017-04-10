@@ -1,36 +1,38 @@
 <template>
-	<div class="row u-margin--none answer">
-		<div class="col s12">
-			<div class="card u-margin--none u-box-shadow--none">
-				<div class="card-content" @click="showAnswer()">
-					<span class="card-title" v-if="showQuestion">
-						<h4><a :href="getUrl('self_html', answer.question)" @click="stopPropagation($event)">{{ answer.question.title }}</a></h4>
-					</span>
-				  	<ul class="collection">
-						<li class="collection-item avatar">
-							<img :src="getUrl('avatar', answer.owner)" alt="" class="circle">
-							<a :href="getUrl('self_html', answer.owner)" @click="stopPropagation($event)">
-								<span class="card-title">{{ answer.owner.name }}</span>
-							</a>
-						</li>
-					</ul>
-					<div class="answer-content">
-						<div style="display: inline" v-html="answer.preview"></div>
-						<a style="cursor: pointer" v-if="answer.preview.length >= 258">(more)</a>
-					</div>
-				</div>
-				<div class="card-action">
-			    	<span style="cursor: pointer;" @click="upvote">
-				    	<span style="padding-right: 5px;">{{ upvoteCount }}</span>
-				    	<a :style="! answer.upvoted ? 'color: grey;' : ''" class="material-icons dp48">thumb_up</a>
-			    	</span>
-			    	<a :style="! answer.downvoted ? 'color: grey;' : ''" @click="downvote" class="material-icons dp48">thumb_down</a>
-			    	<a style="color: grey;" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
-					<comment-list :comments-url="getUrl('comments', answer)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div>
+    	<div class="row u-margin--none answer">
+    		<div class="col s12">
+    			<div class="card u-margin--none u-box-shadow--none">
+    				<div class="card-content" @click="showAnswer()">
+    					<span class="card-title" v-if="showQuestion">
+    						<h4><a :href="getUrl('self_html', answer.question)" @click="stopPropagation($event)">{{ answer.question.title }}</a></h4>
+    					</span>
+    				  	<ul class="collection">
+    						<li class="collection-item avatar">
+    							<img :src="getUrl('avatar', answer.owner)" alt="" class="circle">
+    							<a :href="getUrl('self_html', answer.owner)" @click="stopPropagation($event)">
+    								<span class="card-title">{{ answer.owner.name }}</span>
+    							</a>
+    						</li>
+    					</ul>
+    					<div class="answer-content">
+    						<div style="display: inline" v-html="answer.preview"></div>
+    						<a style="cursor: pointer" v-if="answer.preview.length >= 258">(more)</a>
+    					</div>
+    				</div>
+    				<div class="card-action">
+    			    	<span style="cursor: pointer;" @click="upvote">
+    				    	<span style="padding-right: 5px;">{{ upvoteCount }}</span>
+    				    	<a :style="answer.upvoted ? 'color: #4285f4 !important;' : ''" class="material-icons dp48">thumb_up</a>
+    			    	</span>
+    			    	<a :style="answer.downvoted ? 'color: #4285f4 !important;' : ''" @click="downvote" class="material-icons dp48">thumb_down</a>
+    			    	<a style="color: grey;" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<comment-list :comments-url="getUrl('comments', answer)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
+    </div>
 </template>
 
 <script>

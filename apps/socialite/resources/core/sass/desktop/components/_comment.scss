@@ -1,0 +1,31 @@
+.comment {
+    display: block;
+    padding-left: 42px;
+    padding-bottom: 20px;
+
+    &-avatar {
+        position: absolute;
+        left: 10px;
+    }
+
+    &-action {
+        span {
+            @extend .grey-text, .text-darken-2;
+            font-size: 0.9rem;
+        }
+
+        a {
+            @extend .grey-text, .text-darken-2;
+            font-size: 0.9rem;
+
+            &.active {
+                color: #4285f4 !important;
+            }
+        }
+
+        &--item {
+            cursor: pointer;
+            padding-right: 10px;
+        }
+    }
+}

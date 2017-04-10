@@ -1,9 +1,11 @@
 <template>
-	<ul class="collection u-border--none">
-        <li class="collection-item collection-item-form">
-            <comment-create-form :commentable-comments-url="commentsUrl" @comment-posted="addComment($event.data)"></comment-create-form>    
+	<ul class="collection u-border--none commentList">
+        <li class="collection-item collection-item-form commentList-commentForm">
+            <comment-create-form :commentable-comments-url="commentsUrl" @comment-posted="addComment($event.data)"></comment-create-form>
         </li>
-		<comment v-for="comment in comments" :comment="comment"></comment>
+        <li v-for="comment in comments">
+            <comment :comment="comment"></comment>
+        </li>
 	</ul>
 </template>
 
