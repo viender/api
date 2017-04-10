@@ -12,7 +12,7 @@
                         ref="searchText"
                         type="text"
                         class="search-form-textfield"
-                        @keyup="$store.commit('searchOrAskOverlay/SET_SEARCH_TEXT', $refs.searchText.value)">
+                        @keyup="$store.commit('searchOrAskOverlay/SET_SEARCH_TEXT', $refs.searchText.value); $store.dispatch('raa/search', $refs.searchText.value);">
                     <input class="btn btn-default search-form-submit" type="submit" value="Ask Question" @click.prevent="$store.dispatch('searchOrAskOverlay/postQuestion')">
                     <a href="#" role="button" class="right" v-show="$store.state.searchOrAskOverlay.show" @click="$store.commit('searchOrAskOverlay/TOGGLE_SHOW_MORE_FIELDS')">
                         <i class="fa fa-chevron-down" aria-hidden="true" v-show="! $store.state.searchOrAskOverlay.showMoreFields"></i>
@@ -43,7 +43,7 @@
                                 id="textarea1"
                                 class="materialize-textarea"
                                 style="padding-top: 0;"
-                                @keyup="$store.commit('searchOrAskOverlay/SET_QUESTION_DETAIL', $refs.questionDetail.value)">
+                                @keyup="$store.commit('searchOrAskOverlay/SET_QUESTION_DETAIL', $refs.questionDetail.value);">
                             </textarea>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                                 ref="topicSearchInput"
                                 type="text"
                                 class="search-form-textfield"
-                                @keyup="$store.commit('topicRecommendation/SET_SEARCH_TEXT', $refs.topicSearchInput.value)"
+                                @keyup="$store.commit('topicRecommendation/SET_SEARCH_TEXT', $refs.topicSearchInput.value);"
                                 @focus="$store.dispatch('topicRecommendation/showTopicRecommendations')"
                                 @blur="$store.dispatch('topicRecommendation/hideTopicRecommendations')">
                             {{-- <input class="btn btn-default search-form-submit" type="submit" value="Add Topic" @click.prevent=""> --}}
@@ -89,6 +89,11 @@
     @click="$store.commit('searchOrAskOverlay/SET_SHOW', false); $store.commit('searchOrAskOverlay/SET_SHOW_MORE_FIELDS', false);"
     ref="overlay" style="display: none;"
     >
-    <div class="searchOverlay-content" v-show="$store ? ($store.state.searchOrAskOverlay ? $store.state.searchOrAskOverlay.show : false) : false">
+    <div
+        class="searchOverlay-content"
+        v-show="$store ? ($store.state.raa.searchResults.length > 0): false"
+        @click="$viender.helpers.stopPropagation($event)"
+        >
+        <search-results></search-results>
     </div>
 </div>

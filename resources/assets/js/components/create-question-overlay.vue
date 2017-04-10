@@ -98,7 +98,7 @@ export default {
                     self.$refs.searchBar.focus();
                 })
             }
-        }
+        },
     },
 
 	methods: Object.assign(Vuex.mapMutations('searchOrAskOverlay', [

@@ -113,16 +113,19 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #000;
-            opacity: 0.9;
+            background-color: rgba(0, 0, 0, .9);
             z-index: 10;
             margin-top: 45px;
         }
 
         .searchOverlay-content {
-            background-color: #fff;
-            margin-top: 90px;
-            position: relative;
+            background: #fff;
+            height: 80%;
+            width: 40rem;
+            margin: 0 auto;
+            overflow-x: auto;
+            margin-top: 2rem !important;
+            border-radius: 3px;
         }
 
         .topicRecommendation {

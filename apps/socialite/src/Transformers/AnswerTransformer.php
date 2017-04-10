@@ -49,7 +49,7 @@ class AnswerTransformer extends Transformer
                 ],
                 [
                     'rel' => 'self_html',
-                    'url' => route('web.viender.socialite.pages.answerShow', [$answer->question->slug, $answer->id]),
+                    'url' => route('web.viender.socialite.pages.answerShow', [$answer->question->slug, $answer->slug]),
                 ],
                 [
                     'rel' => 'author',
