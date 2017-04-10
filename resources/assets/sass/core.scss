@@ -61,6 +61,8 @@
 @import "components/collections";
 @import "components/cards";
 @import "components/preloader";
+@import "components/search-overlay";
+@import "components/topic-recommendation";
 @import "utilities/borders";
 @import "utilities/miscellaneous";
 @import "utilities/shadows";
@@ -96,4 +98,8 @@ nav {
         line-height: 196%;
     }
 
+}
+
+.hidden {
+    display: none;
 }

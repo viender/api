@@ -1,12 +1,10 @@
 .commentCreateForm {
     &-textField {
-        margin-left: 10px !important;
         width: calc(100% - 150px) !important;
     }
 
     &-submitButton {
         float: right;
-        margin-right: 10px;
         width: 120px;
     }
 }

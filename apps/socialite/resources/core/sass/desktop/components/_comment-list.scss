@@ -1,4 +1,10 @@
 .commentList {
+    padding: 0 10px !important;
+
+    .commentList {
+        padding: 0 !important;
+    }
+
     @extend .grey, .lighten-4;
     display: block;
 
