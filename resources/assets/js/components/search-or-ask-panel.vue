@@ -25,7 +25,10 @@
 					</div>
 				</div>
 			</div>
-		</div>
+        </div>
+        <div>
+            <search-results></search-results>
+        </div>
 	</div>
 </template>
 
@@ -48,16 +51,23 @@ export default {
 
 	watch: {
 		showPanel(newShowPanel) {
-			let _this = this;
+			let self = this;
 
 			if(newShowPanel) {
-				if(_this.$refs.searchBar) {
+				if(self.$refs.searchBar) {
 					Vue.nextTick(function () {
-						_this.$refs.searchBar.focus();
+						self.$refs.searchBar.focus();
 					});
 				}
 			}
-		}
+		},
+
+        searchText() {
+            this.$store.dispatch('raa/search', this.searchText)
+            .catch((error) => {
+
+            });
+        }
 	},
 
 	methods: {
