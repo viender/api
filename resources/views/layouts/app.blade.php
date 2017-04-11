@@ -42,54 +42,6 @@
         <link rel="stylesheet" href={{ mix('css/core.css') }}>
     @else
         <link rel="stylesheet" href={{ mix('css/core-mobile.css') }}>
-        <style>
-            .splash {
-                position: fixed;
-                z-index: 999;
-                width: 100%;
-                height: 100%;
-                background-color: #50a7e6;
-                padding: 10px;
-                visibility: hidden;
-            }
-
-            .splash-text {
-                display: block;
-                font-weight: 600;
-                color: #fff;
-                text-align: center;
-                font-size: 1.3rem;
-            }
-
-            .splash-logo {
-                padding-top: 3rem;
-                padding-bottom: 3rem;
-                text-align: left;
-                font-size: 2rem;
-            }
-
-            .splash-text-author {
-                text-align: right;
-                padding-top: 20px;
-            }
-
-            .splash-action {
-                padding-top: 20px;
-                font-style: italic;
-            }
-
-            .splash-visible {
-              visibility: visible;
-              opacity: 1;
-              transition: opacity 0.25s linear;
-            }
-
-            .splash-hidden {
-              visibility: hidden;
-              opacity: 0;
-              transition: visibility 0s 0.25s, opacity 0.25s linear;
-            }
-        </style>
     @endif
 
     <style>
