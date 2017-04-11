@@ -35,7 +35,7 @@ do
             let "ASSETS_CHANGED += $(git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- "$app" | wc -l)"
             echo "$(git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- "$app" | wc -l) - $app"
     else
-        app="apps/${apps[i]}/resources"
+        app="${apps[i]}"
             let "ASSETS_CHANGED += $(git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- "$app" | wc -l)"
             echo "$(git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- "$app" | wc -l) - $app"
     fi

@@ -1,9 +1,13 @@
 <template>
 	<form method="POST" :action="commentableCommentsUrl" class="commentCreateForm">
-		<input type="text" name="body" v-model="formData.body" class="commentCreateForm-textField">
-		<button class="btn waves-effect waves-light commentCreateForm-submitButton" type="submit" name="action" @click="postComment($event)">
-			Comment
-		</button>
+        <div class="input-field">
+            <textarea name="body" id="body" class="materialize-textarea" cols="30" rows="1" v-model="formData.body"></textarea>
+            <label for="body">Comment</label>
+    		<button class="btn waves-effect waves-light commentCreateForm-submitButton" type="submit" name="action" @click="postComment($event)">
+                Comment
+    		</button>
+        </div>
+        <!-- <input type="text" name="body" v-model="formData.body" class="commentCreateForm-textField"> -->
 	</form>
 </template>
 

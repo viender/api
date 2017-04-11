@@ -1,8 +1,15 @@
 .commentList {
     padding: 0 10px !important;
+    padding-bottom: 10px !important;
 
     .commentList {
         padding: 0 !important;
+
+        &-comments {
+            .collection {
+                width: 100%;
+            }
+        }
     }
 
     @extend .grey, .lighten-4;
@@ -13,7 +20,7 @@
     }
 
     &-commentForm {
-        margin-bottom: 20px !important;
+        margin-bottom: 40px !important;
         padding: 10px 0 !important;
     }
 }
