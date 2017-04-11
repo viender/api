@@ -1,17 +1,18 @@
 .commentCreateForm {
     &-textField {
         height: 2.2rem !important;
-        width: calc(100% - 80px) !important;
+        width: calc(100% - 100px) !important;
     }
 
     &-submitButton {
         display: block;
         float: right;
-        width: 70px;
+        width: 90px;
         text-transform: none !important;
         padding: 0 10px !important;
         height: 2.2rem !important;
         line-height: 100% !important;
         font-size: .8rem;
+        margin-right: 0 !important;
     }
 }
