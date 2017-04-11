@@ -21,6 +21,16 @@ php manage optimize --force
 php manage config:cache
 php manage route:cache
 
+YARN_LOCK_CHANGED=`git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- yarn.lock | wc -l`
+
+if [ $YARN_LOCK_CHANGED -gt 0 ];
+then
+    echo "yarn.lock has changed!"
+    yarn install
+else
+    echo "yarn.lock has not changed!"
+fi
+
 IFS=', ' read -r -a apps <<< "$(node webpack.mix.js getAppPaths)"
 ASSETS_CHANGED=0
 let "ASSETS_CHANGED += $(git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- webpack.mix.js | wc -l)"
@@ -47,14 +57,4 @@ then
     npm run production
 else
     printf "%s\n" "assets has not changed! ($ASSETS_CHANGED)"
-fi
-
-YARN_LOCK_CHANGED=`git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- yarn.lock | wc -l`
-
-if [ $YARN_LOCK_CHANGED -gt 0 ];
-then
-    echo "yarn.lock has changed!"
-    yarn install
-else
-    echo "yarn.lock has not changed!"
 fi
