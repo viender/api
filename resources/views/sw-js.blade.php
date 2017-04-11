@@ -10,7 +10,7 @@ importScripts('/js/vendor/sw-toolbox/sw-toolbox.js');
 toolbox.options.debug = true;
 @endif
 
-toolbox.options.cache.name = 'viender_v1.0.0';
+toolbox.options.cache.name = 'viender_v0.1.1';
 
 toolbox.precache([
 	'{{ $mixManifest['/js/core.js'] }}',
