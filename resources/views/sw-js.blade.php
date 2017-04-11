@@ -10,11 +10,14 @@ importScripts('/js/vendor/sw-toolbox/sw-toolbox.js');
 toolbox.options.debug = true;
 @endif
 
-toolbox.options.cache.name = 'viender_v0.1.1';
+toolbox.options.cache.name = 'viender_v0.1.3';
 
 toolbox.precache([
 	'{{ $mixManifest['/js/core.js'] }}',
-	'{{ $isDesktop ? $mixManifest['/css/core.css'] : $mixManifest['/css/core-mobile.css'] }}'
+	'{{ $isDesktop ? $mixManifest['/css/core.css'] : $mixManifest['/css/core-mobile.css'] }}',
+{{-- @foreach($mixManifest as $asset)
+    '{{ $asset }}',
+@endforeach --}}
 ]);
 {{-- toolbox.router.get('/css*', toolbox.cacheFirst);
 toolbox.router.get('/js*', toolbox.cacheFirst);
