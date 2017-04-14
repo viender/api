@@ -16,9 +16,9 @@ class UsersTableSeeder extends Seeder
         App\User::create([
             'first_name'        => 'Wahyu',
             'last_name'         => 'Nugraha',
-            'avatar_url'        => '/profile.jpg',
-            'avatar_medium_url' => '/profile-medium.jpg',
-            'avatar_large_url'  => '/profile-large.jpg',
+            'avatar_url'        => '/img/profile.jpg',
+            'avatar_medium_url' => '/img/profile-medium.jpg',
+            'avatar_large_url'  => '/img/profile-large.jpg',
             'username'          => 'wahyu-nugraha',
             'email'             => 'nugraha.c.wahyu@gmail.com',
             'password'          => 'open1234',
