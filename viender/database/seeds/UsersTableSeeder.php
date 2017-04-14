@@ -13,6 +13,17 @@ class UsersTableSeeder extends Seeder
     {
         $tags = \Viender\Socialite\Models\Tag::all()->pluck('id')->toArray();
 
+        App\User::create([
+            'first_name'        => 'Wahyu',
+            'last_name'         => 'Nugraha',
+            'avatar_url'        => '/profile.jpg',
+            'avatar_medium_url' => '/profile-medium.jpg',
+            'avatar_large_url'  => '/profile-large.jpg',
+            'username'          => 'wahyu-nugraha',
+            'email'             => 'nugraha.c.wahyu@gmail.com',
+            'password'          => 'open1234',
+        ]);
+
         factory(App\User::class, 50)->create()->each(function($user) use(&$tags) {
 
             $user->addresses()->save(factory(\Viender\Address\Models\Address::class)->make());
