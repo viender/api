@@ -14,16 +14,19 @@ class AnswersTableSeeder extends Seeder
      */
     public function run()
     {
+        $user_ids = \App\User::all()->pluck('id')->toArray();
+
         $faker = \Faker\Factory::create();
 
         foreach (Question::all() as $question) {
-    	    $user_ids = array_rand(User::all()->toArray(), 2);
 
-	    	foreach ($user_ids as $user_id) {
+            $randomKeys = array_rand($user_ids, 10);
+
+	    	foreach ($randomKeys as $key) {
 			    Answer::create([
-			        'user_id' => $user_id+1,
+			        'user_id' => $user_ids[$key],
 			        'question_id' => $question->id,
-			        'slug' => User::find($user_id+1)->username,
+			        'slug' => User::find($user_ids[$key])->username,
 			        'body' => implode("<br>", $faker->paragraphs(10)),
 			    ]);
 	    	}

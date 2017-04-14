@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
         $this->callSeeder($this->seeders);
     }
 
-    public function callSeeder($seeders) 
+    public function callSeeder($seeders)
     {
         foreach ($seeders as $seeder) {
             echo 'calling ' . $seeder . '... ';
@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
     public function truncateTables($tables)
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        
+
         foreach ($tables as $table) {
             echo 'truncating ' . $table . '...';
             DB::table($table)->truncate();

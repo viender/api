@@ -13,13 +13,13 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(\Viender\Address\Models\City::class, function (Faker\Generator $faker) {
-    
+
     $states = \Viender\Address\Models\State::all()->pluck('id')->toArray();
 
     return [
         'state_id' => $faker->randomElement($states),
         'country_id' => function(array $me) {
-            return \Viender\Address\Models\State::where('id', $me['state_id'])->first()->country()->first()->id;
+            return \Viender\Address\Models\State::find($me['state_id'])->country()->first()->id;
         },
         'name' => $faker->city,
     ];

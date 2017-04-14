@@ -19,10 +19,10 @@ $factory->define(\Viender\Address\Models\ZipCode::class, function (Faker\Generat
     return [
         'city_id' => $faker->randomElement($cities),
         'state_id' => function(array $me) {
-            return \Viender\Address\Models\City::where('id', $me['city_id'])->first()->state()->first()->id;
+            return \Viender\Address\Models\City::find($me['city_id'])->state()->first()->id;
         },
         'country_id' => function(array $me) {
-            return \Viender\Address\Models\City::where('id', $me['city_id'])->first()->country()->first()->id;
+            return \Viender\Address\Models\City::find($me['city_id'])->country()->first()->id;
         },
         'code' => $faker->postcode,
     ];
