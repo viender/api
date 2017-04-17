@@ -60,6 +60,9 @@
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php manage optimize"
+        ],
+        "post-deploy-cmd": [
+            "php manage migrate"
         ]
     },
     "config": {
