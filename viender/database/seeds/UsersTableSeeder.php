@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
             'avatar_large_url'  => '/img/profile-large.jpg',
             'username'          => 'wahyu-nugraha',
             'email'             => 'nugraha.c.wahyu@gmail.com',
-            'password'          => 'open1234',
+            'password'          => bcrypt('open1234'),
         ]);
 
         factory(App\User::class, 50)->create()->each(function($user) use(&$tags) {
