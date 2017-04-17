@@ -14,7 +14,7 @@ class AnswerController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
 	public function index()
 	{
 		return view('viender.socialite.answer::index');
