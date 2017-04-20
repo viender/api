@@ -22,7 +22,7 @@ spec:
       containers:
       - name: viender-app
         # Replace $GCLOUD_PROJECT with your project ID or use `make template`.
-        image: gcr.io/viender-164821/viender
+        image: repo.treescale.com/viender/viender
         # This setting makes nodes pull the docker image every time before
         # starting the pod. This is useful when debugging, but should be turned
         # off in production.
@@ -31,3 +31,5 @@ spec:
         ports:
         - name: http-server
           containerPort: 8080
+      imagePullSecrets:
+      - name: regsecret
