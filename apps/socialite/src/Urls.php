@@ -37,7 +37,7 @@ class Urls
 
     public function web($option = [])
     {
-        $this->router->group(array_merge($option, ['domain' => config('app.domain'), 'middleware' => 'web']), function() {
+        $this->router->group(array_merge($option, ['domain' => config('viender.web_domain'), 'middleware' => 'web']), function() {
             $this->router->get('/', 'ReadController@index')->name('web.viender.socialite.pages.read');
 
             $this->router->get('answer', 'AnswerController@index')->name('web.viender.socialite.pages.answer');
@@ -57,7 +57,7 @@ class Urls
     {
         $namePrefix = 'api' . (isset($option['showVersionPrefix']) ? ($option['showVersionPrefix'] ? '.v1' : '') : '.v1') . '.viender.socialite';
 
-        $this->router->group(array_merge($option, ['domain' => config('app.api_domain'), 'namespace' => 'Api', 'middleware' => 'api']), function() use ($namePrefix) {
+        $this->router->group(array_merge($option, ['domain' => config('viender.api_domain'), 'namespace' => 'Api', 'middleware' => 'api']), function() use ($namePrefix) {
 
             // Models
             $this->router->resource('stars', 'StarsController', ['as' => $namePrefix,'except' => ['create', 'edit']]);
@@ -72,7 +72,7 @@ class Urls
             // Relationships
             // Relationships - Ask
             $this->router->resource(
-                'users.questions', 
+                'users.questions',
                 'UserQuestionsController', [
                     'as' => $namePrefix,
                     'except' => ['create', 'edit']
@@ -80,7 +80,7 @@ class Urls
             );
 
             $this->router->resource(
-                'users.answers', 
+                'users.answers',
                 'UserAnswersController', [
                     'as' => $namePrefix,
                     'except' => ['create', 'edit']
@@ -88,7 +88,7 @@ class Urls
             );
 
             $this->router->resource(
-                'questions.answers', 
+                'questions.answers',
                 'QuestionAnswersController', [
                     'as' => $namePrefix,
                     'except' => ['create', 'edit']
@@ -96,7 +96,7 @@ class Urls
             );
 
             $this->router->resource(
-                'topics.answers', 
+                'topics.answers',
                 'TopicAnswersController', [
                     'as' => $namePrefix,
                     'only' => ['index']
@@ -104,7 +104,7 @@ class Urls
             );
 
             $this->router->resource(
-                'topics.questions', 
+                'topics.questions',
                 'TopicQuestionsController', [
                     'as' => $namePrefix,
                     'only' => ['index']

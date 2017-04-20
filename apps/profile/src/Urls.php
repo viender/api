@@ -37,9 +37,9 @@ class Urls
 
     public function web($option = [])
     {
-        $this->router->group(array_merge($option, ['domain' => config('app.domain'), 'middleware' => 'web']), function() {
+        $this->router->group(array_merge($option, ['domain' => config('viender.web_domain'), 'middleware' => 'web']), function() {
             $this->router->get(
-                '/{user}', 
+                '/{user}',
                 'ProfileController@profile')
             ->name('web.viender.profile.pages.profile');
 
@@ -49,17 +49,17 @@ class Urls
             ->name('web.viender.profile.pages.questions');
 
             $this->router->get(
-                '/{user}/topics', 
+                '/{user}/topics',
                 'ProfileController@topics')
             ->name('web.viender.profile.pages.topics');
 
             $this->router->get(
-                '/{user}/followings', 
+                '/{user}/followings',
                 'ProfileController@followings')
             ->name('web.viender.profile.pages.followings');
 
             $this->router->get(
-                '/{user}/followers', 
+                '/{user}/followers',
                 'ProfileController@followers')
             ->name('web.viender.profile.pages.followers');
         });
@@ -74,7 +74,7 @@ class Urls
     {
         $namePrefix = 'api' . (isset($option['showVersionPrefix']) ? ($option['showVersionPrefix'] ? '.v1' : '') : '.v1') . '.viender.socialite';
 
-        $this->router->group(array_merge($option, ['domain' => config('app.api_domain'), 'namespace' => 'Api', 'middleware' => 'api']), function() use ($namePrefix) {
+        $this->router->group(array_merge($option, ['domain' => config('viender.api_domain'), 'namespace' => 'Api', 'middleware' => 'api']), function() use ($namePrefix) {
 
 
         });

@@ -37,7 +37,7 @@ class Urls
 
     public function web($option = [])
     {
-        $this->router->group(array_merge($option, ['domain' => config('app.domain'), 'middleware' => 'web']), function() {
+        $this->router->group(array_merge($option, ['domain' => config('viender.web_domain'), 'middleware' => 'web']), function() {
 
         });
     }
@@ -51,8 +51,8 @@ class Urls
     {
         $namePrefix = 'api' . (isset($option['showVersionPrefix']) ? ($option['showVersionPrefix'] ? '.v1' : '') : '.v1') . '.viender.follow';
 
-        $this->router->group(array_merge($option, ['domain' => config('app.api_domain'), 'namespace' => 'Api', 'middleware' => 'api']), function() use ($namePrefix) {
-            
+        $this->router->group(array_merge($option, ['domain' => config('viender.api_domain'), 'namespace' => 'Api', 'middleware' => 'api']), function() use ($namePrefix) {
+
             $this->router->resource(
                 'users.followers',
                 'UserFollowersController',

@@ -37,20 +37,20 @@ class Urls
 
     public function web($option = [])
     {
-        $this->router->group(array_merge($option, ['domain' => config('app.domain'), 'middleware' => 'web']), function() {
+        $this->router->group(array_merge($option, ['domain' => config('viender.web_domain'), 'middleware' => 'web']), function() {
 
             $this->router->get(
-                'topics/{topic}', 
+                'topics/{topic}',
                 'TopicsController@landingPage'
             )->name('web.viender.topic.pages.topic.index');
 
             $this->router->get(
-                'topics/{topic}/questions', 
+                'topics/{topic}/questions',
                 'TopicsController@questions'
             )->name('web.viender.topic.pages.topic.questions');
 
             $this->router->get(
-                'topics/{topic}/followers', 
+                'topics/{topic}/followers',
                 'TopicsController@followers'
             )->name('web.viender.topic.pages.topic.followers');
 
@@ -66,7 +66,7 @@ class Urls
     {
         $namePrefix = 'api' . (isset($option['showVersionPrefix']) ? ($option['showVersionPrefix'] ? '.v1' : '') : '.v1') . '.viender.topic';
 
-        $this->router->group(array_merge($option, ['domain' => config('app.api_domain'), 'namespace' => 'Api', 'middleware' => 'api']), function() use ($namePrefix) {
+        $this->router->group(array_merge($option, ['domain' => config('viender.api_domain'), 'namespace' => 'Api', 'middleware' => 'api']), function() use ($namePrefix) {
 
             $this->router->resource(
                 'topics',
