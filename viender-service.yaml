@@ -5,6 +5,22 @@
 #   https://cloud.google.com/container-engine/docs/services/
 # For more information about external HTTP load balancing see:
 #   https://cloud.google.com/container-engine/docs/load-balancer
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: viender-frontend
+#   labels:
+#     app: viender
+#     tier: frontend
+# spec:
+#   type: LoadBalancer
+#   ports:
+#   - port: 80
+#     targetPort: http-server
+#   selector:
+#     app: viender
+#     tier: frontend
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -13,10 +29,13 @@ metadata:
     app: viender
     tier: frontend
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
-  - port: 80
+  - name: http
+    port: 80
     targetPort: http-server
+    nodePort: 30001
+    protocol: TCP
   selector:
     app: viender
     tier: frontend
