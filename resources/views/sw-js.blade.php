@@ -1,7 +1,7 @@
 @php
     $isDesktop = \Agent::isDesktop();
-	$mixManifestFile = file_get_contents(public_path('mix-manifest.json'));
-	$mixManifest = json_decode($mixManifestFile, true);
+    $mixManifestFile = file_get_contents(public_path('mix-manifest.json'));
+    $mixManifest = json_decode($mixManifestFile, true);
 @endphp
 
 importScripts('/js/vendor/sw-toolbox/sw-toolbox.js');
@@ -13,8 +13,8 @@ toolbox.options.debug = true;
 toolbox.options.cache.name = 'viender_v0.1.3';
 
 toolbox.precache([
-	'{{ $mixManifest['/js/core.js'] }}',
-	'{{ $isDesktop ? $mixManifest['/css/core.css'] : $mixManifest['/css/core-mobile.css'] }}',
+    '{{ $mixManifest['/js/core.js'] }}',
+    '{{ $isDesktop ? $mixManifest['/css/core.css'] : $mixManifest['/css/core-mobile.css'] }}',
 {{-- @foreach($mixManifest as $asset)
     '{{ $asset }}',
 @endforeach --}}
@@ -29,12 +29,12 @@ toolbox.router.get('/login', toolbox.networkFirst);
 toolbox.router.get('/profile/(.*)', toolbox.networkFirst);
 
 toolbox.router.get('/user', toolbox.networkFirst, {
-    origin: '{{ config('app.api_url') }}',
+    origin: '{{ config('viender.api_url') }}',
     credentials: 'include',
 });
 
 toolbox.router.get('/(.*)', toolbox.fastest, {
-	origin: '{{ config('app.api_url') }}',
+    origin: '{{ config('viender.api_url') }}',
     credentials: 'include',
 });
 

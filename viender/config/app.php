@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('VIENDER_PROTOCOL', 'http') . '://' . env('VIENDER_WEB_SUBDOMAIN', '') . (env('VIENDER_WEB_SUBDOMAIN', '') !== '' ? '.' : '') . env('VIENDER_DOMAIN', 'viender.dev'),
 
     /*
     |--------------------------------------------------------------------------
@@ -241,12 +241,12 @@ return [
 
     ],
 
-    'viender_web_url' => env('APP_VIENDER_WEB_URL', 'http://localhost'),
+    // 'viender_web_url' => env('APP_VIENDER_WEB_URL', 'http://localhost'),
 
-    'api_url' => env('APP_API_URL', 'http://localhost'),
+    // 'api_url' => env('APP_API_URL', 'http://localhost'),
 
-    'domain' => env('APP_DOMAIN', 'localhost'),
+    // 'domain' => env('APP_DOMAIN', 'localhost'),
 
-    'api_domain' => env('APP_API_DOMAIN', 'localhost'),
+    // 'api_domain' => env('APP_API_DOMAIN', 'localhost'),
 
 ];

@@ -19,8 +19,8 @@
         window.treasure = {!! json_encode([
             'env'       => [
                 'env'       => config('app.env'),
-                'api_url'   => config('app.api_url'),
-                'domain'    => config('app.domain'),
+                'api_url'   => config('viender.api_url'),
+                'domain'    => config('viender.web_domain'),
             ],
             'client'    => [
                 'type'      => \Agent::isDesktop() ? 'desktop' : 'mobile',
