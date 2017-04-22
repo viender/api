@@ -11,7 +11,7 @@ return [
 
     'web_domain'    => env('VIENDER_WEB_SUBDOMAIN', '') . (env('VIENDER_WEB_SUBDOMAIN', '') !== '' ? '.' : '') . env('VIENDER_DOMAIN', 'viender.dev'),
 
-    'api_domain'    => env('VIENDER_API_SUBDOMAIN', 'viender.dev') . (env('VIENDER_API_SUBDOMAIN', '') !== '' ? '.' : '') . env('VIENDER_DOMAIN', 'viender.dev'),
+    'api_domain'    => env('VIENDER_API_SUBDOMAIN', 'api') . (env('VIENDER_API_SUBDOMAIN', '') !== '' ? '.' : '') . env('VIENDER_DOMAIN', 'viender.dev'),
 
     'web_url'       => env('VIENDER_PROTOCOL', 'http') . '://' . env('VIENDER_WEB_SUBDOMAIN', '') . (env('VIENDER_WEB_SUBDOMAIN', '') !== '' ? '.' : '') . env('VIENDER_DOMAIN', 'viender.dev'),
 
