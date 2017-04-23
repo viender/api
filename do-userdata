@@ -1,0 +1,106 @@
+#!/bin/bash
+export productionWorkTree="/var/www/viender.com"
+export productionGitDir="/var/repo/viender.git"
+export betaWorkTree="/var/www/beta.viender.com"
+export betaGitDir="/var/repo/beta.viender.git"
+
+
+# Update locale
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+
+
+# Install packages to allow apt to use a repository over HTTPS
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common -y
+
+
+# Install docker and docker-compose
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get update
+sudo apt-get install docker-ce -y
+curl -L https://github.com/docker/compose/releases/download/1.12.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+
+# Install zsh and oh-my-zsh
+sudo apt-get install zsh -y
+chsh -s $(which zsh)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Install nodejs
+sudo apt-get install -y build-essential
+
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+
+# Install yarn
+sudo apt-get install yarn -y
+
+
+# Install nginx and letsencrypt
+sudo apt-get update
+sudo apt-get install nginx
+sudo ufw allow 'Nginx Full'
+sudo ufw delete allow 'Nginx HTTP'
+
+sudo apt-get update
+sudo apt-get install letsencrypt
+
+
+
+# Install PHP
+sudo add-apt-repository ppa:ondrej/php -y
+sudo apt-get update
+sudo apt-get install php7.1 -y
+sudo apt-get install php-mbstring php-xml php-redis -y
+
+# Install composer
+sudo apt-get install composer -y
+
+
+# Setup viender production
+mkdir -p $productionWorkTree
+mkdir -p $productionGitDir
+mkdir -p $productionWorkTree/viender/storage
+
+sudo chmod -R gu+w $productionWorkTree/viender/storage
+sudo chmod -R guo+w $productionWorkTree/viender/storage
+
+cd $productionGitDir
+git init --bare
+
+cat <<EOT >> $productionGitDir/hooks/post-receive
+#!/bin/sh
+git --work-tree=$productionWorkTree --git-dir=$productionGitDir checkout -f
+$productionWorkTree/deploy.sh $productionWorkTree productionGitDir
+EOT
+
+chmod +x $productionGitDir/hooks/post-receive
+
+
+# Setup viender beta
+mkdir -p $betaWorkTree
+mkdir -p $betaGitDir
+mkdir -p $betaWorkTree/viender/storage
+
+sudo chmod -R gu+w $betaWorkTree/viender/storage
+sudo chmod -R guo+w $betaWorkTree/viender/storage
+
+cd $betaGitDir
+git init --bare
+
+cat <<EOT >> $betaGitDir/hooks/post-receive
+#!/bin/sh
+git --work-tree=$betaWorkTree --git-dir=$betaGitDir checkout -f
+$betaWorkTree/deploy.sh $betaWorkTree betaGitDir
+EOT
+
+chmod +x $betaGitDir/hooks/post-receive
