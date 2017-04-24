@@ -63,7 +63,7 @@
             "php manage optimize"
         ],
         "post-deploy-cmd": [
-            "php manage migrate"
+            "php manage migrate --force"
         ]
     },
     "config": {
