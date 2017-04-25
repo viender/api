@@ -1,4 +1,0 @@
-
-[submodule "laradock"]
-	path = laradock
-	url = git@github.com:viender/laradock.git
