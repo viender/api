@@ -12,7 +12,7 @@
 */
 Auth::routes();
 
-Route::group(['domain' => config('viender.api_subdomain')], function() {
+Route::group(['domain' => 'accounts.' . config('viender.web_domain')], function() {
 	Route::get('/', 'HomeController@index');
 });
 
