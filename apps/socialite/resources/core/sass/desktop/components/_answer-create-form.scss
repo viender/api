@@ -1,4 +1,12 @@
 .answerCreateForm {
+    &-question {
+        font-size: 1.6rem;
+
+        a {
+            @extend .grey-text, .text-darken-3;
+        }
+    }
+
     &-questionDetail {
         overflow: hidden;
         text-overflow: ellipsis;

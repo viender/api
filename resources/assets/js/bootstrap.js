@@ -60,3 +60,5 @@ require('./callbacks');
  * Services
  */
 require('./services');
+
+window.tinymce = require('tinymce');

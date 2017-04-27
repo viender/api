@@ -6,7 +6,9 @@
             </div>
         </div>
         <div class="modal-action">
-            <span>X</span>
+            <i aria-hidden="true" class="fa fa-angle-left fa-2x"></i>
+            <img class="answerCreateModal-sendButton" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/ic_sent_right_g60_24dp_r1.png" alt="send button" @click="$refs.form.answer($event)">
+            <!-- <a class="btn"><i class="fa fa-paper-plane" aria-hidden="true" @click="$refs.form.answer($event)"></i></a> -->
         </div>
     </div>
 </template>
@@ -18,6 +20,9 @@ export default {
     computed: {
         showModal() {
             return this.$store.state.questionList.showAnswerCreateModal;
+        },
+        question() {
+            return this.$store.state.editor.question;
         },
     },
 

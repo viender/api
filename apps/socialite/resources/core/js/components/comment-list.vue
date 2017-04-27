@@ -28,6 +28,16 @@ export default {
 
     mounted() {
         this.fetchData();
+
+        const commentTextArea = $('.commentList .materialize-textarea');
+
+        commentTextArea.focus(function focus() {
+            $('.navbar-mobile-menus').addClass('hidden');
+        });
+
+        commentTextArea.blur(function blur() {
+            $('.navbar-mobile-menus').removeClass('hidden');
+        });
     },
 
     methods: {

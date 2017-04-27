@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="answerCreateForm">
         <div style="padding-bottom: 20px;">
-            <h4><a :href="question ? getUrl('self_html', question) : ''">{{ question ? question.title : '' }}</a></h4>
+            <h4 class="answerCreateForm-question"><a :href="question ? getUrl('self_html', question) : ''">{{ question ? question.title : '' }}</a></h4>
             <div :class="showQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" @click="showQuestionDetail = !showQuestionDetail">
                 {{ question ? question.body : '' }}
             </div>
@@ -16,7 +16,6 @@
             </ul>
         </div>
         <div class="answer-create-editor" ref="editor"></div>
-        <button class="btn btn-default" type="submit" @click="answer($event)">Submit</button>
     </div>
 </template>
 

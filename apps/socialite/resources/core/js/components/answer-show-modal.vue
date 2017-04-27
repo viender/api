@@ -16,8 +16,8 @@
 				</div>
 			</div>
 		</div>
-        <div class="modal-action">
-            <span>X</span>
+        <div class="modal-action center" style="bottom: 0; top: initial;">
+            <i style="color: #657786" class="fa fa-times" aria-hidden="true"></i>
         </div>
 	</div>
 </template>

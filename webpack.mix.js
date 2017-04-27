@@ -98,6 +98,10 @@ for(var i=0; i < apps.length; i++) {
 
 mix.copy('node_modules/sw-toolbox/sw-toolbox.js', 'public/js/vendor/sw-toolbox/sw-toolbox.js');
 mix.copy('node_modules/font-awesome/fonts', 'public/fonts/font-awesome/4.7.0/fonts', true);
+mix.copy('node_modules/font-awesome/fonts', 'public/fonts', false);
+mix.copy('node_modules/tinymce/plugins', 'public/js/plugins', false);
+mix.copy('node_modules/tinymce/themes', 'public/js/themes', false);
+mix.copy('node_modules/tinymce/skins', 'public/js/skins', false);
 mix.version();
 
 if (mix.config.inProduction) {

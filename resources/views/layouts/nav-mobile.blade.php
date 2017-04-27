@@ -21,9 +21,13 @@
                     <div class="col s6"><a href="{{ url('/login') }}">Login</a></div>
                     <div class="col s6"><a href="{{ url('/register') }}">Register</a></div>
                 @else
-                    <div class="col s4"><a href={{ route('web.viender.socialite.pages.read') }}>Feed</a></div>
-                    <div class="col s4"><a href={{ route('web.viender.socialite.pages.answer') }}>Questions</a></div>
-                    <div class="col s4"><a href={{ route('web.viender.profile.pages.profile', \Auth::user()->username) }}>You</a></div>
+                    <div class="col s4">
+                        <a href={{ route('web.viender.socialite.pages.read') }}><i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col s4">
+                        <a href={{ route('web.viender.socialite.pages.answer') }}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col s4"><a href={{ route('web.viender.profile.pages.profile', \Auth::user()->username) }}><i class="fa fa-user" aria-hidden="true"></i></a></div>
                 @endif
             </div>
         </div>

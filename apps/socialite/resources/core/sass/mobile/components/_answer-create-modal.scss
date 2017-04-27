@@ -4,11 +4,11 @@ $modal-action-height: 36px;
     position: relative;
     width: 100%;
     min-height: 100%;
-    padding: 15px 15px 15px 15px;
+    padding: 10px;
     background-color: white;
     z-index: 1042;
-    margin-bottom: 32px;
-    
+    margin-top: 15px;
+
     .z-depth-4, .modal {
     	box-shadow: none;
     	background: none;
@@ -24,6 +24,12 @@ $modal-action-height: 36px;
         z-index: 1041;
         overflow-y: scroll;
         overflow-x: auto;
+    }
+
+    &-sendButton {
+        cursor: pointer;
+        float: right;
+        margin-top: 0.4rem;
     }
 
     .note-editing-area ul {
@@ -122,7 +128,7 @@ $modal-action-height: 36px;
             width: 100%;
             position: fixed;
             z-index: 1042;
-            top: calc(100% - #{$modal-action-height});
+            top: 0;
             text-align: center;
             height: $modal-action-height;
             line-height: $modal-action-height;
@@ -142,6 +148,14 @@ $modal-action-height: 36px;
             overflow-x: visible;
             overflow-y: visible;
         }
+    }
+
+    .note-toolbar.panel-heading {
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        bottom: 0;
     }
 
     [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
