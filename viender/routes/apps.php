@@ -11,3 +11,4 @@ Viender\Profile\Profile::routes(['prefix' => 'profile']);
 Viender\Follow\Follow::routes();
 Viender\Topic\Topic::routes();
 Viender\Raa\Raa::routes();
+Viender\Feed\Feed::routes(['prefix' => 'feed']);

@@ -35,4 +35,12 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'viender' => [
+        'feed' => [
+            'host'  => env('VIENDER_FEED_HOST', 'localhost'),
+            'port'  => env('VIENDER_FEED_PORT', '3000'),
+            'url'   => env('VIENDER_FEED_HOST', 'localhost') . ':' . env('VIENDER_FEED_PORT', '3000') . '/api/users',
+        ]
+    ]
+
 ];

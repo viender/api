@@ -39,7 +39,8 @@
             "Viender\\Mytutor\\": "apps/mytutor/src/",
             "Viender\\Follow\\": "apps/follow/src/",
             "Viender\\Topic\\": "apps/topic/src/",
-            "Viender\\Raa\\": "apps/raa/src/"
+            "Viender\\Raa\\": "apps/raa/src/",
+            "Viender\\Feed\\": "apps/feed/src/"
         }
     },
     "autoload-dev": {
