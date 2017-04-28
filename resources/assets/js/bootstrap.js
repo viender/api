@@ -9,8 +9,8 @@ window.axios = require('axios');
 window.axios.defaults.withCredentials = true;
 
 window.axios.defaults.headers.common = {
-    'X-CSRF-TOKEN': window.Laravel.csrfToken,
-    'X-Requested-With': 'XMLHttpRequest',
+  'X-CSRF-TOKEN': window.Laravel.csrfToken,
+  'X-Requested-With': 'XMLHttpRequest',
 };
 
 /**
@@ -50,7 +50,9 @@ require('./helpers/url.js');
  * Materialize
  */
 
-window.jQuery = window.$ = require('jquery');
+window.jQuery = require('jquery');
+
+window.$ = window.jQuery;
 
 require('materialize-css/dist/js/materialize');
 
