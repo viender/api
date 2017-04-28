@@ -1,11 +1,16 @@
 {
-  "extends": ["airbnb"],
+  "extends": ["google"],
   "parser": "babel-eslint",
   "plugins": ["vue"],
   "globals": {
+    "Event": true,
     "axios": true,
     "Vue": true,
     "app": true,
+    "window": true,
+    "document": true,
+    "navigator": true,
+    "treasure": true,
   },
   "settings": {
     "import/resolver": {
