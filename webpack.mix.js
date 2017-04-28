@@ -1,20 +1,20 @@
-var webpack = require('webpack');
-const { mix } = require('laravel-mix');
-var path = require('path');
-var fileSystem = require('fs');
+let webpack = require('webpack');
+const {mix} = require('laravel-mix');
+let path = require('path');
+let fileSystem = require('fs');
 require('dotenv').config({path: './viender/.env'});
 
-var apps = fileSystem.readdirSync(path.resolve(__dirname, 'apps/'));
+let apps = fileSystem.readdirSync(path.resolve(__dirname, 'apps/'));
 
-var config = {
+let config = {
     output: {
-        path: path.resolve(__dirname, "public/")
+        path: path.resolve(__dirname, 'public/'),
     },
     resolve: {
         alias: {
           viender: path.resolve(__dirname, 'viender'),
           viender_core: path.resolve(__dirname, 'resources/assets'),
-        }
+        },
     },
     plugins: [
       new webpack.DefinePlugin({
@@ -24,12 +24,12 @@ var config = {
           APP_API_URL: JSON.stringify(process.env.APP_API_URL),
           APP_DOMAIN: JSON.stringify(process.env.APP_DOMAIN),
           APP_API_DOMAIN: JSON.stringify(process.env.APP_API_DOMAIN),
-        }
-      })
-    ]
+        },
+      }),
+    ],
 };
 
-for(var i=0; i < apps.length; i++) {
+for(let i=0; i < apps.length; i++) {
   if(apps[i] == 'core') continue;
   config.resolve.alias['viender_' + apps[i]] = path.resolve(__dirname, 'apps/' + apps[i] + '/resources');
 }
@@ -47,10 +47,10 @@ mix.webpackConfig(config);
  |
  */
 
-var pages = '';
-var pagesPath = '';
-var compileds = [];
-var publicPath = '';
+let pages = '';
+let pagesPath = '';
+let compileds = [];
+let publicPath = '';
 
 compileds.push(
   publicPath + 'js/core.js',
@@ -69,29 +69,33 @@ mix.js('viender/resources/assets/js/app.js', 'js/app.js')
    .sass('viender/resources/assets/sass/app-mobile.scss', 'css/app-mobile.css')
    .sass('viender/resources/assets/sass/app.scss', 'css/app.css');
 
-for(var i=0; i < apps.length; i++) {
+for(let i=0; i < apps.length; i++) {
   pagesPath = path.resolve(__dirname, 'apps/' + apps[i] + '/resources/pages');
 
   if (fileSystem.existsSync(pagesPath)) {
     pages = fileSystem.readdirSync(pagesPath);
 
-    for(var j=0; j < pages.length; j++) {
-      var compiled_app_js_path = 'js/viender/' + apps[i] + '/' + pages[j] + '/app.js';
-      var compiled_app_mobile_js_path = 'js/viender/' + apps[i] + '/' + pages[j] + '/app-mobile.js';
-      var compiled_app_css_path = 'css/viender/' + apps[i] + '/' + pages[j] + '/app.css';
-      var compiled_app_mobile_css_path = 'css/viender/' + apps[i] + '/' + pages[j] + '/app-mobile.css';
+    for(let j=0; j < pages.length; j++) {
+      let compiledAppJsPath = 'js/viender/' + apps[i] + '/' + pages[j] + '/app.js';
+      let compiledAppMobileJsPath = 'js/viender/' + apps[i] + '/' + pages[j] + '/app-mobile.js';
+      let compiledAppCssPath = 'css/viender/' + apps[i] + '/' + pages[j] + '/app.css';
+      let compiledAppMobileCssPath = 'css/viender/' + apps[i] + '/' + pages[j] + '/app-mobile.css';
 
       compileds.push(
-        publicPath + compiled_app_js_path,
-        publicPath + compiled_app_mobile_js_path,
-        publicPath + compiled_app_css_path,
-        publicPath + compiled_app_mobile_css_path
+        publicPath + compiledAppJsPath,
+        publicPath + compiledAppMobileJsPath,
+        publicPath + compiledAppCssPath,
+        publicPath + compiledAppMobileCssPath
       );
 
-      mix.js('apps/' + apps[i] + '/resources/pages/' + pages[j] + '/assets/js/app.js', compiled_app_js_path)
-         .js('apps/' + apps[i] + '/resources/pages/' + pages[j] + '/assets/js/app-mobile.js', compiled_app_mobile_js_path)
-         .sass('apps/' + apps[i] + '/resources/pages/' + pages[j] + '/assets/sass/app.scss', compiled_app_css_path)
-         .sass('apps/' + apps[i] + '/resources/pages/' + pages[j] + '/assets/sass/app-mobile.scss', compiled_app_mobile_css_path);
+      mix.js('apps/' + apps[i]
+            + '/resources/pages/' + pages[j] + '/assets/js/app.js', compiledAppJsPath)
+         .js('apps/' + apps[i]
+            + '/resources/pages/' + pages[j] + '/assets/js/app-mobile.js', compiledAppMobileJsPath)
+         .sass('apps/' + apps[i]
+            + '/resources/pages/' + pages[j] + '/assets/sass/app.scss', compiledAppCssPath)
+         .sass('apps/' + apps[i]
+            + '/resources/pages/' + pages[j] + '/assets/sass/app-mobile.scss', compiledAppMobileCssPath);
     }
   }
 }
@@ -111,7 +115,6 @@ if (mix.config.inProduction) {
 }
 
 if (process.argv.indexOf('getAppPaths') > -1) {
-
     console.log(Object.keys(config.resolve.alias).map((key) => {
         return config.resolve.alias[key];
     }).join(', '));
