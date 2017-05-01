@@ -8,6 +8,7 @@ use Viender\Socialite\Traits\HasTags;
 use Viender\Socialite\Traits\HasVotes;
 use Illuminate\Database\Eloquent\Model;
 use Viender\Socialite\Traits\HasComments;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Viender\Socialite\Contracts\Post\Taggable;
 use Viender\Socialite\Contracts\Post\Upvotable;
 use Viender\Socialite\Contracts\Post\Answerable;
@@ -16,7 +17,9 @@ use Viender\Socialite\Transformers\QuestionTransformer;
 
 class Question extends Model implements Upvotable, Commentable, Answerable, Taggable
 {
-    use HasComments, HasVotes, HasTags, HasTopics, Searchable;
+    use HasComments, HasVotes, HasTags, HasTopics, Searchable, SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.

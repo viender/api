@@ -23,6 +23,7 @@ class CreateAnswersTable extends Migration
             $table->string('slug');
             $table->unique(['question_id', 'slug']);
             $table->text('body');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

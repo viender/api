@@ -5,9 +5,51 @@
 
     &-item {
         display: inline;
+        cursor: pointer;
 
         a.active {
             color: #4285f4 !important;
+        }
+
+        &--right {
+            cursor: pointer;
+            float: right;
+        }
+    }
+
+    &-popup {
+        &-container {
+            position: relative;
+            display: none;
+
+            &.active {
+                display: initial;
+            }
+        }
+
+        &-content {
+            padding: 10px 0;
+            background-color: #fff;
+            position: absolute;
+            width: 192px;
+            border: 0 solid rgba(0,0,0,0.25);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+            z-index: 9;
+        }
+
+        &-item {
+            padding: 5px 20px;
+
+            &:hover {
+                background-color: #0084B4 !important;
+                a {
+                    color: #fff !important;
+                }
+            }
+
+            &--separator {
+                border-top: solid 1px #eee;
+            }
         }
     }
 }

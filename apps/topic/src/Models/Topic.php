@@ -6,11 +6,14 @@ use Laravel\Scout\Searchable;
 use Viender\Socialite\Models\Answer;
 use Viender\Follow\Traits\Followable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Viender\Topic\Transformers\TopicTransformer;
 
 class Topic extends Model
 {
-	use Followable, Searchable;
+	use Followable, Searchable, SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.

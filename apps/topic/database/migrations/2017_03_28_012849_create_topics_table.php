@@ -25,6 +25,7 @@ class CreateTopicsTable extends Migration
             $table->integer('parent_id')->unsigned()->nullable();
             $table->foreign('parent_id')->references('id')->on('topics')->onDelete('cascade');
             $table->unique(['name', 'parent_id']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

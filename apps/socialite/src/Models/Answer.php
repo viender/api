@@ -7,13 +7,16 @@ use Viender\Topic\Traits\HasTopics;
 use Viender\Socialite\Traits\HasVotes;
 use Illuminate\Database\Eloquent\Model;
 use Viender\Socialite\Traits\HasComments;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Viender\Socialite\Contracts\Post\Upvotable;
 use Viender\Socialite\Contracts\Post\Commentable;
 use Viender\Socialite\Transformers\AnswerTransformer;
 
 class Answer extends Model implements Upvotable, Commentable
 {
-    use HasComments, HasVotes, HasTopics, Searchable;
+    use HasComments, HasVotes, HasTopics, Searchable, SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.

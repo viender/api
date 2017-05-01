@@ -34,6 +34,21 @@
                             <li class="card-action-item">
                                 <a @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
                             </li>
+                            <li class="card-action-item--right" @click="$event.stopPropagation(); showPopup = !showPopup;">
+                                <a><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
+                                <div class="card-action-popup-container" :class="showPopup ? 'active' : ''" @click="$event.stopPropagation()">
+                                    <div class="card-action-popup-content">
+                                        <ul class="card-action-popup-list">
+                                            <li class="card-action-popup-item" v-if="answer.owner.id === $viender.user.id">
+                                                <a>Delete</a>
+                                            </li>
+                                            <li class="card-action-popup-item" v-if="answer.owner.id !== $viender.user.id">
+                                                <a>Report</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -64,6 +79,7 @@ export default {
         return {
             requesting: false,
             showComments: false,
+            showPopup: false,
         };
     },
 
@@ -75,6 +91,14 @@ export default {
         commentCount() {
             return this.answer ? this.answer.comment_count : 0;
         },
+    },
+
+    created() {
+        const self = this;
+
+        $('body').click(() => {
+            self.showPopup = false;
+        });
     },
 
     methods: {
