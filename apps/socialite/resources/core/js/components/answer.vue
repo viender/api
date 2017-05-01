@@ -23,14 +23,14 @@
                         <li class="card-action-item">
         			    	<span style="cursor: pointer;" @click="upvote">
         				    	<span style="padding-right: 5px;">{{ upvoteCount }}</span>
-        				    	<a :style="answer.upvoted ? 'color: #4285f4;' : ''" class="material-icons dp48">thumb_up</a>
+        				    	<a class="material-icons dp48" :class="answer.upvoted ? 'active' : ''">thumb_up</a>
         			    	</span>
                         </li>
                         <li class="card-action-item">
-			    	        <a :style="answer.downvoted ? 'color: #4285f4;' : ''" @click="downvote" class="material-icons dp48">thumb_down</a>
+			    	        <a @click="downvote" class="material-icons dp48" :class="answer.downvoted ? 'active' : ''">thumb_down</a>
                         </li>
                         <li class="card-action-item">
-			    	        <a style="color: grey;" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
+			    	        <a @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
                         </li>
                     </ul>
                 </div>
