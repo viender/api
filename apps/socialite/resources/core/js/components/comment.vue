@@ -10,12 +10,20 @@
             <p>{{ comment.body }}</p>
         </div>
         <div class="comment-action">
-            <span class="comment-action--item" @click="upvote">
-              <span>{{ upvoteCount }}</span>
-              <a class="material-icons dp48" :class="comment.upvoted ? 'active' : ''">thumb_up</a>
-            </span>
-            <a class="comment-action--item material-icons dp48" :class="comment.downvoted ? 'active' : ''" @click="downvote">thumb_down</a>
-            <a class="comment-action--item" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
+            <ul class="card-action-list">
+                <li class="card-action-item">
+                    <span class="comment-action--item" @click="upvote">
+                      <span>{{ upvoteCount }}</span>
+                      <a class="material-icons dp48" :class="comment.upvoted ? 'active' : ''">thumb_up</a>
+                    </span>
+                </li>
+                <li class="card-action-item">
+                    <a class="comment-action--item material-icons dp48" :class="comment.downvoted ? 'active' : ''" @click="downvote">thumb_down</a>
+                </li>
+                <li class="card-action-item">
+                    <a class="comment-action--item" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
+                </li>
+            </ul>
           <comment-list :comments-url="getUrl('comments', comment)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
         </div>
     </div>
