@@ -39,7 +39,7 @@ export default {
       .catch((error) => {
         if (error.response.status === 401) {
           navigator.serviceWorker.getRegistration().then((r) => {
-            r.unregister();
+            if (r) r.unregister();
           });
 
           if (guestUrls.indexOf(window.location.href) === -1) {
