@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'http://5c62fcf6.ngrok.io';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.

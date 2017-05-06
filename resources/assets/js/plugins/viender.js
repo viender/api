@@ -43,7 +43,7 @@ export default {
           });
 
           if (guestUrls.indexOf(window.location.href) === -1) {
-            document.location = window.url('login');
+            // document.location = window.url('login');
           }
         }
       });

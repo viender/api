@@ -1,7 +1,7 @@
 <template>
 	<div class="question">
 		<div class="card question-container" v-if="! (questionObj ? questionObj.downvoted : true)">
-			<h2 class="card-title"><a :href="$viender.helpers.getUrl('self_html', questionObj)">{{ questionObj ? questionObj.title : '' }}</a></h2>
+			<a :href="$viender.helpers.getUrl('self_html', questionObj)"><h2 class="card-title">{{ questionObj ? questionObj.title : '' }}</h2></a>
 
             <p v-if="questionObj ? !questionObj.deleted_at : false" :class="expandQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" @click="expandQuestionDetail = !expandQuestionDetail">
                 {{ questionObj ? questionObj.body : '' }}

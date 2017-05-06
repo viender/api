@@ -6,79 +6,93 @@
 
 
     .card-title h4 a {
-		font-size: 18px;
-		@extend .grey-text, .text-darken-4;
-	}
+        font-size: 18px;
+        @extend .grey-text, .text-darken-4;
+    }
 
-	.card-content {
-		.collection {
-		    background-color: white;
-			margin: 0;
-		    border: none;
-		}
+    .card-content {
+        .collection {
+            background-color: white;
+            margin: 0;
+            border: none;
+        }
 
-		.collection .collection-item.avatar {
-		    padding-left: 52px;
-		    background-color: white;
-		    padding-top: 0;
-		    padding-bottom: 0;
-		    min-height: 45px;
-		}
+        .collection .collection-item.avatar {
+            padding-left: 52px;
+            background-color: white;
+            padding-top: 0;
+            padding-bottom: 0;
+            min-height: 45px;
+        }
 
-		.card-title {
-			@extend .grey-text, .text-darken-4;
-		    display: block;
-		    line-height: 20px;
-		    margin-bottom: 8px;
-		    font-size: 14px;
-		    font-weight: 600;
-		}
-	}
+        .card-title {
+            @extend .grey-text, .text-darken-4;
+            display: block;
+            line-height: 20px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
 
-	.card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
-		color: #657786;
-		margin-left: 0;
-		margin-right: 13px !important;
-		cursor: pointer;
-		font-size: 13px;
-		text-transform: none !important;
-	}
+    &-action {
+        &-list {
+            margin: 0;
+        }
+    }
 
-	li .card-action {
-		padding-left: 0;
-		padding-right: 0;
-	}
+    .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+        color: #657786;
+        margin-left: 0;
+        margin-right: 13px !important;
+        cursor: pointer;
+        font-size: 13px;
+        text-transform: none !important;
+    }
 
-	button {
-		margin-right: 13px;
-		font-size: 13px;
-		padding: 5px;
-		height: 27px;
-	    line-height: 13px;
-		text-transform: none !important;
-	}
+    li .card-action {
+        padding-left: 0;
+        padding-right: 0;
+    }
 
-	h4 {
-		line-height: 80%;
-	}
+    button {
+        margin-right: 13px;
+        font-size: 13px;
+        padding: 5px;
+        height: 27px;
+        line-height: 13px;
+        text-transform: none !important;
+    }
 
-	.collection {
-		background-color: #f6f6f6;
+    h4 {
+        line-height: 80%;
+    }
 
-		.collection-item {
-			background-color: #f6f6f6;
-		}
+    .collection {
+        background-color: #f6f6f6;
 
-		.collection-item.avatar .circle {
-		    left: 0;
-		}
+        .collection-item {
+            background-color: #f6f6f6;
+        }
 
-		.collection-item {
-			padding-right: 0px;
-		}
+        .collection-item.avatar .circle {
+            left: 0;
+        }
 
-		.collection .collection-item {
-			padding-left: 0px;
-		}
-	}
+        .collection-item {
+            padding-right: 0px;
+        }
+
+        .collection .collection-item {
+            padding-left: 0px;
+        }
+    }
+
+    &-title {
+        color: rgba(0, 0, 0, 0.87);
+        display: block;
+        line-height: 20px;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
 }
