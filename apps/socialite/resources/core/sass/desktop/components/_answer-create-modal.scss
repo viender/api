@@ -2,7 +2,7 @@
     position: relative;
     margin: 12px auto;
     width: 775px;
-    padding: 25px 75px 25px 75px;
+    padding: 25px 75px 75px 75px;
     background-color: white;
     z-index: 1042;
     border-radius: 5px;
@@ -11,7 +11,7 @@
         box-shadow: none;
         background: none;
     }
-    
+
     &-overlay {
         position: fixed;
         top: 0;

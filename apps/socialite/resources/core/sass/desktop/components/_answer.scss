@@ -28,21 +28,25 @@
         }
     }
 
-    &-content ul {
-        padding-left: 40px;
-        list-style-type: disc;
-    }
+    &-content {
+        &-owner {
+            color: #212121;
+        }
 
-    &-content ul li {
-    	list-style-type: disc;
+        ul {
+            padding-left: 40px;
+            list-style-type: disc;
+
+            li {
+                list-style-type: disc;
+            }
+        }
     }
 
     .answerCreateForm-questionDetail {
         padding: 0;
     }
-}
 
-.question {
     .card {
         &-title {
             font-size: 18px !important;

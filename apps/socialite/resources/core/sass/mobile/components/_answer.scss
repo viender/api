@@ -22,22 +22,33 @@
     }
 
     &-content {
+        &-owner {
+            color: #212121;
+        }
+
         ul {
         	padding-left: 40px;
         	list-style-type: disc;
+
+            li {
+                list-style-type: disc;
+            }
         }
 
         img {
         	width: 100% !important;
         }
-
-        ul li {
-        	list-style-type: disc;
-        }
     }
 
     .answerCreateForm-questionDetail {
         padding: 0 10px;
+    }
+
+    .card {
+        &-title {
+            font-size: 18px !important;
+            font-weight: 500 !important;
+        }
     }
 }
 
@@ -45,8 +56,6 @@
     .card {
         &-title {
             padding: 0 10px;
-            font-size: 18px !important;
-            font-weight: 500 !important;
         }
     }
 }

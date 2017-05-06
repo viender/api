@@ -8,7 +8,7 @@
                         <li class="collection-item avatar">
                             <img :src="getUrl('avatar', answer.owner)" alt="" class="circle">
                             <a :href="getUrl('self_html', answer.owner)" @click="$event.stopPropagation()">
-                                <span class="card-title">{{ answer.owner.name }}</span>
+                                <span class="answer-content-owner">{{ answer.owner.name }}</span>
                             </a>
                         </li>
                     </ul>
