@@ -1,5 +1,4 @@
 .answer, .question {
-    margin-bottom: 10px;
     border-bottom: 1px solid rgba(160, 160, 160, 0.2);
 
     .card {
@@ -39,5 +38,15 @@
 
     .answerCreateForm-questionDetail {
         padding: 0 10px;
+    }
+}
+
+.question {
+    .card {
+        &-title {
+            padding: 0 10px;
+            font-size: 18px !important;
+            font-weight: 500 !important;
+        }
     }
 }

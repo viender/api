@@ -3,9 +3,7 @@
         <div class="answer-container">
             <div class="card">
                 <div class="card-content" @click="showAnswer()">
-                    <span class="card-title" v-if="showQuestion">
-                        <h4><a :href="getUrl('self_html', answer.question)" @click="$event.stopPropagation()">{{ answer.question.title }}</a></h4>
-                    </span>
+                    <a :href="getUrl('self_html', answer.question)" v-if="showQuestion"><h2 class="card-title">{{ answer.question.title }}</h2></a>
                     <ul class="collection">
                         <li class="collection-item avatar">
                             <img :src="getUrl('avatar', answer.owner)" alt="" class="circle">
