@@ -31,7 +31,8 @@ else
     echo "yarn.lock has not changed!"
 fi
 
-IFS=', ' read -r -a apps <<< "$(node webpack.mix.js getAppPaths)"
+#IFS=', ' read -r -a apps <<< "$(node webpack.mix.js getAppPaths)"
+declare -a apps=("address" "dealer" "feed" "follow" "mytutor" "profile" "raa" "socialauth" "socialite" "topic")
 ASSETS_CHANGED=0
 let "ASSETS_CHANGED += $(git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- webpack.mix.js | wc -l)"
 let "ASSETS_CHANGED += $(git --work-tree="$1" --git-dir="$2" diff HEAD@{1} --stat -- resources/assets | wc -l)"
