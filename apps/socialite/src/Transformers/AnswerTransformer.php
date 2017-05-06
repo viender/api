@@ -41,7 +41,8 @@ class AnswerTransformer extends Transformer
             'upvoted'       => \Auth::user() ? $answer->upvotes()->where('user_id', \Auth::user()->id)->exists() : false,
             'downvoted'       => \Auth::user() ? $answer->downvotes()->where('user_id', \Auth::user()->id)->exists() : false,
             'upvote_count'  => $answer->upvotes()->count(),
-            'comment_count'  => $answer->comments()->count(),
+            'comment_count' => $answer->comments()->count(),
+            'deleted_at'    => $answer->deleted_at,
             'links'   => [
                 [
                     'rel' => 'self',

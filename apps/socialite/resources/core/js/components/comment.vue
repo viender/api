@@ -7,9 +7,10 @@
           </strong>
         </span>
         <div class="comment-body">
-            <p>{{ comment.body }}</p>
+            <p v-if="!comment.deleted_at">{{ comment.body }}</p>
+            <p v-else>Deleted.</p>
         </div>
-        <div class="comment-action">
+        <div class="comment-action" v-if="!comment.deleted_at">
             <ul class="card-action-list">
                 <li class="card-action-item">
                     <span class="comment-action--item" @click="upvote">
@@ -22,6 +23,9 @@
                 </li>
                 <li class="card-action-item">
                     <a class="comment-action--item" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
+                </li>
+                <li class="card-action-item--right">
+                    <more-menu :model="comment"></more-menu>
                 </li>
             </ul>
           <comment-list :comments-url="getUrl('comments', comment)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
@@ -51,57 +55,57 @@ export default {
 
   methods: {
     upvote() {
-      const _this = this;
+      const self = this;
 
-      if (_this.requesting) return;
+      if (self.requesting) return;
 
-      _this.requesting = true;
+      self.requesting = true;
 
       axios.post(this.getUrl('upvotes', this.comment), {})
       .then((response) => {
         if (response.status == 201) {
-          _this.upvoteCount += 1;
-          _this.comment.upvoted = true;
-          _this.comment.downvoted = false;
+          self.upvoteCount += 1;
+          self.comment.upvoted = true;
+          self.comment.downvoted = false;
         }
         if (response.status == 204) {
-          _this.upvoteCount -= 1;
-          _this.comment.upvoted = false;
+          self.upvoteCount -= 1;
+          self.comment.upvoted = false;
         }
-        _this.requesting = false;
+        self.requesting = false;
       })
       .catch((error) => {
         if (error.response.status == 401) {
           document.location = url('login');
         }
-        _this.requesting = false;
+        self.requesting = false;
       });
     },
 
     downvote() {
-      const _this = this;
+      const self = this;
 
-      if (_this.requesting) return;
+      if (self.requesting) return;
 
-      _this.requesting = true;
+      self.requesting = true;
 
       axios.post(this.getUrl('downvotes', this.comment), {})
       .then((response) => {
         if (response.status == 201) {
-          if (_this.comment.upvoted) { _this.upvoteCount -= 1; }
-          _this.comment.upvoted = false;
-          _this.comment.downvoted = true;
+          if (self.comment.upvoted) { self.upvoteCount -= 1; }
+          self.comment.upvoted = false;
+          self.comment.downvoted = true;
         }
         if (response.status == 204) {
-          _this.comment.downvoted = false;
+          self.comment.downvoted = false;
         }
-        _this.requesting = false;
+        self.requesting = false;
       })
       .catch((error) => {
         if (error.response.status == 401) {
           document.location = url('login');
         }
-        _this.requesting = false;
+        self.requesting = false;
       });
     },
 

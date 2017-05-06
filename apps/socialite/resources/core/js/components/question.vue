@@ -1,26 +1,39 @@
 <template>
-	<div class="row u-margin--none question">
-		<div class="col s12">
-			<div class="card u-margin--none u-box-shadow--none" v-if="! (questionObj ? questionObj.downvoted : true)">
-				<div class="card-content">
-					<span class="card-title"><h4><a :href="$viender.helpers.getUrl('self_html', questionObj)">{{ questionObj ? questionObj.title : '' }}</a></h4></span>
-				</div>
-                <div :class="expandQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" @click="expandQuestionDetail = !expandQuestionDetail">
-                    {{ questionObj ? questionObj.body : '' }}
-                </div>
-				<div class="card-action">
-			    	<button class="btn btn-default" @click="showAnswerCreateModal()"
-			    		v-if=" ! (questionObj ? questionObj.answered : true)">
-			    		Answer
-			    	</button>
-					<a class="grey-text darken-3" v-else>
-						Answered
-					</a>
-			    	<a @click="downvote">Downvote</a>
-			    	<a @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
-					<comment-list :comments-url="$viender.helpers.getUrl('comments', questionObj)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
-				</div>
+	<div class="question">
+		<div class="card question-container" v-if="! (questionObj ? questionObj.downvoted : true)">
+			<h2 class="card-title"><a :href="$viender.helpers.getUrl('self_html', questionObj)">{{ questionObj ? questionObj.title : '' }}</a></h2>
+
+            <p v-if="questionObj ? !questionObj.deleted_at : false" :class="expandQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" @click="expandQuestionDetail = !expandQuestionDetail">
+                {{ questionObj ? questionObj.body : '' }}
+            </p>
+
+            <p v-else>
+                Deleted.
+            </p>
+
+			<div class="card-action" v-if="questionObj ? !questionObj.deleted_at : false">
+                <ul class="card-action-list">
+                    <li class="card-action-item">
+    			    	<button class="btn btn-default" @click="showAnswerCreateModal()"
+    			    		v-if=" ! (questionObj ? questionObj.answered : true)">
+    			    		Answer
+    			    	</button>
+    					<a class="grey-text darken-3" v-else>
+    						Answered
+    					</a>
+                    </li>
+                    <li class="card-action-item">
+		    	        <a @click="downvote">Downvote</a>
+                    </li>
+                    <li class="card-action-item">
+		    	        <a @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
+                    </li>
+                    <li class="card-action-item--right">
+                        <more-menu :model="questionObj || null"></more-menu>
+                    </li>
+                </ul>
 			</div>
+
 			<div class="card u-margin--none u-box-shadow--none" v-if="questionObj ? questionObj.downvoted : false">
 				<div class="card-content">
 					<strong>You downvoted this question</strong>
@@ -31,6 +44,7 @@
 			    	<!-- <a @click="downvote">Report</a> -->
 				</div>
 			</div>
+            <comment-list :comments-url="$viender.helpers.getUrl('comments', questionObj)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
 		</div>
 	</div>
 </template>

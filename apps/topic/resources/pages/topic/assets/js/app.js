@@ -39,6 +39,8 @@ Vue.component('topic-list', require('viender_profile/core/js/components/topic-li
 Vue.component('user-card', require('viender_profile/core/js/components/user-card.vue'));
 Vue.component('topic-card', require('viender_profile/core/js/components/topic-card.vue'));
 
+Vue.component('more-menu', require('viender_socialite/core/js/components/more-menu.vue'));
+
 const feed = new Vue({
     el: '#app',
 

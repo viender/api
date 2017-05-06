@@ -15,6 +15,7 @@ require('./bootstrap');
  */
 
 Vue.component('question-list', require('viender_socialite/core/js/components/question-list.vue'));
+Vue.component('more-menu', require('viender_socialite/core/js/components/more-menu.vue'));
 
 const feed = new Vue({
     el: '#app',

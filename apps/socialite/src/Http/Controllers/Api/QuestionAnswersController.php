@@ -21,7 +21,7 @@ class QuestionAnswersController extends ApiController
         $this->answers = $answers;
     }
 
-    /** 
+    /**
      * @api {get} /questions/:slug/answers Get Question Answers
      * @apiName QuestionAnswersIndex
      * @apiGroup QuestionGroup
@@ -29,9 +29,9 @@ class QuestionAnswersController extends ApiController
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
-     * 
+     *
      * @apiUse AnswerIndexSuccess
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Question $question)
@@ -49,16 +49,18 @@ class QuestionAnswersController extends ApiController
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
-     * 
+     *
      * @apiUse AnswerRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Question $question)
     {
+        $this->authorize('create', Answer::class);
+
         if($question->answers()->where('user_id', \Auth::user()->id)->exists()) {
             return $this->setStatusCode(400)->respondWithMessage("Cannot post multiple answer for one question.");
         }
@@ -80,13 +82,15 @@ class QuestionAnswersController extends ApiController
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
      * @apiUse AnswerShowSuccess
-     * 
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show(Question $question, $answer)
     {
         $answer = $question->answers()->where('slug', $answer)->firstOrFail();
+
+        $this->authorize('view', $answer);
 
         return $this->respond(new Item($answer, new AnswerTransformer));
     }
@@ -105,14 +109,16 @@ class QuestionAnswersController extends ApiController
      * @apiUse AnswerRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Question $question, $answer)
     {
-        $answer = $question->answers()->findOrFail($answer);
+        $answer = $question->answers()->where('slug', $answer)->firstOrFail();
+
+        $this->authorize('update', $answer);
 
         $answer->update($request->all());
 
@@ -131,14 +137,16 @@ class QuestionAnswersController extends ApiController
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Question $question, $answer)
     {
-        $answer = $question->answers()->findOrFail($answer);
-        
+        $answer = $question->answers()->where('slug', $answer)->firstOrFail();
+
+        $this->authorize('delete', $answer);
+
         $answer->delete();
 
         return $this->respondDeleted();

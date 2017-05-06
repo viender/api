@@ -6,8 +6,11 @@
         padding-left: 0;
         padding-right: 0;
     }
-    
+
     .card {
+        box-shadow: none;
+        margin: 0;
+
         .card-content {
             padding: 0;
 
@@ -32,5 +35,9 @@
 
     &-content ul li {
     	list-style-type: disc;
+    }
+
+    .answerCreateForm-questionDetail {
+        padding: 0;
     }
 }

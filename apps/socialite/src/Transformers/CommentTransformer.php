@@ -41,8 +41,9 @@ class CommentTransformer extends Transformer
             'body'              => $comment->body,
             'upvote_count'      => $comment->upvotes()->count(),
             'comment_count'     => $comment->comments()->count(),
-            'upvoted'       => \Auth::user() ? $comment->upvotes()->where('user_id', \Auth::user()->id)->exists() : false,
-            'downvoted'       => \Auth::user() ? $comment->downvotes()->where('user_id', \Auth::user()->id)->exists() : false,
+            'upvoted'           => \Auth::user() ? $comment->upvotes()->where('user_id', \Auth::user()->id)->exists() : false,
+            'downvoted'         => \Auth::user() ? $comment->downvotes()->where('user_id', \Auth::user()->id)->exists() : false,
+            'deleted_at'        => $comment->deleted_at,
             'links'   => [
                 [
                     'rel' => 'self',

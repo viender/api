@@ -3,24 +3,25 @@
     border-bottom: 1px solid rgba(160, 160, 160, 0.2);
 
     .card {
+        box-shadow: none;
+        margin: 0;
+
         &-title {
             h4 {
                 margin-top: 0;
             }
         }
 
-        &.card-content {
-        	padding-left: 0;
-        	padding-right: 0;
+        .card-content {
+        	padding: 0 10px;
         }
 
-        &-action {
+        .card-action {
+            padding: 10px;
             border-top: none;
-        	padding-left: 0;
-        	padding-right: 0;
         }
     }
-    
+
     &-content {
         ul {
         	padding-left: 40px;
@@ -34,5 +35,9 @@
         ul li {
         	list-style-type: disc;
         }
+    }
+
+    .answerCreateForm-questionDetail {
+        padding: 0 10px;
     }
 }

@@ -21,6 +21,7 @@ Vue.component('answer-preview', require('viender_socialite/core/js/components/an
 Vue.component('feed-list', require('viender_socialite/core/js/components/feed-list.vue'));
 Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
 Vue.component('answer-show-modal', require('viender_socialite/core/js/components/answer-show-modal.vue'));
+Vue.component('more-menu', require('viender_socialite/core/js/components/more-menu.vue'));
 
 const feed = new Vue({
     el: '#app',

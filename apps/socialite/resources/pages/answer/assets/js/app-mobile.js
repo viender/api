@@ -22,6 +22,7 @@ Vue.component('question', require('viender_socialite/core/js/components/question
 Vue.component('question-list', require('viender_socialite/core/js/components/question-list.vue'));
 Vue.component('answer-create-form', require('viender_socialite/core/js/components/answer-create-form.vue'));
 Vue.component('answer-create-modal', require('viender_socialite/core/js/components/answer-create-modal.vue'));
+Vue.component('more-menu', require('viender_socialite/core/js/components/more-menu.vue'));
 
 const app = new Vue({
     el: '#app',

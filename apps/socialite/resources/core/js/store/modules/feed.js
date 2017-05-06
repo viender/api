@@ -2,18 +2,18 @@ import * as types from '../mutation-types';
 
 export default {
     namespaced: true,
-    
-    state: { 
+
+    state: {
         page: 1,
         totalPages: 2,
         requesting: false,
         answers: [],
-        feedUrls:{},
+        feedUrls: {},
         showAnswerModal: false,
         showedAnswer: null,
     },
 
-    mutations: { 
+    mutations: {
         addAnswers(state, answers) {
             state.answers = state.answers.concat(answers);
         },
@@ -33,11 +33,11 @@ export default {
         [types.SET_SHOW_ANSWER_SHOW_MODAL] (state, showAnswerModal) {
             if(showAnswerModal) {
                 document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-                
+
             } else {
                 document.getElementsByTagName('body')[0].style.overflow = 'scroll';
             }
-            
+
             state.showAnswerModal = showAnswerModal;
         },
 

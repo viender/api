@@ -34,10 +34,11 @@ class QuestionTransformer extends Transformer
             'title'         => $question->title,
             'body'          => $question->body,
             'upvoted'       => \Auth::user() ? $question->upvotes()->where('user_id', \Auth::user()->id)->exists() : false,
-            'downvoted'       => \Auth::user() ? $question->downvotes()->where('user_id', \Auth::user()->id)->exists() : false,
+            'downvoted'     => \Auth::user() ? $question->downvotes()->where('user_id', \Auth::user()->id)->exists() : false,
             'upvote_count'  => $question->upvotes()->count(),
             'comment_count' => $question->comments()->count(),
             'answered'      => \Auth::user() ? $question->answers()->where('user_id', \Auth::user()->id)->exists() : false,
+            'deleted_at'    => $question->deleted_at,
             'links'   => [
                 [
                     'rel' => 'self',
