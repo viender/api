@@ -34,17 +34,18 @@
                 </ul>
 			</div>
 
-			<div class="card u-margin--none u-box-shadow--none" v-if="questionObj ? questionObj.downvoted : false">
-				<div class="card-content">
-					<strong>You downvoted this question</strong>
-					<p>Downvoting low-quality content improves Viender for everyone.</p>
-				</div>
-				<div class="card-action">
-			    	<a @click="downvote">Undo</a>
-			    	<!-- <a @click="downvote">Report</a> -->
-				</div>
-			</div>
             <comment-list :comments-url="$viender.helpers.getUrl('comments', questionObj)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
+        </div>
+
+		<div class="card u-margin--none u-box-shadow--none" v-if="questionObj ? questionObj.downvoted : false">
+			<div class="card-content">
+				<strong>You downvoted this question</strong>
+				<p>Downvoting low-quality content improves Viender for everyone.</p>
+			</div>
+			<div class="card-action">
+		    	<a @click="downvote">Undo</a>
+		    	<!-- <a @click="downvote">Report</a> -->
+			</div>
 		</div>
 	</div>
 </template>
