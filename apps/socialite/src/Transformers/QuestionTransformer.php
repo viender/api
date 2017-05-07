@@ -25,8 +25,10 @@ class QuestionTransformer extends Transformer
      *
      * @return array
      */
-    public function transform(Question $question)
+    public function transform($question)
     {
+        if (!$question) return [];
+
         return [
             'id'            => (int) $question->id,
             'type'          => 'question',
