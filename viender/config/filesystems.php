@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => 'local',
+    'default' => 's3',
 
     /*
     |--------------------------------------------------------------------------
@@ -56,10 +56,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => 'your-key',
-            'secret' => 'your-secret',
-            'region' => 'your-region',
-            'bucket' => 'your-bucket',
+            'key' => 'AKIAID6ZN4LMJYZDG4CQ',
+            'secret' => 'Dus54xBrS8KMs0aIJpsj3MgF6j80q4Mx5PIeNAly',
+            'region' => 'ap-southeast-1',
+            'bucket' => 'viender-bucket',
         ],
 
     ],

@@ -16,7 +16,8 @@
         "laravel/tinker": "^1.0",
         "jenssegers/agent": "^2.5",
         "laravel/scout": "^3.0",
-        "tamayo/laravel-scout-elastic": "^3.0"
+        "tamayo/laravel-scout-elastic": "^3.0",
+        "league/flysystem-aws-s3-v3": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
