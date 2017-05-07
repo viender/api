@@ -2,13 +2,15 @@ module.exports = {
 
 	methods: {
 		getUrl(rel, obj) {
-			return obj.links.filter(function(link) {
+            if (!obj.links) return null;
+
+			return obj.links.filter((link) => {
 				return link.rel == rel;
 			})[0].url;
 		},
 
 		url(path) {
 			return window.url(path);
-		}
-	}
-}
+		},
+	},
+};

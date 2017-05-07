@@ -14,7 +14,7 @@
                         </li>
                     </ul>
                     <div class="answer-content" v-html="answer.body" v-if="!answer.deleted_at"></div>
-                    <div class="answer-content" style="padding-bottom: 10px;">
+                    <div class="answer-content" style="padding-bottom: 10px;" v-else>
                         Deleted.
                     </div>
                 </div>
