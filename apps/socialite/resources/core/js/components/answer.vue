@@ -3,7 +3,7 @@
         <div class="answer-container">
             <div class="card" v-if="answer">
                 <div class="card-content">
-                    <a :href="getUrl('self_html', answer.question)" v-if="showQuestion"><h2 class="card-title">{{ answer.question.title }}</h2></a>
+                    <a :href="getUrl('self_html', answer.question)" v-if="showQuestion"><h2 class="card-title">{{ answer.question.title || 'Deleted question.'  }}</h2></a>
                     <hr style="margin-bottom: 30px;">
                     <ul class="collection">
                         <li class="collection-item avatar">
