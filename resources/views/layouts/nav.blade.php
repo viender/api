@@ -13,7 +13,7 @@
                         type="text"
                         class="search-form-textfield"
                         name="title"
-                        @keyup="$store.commit('searchOrAskOverlay/SET_SEARCH_TEXT', $refs.searchText.value); $store.dispatch('raa/search', $refs.searchText.value).catch(function (error) {});">
+                        @input="$store.commit('searchOrAskOverlay/SET_SEARCH_TEXT', $refs.searchText.value); $store.dispatch('raa/search', $refs.searchText.value).catch(function (error) {});">
 
                     <input class="btn btn-default search-form-submit" type="submit" value="Ask Question" @click.prevent="$store.dispatch('searchOrAskOverlay/postQuestion')">
 
