@@ -46,11 +46,11 @@ class AnswerTransformer extends Transformer
             'links'   => [
                 [
                     'rel' => 'self',
-                    'url' => route('api.viender.socialite.questions.answers.show', [$answer->question, $answer->slug]),
+                    'url' => $answer->question ? (route('api.viender.socialite.questions.answers.show', [$answer->question, $answer->slug])) : (route('api.viender.socialite.answers.show', $answer)),
                 ],
                 [
                     'rel' => 'self_html',
-                    'url' => route('web.viender.socialite.pages.answerShow', [$answer->question->slug, $answer->slug]),
+                    'url' => $answer->question ? route('web.viender.socialite.pages.answerShow', [$answer->question->slug, $answer->slug]) : null,
                 ],
                 [
                     'rel' => 'author',
@@ -58,7 +58,7 @@ class AnswerTransformer extends Transformer
                 ],
                 [
                     'rel' => 'question',
-                    'url' => route('api.viender.socialite.answers.show', $answer->question->slug),
+                    'url' => $answer->question ? route('api.viender.socialite.answers.show', $answer->question->slug) : null,
                 ],
                 [
                     'rel' => 'comments',
