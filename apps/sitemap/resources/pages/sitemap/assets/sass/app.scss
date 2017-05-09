@@ -1,0 +1,17 @@
+@import "~viender_core/sass/variables";
+@import "variables";
+
+.sitemap {
+    h1 {
+        font-size: 18px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    dd {
+        display: list-item;
+        list-style: disc;
+    }
+}

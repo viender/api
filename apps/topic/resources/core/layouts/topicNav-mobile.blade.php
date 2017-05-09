@@ -1,6 +1,6 @@
 <ul ref="topicNav" class="profileNavigation-list" initial-menu="{{ $currentMenu }}">
 	<li class="profileNavigation-item">
-		<a :class="currentMenu(0) ? 'navigationLink is-active' : 'navigationLink'" href="{{ route('web.viender.topic.pages.topic.index', $obj) }}" page ="answers" @click.prevent="setCurrentMenu(0)">
+		<a :class="currentMenu(0) ? 'navigationLink is-active' : 'navigationLink'" href="{{ route('web.viender.topic.pages.topic.show', $obj) }}" page ="answers" @click.prevent="setCurrentMenu(0)">
 			<span class="profileNavigation-label">Answers</span>
 			<span class="profileNavigation-value">{{ $obj->answers()->count() }}</span>
 		</a>

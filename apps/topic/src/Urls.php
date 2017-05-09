@@ -42,7 +42,7 @@ class Urls
             $this->router->get(
                 'topic/{topic}',
                 'TopicsController@landingPage'
-            )->name('web.viender.topic.pages.topic.index');
+            )->name('web.viender.topic.pages.topic.show');
 
             $this->router->get(
                 'topic/{topic}/questions',

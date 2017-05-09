@@ -37,7 +37,7 @@ class TopicTransformer extends Transformer
                 ],
                 [
                     'rel'   => 'self_html',
-                    'url'   => route('web.viender.topic.pages.topic.index', $topic),
+                    'url'   => route('web.viender.topic.pages.topic.show', $topic),
                 ],
                 [
                     'rel'   => 'follow',

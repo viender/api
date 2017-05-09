@@ -12,3 +12,4 @@ Viender\Follow\Follow::routes();
 Viender\Topic\Topic::routes();
 Viender\Raa\Raa::routes();
 Viender\Feed\Feed::routes(['prefix' => 'feed']);
+Viender\Sitemap\Sitemap::routes();

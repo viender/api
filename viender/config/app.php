@@ -191,6 +191,7 @@ return [
         Viender\Topic\Init::class,
         Viender\Raa\Init::class,
         Viender\Feed\Init::class,
+        Viender\Sitemap\Init::class,
     ],
 
     /*
