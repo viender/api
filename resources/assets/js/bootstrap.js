@@ -1,3 +1,5 @@
+import Promise from 'promise-polyfill';
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -65,3 +67,16 @@ require('./callbacks');
 require('./services');
 
 window.tinymce = require('tinymce');
+
+/**
+ * Polyfill
+ */
+// Promise
+if (!window.Promise) {
+  window.Promise = Promise;
+}
+
+// Object.assign
+if (!Object.assign) {
+    require('es6-object-assign').polyfill();
+}
