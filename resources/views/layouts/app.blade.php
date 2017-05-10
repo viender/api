@@ -14,7 +14,11 @@
 
     @if(isset($_GET['debug_console']) ? $_GET['debug_console'] === '1' : false)
         <script src="//cdn.jsdelivr.net/eruda/1.2.2/eruda.min.js"></script>
-        <script>eruda.init();</script>
+        <script>
+            eruda.init();
+            var erudaConsole = eruda.get('console');
+            erudaConsole.config.set('displayExtraInfo', true);
+        </script>
     @endif
 
     <script>
