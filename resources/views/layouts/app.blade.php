@@ -59,7 +59,6 @@
         }
     </style>
 
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js" defer async></script>
     <script src={{ mix('js/core.js') }}></script>
     @yield('head-scripts')
 </head>
