@@ -8,7 +8,7 @@
                 <a :href="$viender.helpers.getUrl('self_html', object)">{{ object.title }}</a>
             </li>
             <li class="collection-item" v-if="object.type == 'topic'" v-for="object in searchResults">
-                <a :href="$viender.helpers.getUrl('self_html', object)">{{ object.name }}</a>
+                <a :href="$viender.helpers.getUrl('self_html', object)"><span class="grey-text text-darken-1">Topic: </span>{{ object.name }}</a>
             </li>
         </ul>
     </div>
@@ -20,5 +20,5 @@ export default {
         'show',
         'searchResults',
     ])),
-}
+};
 </script>
