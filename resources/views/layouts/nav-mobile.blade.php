@@ -3,7 +3,7 @@
         <div class="nav-wrapper">
             <div class="row navbar-mobile-header">
                 <div class="col s3">
-                    {{-- <i class="material-icons menu-button">menu</i> --}}
+
                 </div>
                 <div class="col s6">
                     <div class="logo">
@@ -12,7 +12,8 @@
                 </div>
                 <div class="col s3">
                     <search-or-ask-panel-trigger-open>
-                        <i class="material-icons dp48 search-button">zoom_in</i>
+                        <i class="fa fa-search-plus" aria-hidden="true"></i>
+                        <span> Ask</span>
                     </search-or-ask-panel-trigger-open>
                 </div>
             </div>
