@@ -12,11 +12,15 @@ class ReadController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
-    
+
 	public function index()
 	{
-        return view('viender.socialite.read::index');
+        if (\Auth::user()) {
+            return view('viender.socialite.read::index');
+        } else {
+            return view('welcome');
+        }
 	}
 }

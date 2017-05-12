@@ -1,98 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('viender::layouts.app')
 
-        <title>Laravel</title>
+@section('content')
+<div class="welcome">
+    <div class="welcome-content">
+        <span class="main-text">Welcome to Viender</span>
+        <span class="sub-text">Share your ideas and experiences.</span>
+    </div>
+    <div class="welcome-footer">
+        <a class="btn btn-default signup" href="/register">Sign up</a>
+        <a class="btn btn-default login" href="/login">Login</a>
+    </div>
+</div>
+@endsection
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+@section('head-styles')
+<link rel="stylesheet" href={{ mix('css/viender/socialite/read/app-mobile.css') }}>
+<style>
+    #navbar-mobile {
+        display: none;
+    }
 
-        <link rel="stylesheet" href={{ mix('/css/app.css') }}>
+    .welcome {
+        position: absolute;
+        left: 0;
+        top: 0;
+        min-height: 100%;
+        padding: 11px;
+        background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(/img/welcome-background.jpg);
+    }
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+    .welcome-content {
+        margin-top: 50%;
+        color: #fff;
+    }
 
-            .full-height {
-                height: 100vh;
-            }
+    .welcome-footer {
+        position: absolute;
+        bottom: 0;
+        padding: 20px 10px;
+        left: 0;
+        right: 0;
+    }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+    .welcome-footer a {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        text-transform: none;
+        font-weight: 600;
+    }
 
-            .position-ref {
-                position: relative;
-            }
+    .welcome-footer .login {
+        background-color: transparent;
+        border: solid 1px;
+    }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+    .main-text {
+        display: block;
+        font-size: 4rem;
+        line-height: 0100%;
+        font-weight: 500;
+    }
 
-            .content {
-                text-align: center;
-            }
+    .sub-text {
+        display: block;
+        font-size: 2rem;
+        line-height: 100%;
+    }
+</style>
+@endsection
 
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="app" class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-
-            <div class="content" id="app">
-                <div class="title m-b-md">
-                    Viender
-                </div>
-
-                <div class="links">
-{{--                     <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a> --}}
-                </div>
-            </div>
-        </div>
-        <script src={{ mix('/js/app.js') }}></script>
-    </body>
-</html>
+@section('scripts')
+<script src={{ mix('js/viender/socialite/read/app-mobile.js') }} async defer></script>
+@endsection

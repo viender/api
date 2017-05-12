@@ -16,4 +16,6 @@ Route::group(['domain' => 'accounts.' . config('viender.web_domain')], function(
 	Route::get('/', 'HomeController@index');
 });
 
+Route::get('/welcome', 'HomeController@welcome');
+
 Route::get('/sw.js', 'ServiceWorkerController@index');
