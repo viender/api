@@ -161,6 +161,12 @@ $navbar-height: 45px;
 			margin-bottom: -1px !important;
 			border-top: solid 1px #ddd;
 
+            &-button {
+                &.active {
+                    color: #1da1f2;
+                }
+            }
+
 			a {
 				color: #657786;
 			}
