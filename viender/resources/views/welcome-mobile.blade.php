@@ -23,6 +23,7 @@
     .welcome {
         position: absolute;
         left: 0;
+        right: 0;
         top: 0;
         min-height: 100%;
         padding: 11px;
@@ -30,8 +31,14 @@
     }
 
     .welcome-content {
-        margin-top: 50%;
+        position: absolute;
         color: #fff;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        left: 0;
+        right: 0;
+        height: 50%;
     }
 
     .welcome-footer {
