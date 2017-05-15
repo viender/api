@@ -12,6 +12,6 @@ class AddVaryHeader
 
         $response->header('Vary', 'User-Agent');
 
-        return $response;
+        return $next($request);
     }
 }

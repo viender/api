@@ -192,6 +192,7 @@ return [
         Viender\Raa\Init::class,
         Viender\Feed\Init::class,
         Viender\Sitemap\Init::class,
+        Viender\Campaign\Init::class,
     ],
 
     /*

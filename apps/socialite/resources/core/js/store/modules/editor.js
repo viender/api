@@ -2,14 +2,14 @@ import * as types from '../mutation-types';
 
 export default {
     namespaced: true,
-    
-    state: { 
+
+    state: {
         editorElement: null,
         question: null,
         content: null
     },
 
-    mutations: { 
+    mutations: {
         [types.SET_EDITOR_CONTENT] (state, content) {
             state.content = content;
         },

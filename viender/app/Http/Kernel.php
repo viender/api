@@ -34,6 +34,7 @@ class Kernel extends HttpKernel
             \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
 
             \App\Http\Middleware\AddVaryHeader::class,
+            \Viender\Campaign\Http\Middleware\CheckCampaign::class,
         ],
 
         'api' => [

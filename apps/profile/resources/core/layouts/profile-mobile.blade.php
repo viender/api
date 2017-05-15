@@ -10,7 +10,10 @@
 
 	<div class="row profile-userDetail">
 		<div class="col s12">
-			<span class="profile-userDetail__name">{{ $user->fullName() }}</span>
+            <div class="profile-userDetail__container">
+    			<span class="profile-userDetail__name">{{ $user->fullName() }}</span>
+                <i class="fa fa-ellipsis-h profile-userDetail__menu" aria-hidden="true"></i>
+            </div>
 
 			@if(\Auth::user() ? $followed = \Auth::user()->followedUsers()->where([
 	            'followable_id'   => $user->id,

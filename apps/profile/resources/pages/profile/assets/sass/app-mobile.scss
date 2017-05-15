@@ -65,10 +65,20 @@ a {
     &-userDetail {
         display: block;
 
+        &__container {
+            position: relative;
+        }
+
         &__name {
             display: block;
             text-align: center;
             font-weight: 600;
+        }
+
+        &__menu {
+            position: absolute;
+            right: 0;
+            top: 3px;
         }
 
         .followButton {
