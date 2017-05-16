@@ -12,7 +12,7 @@
 	        	<div class="panel-heading">
 	                <span>Bid by </span>
 	                <span>{{ $bid->bidder->fullName() }}</span>
-	                <span class="pull-right"><a class="btn btn-default" style="display: inline;" href="">Accept</a></span>
+	                <span class="pull-right"><a class="btn btn-default" style="display: inline;" href="#">Accept</a></span>
 	            </div>
 	            <div class="panel-body">
 	            	<div>

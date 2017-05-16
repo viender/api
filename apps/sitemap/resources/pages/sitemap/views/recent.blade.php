@@ -8,10 +8,10 @@
 		<div class="col s6">
             <div class="viender-sitemap row">
                 <h1>Viender Sitemap</h1>
-                <h2 class="col s3"><a href="">Recent</a></h2>
-                <h2 class="col s3"><a href="">Questions</a></h2>
-                <h2 class="col s3"><a href="">Topics</a></h2>
-                <h2 class="col s3"><a href="">People</a></h2>
+                <h2 class="col s3"><a href="#">Recent</a></h2>
+                <h2 class="col s3"><a href="#">Questions</a></h2>
+                <h2 class="col s3"><a href="#">Topics</a></h2>
+                <h2 class="col s3"><a href="#">People</a></h2>
             </div>
             <div class="featured-topics row">
                 <h1>Featured Topics</h1>
