@@ -32,7 +32,7 @@
                             <td>{{ $campaign->id }}</td>
                             <td>{{ $campaign->name }}</td>
                             <td>{{ $campaign->source }}</td>
-                            <td>{{ $campaign->hit_count }}</td>
+                            <td>{{ $campaign->hit_count / 2 }}</td>
                         </tr>
                     @endforeach
                 </tbody>
