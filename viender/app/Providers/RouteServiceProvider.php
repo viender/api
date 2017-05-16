@@ -83,6 +83,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAppsRoutes()
     {
-        // require base_path('routes/apps.php');
+        require base_path('routes/apps.php');
     }
 }
