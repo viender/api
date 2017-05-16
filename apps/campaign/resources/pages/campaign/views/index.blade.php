@@ -8,6 +8,7 @@
                 <h5>Add New Campaigns</h5>
 
                 <form action="{{ route('web.viender.campaign.store') }}" method="POST">
+                    {{ csrf_field() }}
                     <input type="text" name="name" placeholder="name">
                     <input type="text" name="source" placeholder="source">
                     <input type="submit">
