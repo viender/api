@@ -4,6 +4,7 @@ namespace Viender\Campaign\Http\Middleware;
 
 use Closure;
 use Viender\Campaign\Models\Campaign;
+use Viender\Campaign\Models\CampaignHit;
 
 class CheckCampaign
 {
@@ -14,8 +15,7 @@ class CheckCampaign
 
             if ($campaign) {
                 if (!$campaign->finish) {
-                    $campaign->hit_count += 1;
-                    $campaign->save();
+                    $campaign->campaignHits()->save(new CampaignHit);
                 }
             }
         }

@@ -2,10 +2,10 @@
 
 namespace Viender\Campaign\Models;
 
+use Viender\Campaign\Models\Campaign;
 use Illuminate\Database\Eloquent\Model;
-use Viender\Campaign\Models\CampaignHit;
 
-class Campaign extends Model
+class CampaignHit extends Model
 {
 /**
      * The attributes that are mass assignable.
@@ -13,12 +13,11 @@ class Campaign extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'source',
+
     ];
 
-    public function campaignHits()
+    public function campaign()
     {
-        return $this->hasMany(CampaignHit::class);
+        $this->belongsTo(Campaign::class);
     }
 }
