@@ -39,6 +39,10 @@ class Urls
     {
         $this->router->group(array_merge($option, ['domain' => config('viender.web_domain'), 'middleware' => 'web']), function() {
             $this->router->get('campaigns', 'CampaignController@index')->name('web.viender.campaign.index');
+            $this->router->post('campaigns/{campaign}/reset', 'CampaignController@reset')->name('web.viender.campaign.reset');
+            $this->router->post('campaigns/{campaign}/finish', 'CampaignController@finish')->name('web.viender.campaign.finish');
+            $this->router->post('campaigns/{campaign}/unfinish', 'CampaignController@unfinish')->name('web.viender.campaign.unfinish');
+            $this->router->delete('campaigns/{campaign}', 'CampaignController@destroy')->name('web.viender.campaign.destroy');
             $this->router->post('campaigns', 'CampaignController@store')->name('web.viender.campaign.store');
         });
     }

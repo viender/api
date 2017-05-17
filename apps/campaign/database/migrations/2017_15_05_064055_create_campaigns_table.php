@@ -18,6 +18,7 @@ class CreateCampaignsTable extends Migration
             $table->string('name');
             $table->string('source');
             $table->integer('hit_count')->default(0);
+            $table->boolean('finish')->default(false);
             $table->timestamps();
         });
     }

@@ -9,9 +9,21 @@
 
                 <form action="{{ route('web.viender.campaign.store') }}" method="POST">
                     {{ csrf_field() }}
-                    <input type="text" name="name" placeholder="name">
-                    <input type="text" name="source" placeholder="source">
-                    <input type="submit">
+                    <input type="text" name="name" placeholder="name" required="required">
+                    <div class="input-field">
+                        <select name="source" style="display: initial; width: 100%; margin-bottom: 10px;" required="required">
+                            <option value="" disabled selected>Source</option>
+                            <option value="Email">Email</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Twitter">Twitter</option>
+                            <option value="Youtube">Youtube</option>
+                            <option value="Line">Line</option>
+                            <option value="WhatsApp">WhatsApp</option>
+                            <option value="Telegram">Telegram</option>
+                        </select>
+                    </div>
+                    <input class="btn btn-default" type="submit">
                 </form>
 			</div>
 		</div>
@@ -24,6 +36,7 @@
                         <th>Name</th>
                         <th>Source</th>
                         <th>Hits</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +46,30 @@
                             <td>{{ $campaign->name }}</td>
                             <td>{{ $campaign->source }}</td>
                             <td>{{ $campaign->hit_count / 2 }}</td>
+                            <td>
+                                <div>
+                                    @if(!$campaign->finish)
+                                        <form style="display: inline-block;" action="{{ route('web.viender.campaign.reset', $campaign) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="submit" value="Reset">
+                                        </form>
+                                        <form style="display: inline-block;" action="{{ route('web.viender.campaign.finish', $campaign) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="submit" value="Finish">
+                                        </form>
+                                    @else
+                                        <form style="display: inline-block;" action="{{ route('web.viender.campaign.destroy', $campaign) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <input type="submit" value="Delete">
+                                        </form>
+                                        <form style="display: inline-block;" action="{{ route('web.viender.campaign.unfinish', $campaign) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="submit" value="Start Again">
+                                        </form>
+                                    @endif
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

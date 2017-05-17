@@ -23,4 +23,35 @@ class CampaignController extends Controller
 
         return redirect()->back();
     }
+
+    public function reset(Request $request, Campaign $campaign)
+    {
+        $campaign->hit_count = 0;
+        $campaign->save();
+
+        return redirect()->back();
+    }
+
+    public function finish(Request $request, Campaign $campaign)
+    {
+        $campaign->finish = true;
+        $campaign->save();
+
+        return redirect()->back();
+    }
+
+    public function unfinish(Request $request, Campaign $campaign)
+    {
+        $campaign->finish = false;
+        $campaign->save();
+
+        return redirect()->back();
+    }
+
+    public function destroy(Request $request, Campaign $campaign)
+    {
+        $campaign->delete();
+
+        return redirect()->back();
+    }
 }

@@ -13,8 +13,10 @@ class CheckCampaign
             $campaign = Campaign::find($request->cpgn);
 
             if ($campaign) {
-                $campaign->hit_count += 1;
-                $campaign->save();
+                if (!$campaign->finish) {
+                    $campaign->hit_count += 1;
+                    $campaign->save();
+                }
             }
         }
 
