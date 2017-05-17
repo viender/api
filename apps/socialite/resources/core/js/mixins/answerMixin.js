@@ -34,6 +34,21 @@ export default {
             if (this.answer.deleted_at) return;
             this.$store.commit('feed/' + types.SET_SHOW_ANSWER_SHOW_MODAL, true);
             this.$store.dispatch('feed/setShowedAnswer', this.answer);
+
+            const url = this.$viender.helpers.getUrl('self_html', this.answer);
+            const page = this.answer.title;
+
+            if (window.history ? window.history.pushState : false) {
+                window.history.pushState({
+                    Page: page,
+                    Url: url,
+                }, page, url);
+            }
+
+            if (window.ga) {
+                ga('set', 'page', relativeUrl(url));
+                ga('send', 'pageview');
+            }
         },
 
         upvote() {

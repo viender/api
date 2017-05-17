@@ -36,6 +36,21 @@ export default {
 
             } else {
                 document.getElementsByTagName('body')[0].style.overflow = 'scroll';
+
+                const url = '/';
+                const page = 'Home';
+
+                if (window.history ? window.history.pushState : false) {
+                    window.history.pushState({
+                        Page: page,
+                        Url: url,
+                    }, page, url);
+                }
+
+                if (window.ga) {
+                    ga('set', 'page', relativeUrl(url));
+                    ga('send', 'pageview');
+                }
             }
 
             state.showAnswerModal = showAnswerModal;
