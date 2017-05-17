@@ -38,17 +38,7 @@ export default {
             const url = this.$viender.helpers.getUrl('self_html', this.answer);
             const page = this.answer.title;
 
-            if (window.history ? window.history.pushState : false) {
-                window.history.pushState({
-                    Page: page,
-                    Url: url,
-                }, page, url);
-            }
-
-            if (window.ga) {
-                ga('set', 'page', relativeUrl(url));
-                ga('send', 'pageview');
-            }
+            this.$viender.helpers.pushState({page, url});
         },
 
         upvote() {

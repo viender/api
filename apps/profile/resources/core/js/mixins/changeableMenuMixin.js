@@ -42,17 +42,7 @@ export default {
             const page = this.nav.getElementsByClassName('navigationLink')[selectedMenu].getAttribute('page');
             const url = this.nav.getElementsByClassName('navigationLink')[selectedMenu].getAttribute('href');
 
-            if (window.history ? window.history.pushState : false) {
-                window.history.pushState({
-                    Page: page,
-                    Url: url,
-                }, page, url)
-            }
-
-            if (window.ga) {
-                ga('set', 'page', relativeUrl(url));
-                ga('send', 'pageview');
-            }
+            this.$viender.helpers.pushState({page, url});
     	},
 
         hideBeforeMountedPreloaders() {

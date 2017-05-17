@@ -3,6 +3,7 @@
 import urlHelpers from '../helpers/url';
 import styleHelpers from '../helpers/style';
 import eventHelpers from '../helpers/event';
+import pushStateHelpers from '../helpers/pushState';
 
 const guestUrls = [
   window.url('login'),
@@ -21,6 +22,7 @@ export default {
       urlHelpers,
       styleHelpers,
       eventHelpers,
+      pushStateHelpers,
     );
 
     Vue.prototype.$viender.helpers.fetchAuthenticatedUser = function fetchAuthenticatedUser() {
