@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import * as types from '../store/mutation-types';
+
 export default {
     props: {
         feedUrls: {
@@ -32,10 +34,10 @@ export default {
                 return {
                     answers: {
                         showQuestion: true,
-                    }
-                }
+                    },
+                };
             },
-        }
+        },
     },
 
     computed: {
@@ -54,9 +56,25 @@ export default {
         totalPages() {
             return this.$store.state.feed.totalPages;
         },
+
+        showedAnswer() {
+            return this.$store.state.feed.showedAnswer;
+        },
     },
 
-    mounted() {
+    created() {
+        $(window).on('popstate', () => {
+            const basePath = window.location.pathname.split('/')[1];
+            if (basePath && basePath !== '') {
+                const answer = this.$store.getters['feed/getAnswerByUrl'](window.location.href);
+
+                this.$store.commit('feed/' + types.SET_SHOWED_ANSWER, answer);
+                this.$store.commit('feed/' + types.SET_SHOW_ANSWER_SHOW_MODAL, true);
+            } else {
+                this.$store.commit('feed/' + types.SET_SHOW_ANSWER_SHOW_MODAL, false);
+            }
+        });
+
         this.$store.commit('feed/setFeedUrl', this.feedUrls);
         this.fetchData();
     },
@@ -64,7 +82,7 @@ export default {
     methods: {
         fetchData() {
             this.$store.dispatch('feed/fetchData');
-        }
-    }
-}
+        },
+    },
+};
 </script>

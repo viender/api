@@ -13,6 +13,18 @@ export default {
         showedAnswer: null,
     },
 
+    getters: {
+        getAnswerByUrl: (state, getters) => (url) => {
+            const result = state.answers.find((answer) =>
+                Vue.prototype.$viender.helpers.getUrl('self_html', answer) === url);
+
+            console.log(result);
+            console.log(state.answers);
+
+            return result;
+        },
+    },
+
     mutations: {
         addAnswers(state, answers) {
             state.answers = state.answers.concat(answers);
@@ -30,23 +42,17 @@ export default {
             state.requesting = requesting;
         },
 
-        [types.SET_SHOW_ANSWER_SHOW_MODAL] (state, showAnswerModal) {
+        [types.SET_SHOW_ANSWER_SHOW_MODAL](state, showAnswerModal) {
             if(showAnswerModal) {
                 document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-
             } else {
                 document.getElementsByTagName('body')[0].style.overflow = 'scroll';
-
-                const url = '/';
-                const page = 'Home';
-
-                Vue.prototype.$viender.helpers.pushState({page, url});
             }
 
             state.showAnswerModal = showAnswerModal;
         },
 
-        [types.SET_SHOWED_ANSWER] (state, showedAnswer) {
+        [types.SET_SHOWED_ANSWER](state, showedAnswer) {
             state.showedAnswer = showedAnswer;
         },
 
@@ -56,7 +62,7 @@ export default {
     },
 
     actions: {
-        fetchData({ state, commit, rootState }) {
+        fetchData({state, commit, rootState}) {
             if(state.requesting) return;
 
             commit('updateRequesting', true);
@@ -64,22 +70,22 @@ export default {
             axios.get(state.feedUrls.answers, {
                 params: {
                     with: ['owner', 'question'],
-                    page: state.page
-                }
+                    page: state.page,
+                },
             })
-            .then(function (response) {
+            .then(function(response) {
                 state.totalPages = response.data.meta.pagination.total_pages;
                 commit('addAnswers', response.data.data);
                 commit('incrementPage');
                 commit('updateRequesting', false);
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 console.log(error);
                 commit('updateRequesting', false);
             });
         },
 
-        setShowedAnswer({ state, commit, rootState }, showedAnswer) {
+        setShowedAnswer({state, commit, rootState}, showedAnswer) {
             if(showedAnswer ? ! showedAnswer.body : false) {
                 if(state.requesting) return;
 
@@ -88,21 +94,20 @@ export default {
                 axios.get(getUrl('self', showedAnswer), {
                     params: {
                         only: ['body'],
-                    }
+                    },
                 })
-                .then(function (response) {
+                .then(function(response) {
                     showedAnswer.body = response.data.body;
                     commit(types.SET_SHOWED_ANSWER, showedAnswer);
                     commit('updateRequesting', false);
                 })
-                .catch(function (error) {
+                .catch(function(error) {
                     console.log(error);
                     commit('updateRequesting', false);
                 });
             } else {
                 commit(types.SET_SHOWED_ANSWER, showedAnswer);
             }
-
-        }
-    }
-}
+        },
+    },
+};
