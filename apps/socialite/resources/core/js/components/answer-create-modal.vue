@@ -8,7 +8,7 @@
         </div>
         <div class="modal-action" v-if="$viender.treasure.client.type !== 'desktop'">
             <i aria-hidden="true" class="fa fa-angle-left fa-2x"></i>
-            <img class="answerCreateModal-sendButton" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/ic_sent_right_g60_24dp_r1.png" alt="send button" @click="$refs.form.answer($event)">
+            <i @click="$refs.form.answer($event)" class="modal-action-send material-icons right">send</i>
         </div>
     </div>
 </template>
