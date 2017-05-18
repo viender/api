@@ -76,7 +76,12 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" onclick="ga('send', {
+                                  hitType: 'event',
+                                  eventCategory: 'Users',
+                                  eventAction: 'register',
+                                  eventLabel: 'Registered Users'
+                                });">
                                     Register
                                 </button>
                             </div>
