@@ -37,10 +37,15 @@ export default {
 
     methods: {
         togglePopup(e) {
-            if (window.lastShowedUpPopup) window.lastShowedUpPopup.showPopup = false;
-            window.lastShowedUpPopup = this;
-            e.stopPropagation();
             this.showPopup = !this.showPopup;
+
+            if (window.lastShowedUpPopup && window.lastShowedUpPopup !== this)
+                window.lastShowedUpPopup.showPopup = false;
+
+            if (this.showPopup)
+                window.lastShowedUpPopup = this;
+
+            e.stopPropagation();
         },
 
         destroy() {
