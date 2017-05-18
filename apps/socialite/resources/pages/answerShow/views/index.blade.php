@@ -7,9 +7,9 @@
 
         </div>
         <div class="col s6">
-            <h5><a href="{{ route('web.viender.socialite.pages.questionShow', $answer->question) }}">{{ $answer->question->title }}</a></h5>
-            <p>{!! $answer->body !!}</p>
-            <comment-list comments-url="{{ route('api.viender.socialite.answers.comments.index', $answer) }}"></comment-list>
+            <h5>Top stories for you</h5>
+            <feed-list :feed-urls="{ answers: '{{ route('api.viender.socialite.answers.index') }}' }"></feed-list>
+            <answer-show-modal></answer-show-modal>
         </div>
         <div class="col s3">
 
@@ -19,9 +19,9 @@
 @endsection
 
 @section('head-styles')
-<link rel="stylesheet" href={{ mix('css/viender/socialite/answerShow/app.css') }}>
+<link rel="stylesheet" href={{ mix('css/viender/socialite/read/app.css') }}>
 @endsection
 
 @section('scripts')
-<script src={{ mix('js/viender/socialite/answerShow/app.js') }} async defer></script>
+<script src={{ mix('js/viender/socialite/read/app.js') }} async defer></script>
 @endsection
