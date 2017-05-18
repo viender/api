@@ -3,7 +3,7 @@
         <div class="card question-container" v-if="! (questionObj ? questionObj.downvoted : true)">
             <a :href="$viender.helpers.getUrl('self_html', questionObj)"><h2 class="card-title">{{ questionObj ? questionObj.title : '' }}</h2></a>
 
-            <p v-if="questionObj ? !questionObj.deleted_at : false" :class="expandQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" @click="expandQuestionDetail = !expandQuestionDetail">
+            <p v-if="questionObj ? !questionObj.deleted_at : false" :class="expandQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" @click="toggleQuestionDetail()">
                 {{ questionObj ? questionObj.body : '' }}
             </p>
 
@@ -153,6 +153,11 @@ export default {
         toggleComments() {
             this.showComments = !this.showComments;
             this.ga('toggle_comments', 'Question Toggle Comments');
+        },
+
+        toggleQuestionDetail() {
+            this.expandQuestionDetail = !this.expandQuestionDetail;
+            this.ga('toggle_question_detail', 'Question Toggle Detail');
         },
 
         incrementCommentCount() {
