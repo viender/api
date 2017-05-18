@@ -11,7 +11,8 @@ export default {
 	methods: {
 		showPanel() {
 			this.$store.commit('searchOrAskPanel/' + types.SET_SHOW_PANEL, true);
-		}
-	}
-}
+            if (window.ga) ga('send', 'event', 'Click', 'search_button', 'Click Search Button');
+		},
+	},
+};
 </script>

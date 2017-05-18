@@ -1,56 +1,69 @@
 <template>
-	<form method="POST" :action="commentableCommentsUrl" class="commentCreateForm">
+    <form method="POST" :action="commentableCommentsUrl" class="commentCreateForm">
         <div class="input-field">
             <textarea name="body" id="body" class="materialize-textarea" cols="30" rows="1" v-model="formData.body"></textarea>
             <label for="body">Comment</label>
-    		<button class="btn waves-effect waves-light commentCreateForm-submitButton" type="submit" name="action" @click="postComment($event)">
+            <button class="btn waves-effect waves-light commentCreateForm-submitButton" type="submit" name="action" @click="postComment($event)">
                 Comment
-    		</button>
+            </button>
         </div>
         <!-- <input type="text" name="body" v-model="formData.body" class="commentCreateForm-textField"> -->
-	</form>
+    </form>
 </template>
 
 <script>
 export default {
-	props: ['commentableCommentsUrl'],
+    props: ['commentableCommentsUrl'],
 
-	data() {
-		return {
-			requesting: false,
-			formData: {
-				body: null,
-			}
-		}
-	},
+    data() {
+        return {
+            requesting: false,
+            formData: {
+                body: null,
+            },
+        };
+    },
 
-	methods: {
-		postComment(event) {
-			var _this = this;
+    methods: {
+        postComment(event) {
+            const self = this;
 
-			if(event) event.preventDefault();
+            if(event) event.preventDefault();
 
-			if(_this.requesting) return;
+            if(self.requesting) return;
 
-			if( ! _this.formData.body) return;
+            if( ! self.formData.body) return;
 
-			_this.requesting = true;
+            self.requesting = true;
 
-			axios.post(this.commentableCommentsUrl + '?with=owner', this.formData)
-				.then(function (response) {
-				    if(response.status == 200) {
-				        _this.$emit('comment-posted', response);
-				        _this.formData.body = null;
-				    }
-				    _this.requesting = false;
-				})
-				.catch(function (error) {
-				    if(error.response.status == 401) {
-				    	document.location = url('login');
-				    }
-				    _this.requesting = false;
-			});
-		}
-	}
-}
+            axios.post(this.commentableCommentsUrl + '?with=owner', this.formData)
+                .then(function(response) {
+                    if(response.status == 200) {
+                        self.$emit('comment-posted', response);
+                        self.formData.body = null;
+                    }
+                    self.requesting = false;
+                })
+                .catch(function(error) {
+                    if(error.response.status == 401) {
+                        document.location = url('login');
+                    }
+                    self.requesting = false;
+            });
+
+            this.ga('create', 'Comment Create');
+        },
+
+        ga(eventAction, eventLabel = '') {
+            if (!window.ga) return;
+
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Comments',
+                eventAction: eventAction,
+                eventLabel: eventLabel,
+            });
+        },
+    },
+};
 </script>

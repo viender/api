@@ -46,7 +46,7 @@ export default {
     ]), {
         showCreateQuestionOverlay() {
             return this.$store.state.searchOrAskOverlay.show;
-        }
+        },
     }),
 
 	watch: {
@@ -55,7 +55,7 @@ export default {
 
 			if(newShowPanel) {
 				if(self.$refs.searchBar) {
-					Vue.nextTick(function () {
+					Vue.nextTick(function() {
 						self.$refs.searchBar.focus();
 					});
 				}
@@ -67,16 +67,20 @@ export default {
             .catch((error) => {
 
             });
-        }
+        },
 	},
 
 	methods: {
 		hidePanel() {
 			this.$store.commit(`searchOrAskPanel/${types.SET_SHOW_PANEL}`, false);
+            if (window.ga)
+                ga('send', 'event', 'Click', 'cancel_search', 'Click Cancel Search Button');
 		},
         setShowCreateQuestionOverlay(show) {
             this.$store.commit(`searchOrAskOverlay/${types.SET_SHOW}`, show);
+            if (window.ga)
+                ga('send', 'event', 'Click', 'add_question_button', 'Click Add Question Button');
         },
-	}
-}
+	},
+};
 </script>

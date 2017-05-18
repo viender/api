@@ -110,10 +110,23 @@ export default {
                     }
                     self.requesting = false;
             });
+
+            this.ga('create', 'Answer Create');
         },
 
         toggleQuestionDetail() {
             this.showQuestionDetail = ! this.showQuestionDetail;
+        },
+
+        ga(eventAction, eventLabel = '') {
+            if (!window.ga) return;
+
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Answers',
+                eventAction: eventAction,
+                eventLabel: eventLabel,
+            });
         },
     },
 };

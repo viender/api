@@ -39,6 +39,7 @@ export default {
             const page = this.answer.title;
 
             this.$viender.helpers.pushState({page, url});
+            this.ga('show', 'Answer Show');
         },
 
         upvote() {
@@ -59,6 +60,7 @@ export default {
                         self.answer.upvote_count -= 1;
                         self.answer.upvoted = false;
                     }
+                    self.ga('upvote', 'Answers Upvoted');
                     self.requesting = false;
                 })
                 .catch(function(error) {
@@ -87,6 +89,7 @@ export default {
                     if(response.status == 204) {
                         self.answer.downvoted = false;
                     }
+                    self.ga('downvote', 'Answers Downvoted');
                     self.requesting = false;
                 })
                 .catch(function(error) {
@@ -99,10 +102,22 @@ export default {
 
         toggleComments() {
             this.showComments = !this.showComments;
+            this.ga('toggle_comments', 'Answer Toggle Comments');
         },
 
         incrementCommentCount() {
             this.commentCount++;
+        },
+
+        ga(eventAction, eventLabel = '') {
+            if (!window.ga) return;
+
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Answers',
+                eventAction: eventAction,
+                eventLabel: eventLabel,
+            });
         },
     },
 };

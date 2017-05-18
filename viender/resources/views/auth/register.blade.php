@@ -7,7 +7,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}" onsubmit="ga('send', {
+                          hitType: 'event',
+                          eventCategory: 'Users',
+                          eventAction: 'register',
+                          eventLabel: 'Registered Users'
+                        });">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">

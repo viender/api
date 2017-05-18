@@ -57,7 +57,17 @@ export default {
     methods: {
         fetchData() {
             this.$store.dispatch('questionList/fetchData');
+
+            if (window.ga) {
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'Questions',
+                    eventAction: 'page',
+                    eventValue: this.page,
+                    eventLabel: 'Question List Page Reach',
+                });
+            }
         },
-    }
-}
+    },
+};
 </script>

@@ -72,6 +72,8 @@ export default {
             .then(function (response) {
                 document.location = Vue.prototype.$viender.helpers.getUrl('self_html', response.data);
                 commit(types.SET_REQUESTING, false);
+                if (window.ga)
+                    ga('send', 'event', 'Questions', 'create', 'Question Created');
             })
             .catch(function (error) {
                 if (error.response.status === 409) {
