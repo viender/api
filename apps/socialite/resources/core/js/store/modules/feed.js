@@ -79,6 +79,25 @@ export default {
                 console.log(error);
                 commit('updateRequesting', false);
             });
+
+            const path = window.location.pathname.split('/');
+
+            if (path[1] === 'question' && path[3] === 'answers' && state.answers.length === 0) {
+                const apiUrl = Vue.prototype.$viender.treasure.env.api_url;
+
+                axios.get(`${apiUrl}/questions${location.href.replace(location.origin + '/question', '')}`, {
+                    params: {
+                        with: ['owner', 'question'],
+                    },
+                })
+                .then(function(response) {
+                    commit(types.SET_SHOWED_ANSWER, response.data);
+                    commit(types.SET_SHOW_ANSWER_SHOW_MODAL, true);
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+            }
         },
 
         setShowedAnswer({state, commit, rootState}, showedAnswer) {

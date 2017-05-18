@@ -64,10 +64,9 @@ export default {
 
     created() {
         $(window).on('popstate', () => {
-            const basePath = window.location.pathname.split('/')[1];
-            if (basePath && basePath !== '') {
+            const path = window.location.pathname.split('/');
+            if (path[1] === 'question' && path[3] === 'answers') {
                 const answer = this.$store.getters['feed/getAnswerByUrl'](window.location.href);
-
                 this.$store.commit('feed/' + types.SET_SHOWED_ANSWER, answer);
                 this.$store.commit('feed/' + types.SET_SHOW_ANSWER_SHOW_MODAL, true);
             } else {
