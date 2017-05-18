@@ -29,7 +29,7 @@ window.api = function api(path) {
 
 window.getUrl = function getUrl(rel, obj) {
     if (! obj) return '';
-    
+
 	return obj.links.filter(function(link) {
 		return link.rel == rel;
 	})[0].url;
@@ -43,9 +43,7 @@ window.getUrl = function getUrl(rel, obj) {
  */
 
 window.relativeUrl = function url(path) {
-    
-
-    return path.replace(treasure.env.url, '');
+    return path.replace(window.location.origin, '');
 }
 
 export default {
