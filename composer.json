@@ -43,7 +43,8 @@
             "Viender\\Raa\\": "apps/raa/src/",
             "Viender\\Feed\\": "apps/feed/src/",
             "Viender\\Sitemap\\": "apps/sitemap/src/",
-            "Viender\\Campaign\\": "apps/campaign/src/"
+            "Viender\\Campaign\\": "apps/campaign/src/",
+            "Viender\\Role\\": "apps/role/src/"
         }
     },
     "autoload-dev": {

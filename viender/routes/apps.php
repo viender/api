@@ -14,3 +14,4 @@ Viender\Raa\Raa::routes();
 Viender\Feed\Feed::routes(['prefix' => 'feed']);
 Viender\Sitemap\Sitemap::routes();
 Viender\Campaign\Campaign::routes();
+Viender\Campaign\Role::routes();
