@@ -81,7 +81,7 @@
                                   eventCategory: 'Users',
                                   eventAction: 'register',
                                   eventLabel: 'Registered Users'
-                                });">
+                                }); console.log('send');">
                                     Register
                                 </button>
                             </div>
