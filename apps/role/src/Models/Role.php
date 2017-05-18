@@ -2,9 +2,10 @@
 
 namespace Viender\Role\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class Example extends Model
+class Role extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,6 +13,10 @@ class Example extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id',
+        'name',
     ];
+
+    public function roles() {
+        return $this->belongsToMany(User::class);
+    }
 }

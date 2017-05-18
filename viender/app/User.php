@@ -8,6 +8,7 @@ use Laravel\Passport\HasApiTokens;
 use Viender\Follow\Traits\Followable;
 use Viender\Mytutor\Traits\Tutorable;
 use Viender\Address\Traits\HasAddress;
+use Viender\Role\Traits\BelongsToRole;
 use Viender\Socialite\Traits\Sociable;
 use Illuminate\Notifications\Notifiable;
 use Viender\Follow\Traits\CanFollowUsers;
@@ -26,7 +27,8 @@ class User extends Authenticatable
         Followable,
         CanFollowUsers,
         CanFollowTopics,
-        Searchable;
+        Searchable,
+        BelongsToRole;
 
     /**
      * The attributes that are mass assignable.
