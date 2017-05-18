@@ -120,6 +120,7 @@ export default {
                 question: this.questionObj,
                 answerText: this.answerText,
             });
+            this.ga('show_answer_form', 'Question Show Answer Form');
         },
 
         downvote() {
