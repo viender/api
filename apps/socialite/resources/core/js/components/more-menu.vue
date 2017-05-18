@@ -4,7 +4,7 @@
         <div class="card-action-popup-container" :class="showPopup ? 'active' : ''" @click="$event.stopPropagation()">
             <div class="card-action-popup-content">
                 <ul class="card-action-popup-list">
-                    <li class="card-action-popup-item" v-if="model.owner.id === $viender.user.id" @click="destroy()">
+                    <li class="card-action-popup-item" v-if="model.owner.id === $viender.user.id" @click="deleteAnswer()">
                         <a>Delete</a>
                     </li>
                     <li class="card-action-popup-item" v-if="model.owner.id !== $viender.user.id">
@@ -48,7 +48,7 @@ export default {
             e.stopPropagation();
         },
 
-        destroy() {
+        deleteAnswer() {
             const self = this;
 
             if(self.requestingDestroy) return;
