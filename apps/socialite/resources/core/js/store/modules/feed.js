@@ -17,10 +17,6 @@ export default {
         getAnswerByUrl: (state, getters) => (url) => {
             const result = state.answers.find((answer) =>
                 Vue.prototype.$viender.helpers.getUrl('self_html', answer) === url);
-
-            console.log(result);
-            console.log(state.answers);
-
             return result;
         },
     },
