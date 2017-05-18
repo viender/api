@@ -14,9 +14,29 @@ export default {
     },
 
     getters: {
-        getAnswerByUrl: (state, getters) => (url) => {
+        getAnswerByUrl: (state, getters, commit) => (url) => {
             const result = state.answers.find((answer) =>
                 Vue.prototype.$viender.helpers.getUrl('self_html', answer) === url);
+
+            if (!result) {
+                const apiUrl = Vue.prototype.$viender.treasure.env.api_url;
+
+                axios.get(`${apiUrl}/questions${location.href.replace(location.origin + '/question', '')}`, {
+                    params: {
+                        with: ['owner', 'question'],
+                    },
+                })
+                .then(function(response) {
+                    state.showedAnswer = response.data;
+                    state.showAnswerModal = true;
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+            }
+
+            state.requesting = false;
+
             return result;
         },
     },
