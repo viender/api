@@ -193,6 +193,7 @@ return [
         Viender\Sitemap\Init::class,
         Viender\Campaign\Init::class,
         Viender\Role\Init::class,
+        Viender\Upload\Init::class,
     ],
 
     /*
