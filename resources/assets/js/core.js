@@ -6,3 +6,4 @@ Vue.component('topic-recommendation', require('./components/topic-recommendation
 Vue.component('ajax-button', require('./components/ajax-button.vue'));
 Vue.component('create-question-overlay', require('./components/create-question-overlay.vue'));
 Vue.component('search-results', require('./components/search-results.vue'));
+Vue.component('tutorial', require('./components/tutorial.vue'));

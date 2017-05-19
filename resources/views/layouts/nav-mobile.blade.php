@@ -12,7 +12,7 @@
                 </div>
                 <div class="col s3">
                     <search-or-ask-panel-trigger-open>
-                        <i class="fa fa-search-plus" aria-hidden="true"></i>
+                        <i id="ask-menu" class="fa fa-search-plus" aria-hidden="true"></i>
                         <span> Ask</span>
                     </search-or-ask-panel-trigger-open>
                 </div>
@@ -23,13 +23,13 @@
                     <div class="navbar-mobile-menus-button col s6"><a href="{{ url('/register') }}">Register</a></div> --}}
                 @else
                     <div class="col s4">
-                        <a class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.socialite.pages.read' ? 'active' : '' }}" href={{ route('web.viender.socialite.pages.read') }}><i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
+                        <a id="read-menu" class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.socialite.pages.read' ? 'active' : '' }}" href={{ route('web.viender.socialite.pages.read') }}><i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
                     </div>
                     <div class="col s4">
-                        <a class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.socialite.pages.answer' ? 'active' : '' }}" href={{ route('web.viender.socialite.pages.answer') }}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        <a id="answer-menu" class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.socialite.pages.answer' ? 'active' : '' }}" href={{ route('web.viender.socialite.pages.answer') }}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                     </div>
                     <div class="col s4">
-                        <a class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.profile.pages.profile' ? 'active' : '' }}" href={{ route('web.viender.profile.pages.profile', \Auth::user()->username) }}><i class="fa fa-user" aria-hidden="true"></i></a>
+                        <a id="profile-menu" class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.profile.pages.profile' ? 'active' : '' }}" href={{ route('web.viender.profile.pages.profile', \Auth::user()->username) }}><i class="fa fa-user" aria-hidden="true"></i></a>
                     </div>
                 @endif
             </div>
