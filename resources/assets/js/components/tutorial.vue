@@ -1,15 +1,16 @@
 <template>
     <div v-if="!tutorialComplete && show" class="tutorial-container">
-        <div class="tutorial" :style="currentStory ? currentStory.position : ''">
+        <div class="tutorial" :style="currentStory ? currentStory.circleStyle : ''">
             <div class="tutorial-content">
-                <p>{{ currentStory.description }}</p>
+                <p v-html="currentStory.description"></p>
 
                 <div class="tutorial-content-action">
                     <span @click="previous()" v-if="stories.indexOf(currentStory) > 0">
                         Previous
                     </span>
                     <span @click="next()" v-if="stories.indexOf(currentStory) < stories.length - 1">
-                        Next
+                        <span v-if="stories.indexOf(currentStory) === 0">Great, let's do it</span>
+                        <span v-else>Next</span>
                     </span>
                     <span @click="finish()" v-if="stories.indexOf(currentStory) === stories.length - 1">
                         Finish
@@ -29,20 +30,28 @@ export default {
             currentStory: null,
             stories: [
                 {
-                    position: `bottom: ${0}px; left: calc(${$('#read-menu').position().left}px - 14px);`,
+                    circleStyle: `bottom: ${-500}px;`,
+                    description: '<strong>Welcome to Viender</strong><br><br>Let\'s do a short tutorial to let you know basic features of Viender.',
+                },
+                {
+                    circleStyle: `bottom: ${0}px; left: calc(${$('#read-menu').position().left}px - 14px);`,
                     description: 'Menu Feed, disini kamu bisa melihat semua jawaban dari topic atau orang yang kamu follow. Upvote jawaban yang kamu suka dan downvote jawaban yang tidak kamu suka agar feed kamu menjadi lebih relevan.',
                 },
                 {
-                    position: `bottom: ${0}px; left: calc(${$('#answer-menu').position().left}px - 14px);`,
+                    circleStyle: `bottom: ${0}px; left: calc(${$('#answer-menu').position().left}px - 14px);`,
                     description: 'Menu Answer, disini kamu dapat melihat semua pertanyaan dari dari topic atau orang yang kamu follow. Jawab pertanyaan topik keahlianmu.',
                 },
                 {
-                    position: `bottom: ${0}px; left: calc(${$('#profile-menu').position().left}px - 14px);`,
+                    circleStyle: `bottom: ${0}px; left: calc(${$('#profile-menu').position().left}px - 14px);`,
                     description: 'Menu Profile, semua jawaban, pertanyaan, follower, dan following kamu bisa dilihat disini.',
                 },
                 {
-                    position: `top: ${1}px; left: calc(${$('#ask-menu').position().left}px - 10px);`,
-                    description: 'Search Button, cari pertanyaanmu atau buat pertanyaan baru disini.',
+                    circleStyle: `top: ${1}px; left: calc(${$('#ask-menu').position().left}px - 10px);`,
+                    description: 'Search Button, cari pertanyaanmu atau buat pertanyaan baru disini. Kamu juga bisa mencari topik - topik yang ada di Viender disini.',
+                },
+                {
+                    circleStyle: `bottom: ${-500}px;`,
+                    description: '<strong>That\'s a wrap</strong><br><br>Sekarang kamu telah tahu fitur dasar Viender, ayo tuliskan pertanyaan atau mulai membaca sekarang.',
                 },
             ],
         };
