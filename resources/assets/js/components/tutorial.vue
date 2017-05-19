@@ -1,13 +1,19 @@
 <template>
-    <div v-if="show && active" class="tutorial-container">
+    <div v-if="!tutorialComplete && show" class="tutorial-container">
         <div class="tutorial" :style="currentStory ? currentStory.position : ''">
             <div class="tutorial-content">
                 <p>{{ currentStory.description }}</p>
 
                 <div class="tutorial-content-action">
-                    <a href="#" @click="previous()" v-if="stories.indexOf(currentStory) > 0">Previous</a>
-                    <a href="#" @click="next()" v-if="stories.indexOf(currentStory) < stories.length - 1">Next</a>
-                    <a href="#" @click="finish()" v-if="stories.indexOf(currentStory) === stories.length - 1">Finish</a>
+                    <span @click="previous()" v-if="stories.indexOf(currentStory) > 0">
+                        Previous
+                    </span>
+                    <span @click="next()" v-if="stories.indexOf(currentStory) < stories.length - 1">
+                        Next
+                    </span>
+                    <span @click="finish()" v-if="stories.indexOf(currentStory) === stories.length - 1">
+                        Finish
+                    </span>
                 </div>
             </div>
         </div>
@@ -19,7 +25,7 @@
 export default {
     data() {
         return {
-            active: true,
+            show: true,
             currentStory: null,
             stories: [
                 {
@@ -43,13 +49,13 @@ export default {
     },
 
     computed: {
-        show() {
-            return ! parseInt(localStorage.getItem('viender.tutorial.complete'));
+        tutorialComplete() {
+            return parseInt(localStorage.getItem('viender.tutorial.complete'));
         },
     },
 
     created() {
-        if (this.show) {
+        if (!this.tutorialComplete) {
             $('body').css('overflow', 'hidden');
         }
 
@@ -68,7 +74,7 @@ export default {
         finish() {
             localStorage.setItem('viender.tutorial.complete', 1);
             $('body').css('overflow', 'auto');
-            this.active = false;
+            this.show = false;
         },
     },
 };
@@ -116,7 +122,9 @@ export default {
         padding: 10px;
     }
 
-    .tutorial-content-action a {
+    .tutorial-content-action span {
         padding-left: 10px;
+        cursor: pointer;
+        color: #039be5;
     }
 </style>
