@@ -4,15 +4,25 @@
             <div class="tutorial-content">
                 <p v-html="currentStory.description"></p>
 
+                <p v-if="isLastStory()">
+                    <span>Apakah tutorial ini membantu?</span>
+                    <a v-if="!answered" style="padding-left: 10px;" @click="answer(1)">Ya</a>
+                    <a v-if="!answered" style="padding-left: 10px;" @click="answer(0)">Tidak</a>
+                    <span v-if="answered">
+                        <span v-if="answered === 'yes'">Terimakasih.</span>
+                        <span v-if="answered === 'no'">Terimakasih, kami akan membuat tutorial ini menjadi lebih baik lagi.</span>
+                    </span>
+                </p>
+
                 <div class="tutorial-content-action">
-                    <span @click="previous()" v-if="stories.indexOf(currentStory) > 0">
+                    <span @click="previous()" v-if="hasPrevious()">
                         Previous
                     </span>
-                    <span @click="next()" v-if="stories.indexOf(currentStory) < stories.length - 1">
-                        <span v-if="stories.indexOf(currentStory) === 0">Great, let's do it</span>
+                    <span @click="next()" v-if="hasNext()">
+                        <span v-if="isFirstStory()">Great, let's do it</span>
                         <span v-else>Next</span>
                     </span>
-                    <span @click="finish()" v-if="stories.indexOf(currentStory) === stories.length - 1">
+                    <span @click="finish()" v-if="isLastStory()">
                         Finish
                     </span>
                 </div>
@@ -28,6 +38,7 @@ export default {
         return {
             show: true,
             currentStory: null,
+            answered: null,
             stories: [
                 {
                     circleStyle: `bottom: ${-500}px;`,
@@ -69,6 +80,16 @@ export default {
         }
 
         this.currentStory = this.stories[0];
+
+        if (window.ga) {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Tutorial',
+                eventAction: 'start',
+                eventValue: 1,
+                eventLabel: 'Welcome Tutorial Start',
+            });
+        }
     },
 
     methods: {
@@ -84,6 +105,60 @@ export default {
             localStorage.setItem('viender.tutorial.complete', 1);
             $('body').css('overflow', 'auto');
             this.show = false;
+
+            if (window.ga) {
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'Tutorial',
+                    eventAction: 'finish',
+                    eventValue: 1,
+                    eventLabel: 'Welcome Tutorial Finish',
+                });
+            }
+        },
+
+        isFirstStory() {
+            return this.stories.indexOf(this.currentStory) === 0;
+        },
+
+        hasPrevious() {
+            return this.stories.indexOf(this.currentStory) > 0;
+        },
+
+        hasNext() {
+            return this.stories.indexOf(this.currentStory) < this.stories.length - 1;
+        },
+
+        isLastStory() {
+            return this.stories.indexOf(this.currentStory) === this.stories.length - 1;
+        },
+
+        answer(answer) {
+            if (answer) {
+                this.answered = 'yes';
+
+                if (window.ga) {
+                    ga('send', {
+                        hitType: 'event',
+                        eventCategory: 'Tutorial',
+                        eventAction: 'positive_feedback',
+                        eventValue: 1,
+                        eventLabel: 'Welcome Tutorial Positive Feedback',
+                    });
+                }
+            } else {
+                this.answered = 'no';
+
+                if (window.ga) {
+                    ga('send', {
+                        hitType: 'event',
+                        eventCategory: 'Tutorial',
+                        eventAction: 'negative_feedback',
+                        eventValue: 1,
+                        eventLabel: 'Welcome Tutorial Negative Feedback',
+                    });
+                }
+            }
         },
     },
 };

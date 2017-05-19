@@ -62,8 +62,8 @@ export default {
                 ga('send', {
                     hitType: 'event',
                     eventCategory: 'Questions',
-                    eventAction: 'page',
-                    eventValue: this.page,
+                    eventAction: `page_${this.page}`,
+                    eventValue: 1,
                     eventLabel: 'Question List Page Reach',
                 });
             }

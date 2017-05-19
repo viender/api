@@ -86,8 +86,8 @@ export default {
                 ga('send', {
                     hitType: 'event',
                     eventCategory: 'Feed',
-                    eventAction: 'page',
-                    eventValue: this.page,
+                    eventAction: `page_${this.page}`,
+                    eventValue: 1,
                     eventLabel: 'Feed Page Reach',
                 });
             }
