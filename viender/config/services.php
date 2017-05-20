@@ -44,8 +44,8 @@ return [
     ],
 
     'imaginary' => [
-        'host' => env('VIENDER_FEED_HOST', 'localhost'),
-        'port' => env('VIENDER_FEED_PORT', '9000'),
+        'host' => env('IMAGINARY_HOST', 'localhost'),
+        'port' => env('IMAGINARY_PORT', '9000'),
     ]
 
 ];

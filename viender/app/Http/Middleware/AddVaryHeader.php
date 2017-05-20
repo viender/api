@@ -10,7 +10,9 @@ class AddVaryHeader
     {
         $response = $next($request);
 
-        $response->header('Vary', 'User-Agent');
+        if (method_exists($response, 'header')) {
+            $response->header('Vary', 'User-Agent');
+        }
 
         return $next($request);
     }

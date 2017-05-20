@@ -3,6 +3,7 @@
 namespace Viender\Address\Transformers;
 
 use App\User;
+use Illuminate\Support\Facades\Storage;
 use Viender\Address\Transformers\DatabaseNotificationTransformer;
 
 class UserTransformer extends Transformer
@@ -17,12 +18,17 @@ class UserTransformer extends Transformer
     public function transform(User $user)
     {
         return [
-            'id'        => (int) $user->id,
-            'login'     => $user->username, 
-            'name'      => $user->first_name . ' ' . $user->last_name, 
-            'email'     => $user->email,
-            'gender'    => $user->gender,
-            'links'     => [
+            'id'            => (int) $user->id,
+            'login'         => $user->username,
+            'name'          => $user->first_name . ' ' . $user->last_name,
+            'first_name'    => $user->first_name,
+            'last_name'     => $user->last_name,
+            'email'         => $user->email,
+            'bio'           => $user->bio,
+            'location'      => $user->location,
+            'website'       => $user->website,
+            'gender'        => $user->gender,
+            'links'         => [
                 [
                     'rel' => 'self',
                     'url' => url('/users') . '/' . $user->username,
@@ -33,15 +39,15 @@ class UserTransformer extends Transformer
                 ],
                 [
                     'rel' => 'avatar',
-                    'url' => $user->avatar_url,
+                    'url' => Storage::url($user->avatar_url),
                 ],
                 [
                     'rel' => 'avatar_medium',
-                    'url' => $user->avatar_medium_url,
+                    'url' => Storage::url($user->avatar_medium_url),
                 ],
                 [
                     'rel' => 'avatar_large',
-                    'url' => $user->avatar_large_url,
+                    'url' => Storage::url($user->avatar_large_url),
                 ],
                 [
                     'rel' => 'notifications',

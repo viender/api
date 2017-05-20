@@ -4,7 +4,7 @@
 <div class="">
 	<div class="row profile-header">
 		<div class="col s12 profile-avatar">
-			<img src="{{ $user->avatar_large_url }}" alt="">
+			<img src="{{ Storage::url($user->avatar_large_url) }}" alt="">
 		</div>
 	</div>
 
@@ -12,7 +12,7 @@
 		<div class="col s12">
             <div class="profile-userDetail__container">
     			<span class="profile-userDetail__name">{{ $user->fullName() }}</span>
-                <i class="fa fa-ellipsis-h profile-userDetail__menu" aria-hidden="true"></i>
+                <i class="fa fa-ellipsis-h profile-userDetail__menu" aria-hidden="true" @click="$refs.profileMenu.setShow(true)"></i>
             </div>
 
 			@if(\Auth::user() ? $followed = \Auth::user()->followedUsers()->where([
@@ -47,6 +47,8 @@
 			@yield('profile-content')
 		</div>
 	</div>
+
+    <profile-menu ref="profileMenu" update-profile-url="{{ route('web.viender.profile.update') }}"></profile-menu>
 </div>
 @endsection
 

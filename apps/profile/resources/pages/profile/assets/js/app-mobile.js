@@ -37,6 +37,8 @@ Vue.component('user-card', require('viender_profile/core/js/components/user-card
 Vue.component('topic-count', require('viender_profile/core/js/components/topic-count.vue'));
 Vue.component('topic-list', require('viender_profile/core/js/components/topic-list.vue'));
 Vue.component('topic-card', require('viender_profile/core/js/components/topic-card.vue'));
+Vue.component('profile-menu', require('viender_profile/core/js/components/profile-menu.vue'));
+Vue.component('edit-profile', require('viender_profile/core/js/components/edit-profile.vue'));
 
 Vue.component('more-menu', require('viender_socialite/core/js/components/more-menu.vue'));
 

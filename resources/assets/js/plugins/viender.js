@@ -18,6 +18,8 @@ export default {
 
     Vue.prototype.$viender.treasure = window.treasure;
 
+    Vue.prototype.$viender.csrfToken = window.Laravel.csrfToken;
+
     Vue.prototype.$viender.helpers = Object.assign(
       urlHelpers,
       styleHelpers,

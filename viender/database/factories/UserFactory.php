@@ -24,15 +24,16 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     $user = json_decode((string) $response->getBody(), true)['results'][0];
 
     return [
-        'first_name'        => $user['name']['first'],
-        'last_name'         => $user['name']['last'],
-        'avatar_url'        => $user['picture']['thumbnail'],
-        'avatar_medium_url' => $user['picture']['medium'],
-        'avatar_large_url'  => $user['picture']['large'],
-        'username'          => $user['login']['username'],
-        'email'             => $user['email'],
-        'password'          => $password ?: $password = bcrypt('secret'),
-        'gender'            => $user['gender'],
-        'remember_token'    => $user['login']['md5'],
+        'first_name'            => $user['name']['first'],
+        'last_name'             => $user['name']['last'],
+        'avatar_url'            => 'public/images/profile.jpg',
+        'avatar_medium_url'     => 'public/images/profile-medium.jpg',
+        'avatar_large_url'      => 'public/images/profile-large.jpg',
+        'avatar_original_url'   => 'public/images/profile-original.jpg',
+        'username'              => $user['login']['username'],
+        'email'                 => $user['email'],
+        'password'              => $password ?: $password = bcrypt('secret'),
+        'gender'                => $user['gender'],
+        'remember_token'        => $user['login']['md5'],
     ];
 });
