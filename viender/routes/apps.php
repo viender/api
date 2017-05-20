@@ -15,4 +15,4 @@ Viender\Feed\Feed::routes(['prefix' => 'feed']);
 Viender\Sitemap\Sitemap::routes();
 Viender\Campaign\Campaign::routes();
 Viender\Role\Role::routes();
-Viender\Upload\Upload::routes();
+Viender\Imaginary\Imaginary::routes();

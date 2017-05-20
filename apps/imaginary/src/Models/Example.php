@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Upload\Models;
+namespace Viender\Imaginary\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

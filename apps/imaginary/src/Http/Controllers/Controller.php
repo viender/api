@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Upload\Http\Controllers;
+namespace Viender\Imaginary\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

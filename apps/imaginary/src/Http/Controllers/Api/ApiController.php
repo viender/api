@@ -1,13 +1,13 @@
 <?php
 
-namespace Viender\Upload\Http\Controllers\Api;
+namespace Viender\Imaginary\Http\Controllers\Api;
 
 use Response;
 use League\Fractal\Manager;
-use Viender\Upload\Http\Controllers\Controller;
+use Viender\Imaginary\Http\Controllers\Controller;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
-use Viender\Upload\Transformers\Serializer\ArraySerializer;
+use Viender\Imaginary\Transformers\Serializer\ArraySerializer;
 
 class ApiController extends Controller
 {

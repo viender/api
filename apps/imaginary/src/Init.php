@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Upload;
+namespace Viender\Imaginary;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +15,7 @@ class Init extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
-        $this->loadViewsFrom(__DIR__.'/../resources/pages/upload/views', 'viender.upload.upload');
+        $this->loadViewsFrom(__DIR__.'/../resources/pages/imaginary/views', 'viender.imaginary.imaginary');
     }
 
     /**

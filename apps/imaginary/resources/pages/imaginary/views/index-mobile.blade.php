@@ -2,14 +2,11 @@
 
 @section('content')
 <div class="mobile">
-	<div class="row">
-		<div class="col s12">
-			<h5>Top stories for you</h5>
-		</div>
-	</div>
-	
-	<feed-list :feed-urls="{ answers: '{{ route('api.viender.socialite.answers.index') }}' }"></feed-list>
-	<answer-show-modal></answer-show-modal>
+    <form action="/imaginary/test" method="POST" enctype="multipart/form-data">
+        {{ csrf_field() }}
+        <input name="image" type="file">
+        <input type="submit">
+    </form>
 </div>
 @endsection
 

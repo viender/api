@@ -45,7 +45,7 @@
             "Viender\\Sitemap\\": "apps/sitemap/src/",
             "Viender\\Campaign\\": "apps/campaign/src/",
             "Viender\\Role\\": "apps/role/src/",
-            "Viender\\Upload\\": "apps/upload/src/"
+            "Viender\\Imaginary\\": "apps/imaginary/src/"
         }
     },
     "autoload-dev": {

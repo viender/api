@@ -1,6 +1,6 @@
 <?php 
 
-namespace Viender\Upload\Repositories;
+namespace Viender\Imaginary\Repositories;
 
 use Bosnadev\Repositories\Eloquent\Repository as BaseRepository;
 

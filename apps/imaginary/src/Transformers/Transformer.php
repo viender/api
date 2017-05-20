@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Upload\Transformers;
+namespace Viender\Imaginary\Transformers;
 
 use League\Fractal\TransformerAbstract;
 

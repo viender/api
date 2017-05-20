@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Viender\Upload\Transformers\Serializer;
+namespace Viender\Imaginary\Transformers\Serializer;
 
 use League\Fractal\Pagination\CursorInterface;
 use League\Fractal\Resource\ResourceInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\Upload;
+namespace Viender\Imaginary;
 
 use Illuminate\Contracts\Routing\Registrar as Router;
 
@@ -38,7 +38,8 @@ class Urls
     public function web($option = [])
     {
         $this->router->group(array_merge($option, ['domain' => config('viender.web_domain'), 'middleware' => 'web']), function() {
-
+            $this->router->get('imaginary/test', 'ImaginaryTestController@index');
+            $this->router->post('imaginary/test', 'ImaginaryTestController@upload');
         });
     }
 
@@ -49,7 +50,7 @@ class Urls
 
     public function version1($option = [])
     {
-        $namePrefix = 'api' . (isset($option['showVersionPrefix']) ? ($option['showVersionPrefix'] ? '.v1' : '') : '.v1') . '.viender.upload';
+        $namePrefix = 'api' . (isset($option['showVersionPrefix']) ? ($option['showVersionPrefix'] ? '.v1' : '') : '.v1') . '.viender.imaginary';
 
         $this->router->group(array_merge($option, ['domain' => config('viender.api_domain'), 'namespace' => 'Api', 'middleware' => 'api']), function() use ($namePrefix) {
 
