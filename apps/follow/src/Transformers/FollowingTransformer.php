@@ -3,6 +3,7 @@
 namespace Viender\Follow\Transformers;
 
 use App\User;
+use Illuminate\Support\Facades\Storage;
 
 class FollowingTransformer extends Transformer
 {
@@ -35,7 +36,7 @@ class FollowingTransformer extends Transformer
                 ],
                 [
                     'rel' => 'avatar',
-                    'url' => $user->avatar_url,
+                    'url' => Storage::url($user->avatar_url),
                 ],
                 [
                     'rel' => 'follow',
