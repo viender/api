@@ -14,35 +14,35 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input name="first_name" id="first_name" type="text" class="validate" :value="$viender.user.first_name">
+                    <input name="first_name" id="first_name" type="text" class="validate" :value="$viender.user ? $viender.user.first_name : ''">
                     <label for="first_name">First Name</label>
                 </div>
                 <div class="input-field col s6">
-                    <input name="last_name" id="last_name" type="text" class="validate" :value="$viender.user.last_name">
+                    <input name="last_name" id="last_name" type="text" class="validate" :value="$viender.user ? $viender.user.last_name : ''">
                     <label for="last_name">Last Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea name="bio" id="bio" class="materialize-textarea" :value="$viender.user.bio"></textarea>
+                    <textarea name="bio" id="bio" class="materialize-textarea" :value="$viender.user ? $viender.user.bio : ''"></textarea>
                     <label for="bio">Bio</label>
                 </div>
             </div>
             <!-- <div class="row">
                 <div class="input-field col s12">
-                    <input name="email" id="email" type="email" class="validate" :value="$viender.user.email">
+                    <input name="email" id="email" type="email" class="validate" :value="$viender.user ? $viender.user.email : ''">
                     <label for="email">Email</label>
                 </div>
             </div> -->
             <div class="row">
                 <div class="input-field col s12">
-                    <input name="location" id="location" type="text" class="validate" :value="$viender.user.location">
+                    <input name="location" id="location" type="text" class="validate" :value="$viender.user ? $viender.user.location : ''">
                     <label for="location">Location</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input name="website" id="website" type="text" class="validate" :value="$viender.user.website">
+                    <input name="website" id="website" type="text" class="validate" :value="$viender.user ? $viender.user.website : ''">
                     <label for="website">Website</label>
                 </div>
             </div>
