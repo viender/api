@@ -26,7 +26,7 @@
 import * as types from '../store/mutation-types';
 
 export default {
-    props: ['answer'],
+    props: [''],
 
     mixins: [require('viender_core/js/mixins/urlHelper')],
 
