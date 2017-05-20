@@ -24,7 +24,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea name="bio" id="bio" class="materialize-textarea" :value="formData.bio"></textarea>
+                    <textarea name="bio" id="bio" placeholder="More about you" class="materialize-textarea" :value="formData.bio"></textarea>
                     <label for="bio">Bio</label>
                 </div>
             </div>
@@ -36,13 +36,13 @@
             </div> -->
             <div class="row">
                 <div class="input-field col s12">
-                    <input name="location" id="location" type="text" class="validate" :value="formData.location">
+                    <input name="location" placeholder="Jakarta, Indonesia" id="location" type="text" class="validate" :value="formData.location">
                     <label for="location">Location</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input name="website" id="website" type="text" class="validate" :value="formData.website">
+                    <input name="website" placeholder="https://example.com" id="website" type="text" class="validate" :value="formData.website">
                     <label for="website">Website</label>
                 </div>
             </div>
