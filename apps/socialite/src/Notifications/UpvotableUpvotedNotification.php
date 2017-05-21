@@ -56,8 +56,9 @@ class UpvotableUpvotedNotification extends Notification implements ShouldQueue
         }
 
         return (new MailMessage)
+                    ->subject($this->upvote->user->first_name . ' ' . $this->upvote->user->last_name . ' upvoted your ' . $upvotableClass)
                     ->greeting('Hello!')
-                    ->line($this->upvote->user->first_name . ' ' . $this->upvote->user->last_name . ' upvoted your ' . $upvotableClass)
+                    ->line('We just want to let you know that ' . $this->upvote->user->first_name . ' ' . $this->upvote->user->last_name . ' upvoted your ' . $upvotableClass)
                     ->action('See in Viender', $url)
                     ->line('Thank you for using our application!');
     }
