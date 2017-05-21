@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class UpvotableUpvotedNotification extends Notification
+class UpvotableUpvotedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -32,7 +32,7 @@ class UpvotableUpvotedNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -45,30 +45,20 @@ class UpvotableUpvotedNotification extends Notification
     {
         $upvotable = $this->upvote->upvotable;
 
-        $url = config('app.url');
-
         $chunks = explode('\\', $this->upvote->upvotable_type);
 
         $upvotableClass = $chunks[count($chunks) - 1];
 
         if($this->upvote->upvotable_type == 'Viender\Socialite\Models\Question') {
-
-            $url = config('app.url') . '/questions/' . $upvotable->slug;
-
+            $url = route('web.viender.socialite.pages.questionShow', $upvotable);
         }elseif($this->upvote->upvotable_type == 'Viender\Socialite\Models\Answer') {
-
-            $url = config('app.url') . '/answers/' . $upvotable->id;
-
-        }elseif($this->upvote->upvotable_type == 'Viender\Socialite\Models\Comment') {
-
-            $url = config('app.url') . '/answers/' . $upvotable->id;
-            
+            $url = route('web.viender.socialite.pages.answerShow', [$upvotable->question, $upvotable->slug]);
         }
 
         return (new MailMessage)
                     ->greeting('Hello!')
                     ->line($this->upvote->user->first_name . ' ' . $this->upvote->user->last_name . ' upvoted your ' . $upvotableClass)
-                    ->action('View Invoice', $url)
+                    ->action('See in Viender', $url)
                     ->line('Thank you for using our application!');
     }
 
@@ -83,7 +73,7 @@ class UpvotableUpvotedNotification extends Notification
         return [
             'upvotable_type'    => $this->upvote->upvotable_type,
             'upvotable_id'      => $this->upvote->upvotable_id,
-            'date'              => $this->upvote->created_at,          
+            'date'              => $this->upvote->created_at,
         ];
     }
 }
