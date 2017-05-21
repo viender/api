@@ -83,7 +83,7 @@ class RegisterController extends Controller
             'avatar_url'        => "public/images/profile.jpg",
             'avatar_medium_url' => "public/images/profile-medium.jpg",
             'avatar_large_url'  => "public/images/profile-large.jpg",
-            'avatar_large_url'  => "public/images/profile-original.jpg",
+            'avatar_original_url'  => "public/images/profile-original.jpg",
             'email'             => $data['email'],
             'password'          => bcrypt($data['password']),
         ]);
