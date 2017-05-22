@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Socialite\Models\Answer;
 use Viender\Socialite\Models\Question;
+use Viender\Socialite\Events\QuestionAnswered;
 use Viender\Socialite\Repositories\AnswersRepository;
 use Viender\Socialite\Transformers\AnswerTransformer;
 use Viender\Socialite\Transformers\AnswerPreviewTransformer;
@@ -66,6 +67,8 @@ class QuestionAnswersController extends ApiController
         }
 
         $answer = $this->answers->createByUser(\Auth::user()->id, $question, $request->all());
+
+        event(new QuestionAnswered($answer));
 
         return $this->respond(new Item($answer, new AnswerPreviewTransformer($this->answers)));
     }

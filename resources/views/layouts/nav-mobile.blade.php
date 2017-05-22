@@ -22,14 +22,45 @@
                     {{-- <div class="navbar-mobile-menus-button col s6"><a href="{{ url('/login') }}">Login</a></div>
                     <div class="navbar-mobile-menus-button col s6"><a href="{{ url('/register') }}">Register</a></div> --}}
                 @else
-                    <div class="col s4">
-                        <a id="read-menu" class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.socialite.pages.read' ? 'active' : '' }}" href={{ route('web.viender.socialite.pages.read') }}><i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
+                    <div class="col s3">
+                        <a
+                            id="read-menu"
+                            @click="$store.commit('navigation/SET_ACTIVE_MENU', {activeMenu: 1})"
+                            :class="$store.state.navigation.activeMenu === 1 ? 'active' : ''"
+                            class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.socialite.pages.read' ? 'active' : '' }}"
+                            href={{ route('web.viender.socialite.pages.read') }}>
+                            <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                        </a>
                     </div>
-                    <div class="col s4">
-                        <a id="answer-menu" class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.socialite.pages.answer' ? 'active' : '' }}" href={{ route('web.viender.socialite.pages.answer') }}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <div class="col s3">
+                        <a
+                            id="answer-menu"
+                            @click="$store.commit('navigation/SET_ACTIVE_MENU', {activeMenu: 2})"
+                            :class="$store.state.navigation.activeMenu === 2 ? 'active' : ''"
+                            class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.socialite.pages.answer' ? 'active' : '' }}"
+                            href={{ route('web.viender.socialite.pages.answer') }}>
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
                     </div>
-                    <div class="col s4">
-                        <a id="profile-menu" class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.profile.pages.profile' ? 'active' : '' }}" href={{ route('web.viender.profile.pages.profile', \Auth::user()->username) }}><i class="fa fa-user" aria-hidden="true"></i></a>
+                    <div class="col s3">
+                        <a
+                            id="notification-menu"
+                            @click="$store.commit('navigation/SET_ACTIVE_MENU', {activeMenu: 3})"
+                            :class="$store.state.navigation.activeMenu === 3 ? 'active' : ''"
+                            class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.socialite.pages.answer' ? 'active' : '' }}"
+                            href={{ route('web.viender.socialite.pages.answer') }}>
+                            <i class="fa fa-bell" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="col s3">
+                        <a
+                            id="profile-menu"
+                            @click="$store.commit('navigation/SET_ACTIVE_MENU', {activeMenu: 4})"
+                            :class="$store.state.navigation.activeMenu === 4 ? 'active' : ''"
+                            class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.profile.pages.profile' ? 'active' : '' }}"
+                            href={{ route('web.viender.profile.pages.profile', \Auth::user()->username) }}>
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </a>
                     </div>
                 @endif
             </div>

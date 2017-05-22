@@ -6,6 +6,7 @@ use Viender\Socialite\Models\Answer;
 use Viender\Socialite\Models\Comment;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use Viender\Socialite\Events\CommentableCommented;
 use Viender\Socialite\Repositories\CommentsRepository;
 use Viender\Socialite\Transformers\CommentTransformer;
 
@@ -19,7 +20,7 @@ class AnswerCommentsController extends ApiController
         $this->comments = $comments;
     }
 
-    /** 
+    /**
      * @api {get} /answers/:id/comments Get Answer Comments
      * @apiName AnswerCommentsIndex
      * @apiGroup AnswerGroup
@@ -29,7 +30,7 @@ class AnswerCommentsController extends ApiController
      * @apiHeader {String} Content-Type Content-Type
      *
      * @apiUse CommentIndexSuccess
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Answer $answer)
@@ -47,20 +48,22 @@ class AnswerCommentsController extends ApiController
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
-     * 
+     *
      * @apiUse CommentRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @apiSuccess {String} message Response message
      * @apiSuccess {Number} status_code Response status code
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Answer $answer)
     {
         $comment = $this->comments->createByUser(\Auth::user()->id, $answer, $request->all());
+
+        event(new CommentableCommented($answer));
 
         return $this->respond(new Item($comment, new CommentTransformer));
     }
@@ -77,7 +80,7 @@ class AnswerCommentsController extends ApiController
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
      * @apiUse CommentShowSuccess
-     * 
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -102,7 +105,7 @@ class AnswerCommentsController extends ApiController
      * @apiUse CommentRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -128,7 +131,7 @@ class AnswerCommentsController extends ApiController
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -137,7 +140,7 @@ class AnswerCommentsController extends ApiController
         $comment = $answer->comments()->findOrFail($comment);
 
         $comment->delete();
-        
+
         return $this->respondDeleted();
     }
 }
