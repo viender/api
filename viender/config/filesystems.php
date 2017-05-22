@@ -56,8 +56,8 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => 'AKIAID6ZN4LMJYZDG4CQ',
-            'secret' => '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',
+            'key'    => env('AWS_S3_KEY', 'key'),
+            'secret' => env('AWS_S3_SECRET', 'secret'),
             'region' => 'ap-southeast-1',
             'bucket' => 'viender-bucket',
         ],
