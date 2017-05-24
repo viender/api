@@ -56,5 +56,10 @@ class IdeapoolUserEventSubscriber
             'Viender\Socialite\Events\QuestionAnswered',
             'Viender\Socialite\Listeners\IdeapoolUserEventSubscriber@onQuestionAnswered'
         );
+
+        $events->listen(
+            'Viender\Socialite\Events\CommentableCommented',
+            'Viender\Socialite\Listeners\IdeapoolUserEventSubscriber@onCommentableCommented'
+        );
     }
 }

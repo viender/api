@@ -2,13 +2,16 @@
 
 namespace Viender\Socialite\Notifications;
 
-use Viender\Socialite\Models\Upvote;
 use Illuminate\Bus\Queueable;
+use Viender\Socialite\Models\Answer;
+use Viender\Socialite\Models\Upvote;
+use Viender\Socialite\Models\Comment;
+use Viender\Socialite\Models\Question;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class UpvotableUpvotedNotification extends Notification
+class UpvotableUpvotedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -49,10 +52,19 @@ class UpvotableUpvotedNotification extends Notification
 
         $upvotableClass = $chunks[count($chunks) - 1];
 
-        if($this->upvote->upvotable_type == 'Viender\Socialite\Models\Question') {
-            $url = route('web.viender.socialite.pages.questionShow', $upvotable);
-        }elseif($this->upvote->upvotable_type == 'Viender\Socialite\Models\Answer') {
-            $url = route('web.viender.socialite.pages.answerShow', [$upvotable->question, $upvotable->slug]);
+        $url = config('app.url');
+
+        switch ($this->upvote->upvotable_type) {
+            case Question::class:
+                $url = route('web.viender.socialite.pages.questionShow', $upvotable);
+                break;
+
+            case Answer::class:
+                $url = route('web.viender.socialite.pages.answerShow', [$upvotable->question, $upvotable->slug]);
+                break;
+
+            default:
+                break;
         }
 
         return (new MailMessage)
@@ -74,7 +86,6 @@ class UpvotableUpvotedNotification extends Notification
         return [
             'upvotable_type'    => $this->upvote->upvotable_type,
             'upvotable_id'      => $this->upvote->upvotable_id,
-            'date'              => $this->upvote->created_at,
         ];
     }
 }

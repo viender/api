@@ -49,14 +49,23 @@ class CommentableCommentedNotification extends Notification implements ShouldQue
 
         $commentableClass = $chunks[count($chunks) - 1];
 
-        if($this->comment->commentable_type == 'Viender\Socialite\Models\Question') {
-            $url = route('web.viender.socialite.pages.questionShow', $commentable);
-        }elseif($this->comment->commentable_type == 'Viender\Socialite\Models\Answer') {
-            $url = route('web.viender.socialite.pages.answerShow', [$commentable->question, $commentable->slug]);
+        $url = config('app.url');
+
+        switch ($this->comment->commentable_type) {
+            case Question::class:
+                $url = route('web.viender.socialite.pages.questionShow', $commentable);
+                break;
+
+            case Answer::class:
+                $url = route('web.viender.socialite.pages.answerShow', [$commentable->question, $commentable->slug]);
+                break;
+
+            default:
+                break;
         }
 
         return (new MailMessage)
-            ->subject($this->comment->user->first_name . ' ' . $this->comment->user->last_name . ' commentd your ' . $commentableClass)
+            ->subject($this->comment->user->first_name . ' ' . $this->comment->user->last_name . ' commented your ' . $commentableClass)
             ->greeting('Hello!')
             ->line('We just want to let you know that ' . $this->comment->user->first_name . ' ' . $this->comment->user->last_name . ' commented on your ' . $commentableClass)
             ->action('Read in Viender', $url)
@@ -72,9 +81,8 @@ class CommentableCommentedNotification extends Notification implements ShouldQue
     public function toArray($notifiable)
     {
         return [
-            'commentable_type'    => $this->comment->commentable_type,
-            'commentable_id'      => $this->comment->commentable_id,
-            'date'                => $this->comment->created_at,
+            'commentable_type'  => $this->comment->commentable_type,
+            'commentable_id'    => $this->comment->commentable_id,
         ];
     }
 }

@@ -67,8 +67,6 @@ class QuestionAnsweredNotification extends Notification implements ShouldQueue
     {
         return [
             'answer_id'         => $this->answer->id,
-            'answer_url'        => route('web.viender.socialite.pages.answerShow', [$question, $this->answer->slug]),
-            'date'              => $this->upvote->created_at,
         ];
     }
 }

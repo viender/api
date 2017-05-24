@@ -63,7 +63,7 @@ class AnswerCommentsController extends ApiController
     {
         $comment = $this->comments->createByUser(\Auth::user()->id, $answer, $request->all());
 
-        event(new CommentableCommented($answer));
+        event(new CommentableCommented($comment));
 
         return $this->respond(new Item($comment, new CommentTransformer));
     }

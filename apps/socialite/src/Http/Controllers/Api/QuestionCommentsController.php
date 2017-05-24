@@ -2,10 +2,11 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Models\Comment;
-use Viender\Socialite\Models\Question;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use Viender\Socialite\Models\Comment;
+use Viender\Socialite\Models\Question;
+use Viender\Socialite\Events\CommentableCommented;
 use Viender\Socialite\Repositories\CommentsRepository;
 use Viender\Socialite\Transformers\CommentTransformer;
 
@@ -19,7 +20,7 @@ class QuestionCommentsController extends ApiController
         $this->comments = $comments;
     }
 
-    /** 
+    /**
      * @api {get} /questions/:slug/comments Get Question Comments
      * @apiName QuestionCommentsIndex
      * @apiGroup QuestionGroup
@@ -27,9 +28,9 @@ class QuestionCommentsController extends ApiController
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
-     * 
+     *
      * @apiUse CommentIndexSuccess
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Question $question)
@@ -47,17 +48,19 @@ class QuestionCommentsController extends ApiController
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
-     * 
+     *
      * @apiUse CommentRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Question $question)
     {
         $comment = $this->comments->createByUser(\Auth::user()->id, $question, $request->all());
+
+        event(new CommentableCommented($comment));
 
         return $this->respond(new Item($comment, new CommentTransformer));
     }
@@ -74,7 +77,7 @@ class QuestionCommentsController extends ApiController
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
      * @apiUse CommentShowSuccess
-     * 
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -99,7 +102,7 @@ class QuestionCommentsController extends ApiController
      * @apiUse CommentRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -125,14 +128,14 @@ class QuestionCommentsController extends ApiController
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Question $question, $comment)
     {
         $comment = $question->comments()->findOrFail($comment);
-        
+
         $comment->delete();
 
         return $this->respondDeleted();
