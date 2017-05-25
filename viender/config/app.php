@@ -172,6 +172,7 @@ return [
         Jenssegers\Agent\AgentServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
         ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
+        Morrislaptop\LaravelQueueClear\LaravelQueueClearServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -194,6 +195,7 @@ return [
         Viender\Campaign\Init::class,
         Viender\Role\Init::class,
         Viender\Imaginary\Init::class,
+        Viender\Notification\Init::class,
     ],
 
     /*

@@ -1,6 +1,6 @@
 <?php
 
-namespace Viender\XXXTemplateXXX;
+namespace Viender\Notification;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +15,7 @@ class Init extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
-        $this->loadViewsFrom(__DIR__.'/../resources/pages/example-page/views', 'viender.xxxtemplatexxx.example-page');
+        $this->loadViewsFrom(__DIR__.'/../resources/pages/notification/views', 'viender.notification.notification');
     }
 
     /**

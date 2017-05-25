@@ -17,7 +17,8 @@
         "jenssegers/agent": "^2.5",
         "laravel/scout": "^3.0",
         "tamayo/laravel-scout-elastic": "^3.0",
-        "league/flysystem-aws-s3-v3": "^1.0"
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "morrislaptop/laravel-queue-clear": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -45,7 +46,8 @@
             "Viender\\Sitemap\\": "apps/sitemap/src/",
             "Viender\\Campaign\\": "apps/campaign/src/",
             "Viender\\Role\\": "apps/role/src/",
-            "Viender\\Imaginary\\": "apps/imaginary/src/"
+            "Viender\\Imaginary\\": "apps/imaginary/src/",
+            "Viender\\Notification\\": "apps/notification/src/"
         }
     },
     "autoload-dev": {

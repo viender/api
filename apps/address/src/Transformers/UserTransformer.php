@@ -19,6 +19,7 @@ class UserTransformer extends Transformer
     {
         return [
             'id'            => (int) $user->id,
+            'type'          => 'user',
             'login'         => $user->username,
             'name'          => $user->first_name . ' ' . $user->last_name,
             'first_name'    => $user->first_name,
@@ -49,10 +50,6 @@ class UserTransformer extends Transformer
                     'rel' => 'avatar_large',
                     'url' => Storage::url($user->avatar_large_url),
                 ],
-                [
-                    'rel' => 'notifications',
-                    'url' => url('/users') . '/' . $user->username . '/notifications',
-                ]
             ],
         ];
     }

@@ -11,7 +11,7 @@ window.url = function url(path) {
     }
 
     return window.location.origin + '/' + path;
-}
+};
 
 /**
  * Helper function to get full path of an api url
@@ -25,15 +25,17 @@ window.api = function api(path) {
     }
 
     return treasure.env.api_url + '/' + path;
-}
+};
 
 window.getUrl = function getUrl(rel, obj) {
     if (! obj) return '';
 
-	return obj.links.filter(function(link) {
+	const result = obj.links.filter(function(link) {
 		return link.rel == rel;
-	})[0].url;
-}
+	})[0];
+
+    return result ? result.url : window.location.origin;
+};
 
 /**
  * Helper function to clean host path from url
@@ -44,11 +46,11 @@ window.getUrl = function getUrl(rel, obj) {
 
 window.relativeUrl = function url(path) {
     return path.replace(window.location.origin, '');
-}
+};
 
 export default {
     url: url,
     api: api,
     getUrl: getUrl,
     relativeUrl: relativeUrl,
-}
+};

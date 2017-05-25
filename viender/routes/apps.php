@@ -16,3 +16,4 @@ Viender\Sitemap\Sitemap::routes();
 Viender\Campaign\Campaign::routes();
 Viender\Role\Role::routes();
 Viender\Imaginary\Imaginary::routes();
+Viender\Notification\Notification::routes();

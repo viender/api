@@ -3,14 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @if(!\Agent::isDesktop())
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    @endif
     <meta name="theme-color" content="#f5f5f5">
     <meta name="mobile-web-app-capable" content="yes">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $meta_title ?? config('app.name', 'Laravel') }}</title>
 
     @if(isset($_GET['debug_console']) ? $_GET['debug_console'] === '1' : false)
         <script src="//cdn.jsdelivr.net/eruda/1.2.2/eruda.min.js"></script>

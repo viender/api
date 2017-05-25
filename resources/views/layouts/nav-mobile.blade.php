@@ -47,8 +47,8 @@
                             id="notification-menu"
                             @click="$store.commit('navigation/SET_ACTIVE_MENU', {activeMenu: 3})"
                             :class="$store.state.navigation.activeMenu === 3 ? 'active' : ''"
-                            class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.socialite.pages.answer' ? 'active' : '' }}"
-                            href={{ route('web.viender.socialite.pages.answer') }}>
+                            class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.notification.notification.index' ? 'active' : '' }}"
+                            href={{ route('web.viender.notification.notification.index') }}>
                             <i class="fa fa-bell" aria-hidden="true"></i>
                         </a>
                     </div>

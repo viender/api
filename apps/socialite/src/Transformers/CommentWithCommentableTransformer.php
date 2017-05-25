@@ -2,8 +2,10 @@
 
 namespace Viender\Socialite\Transformers;
 
-use Viender\Socialite\Models\Comment;
 use Illuminate\Support\Collection;
+use Viender\Socialite\Models\Answer;
+use Viender\Socialite\Models\Comment;
+use Viender\Socialite\Models\Question;
 use Viender\Socialite\Repositories\CommentsRepository;
 use Viender\Address\Transformers\Traits\UserIncludable;
 use Viender\Socialite\Transformers\Traits\CommentableIncludable;
@@ -59,6 +61,10 @@ class CommentWithCommentableTransformer extends Transformer
                     'url' => route('api.viender.socialite.comments.show', $comment->id),
                 ],
                 [
+                    'rel' => 'self_html',
+                    'url' => $this->getSelfHtmlUrl($comment),
+                ],
+                [
                     'rel' => 'comments',
                     'url' => route('api.viender.socialite.comments.comments.index', $comment->id),
                 ],
@@ -72,5 +78,43 @@ class CommentWithCommentableTransformer extends Transformer
                 ],
             ],
         ];
+    }
+
+    public function getSelfHtmlUrl($comment)
+    {
+        $url = url('/');
+
+        switch ($comment->commentable_type) {
+            case Question::class:
+                $url = route('web.viender.socialite.pages.questionShow', $comment->commentable);
+                break;
+
+            case Answer::class:
+                $url = route('web.viender.socialite.pages.answerShow', [$comment->commentable->question, $comment->commentable->slug]);
+                break;
+
+            case Comment::class:
+                $comment = $comment->commentable;
+
+                switch ($comment->commentable_type) {
+                    case Question::class:
+                        $url = route('web.viender.socialite.pages.questionShow', $comment->commentable);
+                        break;
+                    case Answer::class:
+                        $url = route('web.viender.socialite.pages.answerShow', [$comment->commentable->question, $comment->commentable->slug]);
+                        break;
+                    case Comment::class:
+                        break;
+                    default:
+                        break;
+                }
+
+                break;
+
+            default:
+                break;
+        }
+
+        return $url;
     }
 }
