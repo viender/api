@@ -46,6 +46,7 @@
                         @if(\Auth::user())
                             @if(Route::currentRouteName() !== 'web.viender.notification.notification.index' && \Auth::user()->notifications()->count() > 0)
                                 <div
+                                    onclick={{ 'window.location.href=' . '"' . route('web.viender.notification.notification.index') . '"' }}
                                     class="notification-count"
                                     v-html="$store.state.navigation.notificationCount"
                                     v-cloak="true"
