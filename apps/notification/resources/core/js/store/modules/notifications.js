@@ -12,6 +12,7 @@ export default {
         page: 1,
         totalPages: 2,
         readNotifs: null,
+        notificationCount: 0,
     },
 
     mutations: {
@@ -45,6 +46,10 @@ export default {
 
         [types.SET_READ_NOTIFS](state, {notifications}) {
             state.readNotifs = notifications;
+        },
+
+        [types.SET_NOTIFICATION_COUNT](state, {count}) {
+            state.notificationCount = count;
         },
     },
 
@@ -84,6 +89,7 @@ export default {
             })
             .then((response) => {
                 commit(types.UPDATE_REQUESTING_READ_ALL, {requesting: false});
+                commit(types.SET_NOTIFICATION_COUNT, {count: 0});
 
                 state.notifications.forEach((notification) => {
                     notification.read_at = true;
@@ -92,6 +98,19 @@ export default {
             .catch((error) => {
                 commit(types.UPDATE_REQUESTING_READ_ALL, {requesting: false});
                 console.log(error);
+            });
+        },
+
+        getNotificationCount({state, commit, dispatch}) {
+            return new Promise((resolve, reject) => {
+                Vue.prototype.$viender.getNotificationCount()
+                .then((data) => {
+                    commit(types.SET_NOTIFICATION_COUNT, {count: data.count});
+                    resolve(data);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
             });
         },
 
