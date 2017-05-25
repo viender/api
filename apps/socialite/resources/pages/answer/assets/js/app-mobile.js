@@ -26,6 +26,11 @@ Vue.component('more-menu', require('viender_socialite/core/js/components/more-me
 
 const app = new Vue({
     el: '#app',
+
     store: store,
+
+    mounted() {
+        this.$store.dispatch('navigation/getNotificationCount');
+    },
 });
 

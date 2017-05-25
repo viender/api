@@ -72,5 +72,27 @@ h1 {
 }
 
 #app {
-    margin-bottom: 51px;
+    margin-bottom: 40px;
+}
+
+main {
+    padding-top: 10px;
+}
+
+.notification-count {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: red;
+    border-radius: 50%;
+    line-height: 170%;
+    color: #fff;
+    font-size: 11px;
+    margin: auto;
+    left: 50%;
+    top: 7px;
+}
+
+.notification-menu-button {
+    position: relative;
 }

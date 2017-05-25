@@ -5037,6 +5037,10 @@ tiny-cookie@^1.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tiny-cookie/-/tiny-cookie-1.0.1.tgz#753786079c642a3c3d0b2accad600f8de119ac2a"
 
+tinymce@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-4.6.2.tgz#1f74288a6647371c4395a20f102b8194ebe77174"
+
 to-array@0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/to-array/-/to-array-0.1.4.tgz#17e6c11f73dd4f3d74cda7a4ff3238e9ad9bf890"

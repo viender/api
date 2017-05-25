@@ -42,7 +42,16 @@
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
                     </div>
-                    <div class="col s3">
+                    <div class="notification-menu-button col s3">
+                        @if(\Auth::user())
+                            @if(Route::currentRouteName() !== 'web.viender.notification.notification.index' && \Auth::user()->notifications()->count() > 0)
+                                <div
+                                    class="notification-count"
+                                    v-html="$store.state.navigation.notificationCount"
+                                    v-cloak="true"
+                                    v-if="$store.state.navigation.showNotificationCount && $store.state.navigation.notificationCount"></div>
+                            @endif
+                        @endif
                         <a
                             id="notification-menu"
                             @click="$store.commit('navigation/SET_ACTIVE_MENU', {activeMenu: 3})"

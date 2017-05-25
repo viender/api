@@ -52,6 +52,12 @@ class NotificationTransformer extends Transformer
             'type'          => $notification->type,
             'created_at'    => $notification->created_at,
             'read_at'       => $notification->read_at,
+            'links'   => [
+                [
+                    'rel' => 'self',
+                    'url' => route('api.viender.notification.notifications.read', $notification),
+                ],
+            ],
         ];
 
         return $this->serializeNotification($notification, $transform);

@@ -9,6 +9,7 @@ use Viender\Socialite\Models\Answer;
 use Viender\Socialite\Models\Upvote;
 use Illuminate\Support\Facades\Storage;
 use Viender\Socialite\Events\UpvotableUpvoted;
+use Illuminate\Notifications\DatabaseNotification;
 use Viender\Socialite\Repositories\UpvotesRepository;
 use Viender\Socialite\Transformers\UpvoteTransformer;
 use Viender\Notification\Transformers\NotificationTransformer;
@@ -40,116 +41,40 @@ class NotificationsController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->input('count_only')) {
+            $user = \Auth::user();
+
+            $notificationCount = $user->notifications()->where('read_at', '=', null)->count();
+
+            return response()->json([
+                'count' => $notificationCount,
+            ]);
+        }
+
         $paginator = \Auth::user()->notifications()->latest('created_at')->paginate();
 
         return $this->respondWithPagination($paginator, new NotificationTransformer);
     }
 
-    /**
-     * @api {post} /answers/:id/upvotes Create Answer Upvote
-     * @apiName AnswerUpvotesStore
-     * @apiGroup AnswerGroup
-     * @apiVersion 1.0.0
-     * @apiDescription Create a new Addresses
-     *
-     * @apiUse AuthApiHeader
-     *
-     * @apiUse UpvoteRequestBodyParam
-     *
-     * @apiUse MessageResponseSuccess
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Answer $answer)
+    public function readAll(Request $request)
     {
-        if($upvote = $this->upvotes->toggle($answer)){
-            event(new UpvotableUpvoted($upvote));
+        if (!\Auth::user()) abort(403);
 
-            // If we don't want to use Illuminate\Foundation, use this to fire an event.
-            // Container::getInstance()->make('events')->fire(new UpvotableUpvoted($upvote));
-
-            return $this->respondCreated('Upvoted');
+        foreach (\Auth::user()->notifications()->get() as $notification) {
+            $notification->markAsRead();
         }
 
-        return $this->respondDeleted('Downvoted');
+        return response()->json(['success' => true]);
     }
 
-    /**
-     * @api {get} /answers/:id/upvotes/:id Get Answer Upvote
-     * @apiName AnswerUpvotesShow
-     * @apiGroup AnswerGroup
-     * @apiVersion 1.0.0
-     * @apiDescription Get an Addresses object
-     *
-     * @apiHeader {String} Content-Type Content-Type
-     *
-     * @apiParam (Path Parameters) {Number} id Addresses unique ID
-     *
-     * @apiUse UpvoteShowSuccess
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Answer $answer, $upvotes)
+    public function read(Request $request, DatabaseNotification $notification)
     {
-        $upvotes = $answer->upvotes()->findOrFail($upvotes);
+        if (\Auth::user()->id !== $notification->notifiable_id) abort(403);
 
-        return $this->respond(new Item($upvotes, new UpvoteTransformer));
-    }
+        $notification->markAsRead();
 
-    /**
-     * @api {put} /answers/:id/upvotes/:id Update Answer Upvote
-     * @apiName AnswerUpvotesUpdate
-     * @apiGroup AnswerGroup
-     * @apiVersion 1.0.0
-     * @apiDescription Update an Addresses
-     *
-     * @apiUse AuthApiHeader
-     *
-     * @apiParam (Path Parameters) {Number} id Addresses unique ID
-     *
-     * @apiUse UpvoteRequestBodyParam
-     *
-     * @apiUse MessageResponseSuccess
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Answer $answer, $upvotes)
-    {
-        $upvotes = $answer->upvotes()->findOrFail($upvotes);
-
-        $upvotes->update($request->all());
-
-        return $this->respondUpdated();
-    }
-
-    /**
-     * @api {delete} /answers/:id/upvotes/:id Delete Answer Upvote
-     * @apiName AnswerUpvotesDelete
-     * @apiGroup AnswerGroup
-     * @apiVersion 1.0.0
-     * @apiDescription Delete an Addresses
-     *
-     * @apiUse AuthApiHeader
-     *
-     * @apiParam (Path Parameters) {Number} id Addresses unique ID
-     *
-     * @apiUse MessageResponseSuccess
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Answer $answer, $upvotes)
-    {
-        $upvotes = $answer->upvotes()->findOrFail($upvotes);
-
-        $upvotes->delete();
-
-        return $this->respondDeleted();
+        return response()->json(['success' => true]);
     }
 }

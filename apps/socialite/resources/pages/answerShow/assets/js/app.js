@@ -23,4 +23,8 @@ const feed = new Vue({
     el: '#app',
 
     store: store,
+
+    mounted() {
+        this.$store.dispatch('navigation/getNotificationCount');
+    },
 });

@@ -48,6 +48,7 @@ const feed = new Vue({
     mixins: [changeableMenuMixin],
 
     mounted() {
+        this.$store.dispatch('navigation/getNotificationCount');
         this.initTab(this.$refs.profileNav, 'profileNavigation');
-    }
+    },
 });

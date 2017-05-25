@@ -112,18 +112,23 @@ $navbar-height: 45px;
 	}
 
 	&-mobile {
-		height: 56px;
+		height: 44px;
+        line-height: 44px;
 		top: 0;
 		color: #657786;
 
 		.logo {
 			height: 3.64rem;
 
+            h1 {
+                height: 44px;
+            }
+
 			a {
 				color: #657786;
 			    font-size: 22px;
 			    font-weight: bold;
-			    line-height: 250%;
+			    line-height: 44px;
 			    vertical-align: top;
 			}
 		}
@@ -137,6 +142,7 @@ $navbar-height: 45px;
 		}
 
 		&-header {
+            height: 44px;
 			background-color: #fff;
 			text-align: center;
 
@@ -154,12 +160,14 @@ $navbar-height: 45px;
 		&-menus {
 			@extend .grey, .lighten-3;
 			text-align: center;
-			line-height: 364%;
+			line-height: 44px;
 			position: fixed;
 			width: 100%;
 			bottom: 0;
 			margin-bottom: -1px !important;
 			border-top: solid 1px #ddd;
+            height: 40px;
+            line-height: 40px;
 
             &-button {
                 &.active {

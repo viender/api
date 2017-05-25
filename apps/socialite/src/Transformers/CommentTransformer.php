@@ -2,8 +2,10 @@
 
 namespace Viender\Socialite\Transformers;
 
-use Viender\Socialite\Models\Comment;
 use Illuminate\Support\Collection;
+use Viender\Socialite\Models\Answer;
+use Viender\Socialite\Models\Comment;
+use Viender\Socialite\Models\Question;
 use Viender\Socialite\Repositories\CommentsRepository;
 use Viender\Address\Transformers\Traits\UserIncludable;
 use Viender\Socialite\Transformers\Traits\CommentableIncludable;
@@ -38,6 +40,7 @@ class CommentTransformer extends Transformer
         return [
             'id'                => (int) $comment->id,
             'type'              => 'comment',
+            'question_title'    => $this->getQuestionTitle($comment),
             'body'              => $comment->body,
             'upvote_count'      => $comment->upvotes()->count(),
             'comment_count'     => $comment->comments()->count(),
@@ -63,5 +66,30 @@ class CommentTransformer extends Transformer
                 ],
             ],
         ];
+    }
+
+    public function getQuestionTitle($comment)
+    {
+        $commentable = $comment->commentable;
+        $commentableClass = get_class($commentable);
+
+        while ($commentableClass !== Question::class) {
+            switch ($commentableClass) {
+                case Answer::class:
+                    $commentable = $commentable->question;
+                    break;
+
+                case Comment::class:
+                    $commentable = $commentable->commentable;
+                    break;
+
+                default:
+                    break;
+            }
+
+            $commentableClass = get_class($commentable);
+        }
+
+        return $commentableClass === Question::class ? $commentable->title : null;
     }
 }

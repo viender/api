@@ -20,5 +20,5 @@ Vue.component('notification-list', require('viender_notification/core/js/compone
 const feed = new Vue({
     el: '#app',
 
-    store: store
+    store: store,
 });

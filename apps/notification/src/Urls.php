@@ -54,7 +54,11 @@ class Urls
 
         $this->router->group(array_merge($option, ['domain' => config('viender.api_domain'), 'namespace' => 'Api', 'middleware' => 'api']), function() use ($namePrefix) {
 
-            $this->router->resource('api/notifications', 'NotificationsController', ['as' => $namePrefix,'except' => ['create', 'edit']]);
+            $this->router->get('api/notifications', 'NotificationsController@index')->name('api.viender.notification.notifications.index');
+
+            $this->router->put('api/notifications', 'NotificationsController@readAll')->name('api.viender.notification.notifications.readAll');
+
+            $this->router->put('api/notifications/{notification}', 'NotificationsController@read')->name('api.viender.notification.notifications.read');
         });
     }
 }
