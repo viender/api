@@ -22,7 +22,7 @@
                                         <a class="comment-action--item material-icons dp48" :class="comment.downvoted ? 'active' : ''" @click="downvote">thumb_down</a>
                                 </li>
                                 <li class="card-action-item" v-if="comment.commentable_type !== 'Comment'">
-                                        <a class="comment-action--item" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
+                                        <a class="comment-action--item" @click="toggleComments()">Replies <span>({{ commentCount }})</span></a>
                                 </li>
                                 <li class="card-action-item--right">
                                         <more-menu :model="comment"></more-menu>
