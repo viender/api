@@ -66,7 +66,7 @@ export default {
         },
 
         addComment(comment) {
-            this.comments.push(comment);
+            this.comments.unshift(comment);
             this.$emit('comment-posted');
         }
     }

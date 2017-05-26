@@ -42,7 +42,7 @@ class QuestionsController extends ApiController
 
         $downvoted_ids = Downvote::where([['user_id', \Auth::user()->id], ['downvotable_type', Question::class]])->pluck('downvotable_id');
 
-        $paginator = Question::whereNotIn('id', $answered_ids->merge($downvoted_ids))->orderBy('created_at', 'desc')->paginate();
+        $paginator = Question::whereNotIn('id', $answered_ids->merge($downvoted_ids))->latest('created_at')->paginate();
 
         return $this->respondWithPagination($paginator, new QuestionTransformer);
     }

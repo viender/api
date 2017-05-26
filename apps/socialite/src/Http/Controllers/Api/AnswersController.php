@@ -20,7 +20,7 @@ class AnswersController extends ApiController
         $this->answers = $answers;
     }
 
-    /** 
+    /**
      * @api {get} /answers Get Answers
      * @apiName AnswersIndex
      * @apiGroup AnswerGroup
@@ -28,14 +28,14 @@ class AnswersController extends ApiController
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
-     * 
+     *
      * @apiUse AnswerIndexSuccess
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $paginator = Answer::orderBy('created_at', 'desc')->paginate();
+        $paginator = Answer::latest('created_at')->paginate();
         return $this->respondWithPagination($paginator, new AnswerPreviewTransformer($this->answers));
     }
 
@@ -47,11 +47,11 @@ class AnswersController extends ApiController
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
-     * 
+     *
      * @apiUse AnswerRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -72,7 +72,7 @@ class AnswersController extends ApiController
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
      * @apiUse AnswerShowSuccess
-     * 
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -95,7 +95,7 @@ class AnswersController extends ApiController
      * @apiUse AnswerRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -117,7 +117,7 @@ class AnswersController extends ApiController
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

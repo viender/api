@@ -18,7 +18,7 @@ class UserAnswersController extends ApiController
         $this->answers = $answers;
     }
 
-    /** 
+    /**
      * @api {get} /users/:username/answers Get User Answer
      * @apiName UserAnswersIndex
      * @apiGroup UserGroup
@@ -26,14 +26,14 @@ class UserAnswersController extends ApiController
      * @apiDescription Get a page of Addresses
      *
      * @apiHeader {String} Content-Type Content-Type
-     * 
+     *
      * @apiUse AnswerIndexSuccess
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(User $user)
     {
-        $paginator = $user->answers()->paginate();
+        $paginator = $user->answers()->latest('created_at')->paginate();
 
         return $this->respondWithPagination($paginator, new AnswerPreviewTransformer($this->answers));
     }
@@ -46,11 +46,11 @@ class UserAnswersController extends ApiController
      * @apiDescription Create a new Addresses
      *
      * @apiUse AuthApiHeader
-     * 
+     *
      * @apiUse AnswerRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -73,7 +73,7 @@ class UserAnswersController extends ApiController
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
      * @apiUse AnswerShowSuccess
-     * 
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -98,7 +98,7 @@ class UserAnswersController extends ApiController
      * @apiUse AnswerRequestBodyParam
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -124,14 +124,14 @@ class UserAnswersController extends ApiController
      * @apiParam (Path Parameters) {Number} id Addresses unique ID
      *
      * @apiUse MessageResponseSuccess
-     * 
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user, $answer)
     {
         $answer = $user->answers()->findOrFail($answer);
-        
+
         $answer->delete();
 
         return $this->respondDeleted();

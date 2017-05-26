@@ -35,7 +35,7 @@ class AnswerCommentsController extends ApiController
      */
     public function index(Answer $answer)
     {
-        $paginator = $answer->comments()->orderBy('created_at', 'desc')->paginate();
+        $paginator = $answer->comments()->latest('created_at')->paginate();
 
         return $this->respondWithPagination($paginator, new CommentTransformer);
     }
