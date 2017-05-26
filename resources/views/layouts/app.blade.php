@@ -48,7 +48,7 @@
         var OneSignal = window.OneSignal || [];
         OneSignal.push(["init", {
             appId: "8a0de83d-a36e-443d-8a20-1d9c9811e068",
-            autoRegister: false,
+            autoRegister: true,
             notifyButton: {
                 enable: true /* Set to false to hide */
             },
