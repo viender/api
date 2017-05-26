@@ -43,7 +43,7 @@
         !!};
     </script>
 
-    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+    {{-- <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
     <script>
         var OneSignal = window.OneSignal || [];
         OneSignal.push(["init", {
@@ -54,7 +54,7 @@
             },
             safari_web_id: 'web.onesignal.auto.2cee7bb2-7604-4e25-b1d2-cbd521c730a5',
         }]);
-    </script>
+    </script> --}}
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" sizes="128x128" href="/img/icons/launcher-icon-2x.png">
 
