@@ -38,7 +38,7 @@ class QuestionsController extends ApiController
      */
     public function index()
     {
-        $answered_ids = Answer::where('user_id', \Auth::user()->id)->pluck('question_id');
+        $answered_ids = Answer::withTrashed()->where('user_id', \Auth::user()->id)->pluck('question_id');
 
         $downvoted_ids = Downvote::where([['user_id', \Auth::user()->id], ['downvotable_type', Question::class]])->pluck('downvotable_id');
 
