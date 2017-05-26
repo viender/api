@@ -35,7 +35,7 @@ class QuestionCommentsController extends ApiController
      */
     public function index(Question $question)
     {
-        $paginator = $question->comments()->paginate();
+        $paginator = $question->comments()->latest('created_at')->paginate();
 
         return $this->respondWithPagination($paginator, new CommentTransformer);
     }

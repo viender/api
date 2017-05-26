@@ -34,7 +34,7 @@ class CommentCommentsController extends ApiController
      */
     public function index(Comment $commentable)
     {
-        $paginator = $commentable->comments()->paginate();
+        $paginator = $commentable->comments()->orderBy('created_at', 'asc')->paginate();
 
         return $this->respondWithPagination($paginator, new CommentTransformer);
     }

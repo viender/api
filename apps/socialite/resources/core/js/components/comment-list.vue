@@ -66,7 +66,12 @@ export default {
         },
 
         addComment(comment) {
-            this.comments.unshift(comment);
+            if(comment.commentable_type === 'Comment') {
+                this.comments.push(comment);
+            } else {
+                this.comments.unshift(comment);
+            }
+
             this.$emit('comment-posted');
         },
     },

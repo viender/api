@@ -40,6 +40,7 @@ class CommentTransformer extends Transformer
         return [
             'id'                => (int) $comment->id,
             'type'              => 'comment',
+            'commentable_type'  => explode('\\', $comment->commentable_type)[count(explode('\\', $comment->commentable_type)) - 1],
             'question_title'    => $this->getQuestionTitle($comment),
             'body'              => $comment->body,
             'upvote_count'      => $comment->upvotes()->count(),

@@ -21,14 +21,14 @@
                                 <li class="card-action-item">
                                         <a class="comment-action--item material-icons dp48" :class="comment.downvoted ? 'active' : ''" @click="downvote">thumb_down</a>
                                 </li>
-                                <li class="card-action-item">
+                                <li class="card-action-item" v-if="comment.commentable_type !== 'Comment'">
                                         <a class="comment-action--item" @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
                                 </li>
                                 <li class="card-action-item--right">
                                         <more-menu :model="comment"></more-menu>
                                 </li>
                         </ul>
-                    <comment-list :comments-url="getUrl('comments', comment)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
+                    <comment-list :comments-url="getUrl('comments', comment)" @comment-posted="incrementCommentCount()" v-if="showComments && comment.commentable_type !== 'Comment'"></comment-list>
                 </div>
         </div>
 </template>
@@ -116,7 +116,7 @@ export default {
             this.ga('toggle_comments', 'Comment Toggle Comments');
         },
 
-        updateCommentCount() {
+        incrementCommentCount() {
             this.commentCount++;
         },
 
