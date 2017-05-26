@@ -9,22 +9,22 @@
                 <li v-for="comment in comments">
                     <comment :comment="comment"></comment>
                 </li>
-        	</ul>
+            </ul>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-	props: ['commentsUrl'],
+    props: ['commentsUrl'],
 
-	data() {
-		return {
-			comments: [],
-			requesting: false,
-			page: 1
-		}
-	},
+    data() {
+        return {
+            comments: [],
+            requesting: false,
+            page: 1,
+        };
+    },
 
     mounted() {
         this.fetchData();
@@ -42,33 +42,33 @@ export default {
 
     methods: {
         fetchData() {
-            var _this = this;
+            const self = this;
 
-        	if(_this.requesting) return;
+            if(self.requesting) return;
 
-        	_this.requesting = true;
+            self.requesting = true;
 
-            axios.get(_this.commentsUrl, {
+            axios.get(self.commentsUrl, {
                 params: {
                     with: ['owner'],
-                    page: _this.page
-                }
+                    page: self.page,
+                },
             })
-            .then(function (response) {
-                _this.comments = _this.comments.concat(response.data.data);
-                _this.page++;
-                _this.requesting = false
+            .then((response) => {
+                self.comments = self.comments.concat(response.data.data);
+                self.page++;
+                self.requesting = false;
             })
-            .catch(function (error) {
+            .catch((error) => {
                 console.log(error);
-                _this.requesting = false
+                self.requesting = false;
             });
         },
 
         addComment(comment) {
             this.comments.unshift(comment);
             this.$emit('comment-posted');
-        }
-    }
-}
+        },
+    },
+};
 </script>
