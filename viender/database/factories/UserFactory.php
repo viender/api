@@ -31,7 +31,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'avatar_large_url'      => 'public/images/profile-large.jpg',
         'avatar_original_url'   => 'public/images/profile-original.jpg',
         'username'              => $user['login']['username'],
-        'email'                 => $user['email'],
+        'email'                 => function(array $me) {
+            return 'viender_example_user_' . $me['id'] . '@gmail.com';
+        },
         'password'              => $password ?: $password = bcrypt('secret'),
         'gender'                => $user['gender'],
         'remember_token'        => $user['login']['md5'],
