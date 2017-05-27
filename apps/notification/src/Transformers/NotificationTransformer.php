@@ -103,20 +103,20 @@ class NotificationTransformer extends Transformer
     {
         switch ($notif->type) {
             case CommentableCommentedNotification::class:
-                $notif->commentable = $notif->data['commentable_type']::with('user')->where('id', $notif->data['commentable_id'])->first();
+                $notif->commentable = $notif->data['commentable_type']::with('user')->withTrashed()->where('id', $notif->data['commentable_id'])->first();
                 $this->user = $notif->commentable->user;
                 $this->notificationObject = $notif->commentable;
                 $this->notificationObjectType = $notif->data['commentable_type'];
                 break;
             case QuestionAnsweredNotification::class:
-                $notif->answer = Answer::with('user')->where('id', $notif->data['answer_id'])->first();
+                $notif->answer = Answer::with('user')->withTrashed()->where('id', $notif->data['answer_id'])->first();
                 $this->user = $notif->answer->user;
                 $this->notificationObject = $notif->answer;
                 $this->notificationObjectType = Answer::class;
 
                 break;
             case UpvotableUpvotedNotification::class:
-                $notif->upvotable = $notif->data['upvotable_type']::with('user')->where('id', $notif->data['upvotable_id'])->first();
+                $notif->upvotable = $notif->data['upvotable_type']::with('user')->withTrashed()->where('id', $notif->data['upvotable_id'])->first();
                 $this->user = $notif->upvotable->user;
                 $this->notificationObject = $notif->upvotable;
                 $this->notificationObjectType = $notif->data['upvotable_type'];
