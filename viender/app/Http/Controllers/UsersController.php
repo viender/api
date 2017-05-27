@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Viender\Imaginary\Imaginary;
@@ -57,7 +58,15 @@ class UsersController extends Controller
             ]);
         }
 
-        $user->update($request->all());
+        $input = $request->all();
+
+        if ($request->tutorial_complete_at) {
+            $date = new Carbon($request->tutorial_complete_at);
+            $input['tutorial_complete_at'] = $date->toDateTimeString();
+        }
+
+
+        $user->update($input);
 
         return redirect()->back();
     }

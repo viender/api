@@ -36,7 +36,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'avatar_url', 'avatar_medium_url', 'avatar_large_url', 'avatar_original_url', 'email', 'password', 'gender', 'bio', 'location', 'website',
+        'first_name', 'last_name', 'avatar_url', 'avatar_medium_url', 'avatar_large_url', 'avatar_original_url', 'email', 'password', 'gender', 'bio', 'location', 'website', 'tutorial_complete_at',
     ];
 
     public function fullName()

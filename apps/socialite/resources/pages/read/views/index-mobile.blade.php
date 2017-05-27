@@ -2,9 +2,7 @@
 
 @section('content')
 <div class="mobile">
-    @if(Request::input('tutorial') === '1')
-        <tutorial></tutorial>
-    @endif
+    <tutorial v-if="$viender.user ? !$viender.user.tutorial_complete_at : false"></tutorial>
 	<feed-list :feed-urls="{ answers: '{{ route('api.viender.socialite.answers.index') }}' }"></feed-list>
 	<answer-show-modal></answer-show-modal>
 </div>

@@ -39,6 +39,7 @@ export default {
             show: true,
             currentStory: null,
             answered: null,
+            tutorialComplete: null,
             stories: [
                 {
                     circleStyle: `bottom: ${-500}px;`,
@@ -51,6 +52,10 @@ export default {
                 {
                     circleStyle: `bottom: ${0}px; left: calc(${$('#answer-menu').position().left}px - 14px);`,
                     description: 'Menu Answer, disini kamu dapat melihat semua pertanyaan dari dari topic atau orang yang kamu follow. Jawab pertanyaan topik keahlianmu.',
+                },
+                {
+                    circleStyle: `bottom: ${0}px; left: calc(${$('.notification-menu-button').position().left}px + ${$('.notification-menu-button').width() / 2}px - 13px);`,
+                    description: 'Menu Notification, semua notifikasi kamu dapat dilihat disini.',
                 },
                 {
                     circleStyle: `bottom: ${0}px; left: calc(${$('#profile-menu').position().left}px - 14px);`,
@@ -68,13 +73,17 @@ export default {
         };
     },
 
-    computed: {
-        tutorialComplete() {
-            return parseInt(localStorage.getItem('viender.tutorial.complete'));
-        },
-    },
+    // computed: {
+    //     tutorialComplete() {
+    //         return parseInt(localStorage.getItem('viender.tutorial.complete'));
+    //     },
+    // },
 
     created() {
+        $(document).on('viender.user.loaded', (user) => {
+            this.tutorialComplete = user.tutorial_complete_at;
+        });
+
         if (!this.tutorialComplete) {
             $('body').css('overflow', 'hidden');
         }
@@ -102,19 +111,27 @@ export default {
         },
 
         finish() {
-            localStorage.setItem('viender.tutorial.complete', 1);
-            $('body').css('overflow', 'auto');
-            this.show = false;
+            axios.post(window.url('/profile'), {
+                _method: 'PUT',
+                tutorial_complete_at: (new Date).toGMTString(),
+            })
+            .then((response) => {
+                $('body').css('overflow', 'auto');
+                this.show = false;
 
-            if (window.ga) {
-                ga('send', {
-                    hitType: 'event',
-                    eventCategory: 'Tutorial',
-                    eventAction: 'finish',
-                    eventValue: 1,
-                    eventLabel: 'Welcome Tutorial Finish',
-                });
-            }
+                if (window.ga) {
+                    ga('send', {
+                        hitType: 'event',
+                        eventCategory: 'Tutorial',
+                        eventAction: 'finish',
+                        eventValue: 1,
+                        eventLabel: 'Welcome Tutorial Finish',
+                    });
+                }
+            })
+            .catch((e) => {
+                console.log(e);
+            });
         },
 
         isFirstStory() {

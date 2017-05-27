@@ -50,7 +50,7 @@ export default {
                     treasure.user = response.data;
                     Vue.prototype.$viender.user = response.data;
                     document.dispatchEvent(userFetched);
-                    $(document).trigger('viender.user.loaded');
+                    $(document).trigger('viender.user.loaded', response.data);
 
                     if ('serviceWorker' in navigator) {
                         window.addEventListener('load', () => {

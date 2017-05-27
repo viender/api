@@ -54,7 +54,7 @@
                             @endif
                         @endif
                         <a
-                            id="notification-menu"
+                            id="notifications-menu"
                             @click="$store.commit('navigation/SET_ACTIVE_MENU', {activeMenu: 3})"
                             :class="$store.state.navigation.activeMenu === 3 ? 'active' : ''"
                             class="navbar-mobile-menus-button {{ Route::currentRouteName() == 'web.viender.notification.notification.index' ? 'active' : '' }}"
