@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Viender\Utilities\Text;
 
 /*
@@ -32,7 +33,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'avatar_original_url'   => 'public/images/profile-original.jpg',
         'username'              => $user['login']['username'],
         'email'                 => function(array $me) {
-            return 'viender_example_user_' . $me['id'] . '@gmail.com';
+            return 'example_user_' . sha1(Carbon::now()) . rand(0, 9999) . '@gmail.com';
         },
         'password'              => $password ?: $password = bcrypt('secret'),
         'gender'                => $user['gender'],
