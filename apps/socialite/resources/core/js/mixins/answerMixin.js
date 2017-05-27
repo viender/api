@@ -58,6 +58,15 @@ export default {
             this.answer.comment_count += 1;
         },
 
+        restore() {
+            const self = this;
+
+            self.answer.delete()
+            .then(() => {
+                self.answer.deleted_at = null;
+            });
+        },
+
         ga(eventAction, eventLabel = '') {
             if (!window.ga) return;
 

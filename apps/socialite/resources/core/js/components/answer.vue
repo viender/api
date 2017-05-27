@@ -15,7 +15,8 @@
                     </ul>
                     <div class="answer-content" v-html="answer.body" v-if="!answer.deleted_at"></div>
                     <div class="answer-content" style="padding-bottom: 10px;" v-else>
-                        Deleted.
+                        <span>Deleted.</span>
+                        <a @click="restore()">Restore</a>
                     </div>
                 </div>
                 <div class="card-action" v-if="!answer.deleted_at">

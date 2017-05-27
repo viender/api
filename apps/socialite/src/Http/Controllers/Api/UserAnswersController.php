@@ -136,7 +136,7 @@ class UserAnswersController extends ApiController
      */
     public function destroy(User $user, $answer)
     {
-        $answer = $user->answers()->findOrFail($answer);
+        $answer = $user->answers()->withTrashed()->where('slug', $answer)->firstOrFail();
 
         if ($answer->trashed()) {
             $answer->restore();

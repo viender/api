@@ -146,7 +146,7 @@ class QuestionAnswersController extends ApiController
      */
     public function destroy(Question $question, $answer)
     {
-        $answer = $question->answers()->where('slug', $answer)->firstOrFail();
+        $answer = $question->answers()->withTrashed()->where('slug', $answer)->firstOrFail();
 
         $this->authorize('delete', $answer);
 
