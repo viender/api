@@ -135,6 +135,8 @@ class QuestionsController extends ApiController
     {
         $question = Question::withTrashed()->where('slug', $questionSlug)->firstOrFail();
 
+        $this->authorize('delete', $question);
+
         if ($question->trashed()) {
             $question->restore();
             return $this->respondUpdated();

@@ -3,8 +3,10 @@
 namespace Viender\Socialite;
 
 use Viender\Socialite\Models\Answer;
+use Viender\Socialite\Models\Comment;
 use Viender\Socialite\Models\Question;
 use Viender\Socialite\Policies\AnswerPolicies;
+use Viender\Socialite\Policies\CommentPolicies;
 use Viender\Socialite\Policies\QuestionPolicies;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -18,6 +20,7 @@ class Init extends ServiceProvider
     protected $policies = [
         Answer::class => AnswerPolicies::class,
         Question::class => QuestionPolicies::class,
+        Comment::class => CommentPolicies::class,
     ];
 
     /**

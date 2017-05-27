@@ -138,6 +138,8 @@ class UserAnswersController extends ApiController
     {
         $answer = $user->answers()->withTrashed()->where('slug', $answer)->firstOrFail();
 
+        $this->authorize('delete', $answer);
+
         if ($answer->trashed()) {
             $answer->restore();
             return $this->respondUpdated();

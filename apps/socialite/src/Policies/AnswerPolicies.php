@@ -10,7 +10,7 @@ class AnswerPolicies
 {
     use HandlesAuthorization;
 
-    public function view(User $user, Answer $topic)
+    public function view(User $user, Answer $answer)
     {
         return true;
     }
@@ -20,13 +20,13 @@ class AnswerPolicies
         return true;
     }
 
-    public function update(User $user)
+    public function update(User $user, Answer $answer)
     {
-        return $user->id === $topic->user->id;
+        return $user->id === $answer->user->id;
     }
 
-    public function delete(User $user, Answer $topic)
+    public function delete(User $user, Answer $answer)
     {
-        return $user->id === $topic->user->id;
+        return $user->id === $answer->user->id;
     }
 }
