@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="mobile">
-    <tutorial v-if="$viender.user ? !$viender.user.tutorial_complete_at : false"></tutorial>
+    <tutorial></tutorial>
 	<feed-list :feed-urls="{ answers: '{{ route('api.viender.socialite.answers.index') }}' }"></feed-list>
 	<answer-show-modal></answer-show-modal>
 </div>
