@@ -3,10 +3,13 @@
         <div class="card question-container" v-if="! (questionObj ? questionObj.downvoted : true)">
             <a :href="$viender.helpers.getUrl('self_html', questionObj)"><h2 class="card-title">{{ questionObj ? questionObj.title : '' }}</h2></a>
 
-            <p :class="expandQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" @click="toggleQuestionDetail()">
-                <span v-if="questionObj ? !questionObj.deleted_at : false">{{ questionObj ? questionObj.body : '' }}</span>
-                <span v-else>Deleted.</span>
-            </p>
+            <div v-if="questionObj ? !questionObj.deleted_at : false" :class="expandQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" @click="toggleQuestionDetail()">
+                {{ questionObj ? questionObj.body : '' }}
+            </div>
+
+            <div v-else :class="expandQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'">
+                <span>Deleted.</span>
+            </div>
 
             <div class="card-action" v-if="questionObj ? !questionObj.deleted_at : false">
                 <ul class="card-action-list">
