@@ -82,45 +82,50 @@ export default {
 
     actions: {
         fetchData({state, commit, rootState}) {
-            if(state.requesting) return;
+            return new Promise((resolve, reject) => {
+                if(state.requesting) return;
 
-            commit('updateRequesting', true);
+                commit('updateRequesting', true);
 
-            axios.get(state.feedUrls.answers, {
-                params: {
-                    with: ['owner', 'question'],
-                    page: state.page,
-                },
-            })
-            .then(function(response) {
-                state.totalPages = response.data.meta.pagination.total_pages;
-                commit('addAnswers', response.data.data);
-                commit('incrementPage');
-                commit('updateRequesting', false);
-            })
-            .catch(function(error) {
-                console.log(error);
-                commit('updateRequesting', false);
-            });
-
-            // Fetch answer if answer show page.
-            const path = window.location.pathname.split('/');
-            if (path[1] === 'question' && path[3] === 'answers' && state.answers.length === 0) {
-                const apiUrl = Vue.prototype.$viender.treasure.env.api_url;
-
-                axios.get(`${apiUrl}/questions${location.href.replace(location.origin + '/question', '')}`, {
+                axios.get(state.feedUrls.answers, {
                     params: {
                         with: ['owner', 'question'],
+                        page: state.page,
                     },
                 })
                 .then(function(response) {
-                    commit(types.SET_SHOWED_ANSWER, response.data);
-                    commit(types.SET_SHOW_ANSWER_SHOW_MODAL, true);
+                    state.totalPages = response.data.meta.pagination.total_pages;
+                    commit('addAnswers', response.data.data);
+                    commit('incrementPage');
+                    commit('updateRequesting', false);
+                    resolve(response.data);
                 })
                 .catch(function(error) {
                     console.log(error);
+                    commit('updateRequesting', false);
+                    reject(error);
                 });
-            }
+
+                // Fetch answer if answer show page.
+                const path = window.location.pathname.split('/');
+                if (path[1] === 'question' && path[3] === 'answers' && state.answers.length === 0) {
+                    const apiUrl = Vue.prototype.$viender.treasure.env.api_url;
+
+                    axios
+                    .get(`${apiUrl}/questions${location.href.replace(location.origin + '/question', '')}`, {
+                        params: {
+                            with: ['owner', 'question'],
+                        },
+                    })
+                    .then(function(response) {
+                        commit(types.SET_SHOWED_ANSWER, response.data);
+                        commit(types.SET_SHOW_ANSWER_SHOW_MODAL, true);
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+                }
+            });
         },
 
         setShowedAnswer({state, commit, rootState}, showedAnswer) {

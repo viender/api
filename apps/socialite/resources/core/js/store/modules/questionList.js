@@ -63,25 +63,29 @@ export default {
         },
 
         fetchData({state, commit, rootState}) {
-            if(state.requesting) return;
+            return new Promise((resolve, reject) => {
+                if(state.requesting) return;
 
-            commit(types.UPDATE_REQUESTING, true);
+                commit(types.UPDATE_REQUESTING, true);
 
-            axios.get(state.questionUrl, {
-                params: {
-                    with: ['owner', 'answer'],
-                    page: state.page,
-                },
-            })
-            .then((response) => {
-                state.totalPages = response.data.meta.pagination.total_pages;
-                commit(types.ADD_QUESTIONS, response.data.data);
-                commit(types.INCREMENT_PAGE);
-                commit(types.UPDATE_REQUESTING, false);
-            })
-            .catch((error) => {
-                console.log(error);
-                commit(types.UPDATE_REQUESTING, false);
+                axios.get(state.questionUrl, {
+                    params: {
+                        with: ['owner', 'answer'],
+                        page: state.page,
+                    },
+                })
+                .then((response) => {
+                    state.totalPages = response.data.meta.pagination.total_pages;
+                    commit(types.ADD_QUESTIONS, response.data.data);
+                    commit(types.INCREMENT_PAGE);
+                    commit(types.UPDATE_REQUESTING, false);
+                    resolve(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    commit(types.UPDATE_REQUESTING, false);
+                    reject(error);
+                });
             });
         },
     },

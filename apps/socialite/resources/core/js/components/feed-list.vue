@@ -89,17 +89,18 @@ export default {
 
     methods: {
         fetchData() {
-            this.$store.dispatch('feed/fetchData');
-
-            if (window.ga) {
-                ga('send', {
-                    hitType: 'event',
-                    eventCategory: 'Feed',
-                    eventAction: `page_${this.page}`,
-                    eventValue: 1,
-                    eventLabel: 'Feed Page Reach',
-                });
-            }
+            this.$store.dispatch('feed/fetchData')
+            .then(()=> {
+                if (window.ga) {
+                    ga('send', {
+                        hitType: 'event',
+                        eventCategory: 'Feed',
+                        eventAction: `page_${this.page}`,
+                        eventValue: 1,
+                        eventLabel: 'Feed Page Reach',
+                    });
+                }
+            });
         },
     },
 };

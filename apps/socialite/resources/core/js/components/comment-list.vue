@@ -56,6 +56,16 @@ export default {
                 comments.forEach((comment) => {
                     self.commentable.comments.push(new Comment(comment));
                 });
+
+                if (window.ga) {
+                    ga('send', {
+                        hitType: 'event',
+                        eventCategory: 'Comments',
+                        eventAction: `page_${this.page}`,
+                        eventValue: 1,
+                        eventLabel: 'Comment List Page Reach',
+                    });
+                }
             });
         },
     },

@@ -67,17 +67,18 @@ export default {
 
     methods: {
         fetchData() {
-            this.$store.dispatch('questionList/fetchData');
-
-            if (window.ga) {
-                ga('send', {
-                    hitType: 'event',
-                    eventCategory: 'Questions',
-                    eventAction: `page_${this.page}`,
-                    eventValue: 1,
-                    eventLabel: 'Question List Page Reach',
-                });
-            }
+            this.$store.dispatch('questionList/fetchData')
+            .then(() => {
+                if (window.ga) {
+                    ga('send', {
+                        hitType: 'event',
+                        eventCategory: 'Questions',
+                        eventAction: `page_${this.page}`,
+                        eventValue: 1,
+                        eventLabel: 'Question List Page Reach',
+                    });
+                }
+            });
         },
     },
 };
