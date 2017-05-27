@@ -17,6 +17,7 @@ export default class {
         this.requestingDownvote = false;
         this.requestingComment = false;
         this.requestingFetchComments = false;
+        this.requestingDelete = false;
         this.commentsPage = 1;
         this.commentsTotalPages = 1;
         this.comments = [];
@@ -152,6 +153,36 @@ export default class {
                 console.log(error);
                 self.requestingFetchComments = false;
                 reject(error);
+            });
+        });
+    }
+
+    /**
+     * Delete model from record
+     * @return {Promise}
+     */
+    delete() {
+        return new Promise((resolve, reject) => {
+            const self = this;
+
+            if(self.requestingDelete) return;
+
+            self.requestingDelete = true;
+
+            axios.post(self.$viender.helpers.getUrl('self', self), {
+                _method: 'delete',
+            })
+                .then((response) => {
+                    self.deleted_at = true;
+                    self.requestingDelete = false;
+                    resolve(response.data);
+                })
+                .catch((error) => {
+                    if(error.response.status == 401) {
+                        document.location = url('login');
+                    }
+                    self.requestingDelete = false;
+                    reject(error);
             });
         });
     }

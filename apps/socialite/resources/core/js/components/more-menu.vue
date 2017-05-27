@@ -51,25 +51,11 @@ export default {
         deleteModel() {
             const self = this;
 
-            if(self.requestingDestroy) return;
-
-            self.requestingDestroy = true;
-
-            axios.post(self.$viender.helpers.getUrl('self', self.model), {
-                _method: 'delete',
-            })
-                .then(function(response) {
-                    self.model.deleted_at = true;
-                    if (typeof self.$parent.showComments !== 'undefined') {
-                        self.$parent.showComments = false;
-                    }
-                    self.requestingDestroy = false;
-                })
-                .catch(function(error) {
-                    if(error.response.status == 401) {
-                        document.location = url('login');
-                    }
-                    self.requestingDestroy = false;
+            self.model.delete()
+            .then(() => {
+                if (typeof self.$parent.showComments !== 'undefined') {
+                    self.$parent.showComments = false;
+                }
             });
         },
     },

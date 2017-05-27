@@ -131,8 +131,17 @@ class QuestionsController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy($questionSlug)
     {
-        return $this->handler->destroy($question);
+        $question = Question::withTrashed()->where('slug', $questionSlug)->firstOrFail();
+
+        if ($question->trashed()) {
+            $question->restore();
+            return $this->respondUpdated();
+        }
+
+        $question->delete();
+
+        return $this->respondDeleted();
     }
 }

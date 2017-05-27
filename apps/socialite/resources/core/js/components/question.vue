@@ -7,8 +7,9 @@
                 {{ questionObj ? questionObj.body : '' }}
             </div>
 
-            <div v-else :class="expandQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'">
+            <div v-else :class="expandQuestionDetail ? 'answerCreateForm-questionDetail' : 'answerCreateForm-questionDetail shrinked'" style="padding-bottom: 10px;">
                 <span>Deleted.</span>
+                <a @click="restore()">Restore</a>
             </div>
 
             <div class="card-action" v-if="questionObj ? !questionObj.deleted_at : false">
@@ -145,6 +146,15 @@ export default {
 
         incrementCommentCount() {
             this.commentCount++;
+        },
+
+        restore() {
+            const self = this;
+
+            self.questionObj.delete()
+            .then(() => {
+                self.questionObj.deleted_at = null;
+            });
         },
 
         ga(eventAction, eventLabel = '') {
