@@ -52,6 +52,7 @@
 
 <script>
 import * as types from '../store/mutation-types';
+import Question from 'viender_socialite/core/js/models/question';
 
 export default {
     props: ['question', 'url', 'showDetail'],
@@ -90,7 +91,7 @@ export default {
                 },
             })
             .then(function(response) {
-                self.questionObj = response.data;
+                self.questionObj = new Question(response.data);
                 self.upvoteCount = response.data.upvote_count;
                 self.commentCount = response.data.comment_count;
                 self.hideStaticPreloaders();
@@ -126,27 +127,9 @@ export default {
         downvote() {
             const self = this;
 
-            if(self.requesting) return;
-
-            self.requesting = true;
-
-            axios.post(this.$viender.helpers.getUrl('downvotes', self.questionObj), {})
-                .then(function(response) {
-                    if(response.status == 201) {
-                        self.questionObj.downvoted = true;
-                    }
-                    if(response.status == 204) {
-                        self.questionObj.downvoted = false;
-                    }
-                    self.requesting = false;
-
-                    self.ga('downvote', 'Questions Downvoted');
-                })
-                .catch(function(error) {
-                    if(error.response.status == 401) {
-                        document.location = url('login');
-                    }
-                    self.requesting = false;
+            self.questionObj.downvote()
+            .then((response) => {
+                self.ga('downvote', 'Questions Downvoted');
             });
         },
 
