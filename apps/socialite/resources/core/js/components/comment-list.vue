@@ -9,6 +9,13 @@
                 <li v-for="comment in commentable.comments">
                     <comment :comment="comment"></comment>
                 </li>
+                <li class="commentList-comments-action" @click="fetchComments()" v-if="commentable.commentsPage <= commentable.commentsTotalPages">
+                    <span v-show="!commentable.requestingFetchComments">Load More Comments</span>
+                    <div class="progress" v-show="commentable.requestingFetchComments">
+                        <div class="indeterminate"></div>
+                    </div>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -23,12 +30,7 @@ export default {
     mounted() {
         const self = this;
 
-        self.commentable.fetchComments()
-        .then((comments) => {
-            comments.forEach((comment) => {
-                self.commentable.comments.push(new Comment(comment));
-            });
-        });
+        self.fetchComments();
 
         const commentTextArea = $('.commentList .materialize-textarea');
 
@@ -45,6 +47,25 @@ export default {
         emitCommentPosted(comment) {
             this.$emit('comment-posted');
         },
+
+        fetchComments() {
+            const self = this;
+
+            self.commentable.fetchComments()
+            .then((comments) => {
+                comments.forEach((comment) => {
+                    self.commentable.comments.push(new Comment(comment));
+                });
+            });
+        },
     },
 };
 </script>
+
+<style>
+    .commentList-comments-action {
+        font-weight: 600;
+        color: #039be5;
+        text-align: center;
+    }
+</style>

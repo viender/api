@@ -18,6 +18,7 @@ export default class {
         this.requestingComment = false;
         this.requestingFetchComments = false;
         this.commentsPage = 1;
+        this.commentsTotalPages = 1;
         this.comments = [];
         this.$viender = Vue.prototype.$viender;
     }
@@ -144,6 +145,7 @@ export default class {
             .then((response) => {
                 self.commentsPage++;
                 self.requestingFetchComments = false;
+                self.commentsTotalPages = response.data.meta.pagination.total_pages;
                 resolve(response.data.data);
             })
             .catch((error) => {
