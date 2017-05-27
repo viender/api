@@ -118,7 +118,7 @@ export default {
                         },
                     })
                     .then(function(response) {
-                        commit(types.SET_SHOWED_ANSWER, response.data);
+                        commit(types.SET_SHOWED_ANSWER, new Answer(response.data));
                         commit(types.SET_SHOW_ANSWER_SHOW_MODAL, true);
                     })
                     .catch(function(error) {
