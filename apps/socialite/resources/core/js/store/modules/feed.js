@@ -1,4 +1,5 @@
 import * as types from '../mutation-types';
+import Answer from 'viender_socialite/core/js/models/answer';
 
 export default {
     namespaced: true,
@@ -43,7 +44,9 @@ export default {
 
     mutations: {
         addAnswers(state, answers) {
-            state.answers = state.answers.concat(answers);
+            answers.forEach((answer) => {
+                state.answers.push(new Answer(answer));
+            });
         },
 
         setFeedUrl(state, url) {

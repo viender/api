@@ -22,7 +22,7 @@
                     <ul class="card-action-list">
                         <li class="card-action-item">
                             <span style="cursor: pointer;" @click="upvote">
-                                <span style="padding-right: 5px;">{{ upvoteCount }}</span>
+                                <span style="padding-right: 5px;">{{ answer.upvote_count }}</span>
                                 <a class="material-icons dp48" :class="answer.upvoted ? 'active' : ''">thumb_up</a>
                             </span>
                         </li>
@@ -30,7 +30,7 @@
                             <a @click="downvote" class="material-icons dp48" :class="answer.downvoted ? 'active' : ''">thumb_down</a>
                         </li>
                         <li class="card-action-item">
-                            <a @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
+                            <a @click="toggleComments()">Comments <span>({{ answer.comment_count }})</span></a>
                         </li>
                         <li class="card-action-item--right">
                             <more-menu :model="answer"></more-menu>
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <comment-list :comments-url="getUrl('comments', answer)" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
+        <comment-list :commentable="answer" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
     </div>
 </template>
 

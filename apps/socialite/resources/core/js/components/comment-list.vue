@@ -1,12 +1,12 @@
 <template>
     <div class="commentList">
         <div class="commentList-commentForm">
-            <comment-create-form :commentable-comments-url="commentsUrl" @comment-posted="addComment($event.data)"></comment-create-form>
+            <comment-create-form :commentable="commentable" @comment-posted="emitCommentPosted($event)"></comment-create-form>
         </div>
 
         <div class="commentList-comments">
             <ul class="collection u-border--none">
-                <li v-for="comment in comments">
+                <li v-for="comment in commentable.comments">
                     <comment :comment="comment"></comment>
                 </li>
             </ul>
@@ -15,19 +15,20 @@
 </template>
 
 <script>
-export default {
-    props: ['commentsUrl'],
+import Comment from 'viender_socialite/core/js/models/comment';
 
-    data() {
-        return {
-            comments: [],
-            requesting: false,
-            page: 1,
-        };
-    },
+export default {
+    props: ['commentable'],
 
     mounted() {
-        this.fetchData();
+        const self = this;
+
+        self.commentable.fetchComments()
+        .then((comments) => {
+            comments.forEach((comment) => {
+                self.commentable.comments.push(new Comment(comment));
+            });
+        });
 
         const commentTextArea = $('.commentList .materialize-textarea');
 
@@ -41,37 +42,7 @@ export default {
     },
 
     methods: {
-        fetchData() {
-            const self = this;
-
-            if(self.requesting) return;
-
-            self.requesting = true;
-
-            axios.get(self.commentsUrl, {
-                params: {
-                    with: ['owner'],
-                    page: self.page,
-                },
-            })
-            .then((response) => {
-                self.comments = self.comments.concat(response.data.data);
-                self.page++;
-                self.requesting = false;
-            })
-            .catch((error) => {
-                console.log(error);
-                self.requesting = false;
-            });
-        },
-
-        addComment(comment) {
-            if(comment.commentable_type === 'Comment') {
-                this.comments.push(comment);
-            } else {
-                this.comments.unshift(comment);
-            }
-
+        emitCommentPosted(comment) {
             this.$emit('comment-posted');
         },
     },

@@ -33,7 +33,13 @@ class UserAnswersController extends ApiController
      */
     public function index(User $user)
     {
-        $paginator = $user->answers()->latest('created_at')->paginate();
+        $paginator = null;
+
+        if (\Auth::user()->id === $user->id) {
+            $paginator = $user->answers()->withTrashed()->latest('created_at')->paginate();
+        } else {
+            $paginator = $user->answers()->latest('created_at')->paginate();
+        }
 
         return $this->respondWithPagination($paginator, new AnswerPreviewTransformer($this->answers));
     }
@@ -131,6 +137,11 @@ class UserAnswersController extends ApiController
     public function destroy(User $user, $answer)
     {
         $answer = $user->answers()->findOrFail($answer);
+
+        if ($answer->trashed()) {
+            $answer->restore();
+            return $this->respondUpdated();
+        }
 
         $answer->delete();
 

@@ -46,7 +46,7 @@ class AnswerWithQuestionTransformer extends Transformer
             'id'            => (int) $answer->id,
             'type'          => 'answer',
             'title'         => $answer->title,
-            'question_title'=> $answer->question->title,
+            'question_title'=> $answer->question ? $answer->question->title : 'Deleted Question',
             'body'          => $answer->body,
             'upvoted'       => \Auth::user() ? $answer->upvotes()->where('user_id', \Auth::user()->id)->exists() : false,
             'downvoted'       => \Auth::user() ? $answer->downvotes()->where('user_id', \Auth::user()->id)->exists() : false,

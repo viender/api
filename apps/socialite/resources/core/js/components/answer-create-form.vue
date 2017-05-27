@@ -94,7 +94,9 @@ export default {
             axios.post(this.getUrl('answers', this.question) + '?with=owner', self.content)
                 .then(function(response) {
                     if(response.status == 200) {
-                        self.$store.commit('feed/addAnswer', response.data);
+                        if (self.$store.state.feed) {
+                            self.$store.commit('feed/addAnswer', response.data);
+                        }
                         self.$emit('answer-posted', response.data);
                         self.$store.commit('editor/' + types.UPDATE_EDITOR_CONTENT, null);
                         self.$store.commit('questionList/' + types.SET_AS_ANSWERED, self.question);

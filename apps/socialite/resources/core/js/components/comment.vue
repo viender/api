@@ -14,7 +14,7 @@
                         <ul class="card-action-list">
                                 <li class="card-action-item">
                                         <span class="comment-action--item" @click="upvote">
-                                            <span>{{ upvoteCount }}</span>
+                                            <span>{{ comment.upvote_count }}</span>
                                             <a class="material-icons dp48" :class="comment.upvoted ? 'active' : ''">thumb_up</a>
                                         </span>
                                 </li>
@@ -22,13 +22,13 @@
                                         <a class="comment-action--item material-icons dp48" :class="comment.downvoted ? 'active' : ''" @click="downvote">thumb_down</a>
                                 </li>
                                 <li class="card-action-item" v-if="comment.commentable_type !== 'Comment'">
-                                        <a class="comment-action--item" @click="toggleComments()">Replies <span>({{ commentCount }})</span></a>
+                                        <a class="comment-action--item" @click="toggleComments()">Replies <span>({{ comment.comment_count }})</span></a>
                                 </li>
                                 <li class="card-action-item--right">
                                         <more-menu :model="comment"></more-menu>
                                 </li>
                         </ul>
-                    <comment-list :comments-url="getUrl('comments', comment)" @comment-posted="incrementCommentCount()" v-if="showComments && comment.commentable_type !== 'Comment'"></comment-list>
+                    <comment-list :commentable="comment" @comment-posted="incrementCommentCount()" v-if="showComments && comment.commentable_type !== 'Comment'"></comment-list>
                 </div>
         </div>
 </template>
@@ -41,9 +41,6 @@ export default {
 
     data() {
         return {
-            requesting: false,
-            upvoteCount: 0,
-            commentCount: 0,
             showComments: false,
         };
     },
@@ -57,57 +54,18 @@ export default {
         upvote() {
             const self = this;
 
-            if (self.requesting) return;
-
-            self.requesting = true;
-
-            axios.post(this.getUrl('upvotes', this.comment), {})
-            .then((response) => {
-                if (response.status == 201) {
-                    self.upvoteCount += 1;
-                    self.comment.upvoted = true;
-                    self.comment.downvoted = false;
-                }
-                if (response.status == 204) {
-                    self.upvoteCount -= 1;
-                    self.comment.upvoted = false;
-                }
-                this.ga('upvote', 'Comments Upvoted');
-                self.requesting = false;
-            })
-            .catch((error) => {
-                if (error.response.status == 401) {
-                    document.location = url('login');
-                }
-                self.requesting = false;
+            self.comment.upvote()
+            .then(() => {
+                self.ga('upvote', 'Comments Upvoted');
             });
         },
 
         downvote() {
             const self = this;
 
-            if (self.requesting) return;
-
-            self.requesting = true;
-
-            axios.post(this.getUrl('downvotes', this.comment), {})
-            .then((response) => {
-                if (response.status == 201) {
-                    if (self.comment.upvoted) self.upvoteCount -= 1;
-                    self.comment.upvoted = false;
-                    self.comment.downvoted = true;
-                }
-                if (response.status == 204) {
-                    self.comment.downvoted = false;
-                }
+            self.comment.downvote()
+            .then(() => {
                 this.ga('downvote', 'Comments Downvoted');
-                self.requesting = false;
-            })
-            .catch((error) => {
-                if (error.response.status == 401) {
-                    document.location = url('login');
-                }
-                self.requesting = false;
             });
         },
 

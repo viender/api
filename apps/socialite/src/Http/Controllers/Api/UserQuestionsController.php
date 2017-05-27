@@ -25,7 +25,13 @@ class UserQuestionsController extends ApiController
      */
     public function index(User $user)
     {
-        $paginator = $user->questions()->latest('created_at')->paginate();
+        $paginator = null;
+
+        if (\Auth::user()->id === $user->id) {
+            $paginator = $user->questions()->withTrashed()->latest('created_at')->paginate();
+        } else {
+            $paginator = $user->questions()->latest('created_at')->paginate();
+        }
 
         return $this->respondWithPagination($paginator, new QuestionTransformer);
     }
@@ -124,8 +130,12 @@ class UserQuestionsController extends ApiController
     {
         $question = $user->questions()->findOrFail($question);
 
-        $question->delete();
+        if ($question->trashed()) {
+            $question->restore();
+            return $this->respondUpdated();
+        }
 
+        $question->delete();
         return $this->respondDeleted();
     }
 }

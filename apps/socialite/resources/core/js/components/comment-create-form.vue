@@ -1,5 +1,5 @@
 <template>
-    <form method="POST" :action="commentableCommentsUrl" class="commentCreateForm">
+    <form method="POST" :action="$viender.helpers.getUrl('comments', commentable)" class="commentCreateForm">
         <div class="input-field">
             <textarea name="body" id="body" class="materialize-textarea" cols="30" rows="1" v-model="formData.body"></textarea>
             <label for="body">Comment</label>
@@ -12,8 +12,10 @@
 </template>
 
 <script>
+import Comment from 'viender_socialite/core/js/models/comment';
+
 export default {
-    props: ['commentableCommentsUrl'],
+    props: ['commentable'],
 
     data() {
         return {
@@ -30,28 +32,17 @@ export default {
 
             if(event) event.preventDefault();
 
-            if(self.requesting) return;
-
-            if( ! self.formData.body) return;
-
-            self.requesting = true;
-
-            axios.post(this.commentableCommentsUrl + '?with=owner', this.formData)
-                .then(function(response) {
-                    if(response.status == 200) {
-                        self.$emit('comment-posted', response);
-                        self.formData.body = null;
-                    }
-                    self.requesting = false;
-                })
-                .catch(function(error) {
-                    if(error.response.status == 401) {
-                        document.location = url('login');
-                    }
-                    self.requesting = false;
+            self.commentable.comment(this.formData)
+            .then((comment) => {
+                if(comment.commentable_type === 'Comment') {
+                    this.commentable.comments.push(new Comment(comment));
+                } else {
+                    this.commentable.comments.unshift(new Comment(comment));
+                }
+                self.formData.body = null;
+                self.$emit('comment-posted');
+                self.ga('create', 'Comment Create');
             });
-
-            this.ga('create', 'Comment Create');
         },
 
         ga(eventAction, eventLabel = '') {

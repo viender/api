@@ -14,19 +14,8 @@ export default {
 
     data() {
         return {
-            requesting: false,
             showComments: false,
         };
-    },
-
-    computed: {
-        upvoteCount() {
-            return this.answer ? this.answer.upvote_count : 0;
-        },
-
-        commentCount() {
-            return this.answer ? this.answer.comment_count : 0;
-        },
     },
 
     methods: {
@@ -45,58 +34,18 @@ export default {
         upvote() {
             const self = this;
 
-            if(self.requesting) return;
-
-            self.requesting = true;
-
-            axios.post(this.getUrl('upvotes', this.answer), {})
-                .then(function(response) {
-                    if(response.status == 201) {
-                        self.answer.upvote_count += 1;
-                        self.answer.upvoted = true;
-                        self.answer.downvoted = false;
-                    }
-                    if(response.status == 204) {
-                        self.answer.upvote_count -= 1;
-                        self.answer.upvoted = false;
-                    }
-                    self.ga('upvote', 'Answers Upvoted');
-                    self.requesting = false;
-                })
-                .catch(function(error) {
-                    if(error.response.status == 401) {
-                        document.location = url('login');
-                    }
-                    self.requesting = false;
+            self.answer.upvote()
+            .then((response) => {
+                self.ga('upvote', 'Answers Upvoted');
             });
         },
 
         downvote() {
             const self = this;
 
-            if(self.requesting) return;
-
-            self.requesting = true;
-
-            axios.post(this.getUrl('downvotes', this.answer), {})
-                .then(function(response) {
-                    if(response.status == 201) {
-                        if(self.answer.upvoted)
-                            self.answer.upvote_count -= 1;
-                        self.answer.upvoted = false;
-                        self.answer.downvoted = true;
-                    }
-                    if(response.status == 204) {
-                        self.answer.downvoted = false;
-                    }
-                    self.ga('downvote', 'Answers Downvoted');
-                    self.requesting = false;
-                })
-                .catch(function(error) {
-                    if(error.response.status == 401) {
-                        document.location = url('login');
-                    }
-                    self.requesting = false;
+            self.answer.downvote()
+            .then((response) => {
+                self.ga('downvote', 'Answers Downvoted');
             });
         },
 
@@ -106,7 +55,7 @@ export default {
         },
 
         incrementCommentCount() {
-            this.commentCount++;
+            this.answer.comment_count += 1;
         },
 
         ga(eventAction, eventLabel = '') {
