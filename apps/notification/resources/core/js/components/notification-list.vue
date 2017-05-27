@@ -2,6 +2,19 @@
     <div class="notificationList">
         <div class="notificationList-action" :class="actionClass" @click="handleActionClick()">{{ actionText }}</div>
         <notification-card v-for="notification in notifications" :notification="notification"></notification-card>
+        <div class="preloader preloader-wrapper small active" v-show="requesting">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -19,15 +32,26 @@ export default {
     },
 
     created() {
+        const self = this;
+
         this.$store.commit(`notifications/${types.SET_URL}`, {url: this.notificationsUrl});
         this.$store.commit(`notifications/${types.SET_READ_ALL_URL}`, {url: this.notificationsUrl});
         this.$store.dispatch('notifications/readSessionReadNotifs');
-        this.$store.dispatch('notifications/fetchNotifications');
+        this.fetchNotifications();
         this.$store.dispatch('notifications/getNotificationCount');
+
+        $(window).on('scroll', function() {
+            if($(window).scrollTop() + $(window).height() >= $(document).height() - 1000) {
+                if (self.page <= self.totalPages) {
+                    self.fetchNotifications();
+                }
+            }
+        });
     },
 
     computed: Object.assign(
         Vuex.mapState('notifications', [
+            'requesting',
             'notifications',
             'page',
             'totalPages',
@@ -66,6 +90,10 @@ export default {
                 if (this.currentIndex === 3) {
                     this.setAllAsRead();
                 }
+            },
+
+            fetchNotifications() {
+                this.$store.dispatch('notifications/fetchNotifications');
             },
         }
 

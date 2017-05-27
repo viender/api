@@ -15,7 +15,6 @@
                 </div>
             </div>
         </div>
-        <button v-show="! requesting && page < totalPages" style="width: 100%; padding-left: 0;" class="btn btn-default" @click="fetchData()">Load more</button>
     </div>
 </template>
 
@@ -63,6 +62,8 @@ export default {
     },
 
     created() {
+        const self = this;
+
         $(window).on('popstate', () => {
             const path = window.location.pathname.split('/');
             if (path[1] === 'question' && path[3] === 'answers') {
@@ -71,6 +72,14 @@ export default {
                 this.$store.commit('feed/' + types.SET_SHOW_ANSWER_SHOW_MODAL, true);
             } else {
                 this.$store.commit('feed/' + types.SET_SHOW_ANSWER_SHOW_MODAL, false);
+            }
+        });
+
+        $(window).on('scroll', function() {
+            if($(window).scrollTop() + $(window).height() >= $(document).height() - 1000) {
+                if (self.page <= self.totalPages) {
+                    self.fetchData();
+                }
             }
         });
 

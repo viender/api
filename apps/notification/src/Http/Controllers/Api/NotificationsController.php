@@ -53,7 +53,7 @@ class NotificationsController extends ApiController
             ]);
         }
 
-        $paginator = \Auth::user()->notifications()->latest('created_at')->paginate();
+        $paginator = \Auth::user()->notifications()->latest('created_at')->paginate($request->input('per_page') ?? 15);
 
         return $this->respondWithPagination($paginator, new NotificationTransformer);
     }

@@ -10,14 +10,16 @@ export default {
         url: null,
         readAllUrl: null,
         page: 1,
-        totalPages: 2,
+        totalPages: 1,
         readNotifs: null,
         notificationCount: 0,
     },
 
     mutations: {
         [types.APPEND_NOTIFICATIONS](state, {notifications}) {
-            state.notifications = notifications.concat(state.notifications);
+            notifications.forEach((notification) => {
+                state.notifications.push(notification);
+            });
         },
 
         [types.UPDATE_REQUESTING](state, {requesting}) {
@@ -63,10 +65,11 @@ export default {
                 params: {
                     with: ['owner', 'question'],
                     page: state.page,
+                    per_page: 25,
                 },
             })
             .then((response) => {
-                commit(types.UPDATE_TOTAL_PAGES, {totalPages: response.data.last_page});
+                commit(types.UPDATE_TOTAL_PAGES, {totalPages: response.data.meta.pagination.total_pages});
                 commit(types.INCREMENT_PAGE);
                 commit(types.UPDATE_REQUESTING, {requesting: false});
                 commit(types.APPEND_NOTIFICATIONS, {notifications: response.data.data});

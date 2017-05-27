@@ -14,7 +14,6 @@
                 </div>
             </div>
         </div>
-        <button style="width: 100%; padding-left: 0;" class="btn btn-default" @click="fetchData()" v-show=" ! requesting && page < totalPages">Load more</button>
         <answer-create-modal></answer-create-modal>
     </div>
 </template>
@@ -28,7 +27,7 @@ export default {
     data() {
         return {
             showModal: false,
-        }
+        };
     },
 
     computed: {
@@ -47,6 +46,18 @@ export default {
         totalPages() {
             return this.$store.state.questionList.totalPages;
         },
+    },
+
+    created() {
+        const self = this;
+
+        $(window).on('scroll', function() {
+            if($(window).scrollTop() + $(window).height() >= $(document).height() - 1000) {
+                if (self.page <= self.totalPages) {
+                    self.fetchData();
+                }
+            }
+        });
     },
 
     mounted() {
