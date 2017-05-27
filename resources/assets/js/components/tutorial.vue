@@ -39,7 +39,6 @@ export default {
             show: true,
             currentStory: null,
             answered: null,
-            tutorialComplete: null,
             stories: [
                 {
                     circleStyle: `bottom: ${-500}px;`,
@@ -73,17 +72,13 @@ export default {
         };
     },
 
-    // computed: {
-    //     tutorialComplete() {
-    //         return parseInt(localStorage.getItem('viender.tutorial.complete'));
-    //     },
-    // },
+    computed: {
+        tutorialComplete() {
+            return this.$viender.user.tutorial_complete_at;
+        },
+    },
 
     created() {
-        $(document).on('viender.user.loaded', (user) => {
-            this.tutorialComplete = user.tutorial_complete_at;
-        });
-
         if (!this.tutorialComplete) {
             $('body').css('overflow', 'hidden');
         }
