@@ -66,7 +66,6 @@ export default {
                 },
             })
             .then((response) => {
-                console.log(response);
                 commit(types.UPDATE_TOTAL_PAGES, {totalPages: response.data.last_page});
                 commit(types.INCREMENT_PAGE);
                 commit(types.UPDATE_REQUESTING, {requesting: false});
@@ -74,7 +73,6 @@ export default {
                 dispatch('applySessionReadNotifs');
             })
             .catch((error) => {
-                console.log(error);
                 commit(types.UPDATE_REQUESTING, {requesting: false});
             });
         },
@@ -97,7 +95,6 @@ export default {
             })
             .catch((error) => {
                 commit(types.UPDATE_REQUESTING_READ_ALL, {requesting: false});
-                console.log(error);
             });
         },
 
@@ -118,7 +115,6 @@ export default {
             const readNotifsString = sessionStorage.getItem('viender.readNotifs') || '{"data": []}';
             const readNotifs = JSON.parse(readNotifsString);
             commit(types.SET_READ_NOTIFS, {notifications: readNotifs.data});
-            console.log('readSessionReadNotifs');
         },
 
         applySessionReadNotifs({state, commit, rootState}) {
@@ -127,7 +123,6 @@ export default {
                     notification.read_at = true;
                 }
             });
-            console.log('applySessionReadNotifs');
         },
     },
 };
