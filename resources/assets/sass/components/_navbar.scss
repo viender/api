@@ -26,6 +26,14 @@ nav.navbar-mobile.minimize {
         height: $navbar-height;
     }
 
+    &-button {
+        height: 100%;
+
+        &.active {
+            border-bottom: solid 3px #1da1f2;
+        }
+    }
+
     &-desktop {
         min-width: 960px;
         top: 0;

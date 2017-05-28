@@ -22,7 +22,8 @@
                     {{-- <div class="navbar-mobile-menus-button col s6"><a href="{{ url('/login') }}">Login</a></div>
                     <div class="navbar-mobile-menus-button col s6"><a href="{{ url('/register') }}">Register</a></div> --}}
                 @else
-                    <div class="col s3">
+                    <div class="navbar-button col s3 {{ Route::currentRouteName() == 'web.viender.socialite.pages.read' ? 'active' : '' }}"
+                        :class="$store.state.navigation.activeMenu === 1 ? 'active' : ''">
                         <a
                             id="read-menu"
                             @click="$store.commit('navigation/SET_ACTIVE_MENU', {activeMenu: 1})"
@@ -32,7 +33,8 @@
                             <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                         </a>
                     </div>
-                    <div class="col s3">
+                    <div class="navbar-button col s3 {{ Route::currentRouteName() == 'web.viender.socialite.pages.answer' ? 'active' : '' }}"
+                        :class="$store.state.navigation.activeMenu === 2 ? 'active' : ''">
                         <a
                             id="answer-menu"
                             @click="$store.commit('navigation/SET_ACTIVE_MENU', {activeMenu: 2})"
@@ -42,7 +44,8 @@
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
                     </div>
-                    <div class="notification-menu-button col s3">
+                    <div class="navbar-button notification-menu-button col s3 {{ Route::currentRouteName() == 'web.viender.notification.notification.index' ? 'active' : '' }}"
+                        :class="$store.state.navigation.activeMenu === 3 ? 'active' : ''">
                         @if(\Auth::user())
                             @if(Route::currentRouteName() !== 'web.viender.notification.notification.index' && \Auth::user()->notifications()->count() > 0)
                                 <div
@@ -62,7 +65,8 @@
                             <i class="fa fa-bell" aria-hidden="true"></i>
                         </a>
                     </div>
-                    <div class="col s3">
+                    <div class="navbar-button col s3 {{ Route::currentRouteName() == 'web.viender.profile.pages.profile' ? 'active' : '' }}"
+                        :class="$store.state.navigation.activeMenu === 4 ? 'active' : ''">
                         <a
                             id="profile-menu"
                             @click="$store.commit('navigation/SET_ACTIVE_MENU', {activeMenu: 4})"
