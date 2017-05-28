@@ -4,6 +4,7 @@ namespace Viender\Notification\Transformers;
 
 use App\User;
 use Viender\Socialite\Models\Answer;
+use Viender\Socialite\Models\Upvote;
 use Viender\Socialite\Models\Comment;
 use Viender\Socialite\Models\Question;
 use Illuminate\Support\Facades\Storage;
@@ -103,23 +104,24 @@ class NotificationTransformer extends Transformer
     {
         switch ($notif->type) {
             case CommentableCommentedNotification::class:
-                $notif->commentable = $notif->data['commentable_type']::with('user')->withTrashed()->where('id', $notif->data['commentable_id'])->first();
-                $this->user = $notif->commentable->user;
+                $comment = Comment::with('user')->withTrashed()->find($notif->data['comment_id']);
+                $notif->commentable = $comment->commentable;
+                $this->user = $comment->user;
                 $this->notificationObject = $notif->commentable;
-                $this->notificationObjectType = $notif->data['commentable_type'];
+                $this->notificationObjectType = get_class($this->notificationObject);
                 break;
             case QuestionAnsweredNotification::class:
                 $notif->answer = Answer::with('user')->withTrashed()->where('id', $notif->data['answer_id'])->first();
                 $this->user = $notif->answer->user;
                 $this->notificationObject = $notif->answer;
                 $this->notificationObjectType = Answer::class;
-
                 break;
             case UpvotableUpvotedNotification::class:
-                $notif->upvotable = $notif->data['upvotable_type']::with('user')->withTrashed()->where('id', $notif->data['upvotable_id'])->first();
-                $this->user = $notif->upvotable->user;
+                $upvote = Upvote::with('user')->find($notif->data['upvote_id']);
+                $notif->upvotable = $upvote->upvotable;
+                $this->user = $upvote->user;
                 $this->notificationObject = $notif->upvotable;
-                $this->notificationObjectType = $notif->data['upvotable_type'];
+                $this->notificationObjectType = get_class($this->notificationObject);
                 break;
             default:
                 # code...
