@@ -39,25 +39,26 @@ export default {
             show: true,
             currentStory: null,
             answered: null,
+            user: {tutorial_complete_at: true},
             stories: [
                 {
                     circleStyle: `bottom: ${-500}px;`,
                     description: '<strong>Welcome to Viender</strong><br><br>Let\'s do a short tutorial to let you know basic features of Viender.',
                 },
                 {
-                    circleStyle: `bottom: ${0}px; left: calc(${$('#read-menu').position().left}px - 14px);`,
+                    circleStyle: `top: ${45}px; left: calc(${$('#read-menu').position().left}px - 14px);`,
                     description: 'Menu Feed, disini kamu bisa melihat semua jawaban dari topic atau orang yang kamu follow. Upvote jawaban yang kamu suka dan downvote jawaban yang tidak kamu suka agar feed kamu menjadi lebih relevan.',
                 },
                 {
-                    circleStyle: `bottom: ${0}px; left: calc(${$('#answer-menu').position().left}px - 14px);`,
+                    circleStyle: `top: ${45}px; left: calc(${$('#answer-menu').position().left}px - 14px);`,
                     description: 'Menu Answer, disini kamu dapat melihat semua pertanyaan dari dari topic atau orang yang kamu follow. Jawab pertanyaan topik keahlianmu.',
                 },
                 {
-                    circleStyle: `bottom: ${0}px; left: calc(${$('.notification-menu-button').position().left}px + ${$('.notification-menu-button').width() / 2}px - 13px);`,
+                    circleStyle: `top: ${45}px; left: calc(${$('.notification-menu-button').position().left}px + ${$('.notification-menu-button').width() / 2}px - 13px);`,
                     description: 'Menu Notification, semua notifikasi kamu dapat dilihat disini.',
                 },
                 {
-                    circleStyle: `bottom: ${0}px; left: calc(${$('#profile-menu').position().left}px - 14px);`,
+                    circleStyle: `top: ${45}px; left: calc(${$('#profile-menu').position().left}px - 14px);`,
                     description: 'Menu Profile, semua jawaban, pertanyaan, follower, dan following kamu bisa dilihat disini.',
                 },
                 {
@@ -74,7 +75,7 @@ export default {
 
     computed: {
         tutorialComplete() {
-            return this.$viender.user.tutorial_complete_at;
+            return this.user.tutorial_complete_at;
         },
     },
 
@@ -84,6 +85,11 @@ export default {
         }
 
         this.currentStory = this.stories[0];
+
+        this.$viender.helpers.fetchAuthenticatedUser()
+        .then((user) => {
+            this.user = user;
+        });
 
         if (window.ga) {
             ga('send', {

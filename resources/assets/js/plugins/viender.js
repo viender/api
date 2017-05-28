@@ -45,34 +45,38 @@ export default {
 
         Vue.prototype.$viender.helpers.fetchAuthenticatedUser = function fetchAuthenticatedUser() {
             return new Promise((resolve, reject) => {
-                axios.get(window.api('/user'), {})
-                .then((response) => {
-                    treasure.user = response.data;
-                    Vue.prototype.$viender.user = response.data;
-                    document.dispatchEvent(userFetched);
-                    $(document).trigger('viender.user.loaded', response.data);
+                if (Vue.prototype.$viender.user) {
+                    resolve(Vue.prototype.$viender.user);
+                } else {
+                    axios.get(window.api('/user'), {})
+                    .then((response) => {
+                        treasure.user = response.data;
+                        Vue.prototype.$viender.user = response.data;
+                        document.dispatchEvent(userFetched);
+                        $(document).trigger('viender.user.loaded', response.data);
 
-                    if ('serviceWorker' in navigator) {
-                        window.addEventListener('load', () => {
-                            navigator.serviceWorker.register('/sw.js');
-                        });
-                    }
-
-                    resolve(response);
-                })
-                .catch((error) => {
-                    if (error.response.status === 401) {
-                        navigator.serviceWorker.getRegistration().then((r) => {
-                            if (r) r.unregister();
-                        });
-
-                        if (guestUrls.indexOf(window.location.href) === -1) {
-                            // document.location = window.url('login');
+                        if ('serviceWorker' in navigator) {
+                            window.addEventListener('load', () => {
+                                navigator.serviceWorker.register('/sw.js');
+                            });
                         }
-                    }
 
-                    reject(error);
-                });
+                        resolve(response.data);
+                    })
+                    .catch((error) => {
+                        if (error.response.status === 401) {
+                            navigator.serviceWorker.getRegistration().then((r) => {
+                                if (r) r.unregister();
+                            });
+
+                            if (guestUrls.indexOf(window.location.href) === -1) {
+                                // document.location = window.url('login');
+                            }
+                        }
+
+                        reject(error);
+                    });
+                }
             });
         };
 
