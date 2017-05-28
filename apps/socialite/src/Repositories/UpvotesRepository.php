@@ -12,7 +12,7 @@ class UpvotesRepository extends Repository
         return 'Viender\Socialite\Models\Upvote';
     }
 
-    public function toggle(Upvotable $upvotable, $user_id = 0) 
+    public function toggle(Upvotable $upvotable, $user_id = 0)
     {
         if(! $user_id) {
             $user_id = \Auth::user()->id;
