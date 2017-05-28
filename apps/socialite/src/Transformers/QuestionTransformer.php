@@ -39,7 +39,7 @@ class QuestionTransformer extends Transformer
             'downvoted'     => \Auth::user() ? $question->downvotes()->where('user_id', \Auth::user()->id)->exists() : false,
             'upvote_count'  => $question->upvotes()->count(),
             'comment_count' => $question->comments()->count(),
-            'answered'      => \Auth::user() ? $question->answers()->where('user_id', \Auth::user()->id)->exists() : false,
+            'answered'      => \Auth::user() ? $question->answers()->withTrashed()->where('user_id', \Auth::user()->id)->exists() : false,
             'deleted_at'    => $question->deleted_at,
             'links'   => [
                 [

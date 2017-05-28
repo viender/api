@@ -130,12 +130,15 @@ class UserQuestionsController extends ApiController
     {
         $question = $user->questions()->findOrFail($question);
 
+        $this->authorize('delete', $question);
+
         if ($question->trashed()) {
             $question->restore();
             return $this->respondUpdated();
         }
 
         $question->delete();
+
         return $this->respondDeleted();
     }
 }

@@ -150,6 +150,11 @@ class QuestionAnswersController extends ApiController
 
         $this->authorize('delete', $answer);
 
+        if ($answer->trashed()) {
+            $answer->restore();
+            return $this->respondUpdated();
+        }
+
         $answer->delete();
 
         return $this->respondDeleted();
