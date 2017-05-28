@@ -19,6 +19,7 @@ toolbox.precache([
     '{{ $asset }}',
 @endforeach --}}
 ]);
+
 {{-- toolbox.router.get('/css*', toolbox.cacheFirst);
 toolbox.router.get('/js*', toolbox.cacheFirst);
 toolbox.router.get('/fonts*', toolbox.cacheFirst);
