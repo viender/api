@@ -10,7 +10,7 @@ importScripts('/js/vendor/sw-toolbox/sw-toolbox.js');
 toolbox.options.debug = true;
 @endif
 
-toolbox.options.cache.name = 'viender_v0.1.6';
+toolbox.options.cache.name = 'viender_v0.1.7';
 
 toolbox.precache([
     '{{ $mixManifest['/js/core.js'] }}',
@@ -27,7 +27,7 @@ toolbox.router.get('/img*', toolbox.cacheFirst); --}}
 
 toolbox.router.get('/login', toolbox.networkFirst);
 
-toolbox.router.get('/notifications', toolbox.networkFirst);
+toolbox.router.get('/api/notifications', toolbox.networkFirst);
 
 toolbox.router.get('/profile/(.*)', toolbox.networkFirst);
 
