@@ -117,9 +117,8 @@ class NotificationTransformer extends Transformer
                 $this->notificationObjectType = Answer::class;
                 break;
             case UpvotableUpvotedNotification::class:
-                $upvote = Upvote::with('user')->find($notif->data['upvote_id']);
-                $notif->upvotable = $upvote->upvotable;
-                $this->user = $upvote->user;
+                $notif->upvotable = $notif->data['upvotable_type']::find($notif->data['upvotable_id']);
+                $this->user = User::find($notif->data['subject_id']);
                 $this->notificationObject = $notif->upvotable;
                 $this->notificationObjectType = get_class($this->notificationObject);
                 break;

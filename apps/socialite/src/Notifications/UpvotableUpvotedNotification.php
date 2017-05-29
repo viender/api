@@ -84,7 +84,10 @@ class UpvotableUpvotedNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
+            'subject_id' => $this->upvote->user->id,
             'upvote_id' => $this->upvote->id,
+            'upvotable_id' => $this->upvote->upvotable_id,
+            'upvotable_type' => $this->upvote->upvotable_type,
         ];
     }
 }

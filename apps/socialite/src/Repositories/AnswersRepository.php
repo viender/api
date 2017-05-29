@@ -7,6 +7,7 @@ use Viender\Socialite\Models\Upvote;
 use Viender\Socialite\Models\Downvote;
 use Viender\Socialite\Contracts\Post\Upvotable;
 use Viender\Socialite\Contracts\Post\Answerable;
+use Illuminate\Notifications\DatabaseNotification;
 
 class AnswersRepository extends Repository
 {
@@ -17,13 +18,13 @@ class AnswersRepository extends Repository
 
     /**
      * Create answer writen by Authenticated user
-     * 
-     * @param  int     $user_id    
-     * @param  Answerable $answerable 
-     * @param  array      $data       
+     *
+     * @param  int     $user_id
+     * @param  Answerable $answerable
+     * @param  array      $data
      * @return App\Answer
      */
-    public function createByUser($user_id, Answerable $answerable, array $data) 
+    public function createByUser($user_id, Answerable $answerable, array $data)
     {
         $data['user_id'] = $user_id;
         $data['title'] = '';
@@ -32,7 +33,7 @@ class AnswersRepository extends Repository
         return $answerable->answers()->save(new Answer($data));
     }
 
-    public function toggleUpvote(Answer $answer, $user_id = 0) 
+    public function toggleUpvote(Answer $answer, $user_id = 0)
     {
         if(! $user_id) {
             $user_id = \Auth::user()->id;
@@ -44,7 +45,8 @@ class AnswersRepository extends Repository
         }
 
         if($answer->upvotes()->where('user_id', $user_id)->exists()) {
-            $upvote = $answer->upvotes()->where('user_id', $user_id)->delete();
+            $upvote = $answer->upvotes()->where('user_id', $user_id);
+            $upvote->delete();
             return null;
         }
 
@@ -55,7 +57,7 @@ class AnswersRepository extends Repository
         return $upvote;
     }
 
-    public function toggleDownvote(Answer $answer, $user_id = 0) 
+    public function toggleDownvote(Answer $answer, $user_id = 0)
     {
         if(! $user_id) {
             $user_id = \Auth::user()->id;
