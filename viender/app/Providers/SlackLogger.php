@@ -33,20 +33,20 @@ class SlackLogger extends ServiceProvider
             if ($info) {
                 $info = "\n---\n$info\n---";
                 if (strpos($record['message'], "\n")) {
-                    $record['message'] = preg_replace("/\n/", $info . "\n", $record['message'], 1);
+                    $record['message'] = 'Perhatian perhatian, ada error nih.' . "\n" . "\n" . preg_replace("/\n/", $info . "\n", $record['message'], 1);
                 } else {
-                    $record['message'] .= $info . "\n";
+                    $record['message'] .= 'Perhatian perhatian, ada error nih.' . "\n" . "\n" . $info . "\n";
                 }
             }
             return $record;
         });
 
         // Slack notification
-        if (app()->environment(config('epilog.slack.env'))) {
+        if (app()->environment(config('slacklogger.slack.env'))) {
             $slackHandler = new \Monolog\Handler\SlackHandler(
-                config('epilog.slack.token'),
-                config('epilog.slack.channel'),
-                config('epilog.slack.username'),
+                config('slacklogger.slack.token'),
+                config('slacklogger.slack.channel'),
+                config('slacklogger.slack.username'),
                 true,
                 null,
                 \Monolog\Logger::ERROR,
