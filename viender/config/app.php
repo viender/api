@@ -173,6 +173,7 @@ return [
         Laravel\Scout\ScoutServiceProvider::class,
         ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
         Morrislaptop\LaravelQueueClear\LaravelQueueClearServiceProvider::class,
+        Rap2hpoutre\LaravelEpilog\LaravelEpilogServiceProvider::class,
 
         /*
          * Application Service Providers...

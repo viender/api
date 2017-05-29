@@ -20,7 +20,8 @@
         "league/flysystem-aws-s3-v3": "^1.0",
         "morrislaptop/laravel-queue-clear": "^1.0",
         "nao-pon/flysystem-google-drive": "~1.1",
-        "dg/MySQL-dump": "^1.4"
+        "dg/MySQL-dump": "^1.4",
+        "rap2hpoutre/laravel-epilog": "^0.0.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
