@@ -27,7 +27,7 @@ toolbox.router.get('/img*', toolbox.cacheFirst); --}}
 
 toolbox.router.get('/login', toolbox.networkFirst);
 
-toolbox.router.get('/api/notifications', toolbox.networkFirst);
+toolbox.router.get('/api/notifications(.*)', toolbox.networkFirst);
 
 toolbox.router.get('/profile/(.*)', toolbox.networkFirst);
 
