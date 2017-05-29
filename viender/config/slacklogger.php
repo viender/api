@@ -39,6 +39,6 @@ return [
          *
          * String or array. Empty array means disabled.
          */
-        'env' => 'local'
+        'env' => 'production'
     ]
 ];
