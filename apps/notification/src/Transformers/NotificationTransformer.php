@@ -78,7 +78,7 @@ class NotificationTransformer extends Transformer
 
     public function includeObject($notification)
     {
-        $notificationObject = [];
+        $notificationObject = null;
 
         switch ($this->notificationObjectType) {
             case Answer::class:
@@ -117,7 +117,7 @@ class NotificationTransformer extends Transformer
                 $this->notificationObjectType = Answer::class;
                 break;
             case UpvotableUpvotedNotification::class:
-                $notif->upvotable = $notif->data['upvotable_type']::find($notif->data['upvotable_id']);
+                $notif->upvotable = $notif->data['upvotable_type']::withTrashed()->find($notif->data['upvotable_id']);
                 $this->user = User::find($notif->data['subject_id']);
                 $this->notificationObject = $notif->upvotable;
                 $this->notificationObjectType = get_class($this->notificationObject);
