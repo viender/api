@@ -7,8 +7,21 @@ use Viender\Campaign\Models\Campaign;
 
 class CampaignController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
 	public function index()
 	{
+        if (!\Auth::user()->roles()->where('name', 'admin')->exists())
+            return redirect()->back();
+
         $campaigns = Campaign::all();
 		return view('viender.campaign.campaign::index')->with(compact('campaigns'));
 	}
@@ -26,6 +39,9 @@ class CampaignController extends Controller
 
     public function reset(Request $request, Campaign $campaign)
     {
+        if (!\Auth::user()->roles()->where('name', 'admin')->exists())
+            return redirect()->back();
+
         foreach ($campaign->campaignHits()->get() as $hit) {
             $hit->delete();
         }
@@ -35,6 +51,9 @@ class CampaignController extends Controller
 
     public function finish(Request $request, Campaign $campaign)
     {
+        if (!\Auth::user()->roles()->where('name', 'admin')->exists())
+            return redirect()->back();
+
         $campaign->finish = true;
         $campaign->save();
 
@@ -43,6 +62,9 @@ class CampaignController extends Controller
 
     public function unfinish(Request $request, Campaign $campaign)
     {
+        if (!\Auth::user()->roles()->where('name', 'admin')->exists())
+            return redirect()->back();
+
         $campaign->finish = false;
         $campaign->save();
 
@@ -51,6 +73,9 @@ class CampaignController extends Controller
 
     public function destroy(Request $request, Campaign $campaign)
     {
+        if (!\Auth::user()->roles()->where('name', 'admin')->exists())
+            return redirect()->back();
+
         $campaign->delete();
 
         return redirect()->back();
