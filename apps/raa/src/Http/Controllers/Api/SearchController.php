@@ -2,6 +2,7 @@
 
 namespace Viender\Raa\Http\Controllers\Api;
 
+use Viender\Utilities\Text;
 use Illuminate\Http\Request;
 use Viender\Topic\Models\Topic;
 use Viender\Socialite\Models\Answer;
@@ -23,20 +24,22 @@ class SearchController extends ApiController
 
     public function index(Request $request)
     {
-        if ($request->q) {
-            $topics = Topic::search($request->q)->paginate();
+        $searchQuery = Text::clean($request->q);
+
+        if ($searchQuery) {
+            $topics = Topic::search($searchQuery)->paginate();
 
             if ($topics->count() > 0) {
                 return $this->respondWithPagination($topics, new TopicTransformer);
             }
 
-            // $answers = Answer::search($request->q)->paginate();
+            // $answers = Answer::search($searchQuery)->paginate();
 
             // if ($answers->count() > 0) {
             //     return $this->respondWithPagination($answers, new AnswerPreviewTransformer($this->answers));
             // }
 
-            $questions = Question::search($request->q)->paginate();
+            $questions = Question::search($searchQuery)->paginate();
 
             if ($questions->count() > 0) {
                 return $this->respondWithPagination($questions, new QuestionTransformer());
