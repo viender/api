@@ -21,3 +21,5 @@ Route::put('/profile', 'UsersController@update')->name('web.viender.profile.upda
 Route::get('/welcome', 'HomeController@welcome');
 
 Route::get('/sw.js', 'ServiceWorkerController@index');
+
+Route::get('/about/privacy', 'PagesController@privacy');
