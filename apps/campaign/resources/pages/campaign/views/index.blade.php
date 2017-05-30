@@ -21,6 +21,8 @@
                             <option value="Line">Line</option>
                             <option value="WhatsApp">WhatsApp</option>
                             <option value="Telegram">Telegram</option>
+                            <option value="Google Form">Google Form</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <input class="btn btn-default" type="submit">
