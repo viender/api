@@ -6,6 +6,16 @@ use App\User;
 
 class ProfileController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
 	public function profile(User $user)
 	{
 		return view('viender.profile.profile::index')->with(compact('user'));
