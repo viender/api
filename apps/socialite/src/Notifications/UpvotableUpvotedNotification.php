@@ -56,11 +56,11 @@ class UpvotableUpvotedNotification extends Notification implements ShouldQueue
 
         switch ($this->upvote->upvotable_type) {
             case Question::class:
-                $url = route('web.viender.socialite.pages.questionShow', $upvotable);
+                $url = $upvotable ? route('web.viender.socialite.pages.questionShow', $upvotable) : url('/');
                 break;
 
             case Answer::class:
-                $url = route('web.viender.socialite.pages.answerShow', [$upvotable->question, $upvotable->slug]);
+                $url = $upvotable ? route('web.viender.socialite.pages.answerShow', [$upvotable->question, $upvotable->slug]) : url('/');
                 break;
 
             default:
