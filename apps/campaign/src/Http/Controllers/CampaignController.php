@@ -26,7 +26,7 @@ class CampaignController extends Controller
 
     public function reset(Request $request, Campaign $campaign)
     {
-        foreach ($campaign->campaignHits() as $hit) {
+        foreach ($campaign->campaignHits()->get() as $hit) {
             $hit->delete();
         }
 
