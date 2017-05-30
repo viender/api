@@ -10,16 +10,17 @@
             <div class="col s6">
                 <h5>Page Not Found</h5>
                 <p>We searched everywhere but couldn't find the page you were looking for.</p>
-                {{-- <a href="{{ url()->previous() }}">Go Back</a>
-                <a href="{{ url()->previous() }}">Viender Home</a> --}}
             </div>
             <div class="col s3">
-
+                <a href="{{ url()->previous() }}">Go Back</a>
+                <a href="{{ url('/') }}">Viender Home</a>
             </div>
         </div>
     @else
         <h5>Page Not Found</h5>
         <p>We searched everywhere but couldn't find the page you were looking for.</p>
+        <a href="{{ url()->previous() }}" style="padding-right: 20px;">Go Back</a>
+        <a href="{{ url('/') }}">Viender Home</a>
     @endif
 </div>
 @endsection
