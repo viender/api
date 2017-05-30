@@ -12,6 +12,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <meta name="description" content="Viender is place to gain and share knowledge. It's a platform to ask questions and get unique insights and quality answers from various people.">
+    <meta name="keywords" content="Viender,Pertanyaan,Jawaban,Apakah">
+
     <title>{{ $meta_title ?? config('app.name', 'Laravel') }}</title>
 
     @if(isset($_GET['debug_console']) ? $_GET['debug_console'] === '1' : false)
