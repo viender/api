@@ -53,7 +53,7 @@
                                     @if(!$campaign->finish)
                                         <form style="display: inline-block;" action="{{ route('web.viender.campaign.reset', $campaign) }}" method="POST">
                                             {{ csrf_field() }}
-                                            <input type="submit" value="Reset">
+                                            <input type="submit" value="Reset" onclick="return confirm('Are you sure to reset this Campaign?');">
                                         </form>
                                         <form style="display: inline-block;" action="{{ route('web.viender.campaign.finish', $campaign) }}" method="POST">
                                             {{ csrf_field() }}
@@ -63,7 +63,7 @@
                                         <form style="display: inline-block;" action="{{ route('web.viender.campaign.destroy', $campaign) }}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-                                            <input type="submit" value="Delete">
+                                            <input type="submit" value="Delete" onclick="return confirm('Are you sure to delete this Campaign?');">
                                         </form>
                                         <form style="display: inline-block;" action="{{ route('web.viender.campaign.unfinish', $campaign) }}" method="POST">
                                             {{ csrf_field() }}
