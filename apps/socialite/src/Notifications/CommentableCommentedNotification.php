@@ -53,11 +53,11 @@ class CommentableCommentedNotification extends Notification implements ShouldQue
 
         switch ($this->comment->commentable_type) {
             case Question::class:
-                $url = route('web.viender.socialite.pages.questionShow', $commentable);
+                $url = $commentable ? route('web.viender.socialite.pages.questionShow', $commentable) : url('/');
                 break;
 
             case Answer::class:
-                $url = route('web.viender.socialite.pages.answerShow', [$commentable->question, $commentable->slug]);
+                $url = $commentable ? route('web.viender.socialite.pages.answerShow', [$commentable->question, $commentable->slug]) : url('/');
                 break;
 
             default:
