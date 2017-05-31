@@ -175,6 +175,7 @@ return [
         Morrislaptop\LaravelQueueClear\LaravelQueueClearServiceProvider::class,
         // Rap2hpoutre\LaravelEpilog\LaravelEpilogServiceProvider::class,
         App\Providers\SlackLogger::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -198,6 +199,7 @@ return [
         Viender\Role\Init::class,
         Viender\Imaginary\Init::class,
         Viender\Notification\Init::class,
+        Viender\Social\Init::class,
     ],
 
     /*
@@ -246,6 +248,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

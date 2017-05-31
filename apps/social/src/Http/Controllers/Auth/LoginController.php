@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Viender\Social\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use Viender\Social\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use Google_Client;

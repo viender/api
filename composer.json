@@ -21,7 +21,9 @@
         "morrislaptop/laravel-queue-clear": "^1.0",
         "nao-pon/flysystem-google-drive": "~1.1",
         "dg/MySQL-dump": "^1.4",
-        "rap2hpoutre/laravel-epilog": "^0.0.6"
+        "rap2hpoutre/laravel-epilog": "^0.0.6",
+        "laravel/socialite": "^3.0",
+        "google/apiclient": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -50,7 +52,8 @@
             "Viender\\Campaign\\": "apps/campaign/src/",
             "Viender\\Role\\": "apps/role/src/",
             "Viender\\Imaginary\\": "apps/imaginary/src/",
-            "Viender\\Notification\\": "apps/notification/src/"
+            "Viender\\Notification\\": "apps/notification/src/",
+            "Viender\\Social\\": "apps/social/src/"
         }
     },
     "autoload-dev": {

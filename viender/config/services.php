@@ -46,6 +46,19 @@ return [
     'imaginary' => [
         'host' => env('IMAGINARY_HOST', 'localhost'),
         'port' => env('IMAGINARY_PORT', '9000'),
-    ]
+    ],
+
+    'google' => [
+        'server_id'     => env('GOOGLE_SERVER_KEY'),
+        'client_id'     => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_APP_SECRET'),
+        'redirect'      => env('GOOGLE_REDIRECT')
+    ],
+
+    'facebook' => [
+        'client_id'     => env('FACEBOOK_APP_ID'),
+        'client_secret' => env('FACEBOOK_APP_SECRET'),
+        'redirect'      => env('FACEBOOK_REDIRECT'),
+    ],
 
 ];

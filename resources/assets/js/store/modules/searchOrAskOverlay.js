@@ -62,7 +62,7 @@ export default {
         postQuestion({state, commit}) {
             if (state.requesting) return;
 
-            if (state.searchText === '') return;
+            if (state.searchText === '' || state.searchText === null) return;
 
             commit(types.SET_REQUESTING, true);
 
