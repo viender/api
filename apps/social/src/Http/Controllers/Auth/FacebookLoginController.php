@@ -18,8 +18,10 @@ class FacebookLoginController
     {
         $providerUser = \Socialite::driver('facebook')->user();
 
-        // $user = $social->createOrGetFacebookUser($providerUser);
+        $user = $social->createOrGetFacebookUser($providerUser);
 
-        echo $providerUser->getId();
+        auth()->login($user);
+
+        return redirect()->home();
     }
 }
