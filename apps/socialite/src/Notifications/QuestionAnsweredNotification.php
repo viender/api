@@ -36,7 +36,7 @@ class QuestionAnsweredNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['database', 'mail'];
+        return ['database'];
     }
 
     /**

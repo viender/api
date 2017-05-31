@@ -32,7 +32,7 @@ class CommentableCommentedNotification extends Notification implements ShouldQue
      */
     public function via($notifiable)
     {
-        return ['database', 'mail'];
+        return ['database'];
     }
 
     /**
