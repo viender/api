@@ -23,8 +23,3 @@ Route::get('/welcome', 'HomeController@welcome');
 Route::get('/sw.js', 'ServiceWorkerController@index');
 
 Route::get('/about/privacy', 'PagesController@privacy');
-
-Route::get('/test', function ()
-{
-    echo 'hi';
-});
