@@ -45,7 +45,7 @@
                     <td>{{ $campaign->id }}</td>
                     <td>{{ $campaign->name }}</td>
                     <td>{{ $campaign->source }}</td>
-                    <td>{{ $campaign->campaignHits()->count() / 2 }}</td>
+                    <td>{{ $campaign->campaignHits()->count() }}</td>
                     <td>
                         <div>
                             @if(!$campaign->finish)
