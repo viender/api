@@ -104,15 +104,14 @@ class NotificationTransformer extends Transformer
     {
         switch ($notif->type) {
             case CommentableCommentedNotification::class:
-                $comment = Comment::with('user')->withTrashed()->find($notif->data['comment_id']);
-                $notif->commentable = $comment->commentable;
-                $this->user = $comment->user;
+                $notif->commentable = $notif->data['commentable_type']::withTrashed()->find($notif->data['commentable_id']);
+                $this->user = User::find($notif->data['subject_id']);
                 $this->notificationObject = $notif->commentable;
                 $this->notificationObjectType = get_class($this->notificationObject);
                 break;
             case QuestionAnsweredNotification::class:
                 $notif->answer = Answer::with('user')->withTrashed()->where('id', $notif->data['answer_id'])->first();
-                $this->user = $notif->answer->user;
+                $this->user = User::find($notif->data['subject_id']);
                 $this->notificationObject = $notif->answer;
                 $this->notificationObjectType = Answer::class;
                 break;

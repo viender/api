@@ -66,7 +66,9 @@ class QuestionAnsweredNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
+            'question_id'       => $this->question->id,
             'answer_id'         => $this->answer->id,
+            'subject_id'        => $this->question->user->id,
         ];
     }
 }

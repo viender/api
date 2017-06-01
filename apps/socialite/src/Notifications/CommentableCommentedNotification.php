@@ -81,7 +81,10 @@ class CommentableCommentedNotification extends Notification implements ShouldQue
     public function toArray($notifiable)
     {
         return [
-            'comment_id'  => $this->comment->id,
+            'subject_id'        => $this->comment->user->id,
+            'comment_id'        => $this->comment->id,
+            'commentable_id'    => $this->comment->commentable_id,
+            'commentable_type'  => $this->comment->commentable_type,
         ];
     }
 }
