@@ -22,6 +22,6 @@ class FacebookLoginController
 
         auth()->login($user);
 
-        return redirect()->home();
+        return redirect('/');
     }
 }

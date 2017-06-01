@@ -2,9 +2,10 @@
 
 namespace Viender\Social;
 
+use App\User;
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Contracts\User as ProviderUser;
 use Viender\Social\Models\SocialAccount;
+use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class Social
 {
