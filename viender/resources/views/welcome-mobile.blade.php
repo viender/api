@@ -19,6 +19,9 @@
             <a class="login-action-email-login" href="login">Login</a>
             <a class="login-action-email-register" href="register">Sign Up With Email</a>
         </div>
+        <div class="agreement">
+            <p>By signing up, you agree to the <a href="{{ route('web.viender.page.about.privacy') }}">Privacy Policy</a> and including Cookie Use.</p>
+        </div>
     </div>
 </div>
 @endsection
@@ -30,6 +33,13 @@
         display: none;
     }
 
+    .agreement {
+        line-height: 16px;
+        font-size: 12px;
+        color: #657786;
+        padding: 0 20px;
+    }
+
     .welcome {
         position: absolute;
         left: 0;
@@ -38,7 +48,7 @@
         min-height: 100%;
         padding: 11px;
         padding-top: 80px;
-        background: linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.06))
+        background: linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.06));
     }
 
     .welcome-content {
