@@ -13,7 +13,7 @@ trait CommentableIncludable
      */
     public function includeCommentable($item)
     {
-        $commentable = $item->commentable;
+        $commentable = $item->commentable()->withTrashed()->first();
 
         $commentableTransformer = $this->getTransformer($item->commentable_type);
 

@@ -13,7 +13,7 @@ trait UpvotableIncludable
      */
     public function includeUpvotable($item)
     {
-        $upvotable = $item->upvotable;
+        $upvotable = $item->upvotable()->withTrashed()->first();
 
         $upvotableTransformer = $this->getTransformer($item->upvotable_type);
 

@@ -5,7 +5,7 @@ namespace Viender\Socialite\Transformers\Traits;
 trait DownvotableIncludable
 {
     use TransformerTrait;
-    
+
     /**
      * Include Downvotable
      *
@@ -13,7 +13,7 @@ trait DownvotableIncludable
      */
     public function includeDownvotable($item)
     {
-        $downvotable = $item->downvotable;
+        $downvotable = $item->downvotable()->withTrashed()->first();
 
         $downvotableTransformer = $this->getTransformer($item->downvotable_type);
 
