@@ -20,7 +20,7 @@ class FacebookLoginController
 
         $user = $social->createOrGetFacebookUser($providerUser);
 
-        auth()->login($user);
+        auth()->login($user, true);
 
         return redirect('/');
     }
