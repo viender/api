@@ -6,6 +6,7 @@ use Socialite;
 use Carbon\Carbon;
 use Google_Client;
 use Google_Service_People;
+use Viender\Social\Social;
 use Illuminate\Http\Request;
 use Viender\Social\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -21,28 +22,14 @@ class GoogleLoginController extends LoginController
             ->redirect();
     }
 
-    public function callback(Request $request)
+    public function callback(Social $social)
     {
         $providerUser = Socialite::driver('google')->user();
 
-        // Set token for the Google API PHP Client
-        // $google_client_token = [
-        //     'access_token' => $providerUser->token,
-        //     'refresh_token' => $providerUser->refreshToken,
-        //     'expires_in' => $providerUser->expiresIn
-        // ];
+        $user = $social->createOrGetGoogleUser($providerUser);
 
-        // $client = new Google_Client();
-        // $client->setApplicationName("Laravel");
-        // $client->setDeveloperKey(env('GOOGLE_SERVER_KEY'));
-        // $client->setAccessToken(json_encode($google_client_token));
+        auth()->login($user, true);
 
-        // $service = new Google_Service_People($client);
-
-        // $optParams = array('requestMask.includeField' => 'person.phone_numbers,person.names,person.email_addresses');
-        // $results = $service->people_connections->listPeopleConnections('people/me',$optParams);
-
-        // dd($providerUser);
-        echo $providerUser->getId();
+        return redirect('/');
     }
 }

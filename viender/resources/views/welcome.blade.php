@@ -5,11 +5,21 @@
     <div class="welcome">
         <div class="welcome-content">
             <span class="main-text">Welcome to Viender</span>
-            <span class="sub-text">Share your ideas and experiences.</span>
+            <span class="sub-text">A place to gain knowlegde and share your ideas and experiences.</span>
         </div>
         <div class="welcome-footer">
-            <a class="btn btn-default signup" href="/register">Sign up</a>
-            <a class="btn btn-default login" href="/login">Login</a>
+            <a class="login-action btn google waves-effect waves-light" href="{{ route('web.viender.social.login.google') }}">
+            <i class="login-action-icon fa fa-google-plus-square fa-3" aria-hidden="true"></i>
+            <span class="login-action-text facebook">Continue with Google</span>
+            </a>
+            <a class="login-action btn facebook waves-effect waves-light" href="{{ route('web.viender.social.login.facebook') }}">
+                <i class="login-action-icon fa fa-facebook-official fa-3" aria-hidden="true"></i>
+                <span class="login-action-text facebook">Continue with Facebook</span>
+            </a>
+            <div class="login-action-email">
+                <a class="login-action-email-login" href="login">Login</a>
+                <a class="login-action-email-register" href="register">Sign Up With Email</a>
+            </div>
         </div>
     </div>
 </div>
@@ -37,7 +47,7 @@
     }
 
     .welcome-content {
-        padding: 20px;
+        padding: 36px;
         position: absolute;
         /*color: #fff;*/
         color: #333;
@@ -46,7 +56,7 @@
         margin: auto;
         left: 0;
         right: 0;
-        height: 50%;
+        height: 90%;
     }
 
     .welcome-footer {
@@ -57,7 +67,7 @@
         right: 0;
     }
 
-    .welcome-footer a {
+    .welcome-footer .login-action {
         display: block;
         width: 100%;
         margin-bottom: 10px;
@@ -71,17 +81,61 @@
         color: #1da1f2;
     }
 
-    .main-text {
+     .main-text {
         display: block;
         font-size: 4rem;
         line-height: 0100%;
-        font-weight: 500;
+        font-weight: 300;
     }
 
     .sub-text {
         display: block;
-        font-size: 2rem;
+        font-size: 20px;
         line-height: 100%;
+        font-weight: 200;
+    }
+
+    .btn.facebook {
+        background-color: #507cc0;
+    }
+
+    .btn.google {
+        background-color: #df4930;
+    }
+
+    .btn.login-action {
+        margin: 20px auto;
+        height: 51px;
+        line-height: 51px;
+        position: relative;
+        text-align: left;
+        width: 90%;
+        max-width: 320px;
+        padding: 0px 13px;
+        border-radius: 3px
+    }
+
+    .login-action-icon {
+        position: absolute;
+        font-size: 32px !important;
+    }
+
+    .login-action-text {
+        padding-left: 50px;
+        padding-left: 42px;
+        font-size: 15px !important;
+    }
+
+    .login-action-email {
+        text-align: center;
+    }
+
+    .login-action-email-login {
+        padding-right: 10px;
+    }
+
+    .login-action-email-register {
+        padding-left: 10px;
     }
 
     .welcome-container-desktop {
@@ -91,8 +145,9 @@
         left: 0;
         right: 0;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
-        background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(/img/welcome-background.jpg);
+        background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) );
         /*background-repeat: no-repeat;*/
+        background-color: #1da1f2;
     }
 </style>
 @endsection
