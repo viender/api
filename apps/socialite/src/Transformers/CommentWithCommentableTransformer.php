@@ -84,24 +84,26 @@ class CommentWithCommentableTransformer extends Transformer
     {
         $url = url('/');
 
+        $commentable = $comment->commentable()->withTrashed()->first();
+
         switch ($comment->commentable_type) {
             case Question::class:
-                $url = route('web.viender.socialite.pages.questionShow', $comment->commentable);
+                $url = route('web.viender.socialite.pages.questionShow', $commentable);
                 break;
 
             case Answer::class:
-                $url = route('web.viender.socialite.pages.answerShow', [$comment->commentable->question, $comment->commentable->slug]);
+                $url = route('web.viender.socialite.pages.answerShow', [$commentable->question, $commentable->slug]);
                 break;
 
             case Comment::class:
-                $comment = $comment->commentable;
+                $comment = $commentable;
 
                 switch ($comment->commentable_type) {
                     case Question::class:
-                        $url = route('web.viender.socialite.pages.questionShow', $comment->commentable);
+                        $url = route('web.viender.socialite.pages.questionShow', $commentable);
                         break;
                     case Answer::class:
-                        $url = route('web.viender.socialite.pages.answerShow', [$comment->commentable->question, $comment->commentable->slug]);
+                        $url = route('web.viender.socialite.pages.answerShow', [$commentable->question, $commentable->slug]);
                         break;
                     case Comment::class:
                         break;
