@@ -37,15 +37,18 @@ class Social
             if (!$user) {
                 $profilePictureUrls = $this->imaginary->uploadRemotePicture($providerUser->avatar_original);
 
-                $name = explode(' ', $providerUser->getName());
 
-                $username = str_replace(' ', '-', $name[0] . '-' . $name[1]);
+                $name = explode(' ', $providerUser->getName());
+                $firstName = isset($name[0]) ? $name[0] : '';
+                $lastName = isset($name[1]) ? $name[1] : '';
+
+                $username = str_replace(' ', '-', $firstName . '-' . $lastName);
 
                 $username = preg_replace('/[^A-Za-z0-9\-]/', '', $username); // Removes special chars.
 
                 $suffix = User::where([
-                    'first_name' => $name[0],
-                    'last_name' => $name[1],
+                    'first_name' => $firstName,
+                    'last_name' => $lastName,
                 ])->count() + 1;
 
                 $username = $username . '-' . $suffix;
@@ -53,8 +56,8 @@ class Social
                 $userProperty = [
                     'email'                 => $providerUser->getEmail(),
                     'username'              => $username,
-                    'first_name'            => ucwords(strtolower($name[0])),
-                    'last_name'             => ucwords(strtolower($name[1])),
+                    'first_name'            => ucwords(strtolower($firstName)),
+                    'last_name'             => ucwords(strtolower($lastName)),
                     'avatar_url'            => $profilePictureUrls['avatar_url'],
                     'avatar_medium_url'     => $profilePictureUrls['avatar_medium_url'],
                     'avatar_large_url'      => $profilePictureUrls['avatar_large_url'],
@@ -94,14 +97,16 @@ class Social
                 $profilePictureUrls = $this->imaginary->uploadRemotePicture($providerUser->avatar_original);
 
                 $name = explode(' ', $providerUser->getName());
+                $firstName = isset($name[0]) ? $name[0] : '';
+                $lastName = isset($name[1]) ? $name[1] : '';
 
-                $username = str_replace(' ', '-', $name[0] . '-' . $name[1]);
+                $username = str_replace(' ', '-', $firstName . '-' . $lastName);
 
                 $username = preg_replace('/[^A-Za-z0-9\-]/', '', $username); // Removes special chars.
 
                 $suffix = User::where([
-                    'first_name' => $name[0],
-                    'last_name' => $name[1],
+                    'first_name' => $firstName,
+                    'last_name' => $lastName,
                 ])->count() + 1;
 
                 $username = $username . '-' . $suffix;
@@ -109,8 +114,8 @@ class Social
                 $userProperty = [
                     'email'                 => $providerUser->getEmail(),
                     'username'              => $username,
-                    'first_name'            => ucwords(strtolower($name[0])),
-                    'last_name'             => ucwords(strtolower($name[1])),
+                    'first_name'            => ucwords(strtolower($firstName)),
+                    'last_name'             => ucwords(strtolower($lastName)),
                     'avatar_url'            => $profilePictureUrls['avatar_url'],
                     'avatar_medium_url'     => $profilePictureUrls['avatar_medium_url'],
                     'avatar_large_url'      => $profilePictureUrls['avatar_large_url'],
