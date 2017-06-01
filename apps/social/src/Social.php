@@ -32,7 +32,7 @@ class Social
                 'provider'          => 'facebook'
             ]);
 
-            $email = $providerUser->getEmail() ?? 'user@viender.com';
+            $email = $providerUser->getEmail() ?? $this->getDefaultEmail();
             $user = User::whereEmail($email)->first();
 
             if (!$user) {
@@ -92,7 +92,7 @@ class Social
                 'provider'          => 'google'
             ]);
 
-            $email = $providerUser->getEmail() ?? 'user@viender.com';
+            $email = $providerUser->getEmail() ?? $this->getDefaultEmail();
             $user = User::whereEmail($email)->first();
 
             if (!$user) {
@@ -135,6 +135,21 @@ class Social
 
             return $user;
         }
+    }
+
+    public function getDefaultEmail()
+    {
+        $email = sha1(microtime(true) * 1000);
+        $count = User::whereEmail($email . '@viender.com')->count();
+
+        if ($count > 0) {
+            // prevent duplicate random email.
+            $email = $email . '-' . $count + 1 . '@viender.com';
+        } else {
+            $email = $email .'@viender.com';
+        }
+
+        return $email;
     }
 
 
