@@ -68,7 +68,7 @@ class QuestionAnsweredNotification extends Notification implements ShouldQueue
         return [
             'question_id'       => $this->question->id,
             'answer_id'         => $this->answer->id,
-            'subject_id'        => $this->question->user->id,
+            'subject_id'        => $this->answer->user->id,
         ];
     }
 }
