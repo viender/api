@@ -32,7 +32,8 @@ class Social
                 'provider'          => 'facebook'
             ]);
 
-            $user = User::whereEmail($providerUser->getEmail())->first();
+            $email = $providerUser->getEmail() ?? 'user@viender.com';
+            $user = User::whereEmail($email)->first();
 
             if (!$user) {
                 $profilePictureUrls = $this->imaginary->uploadRemotePicture($providerUser->avatar_original);
@@ -54,7 +55,7 @@ class Social
                 $username = $username . '-' . $suffix;
 
                 $userProperty = [
-                    'email'                 => $providerUser->getEmail(),
+                    'email'                 => $email,
                     'username'              => $username,
                     'first_name'            => ucwords(strtolower($firstName)),
                     'last_name'             => ucwords(strtolower($lastName)),
@@ -91,7 +92,8 @@ class Social
                 'provider'          => 'google'
             ]);
 
-            $user = User::whereEmail($providerUser->getEmail())->first();
+            $email = $providerUser->getEmail() ?? 'user@viender.com';
+            $user = User::whereEmail($email)->first();
 
             if (!$user) {
                 $profilePictureUrls = $this->imaginary->uploadRemotePicture($providerUser->avatar_original);
@@ -112,7 +114,7 @@ class Social
                 $username = $username . '-' . $suffix;
 
                 $userProperty = [
-                    'email'                 => $providerUser->getEmail(),
+                    'email'                 => $email,
                     'username'              => $username,
                     'first_name'            => ucwords(strtolower($firstName)),
                     'last_name'             => ucwords(strtolower($lastName)),
