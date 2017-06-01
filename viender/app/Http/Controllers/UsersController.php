@@ -25,8 +25,7 @@ class UsersController extends Controller
         $user = \Auth::user();
 
         if ($request->profile_picture) {
-            $pictureUrls = $imaginary->uploadProfilePicture($request->file('profile_picture'));
-
+            $pictureUrls = $imaginary->uploadUploadedPicture($request->file('profile_picture'));
             $request->request->add($pictureUrls);
         }
 

@@ -19,8 +19,8 @@ class Imaginary
         ]);
     }
 
-	public static function routes(array $options = [], $callback = null)
-	{
+    public static function routes(array $options = [], $callback = null)
+    {
         $callback = $callback ?: function ($router) {
             $router->all();
         };
@@ -32,7 +32,7 @@ class Imaginary
         Route::group($options, function ($router) use ($callback) {
             $callback(new Urls($router));
         });
-	}
+    }
 
     public function crop(array $payload)
     {
@@ -80,29 +80,27 @@ class Imaginary
         return $tempImage;
     }
 
-    public function uploadProfilePicture(UploadedFile $uploadedFile)
+    public function uploadPicture($imgPath)
     {
-        $imgPath = Storage::disk('local')->put('temp', $uploadedFile);
-
         $originalUrl = Storage::putFile('public/images/original', new File($this->resize([
-            'path' => 'viender/storage/app/' . $imgPath,
-            'width' => 512,
+            'path' => $imgPath,
+            'width' => 1200,
         ])));
 
         $smallUrl = Storage::putFile('public/images/1x', new File($this->crop([
-            'path' => 'viender/storage/app/' . $imgPath,
+            'path' => $imgPath,
             'width' => 48,
             'height' => 48,
         ])));
 
         $mediumUrl = Storage::putFile('public/images/2x', new File($this->crop([
-            'path' => 'viender/storage/app/' . $imgPath,
+            'path' => $imgPath,
             'width' => 96,
             'height' => 96,
         ])));
 
         $largeUrl = Storage::putFile('public/images/3x', new File($this->crop([
-            'path' => 'viender/storage/app/' . $imgPath,
+            'path' => $imgPath,
             'width' => 192,
             'height' => 192,
         ])));
@@ -113,5 +111,17 @@ class Imaginary
             'avatar_large_url' => $largeUrl,
             'avatar_original_url' => $originalUrl,
         ];
+    }
+
+    public function uploadUploadedPicture(UploadedFile $uploadedPicture) {
+        $imgPath = Storage::disk('local')->put(sys_get_temp_dir(), $uploadedPicture);
+        return $this->uploadPicture('viender/storage/app/' . $imgPath);
+    }
+
+    public function uploadRemotePicture($url) {
+        $filename = 'imaginary-original-' . microtime(true) * 10000 . '.jpg';
+        $tempImage = 'app' . sys_get_temp_dir(). '/' . $filename;
+        copy($url, storage_path($tempImage));
+        return $this->uploadPicture('viender/storage/' . $tempImage);
     }
 }
