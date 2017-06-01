@@ -20,42 +20,14 @@ class UsersController extends Controller
         $this->middleware('auth');
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Imaginary $imaginary)
     {
         $user = \Auth::user();
 
         if ($request->profile_picture) {
-            $imgPath = Storage::disk('local')->put('temp', $request->file('profile_picture'));
+            $pictureUrls = $imaginary->uploadProfilePicture($request->file('profile_picture'));
 
-            $originalUrl = Storage::putFile('public/images/original', new File(Imaginary::resize([
-                'path' => 'viender/storage/app/' . $imgPath,
-                'width' => 1200,
-            ])));
-
-            $smallUrl = Storage::putFile('public/images/1x', new File(Imaginary::crop([
-                'path' => 'viender/storage/app/' . $imgPath,
-                'width' => 48,
-                'height' => 48,
-            ])));
-
-            $mediumUrl = Storage::putFile('public/images/2x', new File(Imaginary::crop([
-                'path' => 'viender/storage/app/' . $imgPath,
-                'width' => 96,
-                'height' => 96,
-            ])));
-
-            $largeUrl = Storage::putFile('public/images/3x', new File(Imaginary::crop([
-                'path' => 'viender/storage/app/' . $imgPath,
-                'width' => 192,
-                'height' => 192,
-            ])));
-
-            $request->request->add([
-                'avatar_url' => $smallUrl,
-                'avatar_medium_url' => $mediumUrl,
-                'avatar_large_url' => $largeUrl,
-                'avatar_original_url' => $originalUrl,
-            ]);
+            $request->request->add($pictureUrls);
         }
 
         $input = $request->all();
@@ -64,7 +36,6 @@ class UsersController extends Controller
             $date = new Carbon($request->tutorial_complete_at);
             $input['tutorial_complete_at'] = $date->toDateTimeString();
         }
-
 
         $user->update($input);
 
