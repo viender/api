@@ -39,9 +39,7 @@ class Urls
     {
         $this->router->group(array_merge($option, ['domain' => config('viender.web_domain'), 'middleware' => 'web']), function() {
 
-            $this->router->get('mailer', function() {
-                return 'hello';
-            });
+            $this->router->get('mailer/preview/welcome', 'PreviewController@welcome');
         });
     }
 

@@ -16,6 +16,9 @@ else
     echo "composer.lock has not changed!"
 fi
 
+chmod -R gu+w viender/storage
+chmod -R guo+w viender/storage
+
 php manage migrate --force
 php manage optimize --force
 php manage config:cache

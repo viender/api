@@ -15,7 +15,7 @@ class Init extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
-        $this->loadViewsFrom(__DIR__.'/../resources/pages/example-page/views', 'viender.mailer.example-page');
+        $this->loadViewsFrom(__DIR__.'/../resources/pages/mailer/views', 'viender.mailer.mailer');
     }
 
     /**
