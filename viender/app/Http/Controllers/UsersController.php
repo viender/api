@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
@@ -39,5 +40,19 @@ class UsersController extends Controller
         $user->update($input);
 
         return redirect()->back();
+    }
+
+    public function confirm(User $user, $token)
+    {
+        if ($user->active) {
+            return redirect(url('/?from=email_confirmation&c=1'));
+        }
+        if (sha1($user->username . '-' . $user->created_at) === $token) {
+            $user->active = true;
+            $user->save();
+            return redirect(url('/?from=email_confirmation'));
+        }
+
+        return 'Invalid confirmation code';
     }
 }

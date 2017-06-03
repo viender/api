@@ -23,3 +23,5 @@ Route::get('/welcome', 'HomeController@welcome');
 Route::get('/sw.js', 'ServiceWorkerController@index');
 
 Route::get('/about/privacy', 'PagesController@privacy')->name('web.viender.page.about.privacy');
+
+Route::get('/get_started/{user}/{token}', 'UsersController@confirm')->name('web.viender.user.confirm');

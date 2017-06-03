@@ -2,6 +2,7 @@
 
 namespace Viender\Mailer\Mail;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,14 +12,16 @@ class Welcome extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $user;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-
+        $this->user = $user;
     }
 
     /**
@@ -28,6 +31,8 @@ class Welcome extends Mailable
      */
     public function build()
     {
-        return $this->markdown('viender.mailer.mailer::emails.welcome');
+        return $this->markdown('viender.mailer.mailer::emails.welcome')->with([
+            'user' => $this->user,
+        ]);
     }
 }
