@@ -27,7 +27,6 @@
         <tr>
             <td align="center">
                 <table class="content" width="100%" cellpadding="0" cellspacing="0">
-                    @yield('header')
                     {{ $header or '' }}
 
                     <!-- Email Body -->
@@ -37,8 +36,6 @@
                                 <!-- Body content -->
                                 <tr>
                                     <td class="content-cell">
-                                        @yield('body')
-
                                         {{ Illuminate\Mail\Markdown::parse($slot) }}
 
                                         {{ $subcopy or '' }}
@@ -48,7 +45,6 @@
                         </td>
                     </tr>
 
-                    @yield('body')
                     {{ $footer or '' }}
                 </table>
             </td>

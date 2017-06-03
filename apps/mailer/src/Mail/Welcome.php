@@ -5,6 +5,7 @@ namespace Viender\Mailer\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class Welcome extends Mailable
 {
@@ -27,6 +28,6 @@ class Welcome extends Mailable
      */
     public function build()
     {
-        return $this->view('viender.mailer.mailer::emails.welcome');
+        return $this->markdown('viender.mailer.mailer::emails.welcome');
     }
 }
