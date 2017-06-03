@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Viender\Mailer\Jobs\SendWelcomeEmail;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -90,6 +91,8 @@ class RegisterController extends Controller
 
         $user->username = $username;
         $user->save();
+
+        dispatch(new SendWelcomeEmail(User::find(2)));
 
         return $user;
     }
