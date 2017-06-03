@@ -92,7 +92,7 @@ class RegisterController extends Controller
         $user->username = $username;
         $user->save();
 
-        dispatch(new SendWelcomeEmail(User::find(2)));
+        dispatch(new SendWelcomeEmail($user));
 
         return $user;
     }
