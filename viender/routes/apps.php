@@ -18,3 +18,4 @@ Viender\Role\Role::routes();
 Viender\Imaginary\Imaginary::routes();
 Viender\Notification\Notification::routes();
 Viender\Social\Social::routes();
+Viender\Mailer\Mailer::routes();

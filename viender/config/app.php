@@ -200,6 +200,7 @@ return [
         Viender\Imaginary\Init::class,
         Viender\Notification\Init::class,
         Viender\Social\Init::class,
+        Viender\Mailer\Init::class,
     ],
 
     /*
