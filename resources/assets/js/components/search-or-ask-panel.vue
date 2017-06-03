@@ -49,6 +49,13 @@ export default {
         },
     }),
 
+    data() {
+        return {
+            typingTimer: null,
+            doneTypingInterval: 400,
+        };
+    },
+
 	watch: {
 		showPanel(newShowPanel) {
 			let self = this;
@@ -63,10 +70,12 @@ export default {
 		},
 
         searchText() {
-            this.$store.dispatch('raa/search', this.searchText)
-            .catch((error) => {
-
-            });
+            clearTimeout(this.typingTimer);
+            if (this.searchText) {
+                this.typingTimer = setTimeout(() => {
+                    this.$store.dispatch('raa/search', this.searchText);
+                }, this.doneTypingInterval);
+            }
         },
 	},
 
