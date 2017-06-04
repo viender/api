@@ -16,3 +16,7 @@ export const SET_EDITOR_ELEMENT = 'SET_EDITOR_ELEMENT';
 // feed
 export const SET_SHOW_ANSWER_SHOW_MODAL = 'SET_SHOW_ANSWER_SHOW_MODAL';
 export const SET_SHOWED_ANSWER = 'SET_SHOWED_ANSWER';
+
+// credentialAddModal
+export const SET_VISIBLE = 'SET_VISIBLE';
+export const SET_CREDENTIAL_INPUT = 'SET_CREDENTIAL_INPUT';

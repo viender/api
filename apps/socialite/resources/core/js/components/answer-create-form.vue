@@ -10,7 +10,7 @@
                 <li class="collection-item avatar">
                     <img :src="$viender.treasure.user ? getUrl('avatar', $viender.treasure.user) : ''" alt="" class="circle">
                     <span class="card-title">
-                        {{ $viender.treasure.user ? $viender.treasure.user.name : '' }}
+                        <span>{{ $viender.treasure.user ? $viender.treasure.user.name : '' }}</span><button class="btn answerCreateForm-addCredentialButton" @click="showCredentialAddModal()">Add Credential</button>
                     </span>
                 </li>
             </ul>
@@ -139,6 +139,10 @@ export default {
             this.showQuestionDetail = ! this.showQuestionDetail;
         },
 
+        showCredentialAddModal() {
+            this.$store.commit(`credentialAddModal/${types.SET_VISIBLE}`, {visible: true});
+        },
+
         ga(eventAction, eventLabel = '') {
             if (!window.ga) return;
 
@@ -152,3 +156,13 @@ export default {
     },
 };
 </script>
+
+<style>
+    .answerCreateForm-addCredentialButton {
+        text-transform: none;
+        padding: 0 6px;
+        line-height: 22px;
+        height: 22px;
+        margin-left: 10px;
+    }
+</style>

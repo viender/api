@@ -3,6 +3,7 @@
 namespace Viender\Topic\Models;
 
 use Laravel\Scout\Searchable;
+use Viender\Topic\Models\Category;
 use Viender\Socialite\Models\Answer;
 use Viender\Follow\Traits\Followable;
 use Illuminate\Database\Eloquent\Model;
@@ -88,5 +89,10 @@ class Topic extends Model
                 $q->where('slug', $slug);
             });
         });
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 }

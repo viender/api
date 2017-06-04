@@ -27,6 +27,7 @@ class AddCredentialIdColumnToAnswersTable extends Migration
     public function down()
     {
         Schema::table('answers', function (Blueprint $table) {
+            $table->dropForeign(['credential_id']);
             $table->dropColumn('credential_id');
         });
     }

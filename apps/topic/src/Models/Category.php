@@ -1,14 +1,15 @@
 <?php
 
-namespace Viender\Credential\Models;
+namespace Viender\Topic\Models;
 
-use App\User;
+use Laravel\Scout\Searchable;
+use Viender\Topic\Models\Topic;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Credential extends Model
+class Category extends Model
 {
-    use SoftDeletes;
+	use Searchable, SoftDeletes;
 
     protected $dates = ['deleted_at'];
 
@@ -18,15 +19,12 @@ class Credential extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'type', 'property',
+        'name',
+        'description',
     ];
 
-    protected $casts = [
-        'property' => 'json'
-    ];
-
-    public function user()
+    public function topics()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(Topic::class);
     }
 }
