@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "97cff14d638399b7f1b8e7590e57bed1",
+    "content-hash": "5c2d0dd7d5a3a7c08b46e2a633ef6210",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.28.6",
+            "version": "3.28.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "9c33b9dff5848adc25199f88487b1927edcfe074"
+                "reference": "0014153be40ea8331c15f6187035290681f636ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/9c33b9dff5848adc25199f88487b1927edcfe074",
-                "reference": "9c33b9dff5848adc25199f88487b1927edcfe074",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/0014153be40ea8331c15f6187035290681f636ab",
+                "reference": "0014153be40ea8331c15f6187035290681f636ab",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-05-31T19:00:01+00:00"
+            "time": "2017-06-02T19:00:19+00:00"
         },
         {
             "name": "barryvdh/laravel-cors",
@@ -988,16 +988,16 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.43",
+            "version": "v1.2.44",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "75628e4606c0a6e8cdacac4ac190be7386408b5b"
+                "reference": "dd14c05b3aed6ca75acfc77fbd864e37d83777bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/75628e4606c0a6e8cdacac4ac190be7386408b5b",
-                "reference": "75628e4606c0a6e8cdacac4ac190be7386408b5b",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/dd14c05b3aed6ca75acfc77fbd864e37d83777bc",
+                "reference": "dd14c05b3aed6ca75acfc77fbd864e37d83777bc",
                 "shasum": ""
             },
             "require": {
@@ -1032,7 +1032,7 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2017-05-29T20:35:19+00:00"
+            "time": "2017-06-03T10:19:31+00:00"
         },
         {
             "name": "jenssegers/agent",
@@ -1288,16 +1288,16 @@
         },
         {
             "name": "laravel/scout",
-            "version": "v3.0.4",
+            "version": "v3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/scout.git",
-                "reference": "c822eaff08929439879407ffa27de7966f3c5926"
+                "reference": "547ff55530a16e31b3b1142dd4dfdb654ad2bae0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/scout/zipball/c822eaff08929439879407ffa27de7966f3c5926",
-                "reference": "c822eaff08929439879407ffa27de7966f3c5926",
+                "url": "https://api.github.com/repos/laravel/scout/zipball/547ff55530a16e31b3b1142dd4dfdb654ad2bae0",
+                "reference": "547ff55530a16e31b3b1142dd4dfdb654ad2bae0",
                 "shasum": ""
             },
             "require": {
@@ -1344,7 +1344,7 @@
                 "laravel",
                 "search"
             ],
-            "time": "2017-05-09T12:31:27+00:00"
+            "time": "2017-06-01T13:21:09+00:00"
         },
         {
             "name": "laravel/socialite",
@@ -1402,16 +1402,16 @@
         },
         {
             "name": "laravel/tinker",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/tinker.git",
-                "reference": "3d5b675b55b24ccbf86395964042dbe061d5a965"
+                "reference": "7eb2e281395131897407285672ef5532e87e17f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/tinker/zipball/3d5b675b55b24ccbf86395964042dbe061d5a965",
-                "reference": "3d5b675b55b24ccbf86395964042dbe061d5a965",
+                "url": "https://api.github.com/repos/laravel/tinker/zipball/7eb2e281395131897407285672ef5532e87e17f9",
+                "reference": "7eb2e281395131897407285672ef5532e87e17f9",
                 "shasum": ""
             },
             "require": {
@@ -1432,6 +1432,11 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Tinker\\TinkerServiceProvider"
+                    ]
                 }
             },
             "autoload": {
@@ -1456,7 +1461,7 @@
                 "laravel",
                 "psysh"
             ],
-            "time": "2016-12-30T18:13:17+00:00"
+            "time": "2017-06-01T16:31:26+00:00"
         },
         {
             "name": "lcobucci/jwt",
@@ -2783,16 +2788,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.8.5",
+            "version": "v0.8.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "38a9d21406597a0440690eafbcb0222f528c8ac6"
+                "reference": "7028d6d525fb183d50b249b7c07598e3d386b27d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/38a9d21406597a0440690eafbcb0222f528c8ac6",
-                "reference": "38a9d21406597a0440690eafbcb0222f528c8ac6",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/7028d6d525fb183d50b249b7c07598e3d386b27d",
+                "reference": "7028d6d525fb183d50b249b7c07598e3d386b27d",
                 "shasum": ""
             },
             "require": {
@@ -2822,7 +2827,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "0.9.x-dev"
+                    "dev-develop": "0.8.x-dev"
                 }
             },
             "autoload": {
@@ -2852,7 +2857,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2017-05-17T06:49:19+00:00"
+            "time": "2017-06-04T10:34:20+00:00"
         },
         {
             "name": "ramsey/uuid",

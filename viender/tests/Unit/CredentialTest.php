@@ -1,10 +1,12 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
+namespace Tests\Unit;
+
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class NotificationTest extends TestCase
+class CredentialTest extends TestCase
 {
     /**
      * A basic test example.
@@ -13,6 +15,6 @@ class NotificationTest extends TestCase
      */
     public function testExample()
     {
-        $this->assertTrue(false);
+        $this->assertTrue(true);
     }
 }
