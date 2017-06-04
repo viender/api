@@ -54,7 +54,8 @@
             "Viender\\Imaginary\\": "apps/imaginary/src/",
             "Viender\\Notification\\": "apps/notification/src/",
             "Viender\\Social\\": "apps/social/src/",
-            "Viender\\Mailer\\": "apps/mailer/src/"
+            "Viender\\Mailer\\": "apps/mailer/src/",
+            "Viender\\Credential\\": "apps/credential/src/"
         }
     },
     "autoload-dev": {

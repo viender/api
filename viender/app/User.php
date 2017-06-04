@@ -13,6 +13,7 @@ use Viender\Socialite\Traits\Sociable;
 use Illuminate\Notifications\Notifiable;
 use Viender\Follow\Traits\CanFollowUsers;
 use Viender\Topic\Traits\CanFollowTopics;
+use Viender\Credential\Traits\HasCredentials;
 use Viender\Address\Transformers\UserTransformer;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -28,7 +29,8 @@ class User extends Authenticatable
         CanFollowUsers,
         CanFollowTopics,
         Searchable,
-        BelongsToRole;
+        BelongsToRole,
+        HasCredentials;
 
     /**
      * The attributes that are mass assignable.

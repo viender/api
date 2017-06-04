@@ -10,11 +10,12 @@ use Viender\Socialite\Traits\HasComments;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Viender\Socialite\Contracts\Post\Upvotable;
 use Viender\Socialite\Contracts\Post\Commentable;
+use Viender\Credential\Traits\BelongsToCredentials;
 use Viender\Socialite\Transformers\AnswerTransformer;
 
 class Answer extends Model implements Upvotable, Commentable
 {
-    use HasComments, HasVotes, HasTopics, Searchable, SoftDeletes;
+    use HasComments, HasVotes, HasTopics, Searchable, SoftDeletes, BelongsToCredentials;
 
     protected $dates = ['deleted_at'];
 
