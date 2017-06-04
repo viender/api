@@ -71,6 +71,25 @@ export default {
                     onChange: function(contents, $editable) {
                         self.$store.commit('editor/' + types.UPDATE_EDITOR_CONTENT, contents);
                         self.$emit('on-change', contents);
+
+                        const userDataString = window.localStorage.getItem(self.$viender.user.login)
+                            || `{"drafts": []}`;
+                        const userData = JSON.parse(userDataString);
+                        const answer = userData.drafts.find((a) => {
+                            return a.questionId === self.question.id;
+                        }) || null;
+
+                        if (answer) {
+                            answer.questionId = self.question.id;
+                            answer.answer = contents;
+                        } else {
+                            userData.drafts.push({
+                                questionId: self.question.id,
+                                answer: contents,
+                            });
+                        }
+
+                        window.localStorage.setItem(self.$viender.user.login, JSON.stringify(userData));
                     },
                 },
             });

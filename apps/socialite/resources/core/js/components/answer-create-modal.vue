@@ -28,14 +28,14 @@ export default {
 
     watch: {
         showModal() {
-            let _this = this;
+            const self = this;
 
             if(this.showModal) {
-                Vue.nextTick(function () {
-                    $(_this.$refs.form.$refs.editor).summernote('editor.focus');
+                Vue.nextTick(() => {
+                    $(self.$refs.form.$refs.editor).summernote('editor.focus');
                 });
             }
-        }
+        },
     },
 
     methods: {
@@ -45,7 +45,7 @@ export default {
 
         hideAnswerCreateModal(answer) {
             this.$store.commit('questionList/' + types.SET_SHOW_ANSWER_CREATE_MODAL, false);
-        }
-    }
-}
+        },
+    },
+};
 </script>

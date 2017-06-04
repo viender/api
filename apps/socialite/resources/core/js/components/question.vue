@@ -83,6 +83,7 @@ export default {
             self.upvoteCount = self.question.upvote_count;
             self.commentCount = self.question.comment_count;
             self.hideStaticPreloaders();
+            self.loadUnsubmitedAnswer();
         } else if (self.url) {
             const url = self.url;
 
@@ -96,6 +97,7 @@ export default {
                 self.upvoteCount = response.data.upvote_count;
                 self.commentCount = response.data.comment_count;
                 self.hideStaticPreloaders();
+                self.loadUnsubmitedAnswer();
             })
             .catch(function(error) {
                 console.log(error);
@@ -104,8 +106,8 @@ export default {
             console.error('question and url not defined.');
         }
 
-        for (let i = 0; i < this.staticPreloaders.length; i++) {
-            this.staticPreloaders[i].style.borderBottom = '0';
+        for (let i = 0; i < self.staticPreloaders.length; i++) {
+            self.staticPreloaders[i].style.borderBottom = '0';
         }
     },
 
@@ -154,6 +156,24 @@ export default {
             self.questionObj.delete()
             .then(() => {
                 self.questionObj.deleted_at = null;
+            });
+        },
+
+        loadUnsubmitedAnswer() {
+            const self = this;
+
+            self.$viender.helpers.fetchAuthenticatedUser()
+            .then((user) => {
+                const userDataString = window.localStorage.getItem(user.login)
+                    || `{"drafts": []}`;
+                const userData = JSON.parse(userDataString);
+                const answer = userData.drafts.find((a) => {
+                    return a.questionId === self.questionObj.id;
+                }) || null;
+
+                if (answer) {
+                    self.answerText.body = answer.answer;
+                }
             });
         },
 
