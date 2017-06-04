@@ -60,5 +60,6 @@ class Backup extends Command
         $remoteFileName = Carbon::now()->toAtomString() . '.sql.gz';
 
         Storage::putFileAs('backups', new File($fileName), $remoteFileName);
+        echo 'Done' . PHP_EOL;
     }
 }
