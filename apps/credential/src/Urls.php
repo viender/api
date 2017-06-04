@@ -39,11 +39,6 @@ class Urls
     {
         $this->router->group(array_merge($option, ['domain' => config('viender.web_domain'), 'middleware' => 'web']), function() {
 
-            $this->router->get('credential', function()
-            {
-                return 'hello';
-            });
-
         });
     }
 
