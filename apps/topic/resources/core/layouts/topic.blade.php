@@ -4,7 +4,7 @@
 <div class="topic">
 	<div class="row topic-header">
 		<div class="col s8 offset-s2">
-			<img src="{{ $topic->thumbnail }}" alt="">
+			<img src="{{ Storage::url($topic->thumbnail) }}" alt="">
 			<h4 class="topic-header__name">{{ $topic->name }}</h4>
 		</div>
 	</div>

@@ -4,7 +4,7 @@
 <div class="topicShow">
 	<div class="topicShow-header">
 		<div class="topicShow-header-thumbnail">
-			<img src="{{ $topic->thumbnail }}" alt="">
+			<img src="{{ Storage::url($topic->thumbnail) }}" alt="">
 		</div>
 		<div class="topicShow-header-detail">
 			<h4>{{ $topic->name }}</h4>
