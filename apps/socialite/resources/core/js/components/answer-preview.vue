@@ -2,17 +2,20 @@
     <div class="answer">
         <div class="answer-container">
             <div class="card">
-                <div class="card-content" @click="showAnswer()">
+                <div class="card-content">
                     <a :href="getUrl('self_html', answer.question)" v-if="showQuestion"><h2 class="card-title">{{ answer.question.title || 'Deleted question.' }}</h2></a>
                     <ul class="collection">
                         <li class="collection-item avatar">
                             <img :src="getUrl('avatar', answer.owner)" alt="" class="circle">
                             <a :href="getUrl('self_html', answer.owner)" @click="$event.stopPropagation()">
-                                <span class="answer-content-owner">{{ answer.owner.name }}</span>
+                                <span class="answer-content-owner">
+                                    {{ `${answer.owner.name}${(answer.credential.id ? ', ' : '')}` }}
+                                </span>
                             </a>
+                            <span v-if="answer.credential.id" v-html="$viender.helpers.answersCredentialHtml(answer.credential)"></span>
                         </li>
                     </ul>
-                    <div class="answer-content" v-if="!answer.deleted_at">
+                    <div class="answer-content" v-if="!answer.deleted_at" @click="showAnswer()">
                         <div style="display: inline" v-html="answer.preview"></div>
                         <a style="cursor: pointer" v-if="answer.preview.length >= 258">(more)</a>
                     </div>

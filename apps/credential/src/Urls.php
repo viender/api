@@ -53,6 +53,7 @@ class Urls
 
         $this->router->group(array_merge($option, ['domain' => config('viender.api_domain'), 'namespace' => 'Api', 'middleware' => 'api']), function() use ($namePrefix) {
 
+            $this->router->resource('users.credentials', 'UserCredentialsController', ['as' => $namePrefix,'except' => ['create', 'edit']]);
         });
     }
 }

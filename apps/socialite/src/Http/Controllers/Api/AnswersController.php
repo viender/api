@@ -35,6 +35,7 @@ class AnswersController extends ApiController
      */
     public function index()
     {
+        // $paginator = Answer::withCount('upvotes')->orderBy('upvotes_count', 'desc')->paginate();
         $paginator = Answer::latest('created_at')->paginate();
         return $this->respondWithPagination($paginator, new AnswerPreviewTransformer($this->answers));
     }

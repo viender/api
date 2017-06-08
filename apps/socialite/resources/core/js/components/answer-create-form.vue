@@ -10,7 +10,9 @@
                 <li class="collection-item avatar">
                     <img :src="$viender.treasure.user ? getUrl('avatar', $viender.treasure.user) : ''" alt="" class="circle">
                     <span class="card-title">
-                        <span>{{ $viender.treasure.user ? $viender.treasure.user.name : '' }}</span><button class="btn answerCreateForm-addCredentialButton" @click="showCredentialAddModal()">Add Credential</button>
+                        <span>{{ $viender.user ? $viender.user.name : '' }}{{ selectedCredentialText ? ', ' + selectedCredentialText : '' }}</span>
+                        <br>
+                        <a @click="showCredentialAddModal()">Edit Credential</a>
                     </span>
                 </li>
             </ul>
@@ -21,6 +23,7 @@
 
 <script>
 import * as types from '../store/mutation-types';
+import * as credentialTypes from 'viender_credential/core/js/store/mutation-types';
 
 export default {
 
@@ -33,7 +36,12 @@ export default {
         };
     },
 
-    computed: {
+    computed: Object.assign(Vuex.mapState('credentials', [
+        'selectedCredential',
+        'selectedCredentialText',
+    ]), Vuex.mapState('editor', [
+        'credentialId',
+    ]), {
         content() {
             return this.$store.state.editor.content;
         },
@@ -41,12 +49,24 @@ export default {
         question() {
             return this.$store.state.editor.question;
         },
-    },
+    }),
 
     watch: {
         question() {
             this.showQuestionDetail = false;
         },
+
+        selectedCredential() {
+            this.$store.commit('editor/' + types.SET_CREDENTIAL_ID, {id: this.selectedCredential.id});
+        },
+    },
+
+    created() {
+        this.$viender.helpers.fetchAuthenticatedUser()
+        .then((user) => {
+            const url = `${this.$viender.helpers.getUrl('self', user)}/credentials`;
+            this.$store.commit(`credentials/${credentialTypes.SET_CREDENTIALS_URL}`, {url});
+        });
     },
 
     mounted() {
@@ -69,7 +89,7 @@ export default {
                 ],
                 callbacks: {
                     onChange: function(contents, $editable) {
-                        self.$store.commit('editor/' + types.UPDATE_EDITOR_CONTENT, contents);
+                        self.$store.commit('editor/' + types.UPDATE_EDITOR_CONTENT, {contents});
                         self.$emit('on-change', contents);
 
                         const userDataString = window.localStorage.getItem(self.$viender.user.login)
@@ -110,7 +130,10 @@ export default {
 
             self.requesting = true;
 
-            axios.post(this.getUrl('answers', this.question) + '?with=owner', self.content)
+            axios.post(this.getUrl('answers', this.question) + '?with=owner', {
+                body: self.content.body.contents,
+                credential_id: self.selectedCredential.id,
+            })
                 .then(function(response) {
                     if(response.status == 200) {
                         if (self.$store.state.feed) {
@@ -140,7 +163,8 @@ export default {
         },
 
         showCredentialAddModal() {
-            this.$store.commit(`credentialAddModal/${types.SET_VISIBLE}`, {visible: true});
+            this.$store.dispatch('credentials/fetchCredentials');
+            this.$store.commit(`credentials/${credentialTypes.SET_VISIBLE}`, {visible: true});
         },
 
         ga(eventAction, eventLabel = '') {

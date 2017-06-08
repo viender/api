@@ -27,16 +27,18 @@ class Topic
 
     public function create($name, $description = null, $categoryId = null, $class = null)
     {
-        $slug = $name . '-' . (TopicModel::where('name', $name)->count() + 1);
+        $duplicateCount = TopicModel::where('name', $name)->count();
+
+        $slug = $name . ($duplicateCount > 0 ? ('-' . $duplicateCount + 1) : '');
 
         $topic = TopicModel::create([
             'name'              => $name,
             'description'       => $description,
             'class'             => $class ?? 'user-generated',
             'slug'              => $slug,
-            'thumbnail'         => Storage::url('public/images/topic-default.jpg'),
-            'thumbnail_medium'  => Storage::url('public/images/topic-default-medium.jpg'),
-            'thumbnail_large'   => Storage::url('public/images/topic-default-large.jpg'),
+            'thumbnail'         => 'public/images/topic-default.jpg',
+            'thumbnail_medium'  => 'public/images/topic-default-medium.jpg',
+            'thumbnail_large'   => 'public/images/topic-default-large.jpg',
         ]);
 
         if ($categoryId) {

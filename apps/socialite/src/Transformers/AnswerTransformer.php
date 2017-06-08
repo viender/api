@@ -2,14 +2,23 @@
 
 namespace Viender\Socialite\Transformers;
 
-use Viender\Socialite\Models\Answer;
 use Illuminate\Support\Facades\Auth;
+use Viender\Socialite\Models\Answer;
+use Viender\Credential\Models\Credential;
 use Viender\Address\Transformers\Traits\UserIncludable;
+use Viender\Credential\Transformers\CredentialTransformer;
 use Viender\Socialite\Transformers\Traits\CommentsIncludable;
 
 class AnswerTransformer extends Transformer
 {
     use UserIncludable, CommentsIncludable;
+
+    /**
+     * Include resources without needing it to be requested.
+     *
+     * @var array
+     */
+    protected $defaultIncludes = ['credential'];
 
     /**
      * List of resources possible to include
@@ -43,6 +52,7 @@ class AnswerTransformer extends Transformer
             'downvoted'       => \Auth::user() ? $answer->downvotes()->where('user_id', \Auth::user()->id)->exists() : false,
             'upvote_count'  => $answer->upvotes()->count(),
             'comment_count' => $answer->comments()->count(),
+            'credential_id' => $answer->credential_id,
             'deleted_at'    => $answer->deleted_at,
             'links'   => [
                 [
@@ -87,5 +97,19 @@ class AnswerTransformer extends Transformer
         $question = $answer->question;
 
         return $this->item($question, new QuestionTransformer);
+    }
+
+    /**
+     * Include Credential
+     *
+     * @return League\Fractal\ItemResource
+     */
+    public function includeCredential($answer)
+    {
+        $credential = $answer->credential;
+
+        if (!$credential) $credential = new Credential;
+
+        return $this->item($credential, new CredentialTransformer);
     }
 }

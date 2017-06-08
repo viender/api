@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Socialite\Models\Answer;
 use Viender\Socialite\Models\Question;
+use Viender\Credential\Models\Credential;
 use Viender\Socialite\Events\QuestionAnswered;
 use Viender\Socialite\Repositories\AnswersRepository;
 use Viender\Socialite\Transformers\AnswerTransformer;
@@ -61,6 +62,10 @@ class QuestionAnswersController extends ApiController
     public function store(Request $request, Question $question)
     {
         $this->authorize('create', Answer::class);
+
+        if (!Credential::where('id', $request->credential_id)->exists()) {
+            $request->replace(array('credential_id' => null));
+        }
 
         if($question->answers()->where('user_id', \Auth::user()->id)->exists()) {
             return $this->setStatusCode(400)->respondWithMessage("Cannot post multiple answer for one question.");

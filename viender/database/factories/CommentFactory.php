@@ -11,15 +11,13 @@
 |
 */
 
-class FactoryStatus {
-    public static $isFirst = true;
-}
+$isFirst = true;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(\Viender\Socialite\Models\Comment::class, function (Faker\Generator $faker) {
-    
+
     $users = App\User::all()->pluck('id')->toArray();
-    
+
     return [
         'user_id' => $faker->randomElement($users),
 
@@ -35,17 +33,17 @@ $factory->define(\Viender\Socialite\Models\Comment::class, function (Faker\Gener
 
             $commentable = $faker->randomElement($commentables);
 
-            while($commentable == 'Viender\Socialite\Models\Comment' && FactoryStatus::$isFirst) {
+            while($commentable == 'Viender\Socialite\Models\Comment' && $isFirst) {
                 $commentable = $faker->randomElement($commentables);
             }
 
-            FactoryStatus::$isFirst = false;
+            $isFirst = false;
 
             return $commentable;
         },
         'commentable_id' =>  function(array $me) {
             $faker = Faker\Factory::create();
-            
+
             $id = $faker->randomElement($me['commentable_type']::all()->pluck('id')->toArray());
 
             return $id;

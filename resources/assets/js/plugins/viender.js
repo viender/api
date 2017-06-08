@@ -4,6 +4,7 @@ import urlHelpers from '../helpers/url';
 import styleHelpers from '../helpers/style';
 import eventHelpers from '../helpers/event';
 import pushStateHelpers from '../helpers/pushState';
+import credentialsHelpers from '../helpers/credentials';
 
 const guestUrls = [
     window.url('login'),
@@ -25,6 +26,7 @@ export default {
             styleHelpers,
             eventHelpers,
             pushStateHelpers,
+            credentialsHelpers,
         );
 
         Vue.prototype.$viender.getNotificationCount = () => {

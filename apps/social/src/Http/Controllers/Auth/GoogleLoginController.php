@@ -30,6 +30,6 @@ class GoogleLoginController extends LoginController
 
         auth()->login($user, true);
 
-        return redirect('/?from=google_login');
+        return redirect(url('/?from=google_login'));
     }
 }

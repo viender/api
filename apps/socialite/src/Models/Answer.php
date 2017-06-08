@@ -25,7 +25,7 @@ class Answer extends Model implements Upvotable, Commentable
      * @var array
      */
     protected $fillable = [
-        'user_id', 'slug', 'question_id', 'title', 'body',
+        'user_id', 'slug', 'question_id', 'title', 'body', 'credential_id',
     ];
 
     /**
@@ -70,5 +70,10 @@ class Answer extends Model implements Upvotable, Commentable
     public function question()
     {
         return $this->belongsTo('Viender\Socialite\Models\Question');
+    }
+
+    public function credential()
+    {
+        return $this->belongsTo('Viender\Credential\Models\Credential');
     }
 }

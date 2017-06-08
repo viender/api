@@ -7,6 +7,7 @@ export default {
         editorElement: null,
         question: null,
         content: null,
+        credentialId: null,
     },
 
     mutations: {
@@ -26,6 +27,10 @@ export default {
 
         [types.SET_EDITOR_ELEMENT](state, editorElement) {
             state.editorElement = editorElement;
+        },
+
+        [types.SET_CREDENTIAL_ID](state, {id}) {
+            state.credentialId = id;
         },
     },
 
