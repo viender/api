@@ -2,6 +2,7 @@
 
 namespace Viender\Raa\Http\Controllers\Api;
 
+use Viender\Raa\Raa;
 use Viender\Utilities\Text;
 use Illuminate\Http\Request;
 use Viender\Topic\Models\Topic;
@@ -14,11 +15,13 @@ use Viender\Socialite\Transformers\AnswerPreviewTransformer;
 
 class SearchController extends ApiController
 {
-    private $answers;
+    protected $raa;
+    protected $answers;
 
-    public function __construct(AnswersRepository $answers)
+    public function __construct(AnswersRepository $answers, Raa $raa)
     {
         parent::__construct();
+        $this->raa = $raa;
         $this->answers = $answers;
     }
 
@@ -27,24 +30,13 @@ class SearchController extends ApiController
         $searchQuery = Text::clean($request->q);
 
         if ($searchQuery) {
-            $topics = Topic::search($searchQuery)->paginate();
-
-            if ($topics->count() > 0) {
-                return $this->respondWithPagination($topics, new TopicTransformer);
+            if ($request->searchable_type) {
+                return $this->raa->specificSearch($searchQuery, $request->searchable_type, $this);
             }
 
-            // $answers = Answer::search($searchQuery)->paginate();
-
-            // if ($answers->count() > 0) {
-            //     return $this->respondWithPagination($answers, new AnswerPreviewTransformer($this->answers));
-            // }
-
-            $questions = Question::search($searchQuery)->paginate();
-
-            if ($questions->count() > 0) {
-                return $this->respondWithPagination($questions, new QuestionTransformer());
-            }
+            return $this->raa->smartSearch($searchQuery, $this);
         }
 
+        return $this->respondNotFound();
     }
 }
