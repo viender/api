@@ -23,7 +23,7 @@ class UserCredentialsController extends ApiController
      */
     public function index(User $user)
     {
-        $paginator = Credential::paginate();
+        $paginator = Credential::latest('created_at')->paginate();
         return $this->respondWithPagination($paginator, new CredentialTransformer);
     }
 
@@ -33,8 +33,30 @@ class UserCredentialsController extends ApiController
      */
     public function store(Request $request, User $user)
     {
+        $credential = null;
 
+        switch ($request->credential['type']) {
+            case 'employment':
+                $credential = $this->credentials->addEmploymentCredential($user, $request->credential);
+                break;
 
+            case 'education':
+                $credential = $this->credentials->addEducationCredential($user, $request->credential);
+                break;
+
+            case 'location':
+                $credential = $this->credentials->addLocationCredential($user, $request->credential);
+                break;
+
+            case 'topic':
+                $credential = $this->credentials->addTopicCredential($user, $request->credential);
+                break;
+
+            default:
+                break;
+        }
+
+        return $this->respond(new Item($credential, new CredentialTransformer));
     }
 
     /**

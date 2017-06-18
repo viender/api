@@ -85,13 +85,13 @@ class ApiController extends Controller
         return $this->setStatusCode($status_code)->respondWithMessage($message);
     }
 
-    public function respondWithPagination($paginator, $transformer)
+    public function respondWithPagination($paginator, $transformer, $status_code = 200)
     {
         $items = $paginator->getCollection();
         $resource = new Collection($items, $transformer);
         $resource->setPaginator(new IlluminatePaginatorAdapter($paginator));
 
-        return $this->respond($resource);
+        return $this->setStatusCode($status_code)->respond($resource);
     }
 
 }

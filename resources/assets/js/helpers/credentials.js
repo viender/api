@@ -27,12 +27,26 @@ export default {
             case 'location':
                 text = `
                     <i class="collection-item-radio-label-icon fa fa-map-marker" aria-hidden="true"></i>
-                    <span class="collection-item-radio-label-content">location</span>`;
+                    <span class="collection-item-radio-label-content">
+                        <span>Lives in</span>
+                        <span>${credential.data.location.name}</span>
+                        <span>
+                            <span>
+                            (${credential.property.start_year} -
+                            ${(credential.property.still_here || !credential.property.end_year) ?
+                                'present' : ( credential.property.end_year) ?
+                                credential.property.end_year : ''})
+                            </span>
+                        </span>
+                    </span>
+                    `;
                 break;
             case 'topic':
                 text = `
                     <i class="collection-item-radio-label-icon fa fa-futbol-o" aria-hidden="true"></i>
-                    <span class="collection-item-radio-label-content">topic</span>`;
+                    <span class="collection-item-radio-label-content">
+                        ${credential.property.experience} . ${credential.data.topic.name}
+                    </span>`;
                 break;
             default:
                 break;
@@ -63,11 +77,18 @@ export default {
                 break;
             case 'location':
                 text = `
-                    location`;
+                    Lives in
+                    ${credential.data.location.name}
+                        (${credential.property.start_year} -
+                        ${(credential.property.still_here || !credential.property.end_year) ?
+                            'present' : ( credential.property.end_year) ?
+                            credential.property.end_year : ''})
+                    `;
                 break;
             case 'topic':
                 text = `
-                    topic`;
+                    ${credential.property.experience}
+                `;
                 break;
             default:
                 break;

@@ -40,6 +40,10 @@ class UserTransformer extends Transformer
                     'url' => route('web.viender.profile.pages.profile', $user->username),
                 ],
                 [
+                    'rel' => 'credentials',
+                    'url' => route('api.viender.credential.users.credentials.index', $user),
+                ],
+                [
                     'rel' => 'avatar',
                     'url' => Storage::url($user->avatar_url),
                 ],

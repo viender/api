@@ -38,9 +38,10 @@ export default {
 
     computed: Object.assign(Vuex.mapState('credentials', [
         'selectedCredential',
-        'selectedCredentialText',
     ]), Vuex.mapState('editor', [
         'credentialId',
+    ]), Vuex.mapGetters('credentials', [
+        'selectedCredentialText',
     ]), {
         content() {
             return this.$store.state.editor.content;
@@ -59,14 +60,6 @@ export default {
         selectedCredential() {
             this.$store.commit('editor/' + types.SET_CREDENTIAL_ID, {id: this.selectedCredential.id});
         },
-    },
-
-    created() {
-        this.$viender.helpers.fetchAuthenticatedUser()
-        .then((user) => {
-            const url = `${this.$viender.helpers.getUrl('self', user)}/credentials`;
-            this.$store.commit(`credentials/${credentialTypes.SET_CREDENTIALS_URL}`, {url});
-        });
     },
 
     mounted() {
@@ -163,7 +156,6 @@ export default {
         },
 
         showCredentialAddModal() {
-            this.$store.dispatch('credentials/fetchCredentials');
             this.$store.commit(`credentials/${credentialTypes.SET_VISIBLE}`, {visible: true});
         },
 

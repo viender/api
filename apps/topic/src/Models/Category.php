@@ -23,6 +23,22 @@ class Category extends Model
         'description',
     ];
 
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = [
+            'id'            => $this->id,
+            'name'          => $this->name,
+            'description'   => $this->description,
+        ];
+
+        return $array;
+    }
+
     public function topics()
     {
         return $this->belongsToMany(Topic::class);

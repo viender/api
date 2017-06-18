@@ -11,7 +11,7 @@
 |
 */
 
-$isFirst = true;
+$GLOBALS['isFirst'] = true;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(\Viender\Socialite\Models\Comment::class, function (Faker\Generator $faker) {
@@ -33,11 +33,11 @@ $factory->define(\Viender\Socialite\Models\Comment::class, function (Faker\Gener
 
             $commentable = $faker->randomElement($commentables);
 
-            while($commentable == 'Viender\Socialite\Models\Comment' && $isFirst) {
+            while($commentable == 'Viender\Socialite\Models\Comment' && $GLOBALS['isFirst']) {
                 $commentable = $faker->randomElement($commentables);
             }
 
-            $isFirst = false;
+            $GLOBALS['isFirst'] = false;
 
             return $commentable;
         },

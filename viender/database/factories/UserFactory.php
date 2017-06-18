@@ -14,29 +14,40 @@ use Viender\Utilities\Text;
 |
 */
 
+$GLOBALS['index'] = 1;
+
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
     $genders = ['male', 'female'];
     $name = $faker->name;
 
-    $http = new GuzzleHttp\Client;
-    $response = $http->get('https://randomuser.me/api');
-    $user = json_decode((string) $response->getBody(), true)['results'][0];
+    $title = $faker->title();
+
+    $firstName;
+    $lastName = $faker->lastName;
+    $gender;
+
+    if ($title === 'Ms.') {
+        $firstName = $faker->firstNameFemale;
+        $gender = 'female';
+    } else {
+        $firstName = $faker->firstNameMale;
+        $gender = 'female';
+    }
 
     return [
-        'first_name'            => $user['name']['first'],
-        'last_name'             => $user['name']['last'],
+        'first_name'            => $firstName,
+        'last_name'             => $lastName,
         'avatar_url'            => 'public/images/profile.jpg',
         'avatar_medium_url'     => 'public/images/profile-medium.jpg',
         'avatar_large_url'      => 'public/images/profile-large.jpg',
         'avatar_original_url'   => 'public/images/profile-original.jpg',
-        'username'              => $user['login']['username'],
-        'email'                 => function(array $me) {
-            return 'example_user_' . sha1(Carbon::now()) . rand(0, 9999) . '@gmail.com';
-        },
-        'password'              => $password ?: $password = bcrypt('secret'),
-        'gender'                => $user['gender'],
-        'remember_token'        => $user['login']['md5'],
+        'username'              => $firstName . '-' . $lastName . '-' . $GLOBALS['index'],
+        'email'                 => $faker->email,
+        'password'              => bcrypt('secret'),
+        'gender'                => $gender,
+        'remember_token'        => sha1(1),
     ];
+
+    $GLOBALS['index'] += 1;
 });

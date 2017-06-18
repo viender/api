@@ -14,11 +14,11 @@ class CreateCategoryTopicTable extends Migration
     public function up()
     {
         Schema::create('category_topic', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->integer('topic_id')->unsigned();
             $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

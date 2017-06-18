@@ -19,26 +19,26 @@ class CredentialTransformer extends Transformer
 
         switch ($credential->type) {
             case 'employment':
-                $companyOrOrganization = Topic::find($credential->property['company_or_organization']);
+                $companyOrOrganization = Topic::find($credential->properties['company_or_organization']);
                 $data['company_or_organization'] = $this->transformPropertyObject($companyOrOrganization);
                 break;
 
             case 'education':
-                $school = Topic::find($credential->property['school']);
-                $concentration = Topic::find($credential->property['concentration']);
-                $secondaryConcentration = Topic::find($credential->property['secondary_concentration']);
+                $school = Topic::find($credential->properties['school']);
+                $concentration = Topic::find($credential->properties['concentration']);
+                $secondaryConcentration = Topic::find($credential->properties['secondary_concentration']);
                 $data['school'] = $this->transformPropertyObject($school);
                 $data['concentration'] = $this->transformPropertyObject($concentration);
                 $data['secondary_concentration'] = $this->transformPropertyObject($secondaryConcentration);
                 break;
 
             case 'location':
-                $location = Topic::find($credential->property['location']);
+                $location = Topic::find($credential->properties['location']);
                 $data['location'] = $this->transformPropertyObject($location);
                 break;
 
             case 'topic':
-                $topic = Topic::find($credential->property['topic']);
+                $topic = Topic::find($credential->properties['topic']);
                 $data['topic'] = $this->transformPropertyObject($topic);
                 break;
 
@@ -49,7 +49,7 @@ class CredentialTransformer extends Transformer
         return [
             'id'        => $credential->id,
             'type'      => $credential->type,
-            'property'  => $credential->property,
+            'property'  => $credential->properties,
             'data'      => $data,
         ];
     }
@@ -57,9 +57,10 @@ class CredentialTransformer extends Transformer
     public function transformPropertyObject($object)
     {
         return [
-            'name' => $object->name,
-            'description' => $object->description,
-            'links' => [
+            'id'            => $object->id,
+            'name'          => $object->name,
+            'description'   => $object->description,
+            'links'         => [
                 [
                     'rel' => 'self_html',
                     'url' => route('web.viender.topic.pages.topic.show', $object),

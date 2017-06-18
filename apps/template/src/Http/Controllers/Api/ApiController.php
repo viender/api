@@ -12,7 +12,7 @@ use Viender\XXXTemplateXXX\Transformers\Serializer\ArraySerializer;
 class ApiController extends Controller
 {
     protected $handler;
-    
+
     protected $statusCode = 200;
 
     protected $fractal;
@@ -51,13 +51,13 @@ class ApiController extends Controller
         return $this;
     }
 
-    public function respond($resource, $header = []) 
+    public function respond($resource, $header = [])
     {
         $data = is_array($resource) ? $resource :  $this->fractal->createData($resource)->toArray();
         return Response::json($data, $this->getStatusCode(), $header);
     }
 
-    public function respondWithMessage($message) 
+    public function respondWithMessage($message)
     {
         return $this->respond([
             'message' => $message,
@@ -65,33 +65,33 @@ class ApiController extends Controller
         ]);
     }
 
-    public function respondNotFound($message = "Not Found", $status_code = 404) 
+    public function respondNotFound($message = "Not Found", $status_code = 404)
     {
         return $this->setStatusCode($status_code)->respondWithMessage($message);
     }
 
-    public function respondCreated($message = "Created", $status_code = 201) 
+    public function respondCreated($message = "Created", $status_code = 201)
     {
         return $this->setStatusCode($status_code)->respondWithMessage($message);
     }
 
-    public function respondUpdated($message = "Updated", $status_code = 200) 
+    public function respondUpdated($message = "Updated", $status_code = 200)
     {
         return $this->setStatusCode($status_code)->respondWithMessage($message);
     }
 
-    public function respondDeleted($message = "Deleted", $status_code = 204) 
+    public function respondDeleted($message = "Deleted", $status_code = 204)
     {
         return $this->setStatusCode($status_code)->respondWithMessage($message);
     }
 
-    public function respondWithPagination($paginator, $transformer) 
+    public function respondWithPagination($paginator, $transformer, $status_code = 200)
     {
         $items = $paginator->getCollection();
         $resource = new Collection($items, $transformer);
         $resource->setPaginator(new IlluminatePaginatorAdapter($paginator));
 
-        return $this->respond($resource);
+        return $this->setStatusCode($status_code)->respond($resource);
     }
 
 }

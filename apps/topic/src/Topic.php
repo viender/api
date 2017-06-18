@@ -2,6 +2,7 @@
 
 namespace Viender\Topic;
 
+use Illuminate\Support\Str;
 use Viender\Topic\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -32,7 +33,7 @@ class Topic
         $slug = $name . ($duplicateCount > 0 ? ('-' . $duplicateCount + 1) : '');
 
         $topic = TopicModel::create([
-            'name'              => $name,
+            'name'              => Str::lower($name),
             'description'       => $description,
             'class'             => $class ?? 'user-generated',
             'slug'              => $slug,

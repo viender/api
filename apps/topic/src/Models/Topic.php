@@ -27,9 +27,14 @@ class Topic extends Model
         'name',
         'class',
         'description',
+        'properties',
         'thumbnail',
         'thumbnail_medium',
     	'thumbnail_large',
+    ];
+
+    protected $casts = [
+        'properties' => 'json'
     ];
 
     /**
@@ -53,9 +58,9 @@ class Topic extends Model
 
         $array = [
             'id'            => $this->id,
-            'parent'     => $this->parent ? $this->parent ->toArray() : [],
             'name'          => $this->name,
             'description'   => $this->description,
+            'categories'    => $this->categories()->get()->pluck('id')->toArray(),
         ];
 
         return $array;

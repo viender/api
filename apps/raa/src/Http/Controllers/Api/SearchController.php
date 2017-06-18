@@ -31,7 +31,7 @@ class SearchController extends ApiController
 
         if ($searchQuery) {
             if ($request->searchable_type) {
-                return $this->raa->specificSearch($searchQuery, $request->searchable_type, $this);
+                return $this->raa->specificSearch($searchQuery, $request->searchable_type, $this, $request->all());
             }
 
             return $this->raa->smartSearch($searchQuery, $this);

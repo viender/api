@@ -8,11 +8,55 @@ export default {
         credentialInput: null,
         credentials: [],
         requesting: false,
+        submitting: false,
         page: 1,
         totalPages: 1,
         credentialsUrl: null,
         selectedCredential: null,
-        selectedCredentialText: null,
+        showAddCredentialOverlay: false,
+        form: {
+            employment: {
+                type: 'employment',
+                position: null,
+                company_or_organization: null,
+                start_year: null,
+                end_year: null,
+                still_here: null,
+            },
+
+            education: {
+                type: 'education',
+                school: null,
+                concentration: null,
+                secondary_concentration: null,
+                degree_type: null,
+                graduation_year: null,
+            },
+
+            location: {
+                type: 'location',
+                location: null,
+                start_year: null,
+                end_year: null,
+                still_here: null,
+            },
+
+            topic: {
+                type: 'topic',
+                topic: null,
+                experience: null,
+            },
+        },
+    },
+
+    getters: {
+        selectedCredentialText(state) {
+            if (state.selectedCredential) {
+                return window.Vue.prototype.$viender.helpers.credentialText(state.selectedCredential);
+            }
+
+            return '';
+        },
     },
 
     mutations: {
@@ -39,8 +83,24 @@ export default {
         [types.SET_SELECTED_CREDENTIAL](state, {credential}) {
             state.selectedCredential = credential;
         },
-        [types.SET_SELECTED_CREDENTIAL_TEXT](state, {text}) {
-            state.selectedCredentialText = text;
+        [types.SET_SHOW_ADD_CREDENTIAL_OVERLAY](state, {show}) {
+            state.showAddCredentialOverlay = show;
+        },
+        [types.SET_FORM_INPUT](state, {form, key, value}) {
+            form = state.form[form];
+
+            if (form) {
+                form[key] = value;
+            }
+        },
+        [types.SET_SUBMITTING](state, {submitting}) {
+            state.submitting = submitting;
+        },
+        [types.PUSH_CREDENTIAL](state, {credential}) {
+            state.credentials.push(credential);
+        },
+        [types.UNSHIFT_CREDENTIAL](state, {credential}) {
+            state.credentials.unshift(credential);
         },
     },
 
@@ -65,6 +125,24 @@ export default {
                 })
                 .catch((error) => {
                     commit(types.SET_REQUESTING, false);
+                    reject(error);
+                });
+            });
+        },
+
+        submitCredential({state, commit}, {credential}) {
+            return new Promise((resolve, reject) => {
+                if(state.submitting) return;
+
+                commit(types.SET_SUBMITTING, true);
+
+                axios.post(state.credentialsUrl, {credential})
+                .then((response) => {
+                    commit(types.SET_SUBMITTING, false);
+                    resolve(response.data);
+                })
+                .catch((error) => {
+                    commit(types.SET_SUBMITTING, false);
                     reject(error);
                 });
             });

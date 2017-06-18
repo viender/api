@@ -3,9 +3,17 @@
 namespace Viender\Topic\Transformers;
 
 use Viender\Topic\Models\Topic;
+use Illuminate\Support\Facades\Storage;
 
 class TopicTransformer extends Transformer
 {
+    /**
+     * Include resources without needing it to be requested.
+     *
+     * @var array
+     */
+    protected $defaultIncludes = ['categories'];
+
     /**
      * List of resources possible to include
      *
@@ -45,7 +53,7 @@ class TopicTransformer extends Transformer
                 ],
                 [
                     'rel'   => 'thumbnail',
-                    'url'   => $topic->thumbnail,
+                    'url'   => Storage::url($topic->thumbnail),
                 ],
             ],
         ];
@@ -61,5 +69,17 @@ class TopicTransformer extends Transformer
         $parent = $topic->parent;
 
         return $this->item($parent, new TopicTransformer);
+    }
+
+    /**
+     * Include Categories
+     *
+     * @return League\Fractal\ItemResource
+     */
+    public function includeCategories($topic)
+    {
+        $categories = $topic->categories;
+
+        return $this->collection($categories, new CategoryTransformer);
     }
 }

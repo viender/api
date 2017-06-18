@@ -24,9 +24,14 @@ class DatabaseSeeder extends Seeder
         'password_resets',
         'users',
         'topics',
+        'role_user',
+        'roles',
+        'category_topic',
+        'categories',
     ];
 
     public $seeders = [
+        CategoriesTableSeeder::class,
         TopicsTableSeeder::class,
         CountriesTableSeeder::class,
         StatesTableSeeder::class,
@@ -43,6 +48,13 @@ class DatabaseSeeder extends Seeder
         UpvotesTableSeeder::class,
         DownvotesTableSeeder::class,
         StarsTableSeeder::class,
+        RolesTableSeeder::class,
+    ];
+
+    public $productionSeeders = [
+        Viender\Topic\Models\Category::class => CategoriesTableSeeder::class,
+        Viender\Topic\Models\Topic::class => TopicsTableSeeder::class,
+        Viender\Role\Models\Role::class => RolesTableSeeder::class,
     ];
 
     /**
@@ -52,16 +64,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->truncateTables($this->tables);
+        if (config('app.env') === 'production') {
+            $this->callProductionSeeder();
+        } else if (config('app.env') === 'local') {
+            $this->truncateTables($this->tables);
+            $this->callSeeder($this->seeders);
+        }
+    }
 
-        $this->callSeeder($this->seeders);
+    public function callProductionSeeder()
+    {
+        foreach ($this->productionSeeders as $model => $seeder) {
+            echo 'calling ' . $seeder . '... ';
+            if ($model::count() === 0) {
+                $this->call($seeder);
+                echo 'done' . PHP_EOL;
+            } else {
+                echo 'nothing to seed' . PHP_EOL;
+            }
+        }
     }
 
     public function callSeeder($seeders)
     {
         foreach ($seeders as $seeder) {
             echo 'calling ' . $seeder . '... ';
-            $this->call($seeder);
+             $this->call($seeder);
         }
     }
 

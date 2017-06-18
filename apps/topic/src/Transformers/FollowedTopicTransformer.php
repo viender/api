@@ -46,7 +46,7 @@ class FollowedTopicTransformer extends Transformer
                 ],
                 [
                     'rel'   => 'thumbnail',
-                    'url'   => $topic->thumbnail,
+                    'url'   => \Storage::url($topic->thumbnail),
                 ],
             ],
         ];

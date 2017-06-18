@@ -18,11 +18,11 @@ class Credential extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'type', 'property',
+        'user_id', 'type', 'properties',
     ];
 
     protected $casts = [
-        'property' => 'json'
+        'properties' => 'json'
     ];
 
     public function user()

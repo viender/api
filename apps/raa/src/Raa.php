@@ -7,10 +7,12 @@ use Viender\Topic\Models\Topic;
 use Viender\Socialite\Models\Answer;
 use Illuminate\Support\Facades\Route;
 use Viender\Socialite\Models\Question;
+use Viender\Topic\Models\CategoryTopic;
 use Viender\Topic\Transformers\TopicTransformer;
 use Viender\Address\Transformers\UserTransformer;
 use Viender\Socialite\Transformers\AnswerTransformer;
 use Viender\Socialite\Transformers\QuestionTransformer;
+use Viender\Topic\Transformers\CategoryTopicTransformer;
 
 class Raa
 {
@@ -52,7 +54,7 @@ class Raa
         return $controller->respondNotFound();
     }
 
-    public function specificSearch($searchQuery, $searchableType, $controller)
+    public function specificSearch($searchQuery, $searchableType, $controller, $input = [])
     {
         $response = $controller->respondNotFound();
 
@@ -68,8 +70,17 @@ class Raa
                 break;
 
             case 'topic':
-                $results = Topic::search($searchQuery)->paginate();
-                $response = $controller->respondWithPagination($results, new TopicTransformer());
+                $results;
+                $transformer;
+
+                if (isset($input['category_id'])) {
+                    $results = CategoryTopic::search($searchQuery)->where('category_id', $input['category_id'])->paginate();
+                    $transformer = CategoryTopicTransformer::class;
+                } else {
+                    $results = Topic::search($searchQuery)->paginate();
+                    $transformer = TopicTransformer::class;
+                }
+                $response = $controller->respondWithPagination($results, new $transformer);
                 break;
 
             case 'user':

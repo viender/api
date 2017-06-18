@@ -15,8 +15,9 @@ class CreateCredentialsTable extends Migration
     {
         Schema::create('credentials', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('default')->default(false);
             $table->string('type');
-            $table->string('property');
+            $table->json('properties')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
