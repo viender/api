@@ -3,6 +3,7 @@
 namespace Viender\Topic;
 
 use Illuminate\Support\Str;
+use Viender\Utilities\Text;
 use Viender\Topic\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -28,12 +29,14 @@ class Topic
 
     public function create($name, $description = null, $categoryId = null, $class = null)
     {
-        $duplicateCount = TopicModel::where('name', $name)->count();
+        $lowerCaseName = Str::lower($name);
 
-        $slug = $name . ($duplicateCount > 0 ? ('-' . $duplicateCount + 1) : '');
+        $duplicateCount = TopicModel::where('name', $lowerCaseName)->count();
+
+        $slug = Text::clean($lowerCaseName) . ($duplicateCount > 0 ? ('-' . $duplicateCount + 1) : '');
 
         $topic = TopicModel::create([
-            'name'              => Str::lower($name),
+            'name'              => $lowerCaseName,
             'description'       => $description,
             'class'             => $class ?? 'user-generated',
             'slug'              => $slug,
