@@ -10,7 +10,7 @@
                 key: 'topic',
                 value: $event.pickedTopic ? ($event.pickedTopic.id || $event.pickedTopic.name) : null})">
         </topic-picker>
-        <input type="text" name="experience" placeholder="Position" v-model="form.topic.experience">
+        <input type="text" name="experience" placeholder="Experience" v-model="form.topic.experience">
         <div>
             <input class="btn" type="submit" value="Submit" @click.prevent="submit({form: form.topic})">
         </div>
