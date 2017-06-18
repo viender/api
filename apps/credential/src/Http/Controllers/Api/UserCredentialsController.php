@@ -23,7 +23,7 @@ class UserCredentialsController extends ApiController
      */
     public function index(User $user)
     {
-        $paginator = Credential::latest('created_at')->paginate();
+        $paginator = \Auth::user()->credentials()->latest('created_at')->paginate();
         return $this->respondWithPagination($paginator, new CredentialTransformer);
     }
 
