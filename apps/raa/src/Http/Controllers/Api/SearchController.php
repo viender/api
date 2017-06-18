@@ -27,7 +27,7 @@ class SearchController extends ApiController
 
     public function index(Request $request)
     {
-        $searchQuery = Text::clean($request->q);
+        $searchQuery = preg_replace('/[^A-Za-z0-9\-\s]/', '', $request->q);
 
         if ($searchQuery) {
             if ($request->searchable_type) {
