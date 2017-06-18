@@ -7,6 +7,7 @@ import userStats from 'viender_profile/core/js/store/modules/userStats';
 import followingList from 'viender_profile/core/js/store/modules/followingList';
 import followerList from 'viender_profile/core/js/store/modules/followerList';
 import topicList from 'viender_profile/core/js/store/modules/topicList';
+import credentials from 'viender_credential/core/js/store/modules/credentials';
 
 export default new Vuex.Store({
   modules: Object.assign(coreModules, {
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     followingList: followingList,
     followerList: followerList,
     topicList: topicList,
+    credentials: credentials,
   }),
 
   actions: require('viender_socialite/core/js/store//actions.js'),

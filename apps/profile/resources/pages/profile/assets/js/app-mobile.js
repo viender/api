@@ -42,6 +42,11 @@ Vue.component('edit-profile', require('viender_profile/core/js/components/edit-p
 
 Vue.component('more-menu', require('viender_socialite/core/js/components/more-menu.vue'));
 
+Vue.component('edit-credential-modal', require('viender_credential/core/js/components/edit-credential-modal.vue'));
+Vue.component('add-credential-overlay', require('viender_credential/core/js/components/add-credential-overlay.vue'));
+Vue.component('elasticsearch', require('viender_core/js/components/elasticsearch.vue'));
+Vue.component('topic-picker', require('viender_core/js/components/topic-picker.vue'));
+
 const feed = new Vue({
     el: '#app',
 
