@@ -12,7 +12,7 @@
 		<div class="col s12">
             <div class="profile-userDetail__container">
     			<span class="profile-userDetail__name">{{ $user->fullName() }}</span>
-                <i class="fa fa-ellipsis-h profile-userDetail__menu" aria-hidden="true" @click="$refs.profileMenu.setShow(true)"></i>
+                <i class="fa fa-ellipsis-h profile-userDetail__menu" aria-hidden="true" @click="$refs.profileMenu.open()"></i>
             </div>
 
 			@if(\Auth::user() ? $followed = \Auth::user()->followedUsers()->where([

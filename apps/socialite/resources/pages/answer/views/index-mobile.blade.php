@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="mobile">
-	<question-list question-url="{{ route('api.viender.socialite.questions.index') }}"></question-list>
+    <question-list question-url="{{ route('api.viender.socialite.questions.index') }}"></question-list>
 </div>
 @endsection
 

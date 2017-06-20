@@ -10,7 +10,13 @@
                 <li class="collection-item avatar">
                     <img :src="$viender.treasure.user ? getUrl('avatar', $viender.treasure.user) : ''" alt="" class="circle">
                     <span class="card-title">
-                        <span>{{ $viender.user ? $viender.user.name : '' }}{{ selectedCredentialText ? ', ' + selectedCredentialText : '' }}</span>
+                        <span>
+                            {{ $viender.user ? $viender.user.name : '' }}
+                        </span>
+                        <credential
+                            v-if="selectedCredential"
+                            :credential="selectedCredential">
+                        </credential>
                         <br>
                         <a @click="showCredentialAddModal()">Edit Credential</a>
                     </span>
@@ -24,10 +30,15 @@
 <script>
 import * as types from '../store/mutation-types';
 import * as credentialTypes from 'viender_credential/core/js/store/mutation-types';
+import credential from 'viender_credential/core/js/components/credential';
 
 export default {
 
     mixins: [require('viender_core/js/mixins/urlHelper')],
+
+    components: {
+        credential,
+    },
 
     data() {
         return {

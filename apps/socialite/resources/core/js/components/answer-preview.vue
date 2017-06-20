@@ -8,11 +8,17 @@
                         <li class="collection-item avatar">
                             <img :src="getUrl('avatar', answer.owner)" alt="" class="circle">
                             <a :href="getUrl('self_html', answer.owner)" @click="$event.stopPropagation()">
-                                <span class="answer-content-owner">
-                                    {{ `${answer.owner.name}${(answer.credential.id ? ', ' : '')}` }}
-                                </span>
+                                <!-- <strong> -->
+                                    <span class="answer-content-owner">
+                                        {{ `${answer.owner.name}${(answer.credential.id ? ', ' : '')}` }}
+                                    </span>
+                                <!-- </strong> -->
                             </a>
-                            <span v-if="answer.credential.id" v-html="$viender.helpers.answersCredentialHtml(answer.credential)"></span>
+                            <credential
+                                :credential="answer.credential"
+                                v-if="answer.credential.id"
+                                :with-link="true">
+                            </credential>
                         </li>
                     </ul>
                     <div class="answer-content" v-if="!answer.deleted_at" @click="showAnswer()">
@@ -52,8 +58,13 @@
 <script>
 import answerMixin from '../mixins/answerMixin';
 import urlHelper from 'viender_core/js/mixins/urlHelper';
+import credential from 'viender_credential/core/js/components/credential';
 
 export default {
     mixins: [answerMixin, urlHelper],
+
+    components: {
+        credential,
+    },
 };
 </script>

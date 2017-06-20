@@ -11,6 +11,11 @@
                             <a :href="getUrl('self_html', answer.owner)">
                                 <span class="answer-content-owner">{{ answer.owner.name }}</span>
                             </a>
+                            <credential
+                                :credential="answer.credential"
+                                v-if="answer.credential.id"
+                                :with-link="true">
+                            </credential>
                         </li>
                     </ul>
                     <div class="answer-content" v-html="answer.body" v-if="!answer.deleted_at"></div>
@@ -47,8 +52,13 @@
 <script>
 import answerMixin from '../mixins/answerMixin';
 import urlHelper from 'viender_core/js/mixins/urlHelper';
+import credential from 'viender_credential/core/js/components/credential';
 
 export default {
     mixins: [answerMixin, urlHelper],
+
+    components: {
+        credential,
+    },
 };
 </script>

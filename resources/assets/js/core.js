@@ -8,3 +8,4 @@ Vue.component('create-question-overlay', require('./components/create-question-o
 Vue.component('search-results', require('./components/search-results.vue'));
 Vue.component('tutorial', require('./components/tutorial.vue'));
 Vue.component('overlay', require('./components/commons/overlay.vue'));
+Vue.component('sneakpeek', require('./components/commons/sneakpeek.vue'));

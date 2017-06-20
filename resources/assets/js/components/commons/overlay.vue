@@ -1,5 +1,5 @@
 <template>
-    <div class="overlay" :style="`z-index: ${zIndex || 1};`" @click="$event.stopPropagation()">
+    <div class="overlay" :style="`z-index: ${zIndex || 999};`" @click="$event.stopPropagation()">
         <div class="container overlay-container">
             <div class="row overlay-header">
                 <div class="col s12">
