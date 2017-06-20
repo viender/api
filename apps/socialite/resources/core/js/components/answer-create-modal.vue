@@ -10,7 +10,6 @@
             <i aria-hidden="true" class="fa fa-angle-left fa-2x"></i>
             <i @click="$refs.form.answer($event)" class="modal-action-send material-icons right">send</i>
         </div>
-        <add-credential-overlay ref="addCredential"></add-credential-overlay>
         <edit-credential-modal ref="editCredential"></edit-credential-modal>
     </div>
 </template>

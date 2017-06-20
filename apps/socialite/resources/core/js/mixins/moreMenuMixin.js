@@ -39,5 +39,9 @@ export default {
                 }
             });
         },
+
+        editModel() {
+
+        },
     },
 };

@@ -1,6 +1,11 @@
 import * as types from '../store/mutation-types';
+import * as answerEditOverlay from '../components/answer-edit-overlay';
 
 export default {
+    components: {
+        'answer-edit-overlay': answerEditOverlay,
+    },
+
     props: {
         answer: {
             type: Object,
@@ -65,6 +70,11 @@ export default {
             .then(() => {
                 self.answer.deleted_at = null;
             });
+        },
+
+        openEditOverlay() {
+            console.log('open');
+            this.$refs.editOverlay.open();
         },
 
         ga(eventAction, eventLabel = '') {

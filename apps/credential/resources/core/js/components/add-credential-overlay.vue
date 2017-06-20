@@ -1,5 +1,5 @@
 <template>
-    <overlay ref="overlay" z-index="1044" v-if="showAddCredentialOverlay" @back="setShow(false, $event)">
+    <overlay ref="overlay" z-index="1044">
         <strong slot="title">Add a Credential</strong>
         <div slot="content">
             <select class="generic-select" name="type" id="credentialType" style="display: initial;" v-model="type">
@@ -54,7 +54,6 @@ export default {
     },
 
     computed: Object.assign(Vuex.mapState('credentials', [
-        'showAddCredentialOverlay',
         'form',
     ])),
 
@@ -69,6 +68,14 @@ export default {
     },
 
     methods: {
+        open() {
+            this.$refs.overlay.open();
+        },
+
+        close() {
+            this.$refs.overlay.close();
+        },
+
         setShow(show, e) {
             if (e) e.stopPropagation();
             this.$store.commit(`credentials/${types.SET_SHOW_ADD_CREDENTIAL_OVERLAY}`, {show});

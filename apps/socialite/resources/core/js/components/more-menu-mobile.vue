@@ -3,6 +3,9 @@
         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
         <sneakpeek ref="sneakpeek">
             <ul class="collection">
+                <li class="collection-item" v-if="model.owner.id === $viender.user.id" @click="clickEdit()">
+                    <a>Edit</a>
+                </li>
                 <li class="collection-item" v-if="model.owner.id === $viender.user.id" @click="deleteModel()">
                     <a>Delete</a>
                 </li>
@@ -25,6 +28,10 @@ export default {
             if (!this.$refs.sneakpeek.isOpen()) {
                 this.$refs.sneakpeek.open();
             }
+        },
+
+        clickEdit() {
+            this.$emit('click-edit', {model: this.model});
         },
     },
 };

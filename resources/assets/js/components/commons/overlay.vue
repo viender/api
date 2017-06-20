@@ -1,9 +1,9 @@
 <template>
-    <div class="overlay" :style="`z-index: ${zIndex || 999};`" @click="$event.stopPropagation()">
+    <div class="overlay" :style="`z-index: ${zIndex || 999};`" @click="$event.stopPropagation()" v-if="show">
         <div class="container overlay-container">
             <div class="row overlay-header">
                 <div class="col s12">
-                    <div class="back-button" @click="backButtonHandle()">
+                    <div class="back-button" @click="close()">
                         <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
                     </div>
                     <div class="overlay-title">
@@ -26,9 +26,23 @@
 export default {
     props: ['zIndex'],
 
+    data() {
+        return {
+            show: false,
+        };
+    },
+
     methods: {
-        backButtonHandle() {
-            this.$emit('back');
+        open() {
+            this.show = true;
+            $('body').css('overflow-y', 'hidden');
+            this.$emit('open');
+        },
+
+        close() {
+            this.show = false;
+            $('body').css('overflow-y', 'auto');
+            this.$emit('close');
         },
     },
 };

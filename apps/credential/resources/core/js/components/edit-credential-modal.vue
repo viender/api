@@ -10,7 +10,7 @@
                 <img style="position: absolute; border-radius: 50%; width: 42px; height: 42px;" :src="$viender.user ? $viender.helpers.getUrl('avatar', $viender.user) : ''" alt="">
                 <div style="padding-left: 58px; min-height: 68px;">
                     <span>
-                        {{ $viender.user ? $viender.user.name : '' }}
+                        {{ $viender.user ? `${$viender.user.name}${selectedCredential ? ',' : ''}` : '' }}
                     </span>
                     <credential
                         v-if="selectedCredential"
@@ -22,25 +22,27 @@
                 <li class="credential-list-action collection-item">
                     <div class="credential-list-action-container" @click="showAddCredential()">
                         <i class="collection-item-radio-label-icon fa fa-plus" aria-hidden="true"></i>
-                        <span class="collection-item-radio-label-content">Add a credential</span>
+                        <span class="collection-item-radio-label-content" style="padding-left: 29px;">Add a credential</span>
                     </div>
                 </li>
             </ul>
             <form action="#" style="position: relative; height: calc(100% - 224px);">
                 <ul ref="credentialList" class="credential-list collection">
                     <li class="collection-item" v-for="credential in credentials">
-                        <div>
+                        <div class="credential-list-action-container">
                             <input class="with-gap" @change="selectCredential(credential)" name="credentials" type="radio" :id="`credential-${credential.id}`" :value="credential" v-model="selectedCredential"/>
-                            <credential
-                                class="credential-list-action-container"
-                                :credential="credential"
-                                :show-icon="true">
-                            </credential>
+                            <label :for="`credential-${credential.id}`" style="width: 100%;">
+                                <credential
+                                    :credential="credential"
+                                    :show-icon="true">
+                                </credential>
+                            </label>
                         </div>
                     </li>
                 </ul>
             </form>
         </div>
+        <add-credential-overlay ref="addCredential"></add-credential-overlay>
     </div>
 </template>
 
@@ -103,7 +105,7 @@ export default {
         },
 
         showAddCredential() {
-            this.$store.commit(`credentials/${types.SET_SHOW_ADD_CREDENTIAL_OVERLAY}`, {show: true});
+            this.$refs.addCredential.open();
         },
     },
 };
@@ -119,6 +121,19 @@ export default {
         background-color: rgba(0,0,0,0.5);
         z-index: 1043;
         max-width: 800px;
+    }
+
+    .edit-credential-modal .credential-list-action-container {
+        padding: 0;
+    }
+
+    .edit-credential-modal .collection-item {
+        padding: 10px 14px;
+    }
+
+    .edit-credential-modal label {
+        color: #333;
+        font-weight: initial;
     }
 
     .credential-list {
@@ -171,6 +186,7 @@ export default {
 
     .collection-item-radio-label-content {
         position: inherit;
+        padding-left: 16
     }
 
     .edit-credential-modal [type="radio"] + label:before, [type="radio"] + label:after {
@@ -183,4 +199,7 @@ export default {
         right: 0;
     }
 
+    .edit-credential-modal [type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
+        padding: 0 29px;
+    }
 </style>

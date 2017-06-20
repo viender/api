@@ -11,7 +11,7 @@
                     <img :src="$viender.treasure.user ? getUrl('avatar', $viender.treasure.user) : ''" alt="" class="circle">
                     <span class="card-title">
                         <span>
-                            {{ $viender.user ? $viender.user.name : '' }}
+                            {{ $viender.user ? `${$viender.user.name}${selectedCredential ? ',' : ''}` : '' }}
                         </span>
                         <credential
                             v-if="selectedCredential"
@@ -49,10 +49,6 @@ export default {
 
     computed: Object.assign(Vuex.mapState('credentials', [
         'selectedCredential',
-    ]), Vuex.mapState('editor', [
-        'credentialId',
-    ]), Vuex.mapGetters('credentials', [
-        'selectedCredentialText',
     ]), {
         content() {
             return this.$store.state.editor.content;

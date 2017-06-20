@@ -24,6 +24,8 @@ Vue.component('question-list', require('viender_socialite/core/js/components/que
 Vue.component('answer-create-form', require('viender_socialite/core/js/components/answer-create-form.vue'));
 Vue.component('answer-create-modal', require('viender_socialite/core/js/components/answer-create-modal.vue'));
 Vue.component('more-menu', require('viender_socialite/core/js/components/more-menu.vue'));
+Vue.component('answer-edit-overlay', require('viender_socialite/core/js/components/answer-edit-overlay.vue'));
+
 Vue.component('edit-credential-modal', require('viender_credential/core/js/components/edit-credential-modal.vue'));
 Vue.component('add-credential-overlay', require('viender_credential/core/js/components/add-credential-overlay.vue'));
 Vue.component('elasticsearch', require('viender_core/js/components/elasticsearch.vue'));
