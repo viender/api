@@ -49,6 +49,10 @@ export default {
         close(e) {
             this.setShow(false);
         },
+
+        isOpen() {
+            return this.show;
+        },
     },
 };
 </script>

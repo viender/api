@@ -25,7 +25,10 @@
                                         <a class="comment-action--item" @click="toggleComments()">Replies <span>({{ comment.comment_count }})</span></a>
                                 </li>
                                 <li class="card-action-item--right">
-                                        <more-menu :model="comment"></more-menu>
+                                    <more-menu :model="comment" v-if="$viender.treasure.client.type === 'desktop'">
+                                    </more-menu>
+                                    <more-menu-mobile :model="comment" v-else>
+                                    </more-menu-mobile>
                                 </li>
                         </ul>
                     <comment-list :commentable="comment" @comment-posted="incrementCommentCount()" v-if="showComments && comment.commentable_type !== 'Comment'"></comment-list>
@@ -34,10 +37,16 @@
 </template>
 
 <script>
+import moreMenuMobile from './more-menu-mobile';
+
 export default {
     props: ['comment'],
 
     mixins: [require('viender_core/js/mixins/urlHelper')],
+
+    components: {
+        moreMenuMobile,
+    },
 
     data() {
         return {

@@ -30,7 +30,10 @@
                         <a @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
                     </li>
                     <li class="card-action-item--right">
-                        <more-menu :model="questionObj || null"></more-menu>
+                        <more-menu :model="questionObj" v-if="$viender.treasure.client.type === 'desktop'">
+                        </more-menu>
+                        <more-menu-mobile :model="questionObj" v-else>
+                        </more-menu-mobile>
                     </li>
                 </ul>
             </div>
@@ -54,9 +57,14 @@
 <script>
 import * as types from '../store/mutation-types';
 import Question from 'viender_socialite/core/js/models/question';
+import moreMenuMobile from './more-menu-mobile';
 
 export default {
     props: ['question', 'url', 'showDetail'],
+
+    components: {
+        moreMenuMobile,
+    },
 
     data() {
         return {

@@ -39,7 +39,10 @@
                             <a @click="toggleComments()">Comments <span>({{ answer.comment_count }})</span></a>
                         </li>
                         <li class="card-action-item--right">
-                            <more-menu :model="answer"></more-menu>
+                            <more-menu :model="answer" v-if="$viender.treasure.client.type === 'desktop'">
+                            </more-menu>
+                            <more-menu-mobile :model="answer" v-else>
+                            </more-menu-mobile>
                         </li>
                     </ul>
                 </div>
@@ -53,12 +56,14 @@
 import answerMixin from '../mixins/answerMixin';
 import urlHelper from 'viender_core/js/mixins/urlHelper';
 import credential from 'viender_credential/core/js/components/credential';
+import moreMenuMobile from './more-menu-mobile';
 
 export default {
     mixins: [answerMixin, urlHelper],
 
     components: {
         credential,
+        moreMenuMobile,
     },
 };
 </script>
