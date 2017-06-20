@@ -9,7 +9,13 @@
             <div style="position: relative; padding: 10px; padding-top: 0;">
                 <img style="position: absolute; border-radius: 50%; width: 42px; height: 42px;" :src="$viender.user ? $viender.helpers.getUrl('avatar', $viender.user) : ''" alt="">
                 <div style="padding-left: 58px; min-height: 68px;">
-                    <span>{{ $viender.user ? $viender.user.name : '' }}{{ selectedCredentialText ? ', ' + selectedCredentialText : '' }}</span>
+                    <span>
+                        {{ $viender.user ? $viender.user.name : '' }}
+                    </span>
+                    <credential
+                        v-if="selectedCredential"
+                        :credential="selectedCredential">
+                    </credential>
                 </div>
             </div>
             <ul class="credential-list-action collection">
@@ -25,7 +31,11 @@
                     <li class="collection-item" v-for="credential in credentials">
                         <div>
                             <input class="with-gap" @change="selectCredential(credential)" name="credentials" type="radio" :id="`credential-${credential.id}`" :value="credential" v-model="selectedCredential"/>
-                            <label class="collection-item-radio-label" :for="`credential-${credential.id}`" v-html="$viender.helpers.credentialHtml(credential)"></label>
+                            <credential
+                                class="credential-list-action-container"
+                                :credential="credential"
+                                :show-icon="true">
+                            </credential>
                         </div>
                     </li>
                 </ul>
@@ -38,8 +48,13 @@
 import * as types from '../store/mutation-types';
 import Vuex from 'vuex';
 import * as credentialTypes from 'viender_credential/core/js/store/mutation-types';
+import credential from 'viender_credential/core/js/components/credential';
 
 export default {
+    components: {
+        credential,
+    },
+
     computed: Object.assign(Vuex.mapState('credentials', [
         'credentials',
         'credentialInput',
