@@ -33,6 +33,17 @@ import * as credentialTypes from 'viender_credential/core/js/store/mutation-type
 import credential from 'viender_credential/core/js/components/credential';
 
 export default {
+    props: {
+        method: {
+            type: String,
+            default: 'POST',
+        },
+
+        initContent: {
+            type: Boolean,
+            default: false,
+        },
+    },
 
     mixins: [require('viender_core/js/mixins/urlHelper')],
 
@@ -57,6 +68,9 @@ export default {
         question() {
             return this.$store.state.editor.question;
         },
+        answer() {
+            return this.$store.state.editor.content;
+        },
     }),
 
     watch: {
@@ -66,6 +80,12 @@ export default {
 
         selectedCredential() {
             this.$store.commit('editor/' + types.SET_CREDENTIAL_ID, {id: this.selectedCredential.id});
+        },
+
+        answer() {
+            if (this.initContent) {
+                $(this.$refs.editor).summernote('code', this.answer.body);
+            }
         },
     },
 
@@ -119,7 +139,7 @@ export default {
     },
 
     methods: {
-        answer(event) {
+        answerQuestion(event) {
             let self = this;
 
             if(event) event.preventDefault();
@@ -132,7 +152,8 @@ export default {
 
             axios.post(this.getUrl('answers', this.question) + '?with=owner', {
                 body: self.content.body.contents,
-                credential_id: self.selectedCredential.id,
+                credential_id: self.selectedCredential ? self.selectedCredential.id : null,
+                _method: self.method,
             })
                 .then(function(response) {
                     if(response.status == 200) {
