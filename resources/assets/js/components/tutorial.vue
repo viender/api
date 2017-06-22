@@ -36,7 +36,7 @@
 export default {
     data() {
         return {
-            show: true,
+            show: false,
             currentStory: null,
             answered: null,
             user: {tutorial_complete_at: true},
