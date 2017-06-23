@@ -81,6 +81,9 @@ export default {
             self.formData.bio = self.$viender.user.bio;
             self.formData.location = self.$viender.user.location;
             self.formData.website = self.$viender.user.website;
+            Vue.nextTick(() => {
+                Materialize.updateTextFields();
+            });
         })
         .catch((e) => {
             console.log(e);
