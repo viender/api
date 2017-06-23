@@ -15,13 +15,21 @@
                 </div>
             </div>
         </div>
+        <answer-create-modal :url="$viender.helpers.getUrl('self', $store.state.editor.content)" method="PUT" :init-content="true"></answer-create-modal>
     </div>
 </template>
 
 <script>
 import * as types from '../store/mutation-types';
+import answerCreateModal from 'viender_socialite/core/js/components/answer-create-modal';
+import answerCreateForm from 'viender_socialite/core/js/components/answer-create-form';
 
 export default {
+    components: {
+        'answer-create-modal': answerCreateModal,
+        'answer-create-form': answerCreateForm,
+    },
+
     props: {
         feedUrls: {
             type: Object,

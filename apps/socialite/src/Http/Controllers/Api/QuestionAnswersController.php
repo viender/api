@@ -63,7 +63,7 @@ class QuestionAnswersController extends ApiController
     {
         $this->authorize('create', Answer::class);
 
-        if (!Credential::where('id', $request->credential_id)->exists()) {
+        if ($request->credential_id && !Credential::where('id', $request->credential_id)->exists()) {
             $request->replace(array('credential_id' => null));
         }
 
@@ -130,7 +130,7 @@ class QuestionAnswersController extends ApiController
 
         $answer->update($request->all());
 
-        return $this->respondUpdated();
+        return $this->respond(new Item($answer, new AnswerPreviewTransformer($this->answers)));
     }
 
     /**

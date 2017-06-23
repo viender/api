@@ -73,8 +73,25 @@ export default {
         },
 
         openEditOverlay() {
-            console.log('open');
-            this.$refs.editOverlay.open();
+            const self = this;
+
+            axios.get(self.$viender.helpers.getUrl('self', self.answer), {
+                params: {
+                    only: ['body'],
+                },
+            })
+            .then((response) => {
+                self.answer.body = response.data.body;
+                self.$store.commit('questionList/' + types.SET_SHOW_ANSWER_CREATE_MODAL, true);
+                self.$store.dispatch('editor/setQuestion', {
+                    question: self.answer.question,
+                    answerText: self.answer,
+                });
+                self.ga('show_answer_edit_form', 'Question Show Answer Edit Form');
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
         },
 
         ga(eventAction, eventLabel = '') {

@@ -8,9 +8,5 @@ module.exports = {
 				return link.rel == rel;
 			})[0].url;
 		},
-
-		url(path) {
-			return window.url(path);
-		},
 	},
 };

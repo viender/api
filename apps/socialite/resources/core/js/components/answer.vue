@@ -41,7 +41,7 @@
                         <li class="card-action-item--right">
                             <more-menu :model="answer" v-if="$viender.treasure.client.type === 'desktop'" @click-edit="openEditOverlay">
                             </more-menu>
-                            <more-menu-mobile :model="answer" v-else>
+                            <more-menu-mobile :model="answer" v-else @click-edit="openEditOverlay">
                             </more-menu-mobile>
                         </li>
                     </ul>
@@ -49,7 +49,6 @@
             </div>
         </div>
         <comment-list :commentable="answer" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
-        <answer-edit-overlay ref="editOverlay" :answer="answer"></answer-edit-overlay>
     </div>
 </template>
 

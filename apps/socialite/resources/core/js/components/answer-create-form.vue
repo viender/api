@@ -31,6 +31,7 @@
 import * as types from '../store/mutation-types';
 import * as credentialTypes from 'viender_credential/core/js/store/mutation-types';
 import credential from 'viender_credential/core/js/components/credential';
+import Answer from 'viender_socialite/core/js/models/answer';
 
 export default {
     props: {
@@ -42,6 +43,11 @@ export default {
         initContent: {
             type: Boolean,
             default: false,
+        },
+
+        url: {
+            type: String,
+            default: null,
         },
     },
 
@@ -84,7 +90,9 @@ export default {
 
         answer() {
             if (this.initContent) {
-                $(this.$refs.editor).summernote('code', this.answer.body);
+                $(this.$refs.editor).summernote('code', this.answer.body.content);
+                this.$store.commit('credentials/SET_SELECTED_CREDENTIAL',
+                    {credential: this.answer.credential});
             }
         },
     },
@@ -150,7 +158,7 @@ export default {
 
             self.requesting = true;
 
-            axios.post(this.getUrl('answers', this.question) + '?with=owner', {
+            axios.post(self.url || this.getUrl('answers', self.question) + '?with=owner', {
                 body: self.content.body.contents,
                 credential_id: self.selectedCredential ? self.selectedCredential.id : null,
                 _method: self.method,
@@ -158,8 +166,18 @@ export default {
                 .then(function(response) {
                     if(response.status == 200) {
                         if (self.$store.state.feed) {
-                            self.$store.commit('feed/addAnswer', response.data);
+                            let existingAnswer = self.$store.state.feed.answers.find((answer) => {
+                                return answer.id === response.data.id;
+                            });
+
+                            if (existingAnswer) {
+                                existingAnswer.preview = response.data.preview;
+                                existingAnswer.credential = new Answer(response.data.credential);
+                            } else {
+                                self.$store.commit('feed/addAnswer', new Answer(response.data));
+                            }
                         }
+
                         self.$emit('answer-posted', response.data);
                         self.$store.commit('editor/' + types.UPDATE_EDITOR_CONTENT, null);
                         self.$store.commit('questionList/' + types.SET_AS_ANSWERED, self.question);

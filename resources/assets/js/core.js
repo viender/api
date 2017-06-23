@@ -9,3 +9,5 @@ Vue.component('search-results', require('./components/search-results.vue'));
 Vue.component('tutorial', require('./components/tutorial.vue'));
 Vue.component('overlay', require('./components/commons/overlay.vue'));
 Vue.component('sneakpeek', require('./components/commons/sneakpeek.vue'));
+Vue.component('topic-picker', require('./components/topic-picker.vue'));
+Vue.component('elasticsearch', require('./components/elasticsearch.vue'));

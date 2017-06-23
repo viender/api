@@ -51,10 +51,12 @@ import * as types from '../store/mutation-types';
 import Vuex from 'vuex';
 import * as credentialTypes from 'viender_credential/core/js/store/mutation-types';
 import credential from 'viender_credential/core/js/components/credential';
+import addCredentialOverlay from 'viender_credential/core/js/components/add-credential-overlay';
 
 export default {
     components: {
         credential,
+        'add-credential-overlay': addCredentialOverlay,
     },
 
     computed: Object.assign(Vuex.mapState('credentials', [

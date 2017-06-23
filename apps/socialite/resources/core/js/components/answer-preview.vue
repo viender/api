@@ -55,7 +55,6 @@
             </div>
         </div>
         <comment-list :commentable="answer" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
-        <answer-edit-overlay ref="editOverlay" :answer="answer"></answer-edit-overlay>
     </div>
 </template>
 
