@@ -30,9 +30,9 @@
                         <a @click="toggleComments()">Comments <span>({{ commentCount }})</span></a>
                     </li>
                     <li class="card-action-item--right">
-                        <more-menu :model="questionObj" v-if="$viender.treasure.client.type === 'desktop'">
+                        <more-menu ref="moreMenu" :model="questionObj" v-if="$viender.treasure.client.type === 'desktop'">
                         </more-menu>
-                        <more-menu-mobile :model="questionObj" v-else>
+                        <more-menu-mobile ref="moreMenu" :model="questionObj" v-else>
                         </more-menu-mobile>
                     </li>
                 </ul>

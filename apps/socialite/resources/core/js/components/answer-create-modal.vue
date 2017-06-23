@@ -69,6 +69,7 @@ export default {
         },
 
         hideAnswerCreateModal(answer) {
+            this.$emit('answer-posted', answer);
             this.$store.commit('questionList/' + types.SET_SHOW_ANSWER_CREATE_MODAL, false);
         },
     },

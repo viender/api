@@ -75,6 +75,8 @@ export default {
         openEditOverlay() {
             const self = this;
 
+            self.$store.commit('moreMenu/SET_ACTIVE_MORE_MENU', {moreMenu: self.$refs.moreMenu});
+
             axios.get(self.$viender.helpers.getUrl('self', self.answer), {
                 params: {
                     only: ['body'],

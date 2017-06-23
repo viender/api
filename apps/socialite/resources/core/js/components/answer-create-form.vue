@@ -172,14 +172,15 @@ export default {
 
                             if (existingAnswer) {
                                 existingAnswer.preview = response.data.preview;
+                                existingAnswer.body = self.answer.body.contents;
                                 existingAnswer.credential = new Answer(response.data.credential);
                             } else {
+                                response.data.body = self.answer.body;
                                 self.$store.commit('feed/addAnswer', new Answer(response.data));
                             }
                         }
 
                         self.$emit('answer-posted', response.data);
-                        self.$store.commit('editor/' + types.UPDATE_EDITOR_CONTENT, null);
                         self.$store.commit('questionList/' + types.SET_AS_ANSWERED, self.question);
                         $(self.$refs.editor).summernote('code', '');
                     }

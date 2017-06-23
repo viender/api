@@ -39,9 +39,9 @@
                             <a @click="toggleComments()">Comments <span>({{ answer.comment_count }})</span></a>
                         </li>
                         <li class="card-action-item--right">
-                            <more-menu :model="answer" v-if="$viender.treasure.client.type === 'desktop'" @click-edit="openEditOverlay">
+                            <more-menu ref="moreMenu" :model="answer" v-if="$viender.treasure.client.type === 'desktop'" @click-edit="openEditOverlay">
                             </more-menu>
-                            <more-menu-mobile :model="answer" v-else @click-edit="openEditOverlay">
+                            <more-menu-mobile ref="moreMenu" :model="answer" v-else @click-edit="openEditOverlay">
                             </more-menu-mobile>
                         </li>
                     </ul>
