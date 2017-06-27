@@ -62,6 +62,13 @@ return [
             'bucket' => 'viender-bucket',
         ],
 
+        'admin' => [
+            'driver' => 's3',
+            'key'    => env('AWS_S3_KEY', 'key'),
+            'secret' => env('AWS_S3_SECRET', 'secret'),
+            'region' => 'ap-southeast-1',
+            'bucket' => 'viender-bucket',
+        ],
     ],
 
 ];

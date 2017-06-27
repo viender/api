@@ -176,6 +176,7 @@ return [
         // Rap2hpoutre\LaravelEpilog\LaravelEpilogServiceProvider::class,
         App\Providers\SlackLogger::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Encore\Admin\Providers\AdminServiceProvider::class,
 
         /*
          * Application Service Providers...
