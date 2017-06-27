@@ -11,40 +11,22 @@ use Encore\Admin\Auth\Database\Role;
 use Viender\Socialite\Models\Question;
 use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Auth\Database\Permission;
+use Encore\Admin\Controllers\AuthController as BaseAuthController;
 use Encore\Admin\Controllers\UserController;
 use Encore\Admin\Auth\Database\Administrator;
 
-class UsersController extends UserController
+class AuthController extends BaseAuthController
 {
     /**
-     * Make a grid builder.
+     * User setting page.
      *
-     * @return Grid
+     * @return mixed
      */
-    protected function grid()
+    public function getSetting()
     {
-        return Administrator::grid(function (Grid $grid) {
-            $grid->id('ID')->sortable();
-            $grid->username(trans('admin::lang.username'));
-            $grid->first_name('First Name');
-            $grid->last_name('Last Name');
-            $grid->roles(trans('admin::lang.roles'))->pluck('name')->label();
-            $grid->created_at(trans('admin::lang.created_at'));
-            $grid->updated_at(trans('admin::lang.updated_at'));
-
-            $grid->actions(function (Grid\Displayers\Actions $actions) {
-                if ($actions->getKey() == 1) {
-                    $actions->disableDelete();
-                }
-            });
-
-            $grid->tools(function (Grid\Tools $tools) {
-                $tools->batch(function (Grid\Tools\BatchActions $actions) {
-                    $actions->disableDelete();
-                });
-            });
-
-            $grid->disableExport();
+        return Admin::content(function (Content $content) {
+            $content->header(trans('admin::lang.user_setting'));
+            $content->body($this->settingForm()->edit(Admin::user()->id));
         });
     }
 
@@ -53,11 +35,9 @@ class UsersController extends UserController
      *
      * @return Form
      */
-    public function form()
+    public function settingForm()
     {
         return Administrator::form(function (Form $form) {
-            $form->display('id', 'ID');
-
             $form->display('username', trans('admin::lang.username'))->rules('required');
             $form->text('first_name', 'First Name')->rules('required');
             $form->text('last_name', 'Last Name')->rules('required');
@@ -82,6 +62,12 @@ class UsersController extends UserController
                 if ($form->password && $form->model()->password != $form->password) {
                     $form->password = bcrypt($form->password);
                 }
+            });
+
+            $form->saved(function () {
+                admin_toastr(trans('admin::lang.update_succeeded'));
+
+                return redirect(admin_url('auth/setting'));
             });
         });
     }
