@@ -129,6 +129,15 @@ nav.navbar-mobile.minimize {
 		color: #657786;
         transition: all .5s;
 
+        a {
+            color: #657786;
+            text-decoration: none;
+        }
+
+        &.no-user {
+            height: 50px;
+        }
+
 		.logo {
 			height: 3.64rem;
 

@@ -1,12 +1,12 @@
 <template>
     <div class="commentList">
         <div class="commentList-commentForm">
-            <comment-create-form :commentable="commentable" @comment-posted="emitCommentPosted($event)"></comment-create-form>
+            <comment-create-form :commentable="commentable" @comment-posted="emitCommentPosted($event)" v-if="$viender.user"></comment-create-form>
         </div>
 
         <div class="commentList-comments">
             <ul class="collection u-border--none">
-                <li v-for="comment in commentable.comments">
+                <li v-for="comment in comments">
                     <comment :comment="comment"></comment>
                 </li>
                 <li class="commentList-comments-action" @click="fetchComments()" v-if="commentable.commentsPage <= commentable.commentsTotalPages">
@@ -43,6 +43,12 @@ export default {
         });
     },
 
+    computed: {
+        comments() {
+            return this.commentable.comments;
+        },
+    },
+
     methods: {
         emitCommentPosted(comment) {
             this.$emit('comment-posted');
@@ -56,6 +62,8 @@ export default {
                 comments.forEach((comment) => {
                     self.commentable.comments.push(new Comment(comment));
                 });
+
+                self.$forceUpdate();
 
                 if (window.ga) {
                     ga('send', {

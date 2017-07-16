@@ -1,54 +1,54 @@
 <template>
     <div class="answer">
         <div class="answer-container">
-            <div class="card" v-if="answer">
+            <div class="card" v-if="answerObj">
                 <div class="card-content">
-                    <a :href="getUrl('self_html', answer.question)" v-if="showQuestion"><h2 class="card-title">{{ answer.question.title || 'Deleted question.'  }}</h2></a>
+                    <a :href="getUrl('self_html', answerObj.question)" v-if="showQuestion"><h2 class="card-title">{{ answerObj.question.title || 'Deleted question.'  }}</h2></a>
                     <hr style="margin-bottom: 30px;">
                     <ul class="collection">
                         <li class="collection-item avatar">
-                            <img :src="getUrl('avatar', answer.owner)" alt="" class="circle">
-                            <a :href="getUrl('self_html', answer.owner)">
-                                <span class="answer-content-owner">{{ answer.owner.name }}</span>
+                            <img :src="getUrl('avatar', answerObj.owner)" alt="" class="circle">
+                            <a :href="getUrl('self_html', answerObj.owner)">
+                                <span class="answer-content-owner">{{ answerObj.owner.name }}</span>
                             </a>
                             <credential
-                                :credential="answer.credential"
-                                v-if="answer.credential.id"
+                                :credential="answerObj.credential"
+                                v-if="answerObj.credential.id"
                                 :with-link="true">
                             </credential>
                         </li>
                     </ul>
-                    <div class="answer-content" v-html="answer.body" v-if="!answer.deleted_at"></div>
+                    <div class="answer-content" v-html="answerObj.body" v-if="!answerObj.deleted_at"></div>
                     <div class="answer-content" style="padding-bottom: 10px;" v-else>
                         <span>Deleted.</span>
                         <a @click="restore()">Restore</a>
                     </div>
                 </div>
-                <div class="card-action" v-if="!answer.deleted_at">
+                <div class="card-action" v-if="!answerObj.deleted_at">
                     <ul class="card-action-list">
                         <li class="card-action-item">
                             <span style="cursor: pointer;" @click="upvote">
-                                <span style="padding-right: 5px;">{{ answer.upvote_count }}</span>
-                                <a class="material-icons dp48" :class="answer.upvoted ? 'active' : ''">thumb_up</a>
+                                <span style="padding-right: 5px;">{{ answerObj.upvote_count }}</span>
+                                <a class="material-icons dp48" :class="answerObj.upvoted ? 'active' : ''">thumb_up</a>
                             </span>
                         </li>
                         <li class="card-action-item">
-                            <a @click="downvote" class="material-icons dp48" :class="answer.downvoted ? 'active' : ''">thumb_down</a>
+                            <a @click="downvote" class="material-icons dp48" :class="answerObj.downvoted ? 'active' : ''">thumb_down</a>
                         </li>
                         <li class="card-action-item">
-                            <a @click="toggleComments()">Comments <span>({{ answer.comment_count }})</span></a>
+                            <a @click="toggleComments()">Comments <span>({{ answerObj.comment_count }})</span></a>
                         </li>
                         <li class="card-action-item--right">
-                            <more-menu ref="moreMenu" :model="answer" v-if="$viender.treasure.client.type === 'desktop'" @click-edit="openEditOverlay">
+                            <more-menu ref="moreMenu" :model="answerObj" v-if="$viender.treasure.client.type === 'desktop'" @click-edit="openEditOverlay">
                             </more-menu>
-                            <more-menu-mobile ref="moreMenu" :model="answer" v-else @click-edit="openEditOverlay">
+                            <more-menu-mobile ref="moreMenu" :model="answerObj" v-else @click-edit="openEditOverlay">
                             </more-menu-mobile>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <comment-list :commentable="answer" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
+        <comment-list :commentable="answerObj" @comment-posted="incrementCommentCount()" v-if="showComments"></comment-list>
     </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="more-menu" @click="open()">
+    <div class="more-menu" @click="open()" v-if="$viender.user">
         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
         <sneakpeek ref="sneakpeek">
             <ul class="collection">

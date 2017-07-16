@@ -81,7 +81,7 @@
 </head>
 <body>
     <div id="app" class="main-content">
-        <header role="header">
+        <header role="header" class="{{ !\Auth::user() ? 'no-user' : '' }}">
             @if(\Agent::isDesktop())
                 @include('viender::layouts.nav')
             @else

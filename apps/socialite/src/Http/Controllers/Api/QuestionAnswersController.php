@@ -2,6 +2,7 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
+use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Socialite\Models\Answer;
@@ -11,6 +12,7 @@ use Viender\Socialite\Events\QuestionAnswered;
 use Viender\Socialite\Repositories\AnswersRepository;
 use Viender\Socialite\Transformers\AnswerTransformer;
 use Viender\Socialite\Transformers\AnswerPreviewTransformer;
+use Viender\Socialite\Transformers\Serializer\ArraySerializer;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class QuestionAnswersController extends ApiController
@@ -19,7 +21,11 @@ class QuestionAnswersController extends ApiController
 
     public function __construct(AnswersRepository $answers)
     {
-        parent::__construct();
+        $this->fractal  = new Manager();
+        $this->fractal->setSerializer(new ArraySerializer());
+        if (isset($_GET['with'])) {
+            $this->fractal->parseIncludes($_GET['with']);
+        }
         $this->answers = $answers;
     }
 
@@ -97,8 +103,6 @@ class QuestionAnswersController extends ApiController
     public function show(Question $question, $answer)
     {
         $answer = $question->answers()->where('slug', $answer)->firstOrFail();
-
-        $this->authorize('view', $answer);
 
         return $this->respond(new Item($answer, new AnswerTransformer));
     }

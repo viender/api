@@ -189,7 +189,7 @@ export default {
                 .catch(function(error) {
                     if(error.response) {
                         if(error.response.status == 401) {
-                            document.location = url('login');
+                            document.location = url('/');
                         }
                     }
                     self.requesting = false;

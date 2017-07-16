@@ -1,5 +1,6 @@
 import * as types from '../store/mutation-types';
 import * as answerEditOverlay from '../components/answer-edit-overlay';
+import Answer from '../models/answer';
 
 export default {
     components: {
@@ -21,6 +22,12 @@ export default {
         return {
             showComments: false,
         };
+    },
+
+    computed: {
+        answerObj() {
+            return new Answer(this.answer);
+        },
     },
 
     methods: {

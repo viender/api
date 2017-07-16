@@ -77,6 +77,12 @@ h1 {
     // margin-bottom: 40px;
 }
 
+header {
+    &.no-user {
+        height: 50px;
+    }
+}
+
 .notification-count {
     position: absolute;
     width: 18px;

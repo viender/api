@@ -52,7 +52,7 @@ export default class {
                 })
                 .catch((error) => {
                     if(error.response.status == 401) {
-                        document.location = url('login');
+                        document.location = url('/');
                     }
                     self.requestingUpvote = false;
                     reject(error);
@@ -88,7 +88,7 @@ export default class {
                 })
                 .catch((error) => {
                     if(error.response.status == 401) {
-                        document.location = url('login');
+                        document.location = url('/');
                     }
                     self.requestingDownvote = false;
                     reject(error);
@@ -117,7 +117,7 @@ export default class {
                 })
                 .catch((error) => {
                     if(error.response.status == 401) {
-                        document.location = url('login');
+                        document.location = url('/');
                     }
                     self.requestingComment = false;
                     reject(error);
@@ -179,7 +179,7 @@ export default class {
                 })
                 .catch((error) => {
                     if(error.response.status == 401) {
-                        document.location = url('login');
+                        document.location = url('/');
                     }
                     self.requestingDelete = false;
                     reject(error);

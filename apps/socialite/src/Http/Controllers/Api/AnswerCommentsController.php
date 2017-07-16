@@ -2,13 +2,15 @@
 
 namespace Viender\Socialite\Http\Controllers\Api;
 
-use Viender\Socialite\Models\Answer;
-use Viender\Socialite\Models\Comment;
+use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use Viender\Socialite\Models\Answer;
+use Viender\Socialite\Models\Comment;
 use Viender\Socialite\Events\CommentableCommented;
 use Viender\Socialite\Repositories\CommentsRepository;
 use Viender\Socialite\Transformers\CommentTransformer;
+use Viender\Socialite\Transformers\Serializer\ArraySerializer;
 
 class AnswerCommentsController extends ApiController
 {
@@ -16,7 +18,11 @@ class AnswerCommentsController extends ApiController
 
     public function __construct(CommentsRepository $comments)
     {
-        parent::__construct();
+        $this->fractal  = new Manager();
+        $this->fractal->setSerializer(new ArraySerializer());
+        if (isset($_GET['with'])) {
+            $this->fractal->parseIncludes($_GET['with']);
+        }
         $this->comments = $comments;
     }
 
