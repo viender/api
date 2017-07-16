@@ -14,7 +14,7 @@
         "google/apiclient": "^2.1",
         "jenssegers/agent": "^2.5",
         "laravel/framework": "5.4.*",
-        "laravel/passport": "^1.0",
+        "laravel/passport": "^3.0",
         "laravel/scout": "^3.0",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
