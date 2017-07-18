@@ -3,10 +3,12 @@
         <div class="nav-wrapper">
             <div class="row navbar-mobile-header">
                 <div class="col s3">
-                    <a class="" href="/">
-                        <i class="fa fa-sign-in" aria-hidden="true"></i>
-                        <span>Login</span>
-                    </a>
+                    @if(!\Auth::user())
+                        <a class="" href="/">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            <span>Login</span>
+                        </a>
+                    @endif
                 </div>
                 <div class="col s6">
                     <div class="logo">
