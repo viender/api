@@ -42,9 +42,9 @@ class Urls
 
             $this->router->get('answer', 'AnswerController@index')->name('web.viender.socialite.pages.answer');
 
-            $this->router->get('question/{question}', 'QuestionShowController@show')->name('web.viender.socialite.pages.questionShow');
+            $this->router->get('{question}', 'QuestionShowController@show')->name('web.viender.socialite.pages.questionShow');
 
-            $this->router->get('question/{question}/answers/{answerSlug}', 'AnswerShowController@show')->name('web.viender.socialite.pages.answerShow');
+            $this->router->get('{question}/answers/{answerSlug}', 'AnswerShowController@show')->name('web.viender.socialite.pages.answerShow');
         });
     }
 

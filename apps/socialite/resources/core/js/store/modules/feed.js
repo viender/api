@@ -108,11 +108,11 @@ export default {
 
                 // Fetch answer if answer show page.
                 const path = window.location.pathname.split('/');
-                if (path[1] === 'question' && path[3] === 'answers' && state.answers.length === 0) {
+                if (path[2] === 'answers' && state.answers.length === 0) {
                     const apiUrl = Vue.prototype.$viender.treasure.env.api_url;
 
                     axios
-                    .get(`${apiUrl}/questions${location.href.replace(location.origin + '/question', '')}`, {
+                    .get(`${apiUrl}/questions${location.href.replace(location.origin, '')}`, {
                         params: {
                             with: ['owner', 'question'],
                         },
