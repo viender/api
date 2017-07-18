@@ -7,7 +7,7 @@
 
           <loc>{{ route('web.viender.topic.pages.topic.show', $topic) }}</loc>
 
-          <lastmod>{{ $topic->updated_at }}</lastmod>
+          <lastmod>{{ $topic->updated_at->format('Y-m-d') }}</lastmod>
 
           <priority>0.5</priority>
 

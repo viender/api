@@ -7,7 +7,7 @@
 
           <loc>{{ route('web.viender.profile.pages.profile', $user->username) }}</loc>
 
-          <lastmod>{{ $user->updated_at }}</lastmod>
+          <lastmod>{{ $user->updated_at->format('Y-m-d') }}</lastmod>
 
           <priority>0.5</priority>
 

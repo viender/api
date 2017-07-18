@@ -7,7 +7,7 @@
 
           <loc>{{ route('web.viender.socialite.pages.answerShow', [$answer->question->slug, $answer->slug]) }}</loc>
 
-          <lastmod>{{ $answer->updated_at }}</lastmod>
+          <lastmod>{{ $answer->updated_at->format('Y-m-d') }}</lastmod>
 
           <priority>0.5</priority>
 
