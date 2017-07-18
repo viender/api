@@ -40,13 +40,15 @@ class Urls
         $this->router->group(array_merge($option, ['domain' => config('viender.web_domain'), 'middleware' => 'web']), function() {
             $this->router->get('/sitemap', 'SitemapController@index')->name('viender.sitemap.sitemap.index');
 
-            $this->router->get('/sitemap/recent', 'SitemapController@recent')->name('viender.sitemap.recent.index');
+            $this->router->get('/sitemap-recent.xml.gz', 'SitemapController@recent')->name('viender.sitemap.recent.index');
 
-            $this->router->get('/sitemap/questions', 'SitemapController@questions')->name('viender.sitemap.questions.index');
+            $this->router->get('/sitemap-questions.xml.gz', 'SitemapController@questions')->name('viender.sitemap.questions.index');
 
-            $this->router->get('/sitemap/topics', 'SitemapController@topics')->name('viender.sitemap.topics.index');
+            $this->router->get('/sitemap-topics.xml.gz', 'SitemapController@topics')->name('viender.sitemap.topics.index');
 
-            $this->router->get('/sitemap/people', 'SitemapController@people')->name('viender.sitemap.people.index');
+            $this->router->get('/sitemap-people.xml.gz', 'SitemapController@people')->name('viender.sitemap.people.index');
+
+            $this->router->get('/sitemap.xml.gz', 'SitemapController@indexXml')->name('viender.sitemap.sitemap.indexXml');
         });
     }
 

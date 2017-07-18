@@ -15,10 +15,10 @@
             </div>
             <div class="featured-topics row">
                 <h1>Featured Topics</h1>
-                @foreach($roots as $root)
+                @foreach($categories as $category)
                     <dl class="col s4">
-                        <dt><h2>{{ $root->name }}</h2></dt>
-                        @foreach(Viender\Topic\Models\Topic::where('parent_id', $root->id)->get() as $topic)
+                        <dt><h2>{{ $category->name }}</h2></dt>
+                        @foreach($category->topics as $topic)
                             <dd>
                                 <a href="{{ route('web.viender.topic.pages.topic.show', $topic) }}"><span>{{ $topic->name }}</span></a>
                             </dd>
