@@ -23,16 +23,16 @@ class AnswerShowController extends Controller
 
 	public function show(Question $question, $answerSlug)
 	{
-
         $answer = Answer::where([
             'question_id'   => $question->id,
             'slug'          => $answerSlug,
         ])->firstOrFail();
 
-        if (\Auth::user()) {
-            return view('viender.socialite.answerShow::index')->with(compact('answer'));
-        }
+        $metaTitle = $answer->user->fullName() . '\'s answer to ' . $answer->question->title . ' - Viender';
 
+        if (\Auth::user()) {
+            return view('viender.socialite.answerShow::index')->with(compact('answer', 'metaTitle'));
+        }
 
         $answerTransformer = new AnswerTransformer;
         $userTransformer = new UserTransformer;
@@ -45,6 +45,6 @@ class AnswerShowController extends Controller
         $transformedAnswer['question'] = $questionTransformer->transform($answer->question);
         $transformedAnswer['credential'] = $answer->credential === null ? [] : $credentialTransformer->transform($answer->credential);
 
-        return view('viender.socialite.answerShow::static')->with(compact('transformedAnswer'));
+        return view('viender.socialite.answerShow::static')->with(compact('transformedAnswer', 'metaTitle'));
 	}
 }
