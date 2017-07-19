@@ -1,2 +1,3 @@
 User-agent: *
 Disallow:
+Sitemap: https://viender.com/sitemap.xml.gz
