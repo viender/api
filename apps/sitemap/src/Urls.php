@@ -39,7 +39,11 @@ class Urls
     public function web($option = [])
     {
         $this->router->group(array_merge($option, ['domain' => config('viender.web_domain'), 'middleware' => 'web']), function() {
-            $this->router->get('/sitemap', 'SitemapController@index')->name('viender.sitemap.sitemap.index');
+            $this->router->get('/sitemap', 'SitemapController@index')->name('web.viender.sitemap.sitemap.index');
+            $this->router->get('/sitemap/recent', 'SitemapController@recent')->name('viender.sitemap.sitemap.recent');
+            $this->router->get('/sitemap/questions', 'SitemapController@questions')->name('viender.sitemap.sitemap.questions');
+            $this->router->get('/sitemap/topics', 'SitemapController@topics')->name('viender.sitemap.sitemap.topics');
+            $this->router->get('/sitemap/people', 'SitemapController@people')->name('viender.sitemap.sitemap.people');
         });
     }
 

@@ -11,7 +11,6 @@ use Viender\Socialite\Models\Question;
 
 class SitemapController extends Controller
 {
-
 	public function index()
 	{
         $categories = Category::where('id', '>', 5)->get();
@@ -19,48 +18,31 @@ class SitemapController extends Controller
 		return view('viender.sitemap.sitemap::index')->with(compact('categories'));
 	}
 
-    public function indexXml()
+    public function recent()
     {
-        $categories = Category::where('id', '>', 5)->get();
+        $questions = Question::latest()->paginate(40);
 
-        $content = \View::make('viender.sitemap.sitemap::xml.index')->with(compact('categories'));
-
-        return \Response::make($content, '200')->header('Content-Type', 'text/xml');
+        return view('viender.sitemap.sitemap::recent')->with(compact('questions'));
     }
 
-    public function answersXml()
+    public function questions()
     {
-        $answers = Answer::latest()->get();
+        $questions = Question::latest()->paginate(40);
 
-        $content = \View::make('viender.sitemap.sitemap::xml.answers')->with(compact('answers'));
-
-        return \Response::make($content, '200')->header('Content-Type', 'text/xml');
+        return view('viender.sitemap.sitemap::questions')->with(compact('questions'));
     }
 
-    public function questionsXml()
+    public function topics()
     {
-        $questions = Question::all();
+        $topics = Topic::paginate(40);
 
-        $content = \View::make('viender.sitemap.sitemap::xml.questions')->with(compact('questions'));
-
-        return \Response::make($content, '200')->header('Content-Type', 'text/xml');
+        return view('viender.sitemap.sitemap::topics')->with(compact('topics'));
     }
 
-    public function topicsXml()
+    public function people()
     {
-        $topics = Topic::all();
+        $users = User::paginate(40);
 
-        $content = \View::make('viender.sitemap.sitemap::xml.topics')->with(compact('topics'));
-
-        return \Response::make($content, '200')->header('Content-Type', 'text/xml');
-    }
-
-    public function peopleXml()
-    {
-        $users = User::all();
-
-        $content = \View::make('viender.sitemap.sitemap::xml.users')->with(compact('users'));
-
-        return \Response::make($content, '200')->header('Content-Type', 'text/xml');
+        return view('viender.sitemap.sitemap::people')->with(compact('users'));
     }
 }

@@ -5,10 +5,10 @@
     <div class="row">
             <div class="viender-sitemap row">
                 <h1>Viender Sitemap</h1>
-                <h2 class="col s3"><a href="#">Recent</a></h2>
-                <h2 class="col s3"><a href="#">Questions</a></h2>
-                <h2 class="col s3"><a href="#">Topics</a></h2>
-                <h2 class="col s3"><a href="#">People</a></h2>
+                <h2 class="col s3"><a href="{{ route('viender.sitemap.sitemap.recent') }}">Recent</a></h2>
+                <h2 class="col s3"><a href="{{ route('viender.sitemap.sitemap.questions') }}">Questions</a></h2>
+                <h2 class="col s3"><a href="{{ route('viender.sitemap.sitemap.topics') }}">Topics</a></h2>
+                <h2 class="col s3"><a href="{{ route('viender.sitemap.sitemap.people') }}">People</a></h2>
             </div>
             <div class="featured-topics row">
                 <h1>Featured Topics</h1>
