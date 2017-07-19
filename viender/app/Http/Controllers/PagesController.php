@@ -10,4 +10,14 @@ class PagesController extends Controller
     {
         return view('privacy');
     }
+
+    public function about()
+    {
+        return view('about');
+    }
+
+    public function contact()
+    {
+        return view('contact');
+    }
 }

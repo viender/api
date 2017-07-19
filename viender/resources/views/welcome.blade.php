@@ -6,23 +6,39 @@
         <div class="welcome-content">
             <span class="main-text">Welcome to Viender</span>
             <span class="sub-text">A place to gain knowlegde and share your ideas and experiences.</span>
+            <div class="welcome-content-menu">
+                <a class="login-action btn google waves-effect waves-light" href="{{ route('web.viender.social.login.google') }}">
+                <i class="login-action-icon fa fa-google-plus-square fa-3" aria-hidden="true"></i>
+                <span class="login-action-text facebook">Continue with Google</span>
+                </a>
+                <a class="login-action btn facebook waves-effect waves-light" href="{{ route('web.viender.social.login.facebook') }}">
+                    <i class="login-action-icon fa fa-facebook-official fa-3" aria-hidden="true"></i>
+                    <span class="login-action-text facebook">Continue with Facebook</span>
+                </a>
+                <div class="login-action-email">
+                    <a class="login-action-email-login" href="login">Login</a>
+                    <a class="login-action-email-register" href="register">Sign Up With Email</a>
+                </div>
+                <div class="agreement">
+                    <p>By signing up, you agree to the Privacy Policy and including Cookie Use.</p>
+                </div>
+            </div>
         </div>
         <div class="welcome-footer">
-            <a class="login-action btn google waves-effect waves-light" href="{{ route('web.viender.social.login.google') }}">
-            <i class="login-action-icon fa fa-google-plus-square fa-3" aria-hidden="true"></i>
-            <span class="login-action-text facebook">Continue with Google</span>
-            </a>
-            <a class="login-action btn facebook waves-effect waves-light" href="{{ route('web.viender.social.login.facebook') }}">
-                <i class="login-action-icon fa fa-facebook-official fa-3" aria-hidden="true"></i>
-                <span class="login-action-text facebook">Continue with Facebook</span>
-            </a>
-            <div class="login-action-email">
-                <a class="login-action-email-login" href="login">Login</a>
-                <a class="login-action-email-register" href="register">Sign Up With Email</a>
-            </div>
-            <div class="agreement">
-                <p>By signing up, you agree to the <a href="{{ route('web.viender.page.about.privacy') }}">Privacy Policy</a> and including Cookie Use.</p>
-            </div>
+            <ul class="link-list">
+                <li class="link-list-item">
+                    <a href="{{ url('/about') }}">About</a>
+                </li>
+                <li class="link-list-item">
+                    <a href="{{ url('/sitemap') }}">Sitemap</a>
+                </li>
+                <li class="link-list-item">
+                    <a href="{{ route('web.viender.page.about.privacy') }}">Privacy</a>
+                </li>
+                <li class="link-list-item">
+                    <a href="{{ url('/contact') }}">Contact</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
@@ -54,10 +70,16 @@
         margin: auto;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
         background-color: #fff;
+
+    }
+
+    .welcome a {
+        cursor: pointer;
     }
 
     .welcome-content {
         padding: 36px;
+        padding-top: 10px;
         position: absolute;
         /*color: #fff;*/
         color: #333;
@@ -69,23 +91,46 @@
         height: 90%;
     }
 
+    .welcome-content-menu {
+        padding-top: 30px;
+    }
+
+    .link-list {
+        padding: 0;
+        margin: 0;
+    }
+
+    .link-list-item {
+        list-style: none;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
     .welcome-footer {
         position: absolute;
         bottom: 0;
-        padding: 20px;
+        padding: 16px;
         left: 0;
         right: 0;
+        background-color: #eee;
+        text-align: center;
+        border-radius: 0 0 5px 5px;
     }
 
-    .welcome-footer .login-action {
+    .welcome-footer a {
+        color: rgba(175,175,175,0.95);
+        font-size: 13px;
+    }
+
+    .welcome-content-menu .login-action {
         display: block;
         width: 100%;
         margin-bottom: 10px;
         text-transform: none;
-        font-weight: 600;
+        font-weight: 500;
     }
 
-    .welcome-footer .login {
+    .welcome-content-menu .login {
         background-color: transparent;
         border: solid 1px;
         color: #1da1f2;

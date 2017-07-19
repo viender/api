@@ -13,7 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @if(isset($metaDescription))
-        <meta name="description" content={{ $metaDescription }}>
+        <meta name="description" content="{{ $metaDescription }}">
     @endif
 
     <title>{{ $metaTitle ?? config('app.name', 'Laravel') }}</title>
