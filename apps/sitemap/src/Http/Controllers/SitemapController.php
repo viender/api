@@ -28,7 +28,7 @@ class SitemapController extends Controller
         return \Response::make($content, '200')->header('Content-Type', 'text/xml');
     }
 
-    public function recent()
+    public function answers()
     {
         $answers = Answer::latest()->get();
 

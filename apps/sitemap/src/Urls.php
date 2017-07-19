@@ -40,7 +40,7 @@ class Urls
         $this->router->group(array_merge($option, ['domain' => config('viender.web_domain'), 'middleware' => 'web']), function() {
             $this->router->get('/sitemap', 'SitemapController@index')->name('viender.sitemap.sitemap.index');
 
-            $this->router->get('/sitemap-recent.xml.gz', 'SitemapController@recent')->name('viender.sitemap.recent.index');
+            $this->router->get('/sitemap-answers.xml.gz', 'SitemapController@answers')->name('viender.sitemap.answers.index');
 
             $this->router->get('/sitemap-questions.xml.gz', 'SitemapController@questions')->name('viender.sitemap.questions.index');
 
