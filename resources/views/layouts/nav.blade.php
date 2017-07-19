@@ -25,8 +25,10 @@
             </div>
             <div class="navbar-section-menu right" v-if="! $store.state.searchOrAskOverlay.show">
                 <ul class="right">
-                    <li><a href={{ route('web.viender.socialite.pages.read') }}>Feed</a></li>
-                    <li><a href={{ route('web.viender.socialite.pages.answer') }}>Questions</a></li>
+                    @if (Auth::user())
+                        <li><a href={{ route('web.viender.socialite.pages.read') }}>Feed</a></li>
+                        <li><a href={{ route('web.viender.socialite.pages.answer') }}>Questions</a></li>
+                    @endif
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
