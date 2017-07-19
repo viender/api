@@ -20,8 +20,24 @@
             <a class="login-action-email-register" href="register">Sign Up With Email</a>
         </div>
         <div class="agreement">
-            <p>By signing up, you agree to the <a href="{{ route('web.viender.page.about.privacy') }}">Privacy Policy</a> and including Cookie Use.</p>
+            <p>By signing up, you agree to the Privacy Policy and including Cookie Use.</p>
         </div>
+        <ul class="link-list">
+            <li class="link-list-item">
+                <a href="{{ url('/about') }}">About</a>
+            </li>
+            <li class="link-list-item">
+                <a href="{{ url('/sitemap') }}">Sitemap</a>
+            </li>
+            <li class="link-list-item">
+                <a href="{{ route('web.viender.page.about.privacy') }}">Privacy</a>
+            </li>
+            <li class="link-list-item">
+                <a href="{{ url('/contact') }}">Contact</a>
+            </li>
+        </ul>
+    </div>
+     <div class="welcome-footer">
     </div>
 </div>
 @endsection
@@ -57,6 +73,11 @@
         height: 50%;
         padding: 0 15px;
         max-width: 550px;
+    }
+
+    .link-list-item a {
+        color: rgba(175,175,175,0.95);
+        font-size: 13px;
     }
 
     .welcome-footer {
@@ -134,6 +155,18 @@
 
     .login-action-email-register {
         padding-left: 10px;
+    }
+
+    .link-list {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+
+    .link-list-item {
+        list-style: none;
+        display: inline-block;
+        margin-right: 10px;
     }
 </style>
 @endsection
