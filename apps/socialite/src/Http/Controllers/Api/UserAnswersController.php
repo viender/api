@@ -3,19 +3,25 @@
 namespace Viender\Socialite\Http\Controllers\Api;
 
 use App\User;
+use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Viender\Socialite\Models\Answer;
 use Viender\Socialite\Repositories\AnswersRepository;
 use Viender\Socialite\Transformers\AnswerPreviewTransformer;
+use Viender\Socialite\Transformers\Serializer\ArraySerializer;
 
 class UserAnswersController extends ApiController
 {
     protected $answers;
 
     public function __construct(AnswersRepository $answers) {
-        parent::__construct();
         $this->answers = $answers;
+        $this->fractal  = new Manager();
+        $this->fractal->setSerializer(new ArraySerializer());
+        if (isset($_GET['with'])) {
+            $this->fractal->parseIncludes($_GET['with']);
+        }
     }
 
     /**
@@ -35,7 +41,7 @@ class UserAnswersController extends ApiController
     {
         $paginator = null;
 
-        if (\Auth::user()->id === $user->id) {
+        if (\Auth::user() && \Auth::user()->id === $user->id) {
             $paginator = $user->answers()->withTrashed()->latest('created_at')->paginate();
         } else {
             $paginator = $user->answers()->latest('created_at')->paginate();

@@ -3,13 +3,24 @@
 namespace Viender\Socialite\Http\Controllers\Api;
 
 use App\User;
-use Viender\Socialite\Models\Question;
+use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use Viender\Socialite\Models\Question;
 use Viender\Socialite\Transformers\QuestionTransformer;
+use Viender\Socialite\Transformers\Serializer\ArraySerializer;
 
 class UserQuestionsController extends ApiController
 {
+    public function __construct()
+    {
+        $this->fractal  = new Manager();
+        $this->fractal->setSerializer(new ArraySerializer());
+        if (isset($_GET['with'])) {
+            $this->fractal->parseIncludes($_GET['with']);
+        }
+    }
+
     /**
      * @api {get} /users/:username/questions Get User Questions
      * @apiName UserQuestionsIndex
@@ -27,7 +38,7 @@ class UserQuestionsController extends ApiController
     {
         $paginator = null;
 
-        if (\Auth::user()->id === $user->id) {
+        if (\Auth::user() && \Auth::user()->id === $user->id) {
             $paginator = $user->questions()->withTrashed()->latest('created_at')->paginate();
         } else {
             $paginator = $user->questions()->latest('created_at')->paginate();
