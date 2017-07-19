@@ -13,17 +13,17 @@
                 <h2 class="col s3"><a href="#">Topics</a></h2>
                 <h2 class="col s3"><a href="#">People</a></h2>
             </div>
-            <div class="featured-topics row">
-                <h1>Featured Topics</h1>
+            <h1>Featured Topics</h1>
+            <div class="featured-topics row" style="column-count: 3">
                 @foreach($categories as $category)
-                    <dl class="col s4">
-                        <dt><h2>{{ $category->name }}</h2></dt>
+                    <div style="column-width: 30%; margin-bottom: 20px; break-inside: avoid;">
+                        <h2 style="margin-top: 0;">{{ $category->name }}</h2>
                         @foreach($category->topics as $topic)
                             <dd>
                                 <a href="{{ route('web.viender.topic.pages.topic.show', $topic) }}"><span>{{ $topic->name }}</span></a>
                             </dd>
                         @endforeach
-                    </dl>
+                    </div>
                 @endforeach
             </div>
 		</div>
