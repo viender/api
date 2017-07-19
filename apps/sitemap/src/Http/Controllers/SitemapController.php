@@ -28,7 +28,7 @@ class SitemapController extends Controller
         return \Response::make($content, '200')->header('Content-Type', 'text/xml');
     }
 
-    public function answers()
+    public function answersXml()
     {
         $answers = Answer::latest()->get();
 
@@ -37,7 +37,7 @@ class SitemapController extends Controller
         return \Response::make($content, '200')->header('Content-Type', 'text/xml');
     }
 
-    public function questions()
+    public function questionsXml()
     {
         $questions = Question::all();
 
@@ -46,7 +46,7 @@ class SitemapController extends Controller
         return \Response::make($content, '200')->header('Content-Type', 'text/xml');
     }
 
-    public function topics()
+    public function topicsXml()
     {
         $topics = Topic::all();
 
@@ -55,7 +55,7 @@ class SitemapController extends Controller
         return \Response::make($content, '200')->header('Content-Type', 'text/xml');
     }
 
-    public function people()
+    public function peopleXml()
     {
         $users = User::all();
 
