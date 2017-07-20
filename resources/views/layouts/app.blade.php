@@ -16,7 +16,7 @@
         <meta name="description" content="{{ $metaDescription }}">
     @endif
 
-    <title>{{ $metaTitle ?? config('app.name', 'Laravel') }}</title>
+    <title>{{ $metaTitle ?? config('app.name', 'Laravel') . (\Agent::isRobot() ? ' -  A place to share knowledge' : '') }}</title>
 
     @if(isset($_GET['debug_console']) ? $_GET['debug_console'] === '1' : false)
         <script src="//cdn.jsdelivr.net/eruda/1.2.2/eruda.min.js"></script>
