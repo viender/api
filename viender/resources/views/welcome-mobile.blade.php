@@ -37,8 +37,6 @@
             </li>
         </ul>
     </div>
-     <div class="welcome-footer">
-    </div>
 </div>
 @endsection
 
