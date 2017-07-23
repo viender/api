@@ -8,6 +8,7 @@ class QuestionShowController extends Controller
 {
 	public function show(Question $question)
 	{
-		return view('viender.socialite.questionShow::index')->with(compact('question'));
+        $metaTitle = $question->title . ' - Viender';
+		return view('viender.socialite.questionShow::index')->with(compact('question', 'metaTitle'));
 	}
 }
