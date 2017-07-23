@@ -2,13 +2,13 @@
 
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-   <sitemap>
+{{--    <sitemap>
 
       <loc>{{ url('sitemap-answers.xml.gz') }}</loc>
 
       <lastmod>2017-07-19T22:49:00+00:00</lastmod>
 
-   </sitemap>
+   </sitemap> --}}
 
    <sitemap>
 

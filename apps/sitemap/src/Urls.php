@@ -51,7 +51,7 @@ class Urls
     {
         $this->router->group(array_merge($option, ['domain' => config('viender.web_domain'), 'middleware' => 'web']), function() {
 
-            $this->router->get('/sitemap-answers.xml.gz', 'SitemapXmlController@answers')->name('viender.sitemap.answers.index');
+            // $this->router->get('/sitemap-answers.xml.gz', 'SitemapXmlController@answers')->name('viender.sitemap.answers.index');
 
             $this->router->get('/sitemap-questions.xml.gz', 'SitemapXmlController@questions')->name('viender.sitemap.questions.index');
 
