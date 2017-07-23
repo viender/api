@@ -18,26 +18,31 @@ class ProfileController extends Controller
 
 	public function profile(User $user)
 	{
-		return view('viender.profile.profile::index')->with(compact('user'));
+        $metaTitle = $user->fullName() . ' - ' . config('app.name');
+		return view('viender.profile.profile::index')->with(compact('user', 'metaTitle'));
 	}
 
 	public function questions(User $user)
 	{
-		return view('viender.profile.profile::questions')->with(compact('user'));
+        $metaTitle = $user->fullName() . ' - ' . config('app.name');
+		return view('viender.profile.profile::questions')->with(compact('user', 'metaTitle'));
 	}
 
 	public function topics(User $user)
 	{
-		return view('viender.profile.profile::topics')->with(compact('user'));
+        $metaTitle = $user->fullName() . ' - ' . config('app.name');
+		return view('viender.profile.profile::topics')->with(compact('user', 'metaTitle'));
 	}
 
 	public function followings(User $user)
 	{
-		return view('viender.profile.profile::followings')->with(compact('user'));
+        $metaTitle = $user->fullName() . ' - ' . config('app.name');
+		return view('viender.profile.profile::followings')->with(compact('user', 'metaTitle'));
 	}
 
 	public function followers(User $user)
 	{
-		return view('viender.profile.profile::followers')->with(compact('user'));
+        $metaTitle = $user->fullName() . ' - ' . config('app.name');
+		return view('viender.profile.profile::followers')->with(compact('user', 'metaTitle'));
 	}
 }
