@@ -7,7 +7,6 @@
 // });
 Viender\Sitemap\Sitemap::routes();
 Viender\Address\Address::routes();
-Viender\Socialite\Socialite::routes();
 Viender\Profile\Profile::routes(['prefix' => 'profile']);
 Viender\Follow\Follow::routes();
 Viender\Topic\Topic::routes();
@@ -20,3 +19,6 @@ Viender\Notification\Notification::routes();
 Viender\Social\Social::routes();
 Viender\Mailer\Mailer::routes();
 Viender\Credential\Credential::routes();
+
+// must be the last
+Viender\Socialite\Socialite::routes();
