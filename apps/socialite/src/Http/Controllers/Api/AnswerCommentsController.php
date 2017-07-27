@@ -18,6 +18,7 @@ class AnswerCommentsController extends ApiController
 
     public function __construct(CommentsRepository $comments)
     {
+        $this->middleware('auth:api')->except('index', 'show');
         $this->fractal  = new Manager();
         $this->fractal->setSerializer(new ArraySerializer());
         if (isset($_GET['with'])) {

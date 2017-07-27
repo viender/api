@@ -21,6 +21,7 @@ class QuestionAnswersController extends ApiController
 
     public function __construct(AnswersRepository $answers)
     {
+        $this->middleware('auth:api')->except('index', 'show');
         $this->fractal  = new Manager();
         $this->fractal->setSerializer(new ArraySerializer());
         if (isset($_GET['with'])) {
