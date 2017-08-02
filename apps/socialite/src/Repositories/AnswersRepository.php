@@ -30,6 +30,7 @@ class AnswersRepository extends Repository
         $data['title'] = '';
         $data['slug'] = \App\User::find($user_id)->username;
         $data['body'] = iconv("utf-8", "utf-8//ignore", $data['body']);
+        $data['body'] = str_replace('<a href', '<a rel="nofollow" href', $data['body']);
 
         return $answerable->answers()->save(new Answer($data));
     }
