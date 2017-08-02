@@ -12,14 +12,15 @@ class CommentsRepository extends Repository
         return 'Viender\Socialite\Models\Comment';
     }
 
-    public function createByUser($user_id, Commentable $commentable, array $data) 
+    public function createByUser($user_id, Commentable $commentable, array $data)
     {
         $data['user_id'] = $user_id;
+        $data['body'] = iconv("utf-8", "utf-8//ignore", $data['body']);
 
         return $commentable->comments()->save(new Comment($data));
     }
 
-    public function getCommentableUrl(Comment $comment) 
+    public function getCommentableUrl(Comment $comment)
     {
         $url = '';
 
@@ -34,12 +35,12 @@ class CommentsRepository extends Repository
         return $url;
     }
 
-    public function getCommentableType(Comment $comment) 
+    public function getCommentableType(Comment $comment)
     {
         return (new \ReflectionClass($comment->commentable))->getShortName();
     }
 
-    public function toggleUpvote(Answer $answer, $user_id = 0) 
+    public function toggleUpvote(Answer $answer, $user_id = 0)
     {
         if(! $user_id) {
             $user_id = \Auth::user()->id;
@@ -62,7 +63,7 @@ class CommentsRepository extends Repository
         return $upvote;
     }
 
-    public function toggleDownvote(Answer $answer, $user_id = 0) 
+    public function toggleDownvote(Answer $answer, $user_id = 0)
     {
         if(! $user_id) {
             $user_id = \Auth::user()->id;

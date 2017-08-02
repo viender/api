@@ -25,6 +25,7 @@ class QuestionsRepository extends Repository
     public function createByUser(User $user, array $data)
     {
         $data['slug'] = Text::clean($data['title']);
+        $data['body'] = iconv("utf-8", "utf-8//ignore", $data['body']);
 
         if(Question::where('slug', $data['slug'])->exists()) {
             throw new ConflictHttpException;
