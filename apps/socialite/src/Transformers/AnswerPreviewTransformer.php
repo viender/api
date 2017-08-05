@@ -55,6 +55,7 @@ class AnswerPreviewTransformer extends Transformer
             'downvoted'       => \Auth::user() ? $answer->downvotes()->where('user_id', \Auth::user()->id)->exists() : false,
             'upvote_count'  => $answer->upvotes()->count(),
             'comment_count' => $answer->comments()->count(),
+            'thumbnail'     => $answer->thumbnail ? \Storage::url($answer->thumbnail) : null,
             'credential_id' => $answer->credential_id,
             'deleted_at'    => $answer->deleted_at,
             'links'   => [

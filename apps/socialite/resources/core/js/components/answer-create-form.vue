@@ -62,6 +62,7 @@ export default {
             requesting: false,
             showQuestionDetail: false,
             summernote: null,
+            thumbnail: null,
         };
     },
 
@@ -157,6 +158,7 @@ export default {
             data.append('file', files[0]);
             axios.post(api('upload'), data)
             .then((res) => {
+                if (!this.thumbnail) this.thumbnail = res.data.picture_large_url;
                 const storageHost = this.$viender.treasure.env.storage_host;
                 const node = document.createElement('IMG');
                 node.setAttribute('src', `${storageHost}${res.data.picture_original_url}`);
@@ -177,6 +179,7 @@ export default {
             self.requesting = true;
 
             axios.post(self.url || this.getUrl('answers', self.question) + '?with=owner', {
+                thumbnail: this.thumbnail,
                 body: self.content.body.contents,
                 credential_id: self.selectedCredential ? self.selectedCredential.id : null,
                 _method: self.method,

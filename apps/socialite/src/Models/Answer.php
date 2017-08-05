@@ -25,7 +25,7 @@ class Answer extends Model implements Upvotable, Commentable
      * @var array
      */
     protected $fillable = [
-        'user_id', 'slug', 'question_id', 'title', 'body', 'credential_id',
+        'user_id', 'slug', 'question_id', 'title', 'body', 'credential_id', 'thumbnail',
     ];
 
     /**

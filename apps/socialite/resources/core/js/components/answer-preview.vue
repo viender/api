@@ -22,7 +22,11 @@
                         </li>
                     </ul>
                     <div class="answer-content" v-if="!answer.deleted_at" @click="showAnswer()">
-                        <div style="display: inline" v-html="answer.preview"></div>
+                        <div style="display: inline" v-html="answer.preview" v-if="!answer.thumbnail"></div>
+                        <div v-if="answer.thumbnail" style="padding-right: 110px; position: relative; min-height: 100px;">
+                            <div style="display: inline-block;" v-html="answer.preview"></div>
+                            <img style="position: absolute; right: 0; width: 100px !important; top: 0;" :src="answer.thumbnail" alt="answer thumbnail">
+                        </div>
                         <a style="cursor: pointer" v-if="answer.preview.length >= 258">(more)</a>
                     </div>
                     <div class="answer-content" style="padding-bottom: 10px;" v-else>
