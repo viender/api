@@ -61,6 +61,7 @@ export default {
         return {
             requesting: false,
             showQuestionDetail: false,
+            summernote: null,
         };
     },
 
@@ -107,15 +108,19 @@ export default {
             p.parentNode.removeChild(p);
         }
 
+        console.log('sadfasdfsdf');
+
         $(document).ready(function() {
-            $(self.$refs.editor).summernote({
+            self.summernote = $(self.$refs.editor).summernote({
                 minHeight: 400,
                 toolbar: [
                     ['style', ['bold', 'italic']],
                     ['para', ['ul', 'ol']],
                     ['insert', ['link', 'picture']],
                 ],
+                disableResizeImage: true,
                 callbacks: {
+                    onImageUpload: self.handleImageUpload,
                     onChange: function(contents, $editable) {
                         self.$store.commit('editor/' + types.UPDATE_EDITOR_CONTENT, {contents});
                         self.$emit('on-change', contents);
@@ -147,6 +152,19 @@ export default {
     },
 
     methods: {
+        handleImageUpload(files) {
+            const data = new FormData();
+            data.append('file', files[0]);
+            axios.post(api('upload'), data)
+            .then((res) => {
+                const storageHost = this.$viender.treasure.env.storage_host;
+                const node = document.createElement('IMG');
+                node.setAttribute('src', `${storageHost}${res.data.picture_original_url}`);
+                node.setAttribute('width', '100%');
+                $(this.$refs.editor).summernote('insertNode', node);
+            });
+        },
+
         answerQuestion(event) {
             let self = this;
 

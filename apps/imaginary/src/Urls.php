@@ -53,7 +53,7 @@ class Urls
         $namePrefix = 'api' . (isset($option['showVersionPrefix']) ? ($option['showVersionPrefix'] ? '.v1' : '') : '.v1') . '.viender.imaginary';
 
         $this->router->group(array_merge($option, ['domain' => config('viender.api_domain'), 'namespace' => 'Api', 'middleware' => 'api']), function() use ($namePrefix) {
-
+            $this->router->post('upload', 'ImaginaryController@upload');
         });
     }
 }

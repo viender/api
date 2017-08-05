@@ -61,14 +61,13 @@ class Imaginary
     {
         if (!isset($payload['url']) && !isset($payload['path'])) return null;
         if (!isset($payload['width']) && !isset($payload['height'])) return null;
-        if (isset($payload['width']) && isset($payload['height'])) return null;
 
         $response = null;
 
-        $resizedUrl = sprintf('http://%s:%s/resize?%s&%s=%s',
+        $resizedUrl = sprintf('http://%s:%s/resize?%s&%s=%s&force=true',
             config('services.imaginary.host'),
             config('services.imaginary.port'),
-            isset($payload['width']) ? 'width=' . $payload['width'] : 'height=' . $payload['height'],
+            (isset($payload['width']) ? 'width=' . $payload['width'] : '') . (isset($payload['height']) ? '&height=' . $payload['height'] : ''),
             isset($payload['url']) ? 'url' : 'file',
             isset($payload['url']) ? $payload['url'] : (isset($payload['path']) ? $payload['path'] : '')
         );
@@ -80,9 +79,31 @@ class Imaginary
         return $tempImage;
     }
 
-    public function uploadPicture($imgPath)
+    public function thumbnail(array $payload)
     {
-        $originalUrl = Storage::putFile('public/images/original', new File($this->resize([
+        if (!isset($payload['url']) && !isset($payload['path'])) return null;
+        if (!isset($payload['width']) && !isset($payload['height'])) return null;
+
+        $response = null;
+
+        $resizedUrl = sprintf('http://%s:%s/thumbnail?%s&%s=%s&force=true',
+            config('services.imaginary.host'),
+            config('services.imaginary.port'),
+            (isset($payload['width']) ? 'width=' . $payload['width'] : '') . (isset($payload['height']) ? '&height=' . $payload['height'] : ''),
+            isset($payload['url']) ? 'url' : 'file',
+            isset($payload['url']) ? $payload['url'] : (isset($payload['path']) ? $payload['path'] : '')
+        );
+
+        $filename = 'image.jpg';
+        $tempImage = tempnam(sys_get_temp_dir(), $filename);
+        copy($resizedUrl,  $tempImage);
+
+        return $tempImage;
+    }
+
+    public function uploadPicture($imgPath, $prefix = 'avatar')
+    {
+        $originalUrl = Storage::putFile('public/images/original', new File($this->thumbnail([
             'path' => $imgPath,
             'width' => 1200,
         ])));
@@ -106,22 +127,22 @@ class Imaginary
         ])));
 
         return [
-            'avatar_url' => $smallUrl,
-            'avatar_medium_url' => $mediumUrl,
-            'avatar_large_url' => $largeUrl,
-            'avatar_original_url' => $originalUrl,
+            $prefix . '_url' => $smallUrl,
+            $prefix . '_medium_url' => $mediumUrl,
+            $prefix . '_large_url' => $largeUrl,
+            $prefix . '_original_url' => $originalUrl,
         ];
     }
 
-    public function uploadUploadedPicture(UploadedFile $uploadedPicture) {
+    public function uploadUploadedPicture(UploadedFile $uploadedPicture, $prefix = 'avatar') {
         $imgPath = Storage::disk('local')->put(sys_get_temp_dir(), $uploadedPicture);
-        return $this->uploadPicture('viender/storage/app/' . $imgPath);
+        return $this->uploadPicture('viender/storage/app/' . $imgPath, $prefix);
     }
 
-    public function uploadRemotePicture($url) {
+    public function uploadRemotePicture($url, $prefix = 'avatar') {
         $filename = 'imaginary-original-' . microtime(true) * 10000 . '.jpg';
         $tempImage = 'app' . sys_get_temp_dir(). '/' . $filename;
         copy($url, storage_path($tempImage));
-        return $this->uploadPicture('viender/storage/' . $tempImage);
+        return $this->uploadPicture('viender/storage/' . $tempImage, $prefix);
     }
 }

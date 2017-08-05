@@ -33,9 +33,10 @@
         ]); ?>;
         window.treasure = {!! json_encode([
             'env'       => [
-                'env'       => config('app.env'),
-                'api_url'   => config('viender.api_url'),
-                'domain'    => config('viender.web_domain'),
+                'env'           => config('app.env'),
+                'api_url'       => config('viender.api_url'),
+                'domain'        => config('viender.web_domain'),
+                'storage_host'  => \Storage::url('.'),
             ],
             'client'    => [
                 'type'      => \Agent::isDesktop() ? 'desktop' : 'mobile',
