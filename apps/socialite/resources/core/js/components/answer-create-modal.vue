@@ -21,11 +21,6 @@ import editCredentialModal from 'viender_credential/core/js/components/edit-cred
 
 export default {
     props: {
-        method: {
-            type: String,
-            default: 'POST',
-        },
-
         initContent: {
             type: Boolean,
             default: false,
@@ -48,6 +43,9 @@ export default {
         },
         question() {
             return this.$store.state.editor.question;
+        },
+        method() {
+            return this.$store.state.questionList.createModalMethod;
         },
     },
 

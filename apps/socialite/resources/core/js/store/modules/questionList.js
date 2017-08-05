@@ -11,6 +11,8 @@ export default {
         questions: [],
         questionUrl: {},
         showAnswerCreateModal: false,
+        createModalMethod: 'POST',
+        createModalUrl: null,
     },
 
     mutations: {
@@ -38,6 +40,14 @@ export default {
 
         [types.UPDATE_REQUESTING](state, requesting) {
             state.requesting = requesting;
+        },
+
+        [types.SET_CREATE_MODAL_METHOD](state, {method}) {
+            state.createModalMethod = method;
+        },
+
+        [types.SET_CREATE_MODAL_URL](state, {url}) {
+            state.createModalUrl = url;
         },
 
         [types.SET_SHOW_ANSWER_CREATE_MODAL](state, showAnswerCreateModal) {

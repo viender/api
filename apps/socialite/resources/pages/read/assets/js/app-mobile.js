@@ -17,6 +17,7 @@ require('./bootstrap');
 Vue.component('comment', require('viender_socialite/core/js/components/comment.vue'));
 Vue.component('comment-list', require('viender_socialite/core/js/components/comment-list.vue'));
 Vue.component('comment-create-form', require('viender_socialite/core/js/components/comment-create-form.vue'));
+Vue.component('answer-create-modal', require('viender_socialite/core/js/components/answer-create-modal.vue'));
 Vue.component('answer-preview', require('viender_socialite/core/js/components/answer-preview.vue'));
 Vue.component('feed-list', require('viender_socialite/core/js/components/feed-list.vue'));
 Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
@@ -28,7 +29,17 @@ const feed = new Vue({
 
     store: store,
 
+    created() {
+        this.$store.commit('questionList/SET_CREATE_MODAL_METHOD', {method: 'PUT'});
+    },
+
     mounted() {
         this.$store.dispatch('navigation/getNotificationCount');
+    },
+
+    methods: {
+        hideActiveMoreMenu() {
+            this.$store.dispatch('moreMenu/closeActiveMoreMenu');
+        },
     },
 });

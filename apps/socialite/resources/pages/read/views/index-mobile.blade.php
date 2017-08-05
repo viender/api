@@ -5,6 +5,7 @@
     <tutorial></tutorial>
 	<feed-list :feed-urls="{ answers: '{{ route('api.viender.socialite.answers.index') }}' }"></feed-list>
 	<answer-show-modal></answer-show-modal>
+    <answer-create-modal :url="$viender.helpers.getUrl('self', $store.state.editor.content)" :init-content="true" @answer-posted="hideActiveMoreMenu()"></answer-create-modal>
 </div>
 @endsection
 

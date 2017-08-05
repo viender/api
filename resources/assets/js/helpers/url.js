@@ -29,6 +29,7 @@ window.api = function api(path) {
 
 window.getUrl = function getUrl(rel, obj) {
     if (! obj) return '';
+    if (! obj.links) return '';
 
 	const result = obj.links.filter(function(link) {
 		return link.rel == rel;

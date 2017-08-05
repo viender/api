@@ -132,6 +132,7 @@ export default {
                 question: this.questionObj,
                 answerText: this.answerText,
             });
+            this.$store.commit('questionList/SET_CREATE_MODAL_METHOD', {method: 'POST'});
             this.ga('show_answer_form', 'Question Show Answer Form');
         },
 

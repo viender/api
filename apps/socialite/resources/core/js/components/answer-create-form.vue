@@ -87,7 +87,9 @@ export default {
         },
 
         selectedCredential() {
-            this.$store.commit('editor/' + types.SET_CREDENTIAL_ID, {id: this.selectedCredential.id});
+            if (this.selectedCredential) {
+                this.$store.commit('editor/' + types.SET_CREDENTIAL_ID, {id: this.selectedCredential.id});
+            }
         },
 
         answer() {
@@ -170,6 +172,8 @@ export default {
         answerQuestion(event) {
             let self = this;
 
+            let url = self.url;
+
             if(event) event.preventDefault();
 
             if(self.requesting) return;
@@ -178,7 +182,11 @@ export default {
 
             self.requesting = true;
 
-            axios.post(self.url || this.getUrl('answers', self.question) + '?with=owner', {
+            if (self.$store.state.questionList.createModalMethod === 'PUT') {
+                url = self.$viender.helpers.getUrl('self', self.$store.state.editor.content);
+            }
+
+            axios.post(url || this.getUrl('answers', self.question) + '?with=owner', {
                 thumbnail: this.thumbnail,
                 body: self.content.body.contents,
                 credential_id: self.selectedCredential ? self.selectedCredential.id : null,

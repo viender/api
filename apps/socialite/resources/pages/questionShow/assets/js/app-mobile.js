@@ -39,4 +39,10 @@ const feed = new Vue({
     mounted() {
         this.$store.dispatch('navigation/getNotificationCount');
     },
+
+    methods: {
+        hideActiveMoreMenu() {
+            this.$store.dispatch('moreMenu/closeActiveMoreMenu');
+        },
+    },
 });

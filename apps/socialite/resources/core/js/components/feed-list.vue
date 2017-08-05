@@ -15,7 +15,6 @@
                 </div>
             </div>
         </div>
-        <answer-create-modal :url="$viender.helpers.getUrl('self', $store.state.editor.content)" method="PUT" :init-content="true" @answer-posted="hideActiveMoreMenu()"></answer-create-modal>
     </div>
 </template>
 
@@ -109,10 +108,6 @@ export default {
                     });
                 }
             });
-        },
-
-        hideActiveMoreMenu() {
-            this.$store.dispatch('moreMenu/closeActiveMoreMenu');
         },
     },
 };

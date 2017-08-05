@@ -28,6 +28,8 @@ export default {
             if (!this.$refs.sneakpeek.isOpen()) {
                 this.$refs.sneakpeek.open();
             }
+
+            this.$emit('open');
         },
 
         close() {

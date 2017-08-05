@@ -26,7 +26,7 @@
 		@endif
 	</h5>
 	<feed-list :feed-urls="{ answers: '{{ route('api.viender.socialite.questions.answers.index', $question) }}' }" :options="{ answers: {showQuestion: false}}"></feed-list>
-	<answer-create-modal></answer-create-modal>
+	<answer-create-modal @answer-posted="hideActiveMoreMenu()"></answer-create-modal>
 	<answer-show-modal></answer-show-modal>
 </div>
 @endsection
