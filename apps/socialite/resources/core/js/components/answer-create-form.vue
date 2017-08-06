@@ -211,6 +211,7 @@ export default {
 
                         self.$emit('answer-posted', response.data);
                         self.$store.commit('questionList/' + types.SET_AS_ANSWERED, self.question);
+                        self.thumbnail = null;
                         $(self.$refs.editor).summernote('code', '');
                     }
                     self.requesting = false;
