@@ -23,6 +23,7 @@
                         <span>Deleted.</span>
                         <a @click="restore()">Restore</a>
                     </div>
+                    <div class="answer-stats">Views {{ answerObj.view_count }}  ·  Upvotes {{ answerObj.upvote_count }}</div>
                 </div>
                 <div class="card-action" v-if="!answerObj.deleted_at">
                     <ul class="card-action-list">
@@ -67,3 +68,11 @@ export default {
     },
 };
 </script>
+
+<style>
+    .answer-stats {
+        font-size: 12px;
+        color: #657786;
+        margin-top: 10px;
+    }
+</style>

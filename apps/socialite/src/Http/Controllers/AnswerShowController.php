@@ -45,6 +45,8 @@ class AnswerShowController extends Controller
         $transformedAnswer['question'] = $questionTransformer->transform($answer->question);
         $transformedAnswer['credential'] = $answer->credential === null ? [] : $credentialTransformer->transform($answer->credential);
 
+        $answer->incrementView();
+
         return view('viender.socialite.answerShow::static')->with(compact('transformedAnswer', 'metaTitle'));
 	}
 }

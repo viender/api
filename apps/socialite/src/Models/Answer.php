@@ -3,6 +3,7 @@
 namespace Viender\Socialite\Models;
 
 use Laravel\Scout\Searchable;
+use Viender\Socialite\Models\View as AnswerView;
 use Viender\Topic\Traits\HasTopics;
 use Viender\Socialite\Traits\HasVotes;
 use Illuminate\Database\Eloquent\Model;
@@ -75,5 +76,19 @@ class Answer extends Model implements Upvotable, Commentable
     public function credential()
     {
         return $this->belongsTo('Viender\Credential\Models\Credential');
+    }
+
+    public function viewCount()
+    {
+        $view = AnswerView::where('answer_id', $this->id)->firstOrCreate(['answer_id' => $this->id]);
+        return $view->count ?? 0;
+    }
+
+    public function incrementView($value='')
+    {
+        $view = AnswerView::where('answer_id', $this->id)->firstOrCreate(['answer_id' => $this->id]);
+        $view->count += 1;
+        $view->save();
+        return $view->count;
     }
 }

@@ -53,6 +53,7 @@ class AnswerTransformer extends Transformer
             'upvote_count'  => $answer->upvotes()->count(),
             'comment_count' => $answer->comments()->count(),
             'credential_id' => $answer->credential_id,
+            'view_count'    => $answer->viewCount(),
             'deleted_at'    => $answer->deleted_at,
             'links'   => [
                 [

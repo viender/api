@@ -52,6 +52,7 @@ class AnswerWithQuestionTransformer extends Transformer
             'downvoted'       => \Auth::user() ? $answer->downvotes()->where('user_id', \Auth::user()->id)->exists() : false,
             'upvote_count'  => $answer->upvotes()->count(),
             'comment_count' => $answer->comments()->count(),
+            'view_count'    => $answer->viewCount(),
             'deleted_at'    => $answer->deleted_at,
             'links'   => [
                 [

@@ -57,6 +57,7 @@ class AnswerPreviewTransformer extends Transformer
             'comment_count' => $answer->comments()->count(),
             'thumbnail'     => $answer->thumbnail ? \Storage::url($answer->thumbnail) : null,
             'credential_id' => $answer->credential_id,
+            'view_count'    => $answer->viewCount(),
             'deleted_at'    => $answer->deleted_at,
             'links'   => [
                 [

@@ -105,6 +105,8 @@ class QuestionAnswersController extends ApiController
     {
         $answer = $question->answers()->where('slug', $answer)->firstOrFail();
 
+        $answer->incrementView();
+
         return $this->respond(new Item($answer, new AnswerTransformer));
     }
 
