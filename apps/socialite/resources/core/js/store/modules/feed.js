@@ -12,6 +12,7 @@ export default {
         feedUrls: {},
         showAnswerModal: false,
         showedAnswer: null,
+        sortBy: 'latest',
     },
 
     getters: {
@@ -78,6 +79,10 @@ export default {
         addAnswer(state, answer) {
             state.answers.unshift(answer);
         },
+
+        [types.SET_SORT_BY](state, {sortBy}) {
+            state.sortBy = sortBy;
+        },
     },
 
     actions: {
@@ -91,6 +96,7 @@ export default {
                     params: {
                         with: ['owner', 'question'],
                         page: state.page,
+                        sort: state.sortBy,
                     },
                 })
                 .then(function(response) {
@@ -151,6 +157,16 @@ export default {
             } else {
                 commit(types.SET_SHOWED_ANSWER, showedAnswer);
             }
+        },
+
+        reset({state}) {
+            state.page = 1;
+            state.totalPages = 2;
+            state.requesting = false;
+            state.answers = [];
+            state.showAnswerModal = false;
+            state.showedAnswer = null;
+            state.sortBy = 'latest';
         },
     },
 };

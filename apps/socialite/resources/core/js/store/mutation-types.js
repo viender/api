@@ -19,6 +19,7 @@ export const SET_CREDENTIAL_ID = 'SET_CREDENTIAL_ID';
 // feed
 export const SET_SHOW_ANSWER_SHOW_MODAL = 'SET_SHOW_ANSWER_SHOW_MODAL';
 export const SET_SHOWED_ANSWER = 'SET_SHOWED_ANSWER';
+export const SET_SORT_BY = 'SET_SORT_BY';
 
 // moreMenu
 export const SET_ACTIVE_MORE_MENU = 'SET_ACTIVE_MORE_MENU';

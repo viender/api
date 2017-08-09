@@ -23,6 +23,7 @@ Vue.component('feed-list', require('viender_socialite/core/js/components/feed-li
 Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
 Vue.component('answer-show-modal', require('viender_socialite/core/js/components/answer-show-modal.vue'));
 Vue.component('more-menu', require('viender_socialite/core/js/components/more-menu.vue'));
+Vue.component('sort-button', require('viender_socialite/core/js/components/sort-button.vue'));
 
 const feed = new Vue({
     el: '#app',

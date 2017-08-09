@@ -7,6 +7,7 @@
 	<answer-show-modal></answer-show-modal>
     <answer-create-modal :url="$viender.helpers.getUrl('self', $store.state.editor.content)" :init-content="true" @answer-posted="hideActiveMoreMenu()"></answer-create-modal>
 </div>
+<sort-button></sort-button>
 @endsection
 
 @section('head-styles')
