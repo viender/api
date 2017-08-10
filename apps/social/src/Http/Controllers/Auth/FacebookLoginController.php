@@ -22,6 +22,6 @@ class FacebookLoginController
 
         auth()->login($user, true);
 
-        return redirect(url('/?from=facebook_login'));
+        return redirect()->intended('/?ref=facebook-login');
     }
 }

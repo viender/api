@@ -14,9 +14,9 @@
 		            	{{ $question->body }}
 		            </p>
 		            <div class="card-action">
-                        <a href="/?ref={{ route('web.viender.socialite.pages.questionShow', $question) }}" class="btn btn-default">Answer</a>
-                        <a href="/?ref={{ route('web.viender.socialite.pages.questionShow', $question) }}">Downvote</a>
-                        <a href="/?ref={{ route('web.viender.socialite.pages.questionShow', $question) }}">Comments</a>
+                        <a href="?auth=1" class="btn btn-default">Answer</a>
+                        <a href="?auth=1">Downvote</a>
+                        <a href="?auth=1">Comments</a>
 		            </div>
 			    </div>
 			</div>
