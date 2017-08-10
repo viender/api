@@ -2,13 +2,13 @@
 
 namespace App\Admin\Controllers;
 
-use Viender\Socialite\Models\Question;
-
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
+use Viender\Topic\Models\Topic;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
+use Viender\Socialite\Models\Question;
 use Encore\Admin\Controllers\ModelForm;
 
 class QuestionsController extends Controller
@@ -81,6 +81,8 @@ class QuestionsController extends Controller
 
             $grid->created_at();
             $grid->updated_at();
+
+            // $grid->topics()->pluck('name')->label();
         });
     }
 
@@ -98,6 +100,7 @@ class QuestionsController extends Controller
             $form->display('user_id', 'User ID');
             $form->text('title', 'Question');
             $form->textarea('body', 'Question Detail');
+            $form->multipleSelect('topics')->options(Topic::all()->pluck('name', 'id'));
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
