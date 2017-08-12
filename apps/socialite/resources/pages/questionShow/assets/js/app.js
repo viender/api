@@ -14,25 +14,27 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('comment', require('viender_socialite/core/js/components/comment.vue'));
-Vue.component('comment-list', require('viender_socialite/core/js/components/comment-list.vue'));
-Vue.component('comment-create-form', require('viender_socialite/core/js/components/comment-create-form.vue'));
-Vue.component('answer-preview', require('viender_socialite/core/js/components/answer-preview.vue'));
-Vue.component('feed-list', require('viender_socialite/core/js/components/feed-list.vue'));
-Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
-Vue.component('answer-show-modal', require('viender_socialite/core/js/components/answer-show-modal.vue'));
-Vue.component('question-list', require('viender_socialite/core/js/components/question-list.vue'));
-Vue.component('question', require('viender_socialite/core/js/components/question.vue'));
-Vue.component('answer-create-form', require('viender_socialite/core/js/components/answer-create-form.vue'));
-Vue.component('answer-create-modal', require('viender_socialite/core/js/components/answer-create-modal.vue'));
-Vue.component('more-menu', require('viender_socialite/core/js/components/more-menu.vue'));
+window.$app = () => {
+    Vue.component('comment', require('viender_socialite/core/js/components/comment.vue'));
+    Vue.component('comment-list', require('viender_socialite/core/js/components/comment-list.vue'));
+    Vue.component('comment-create-form', require('viender_socialite/core/js/components/comment-create-form.vue'));
+    Vue.component('answer-preview', require('viender_socialite/core/js/components/answer-preview.vue'));
+    Vue.component('feed-list', require('viender_socialite/core/js/components/feed-list.vue'));
+    Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
+    Vue.component('answer-show-modal', require('viender_socialite/core/js/components/answer-show-modal.vue'));
+    Vue.component('question-list', require('viender_socialite/core/js/components/question-list.vue'));
+    Vue.component('question', require('viender_socialite/core/js/components/question.vue'));
+    Vue.component('answer-create-form', require('viender_socialite/core/js/components/answer-create-form.vue'));
+    Vue.component('answer-create-modal', require('viender_socialite/core/js/components/answer-create-modal.vue'));
+    Vue.component('more-menu', require('viender_socialite/core/js/components/more-menu.vue'));
 
-const feed = new Vue({
-    el: '#app',
+    const feed = new Vue({
+        el: '#app',
 
-    store: store,
+        store: store,
 
-    mounted() {
-        this.$store.dispatch('navigation/getNotificationCount');
-    },
-});
+        mounted() {
+            this.$store.dispatch('navigation/getNotificationCount');
+        },
+    });
+};

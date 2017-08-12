@@ -1,5 +1,7 @@
 @extends('viender::layouts.app')
 
+@include('viender.socialite.answerShow::components/answer-header')
+
 @section('content')
 <div class="mobile">
     <answer answer-url="/questions/Dolorum-incidunt-est-alias-qui-hic-dolores-dolores/answers/goldencat173"></answer>
@@ -13,5 +15,17 @@
 @endsection
 
 @section('scripts')
-<script src={{ mix('js/viender/socialite/read/app-mobile.js') }} async defer></script>
+<script>
+    window.$appScript = function() {
+        window.$loadScript({
+            d: document,
+            tag: 'script',
+            id: 'app-script',
+            url: "{{ mix('js/viender/socialite/read/app-mobile.js') }}",
+            onload: function() {
+                window.$app();
+            }
+        });
+    };
+</script>
 @endsection

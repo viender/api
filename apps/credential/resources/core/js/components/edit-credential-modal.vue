@@ -81,7 +81,6 @@ export default {
         $('credential-list').click(() => {
             const el = $('credential-list');
             const atBottom = el[0].scrollHeight - el.scrollTop() === el.height();
-            console.log(atBottom);
             if (atBottom) {
                 self.$store.dispatch('credentials/fetchCredentials');
             }

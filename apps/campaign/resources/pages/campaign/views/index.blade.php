@@ -88,5 +88,17 @@
 @endsection
 
 @section('scripts')
-<script src={{ mix('js/viender/socialite/read/app.js') }} async defer></script>
+<script>
+    window.$appScript = function() {
+        window.$loadScript({
+            d: document,
+            tag: 'script',
+            id: 'app-script',
+            url: "{{ mix('js/viender/socialite/read/app.js') }}",
+            onload: function() {
+                window.$app();
+            }
+        });
+    };
+</script>
 @endsection

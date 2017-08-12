@@ -23,6 +23,8 @@ class AnswerShowController extends Controller
 
 	public function show(Question $question, $answerSlug)
 	{
+        $headPrefix = 'og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#';
+
         $answer = Answer::where([
             'question_id'   => $question->id,
             'slug'          => $answerSlug,
@@ -31,7 +33,7 @@ class AnswerShowController extends Controller
         $metaTitle = $answer->user->fullName() . '\'s answer to ' . $answer->question->title . ' - Viender';
 
         if (\Auth::user()) {
-            return view('viender.socialite.answerShow::index')->with(compact('answer', 'metaTitle'));
+            return view('viender.socialite.answerShow::index')->with(compact('answer', 'metaTitle', 'headPrefix'));
         }
 
         $answerTransformer = new AnswerTransformer;
@@ -47,6 +49,6 @@ class AnswerShowController extends Controller
 
         $answer->incrementView();
 
-        return view('viender.socialite.answerShow::static')->with(compact('transformedAnswer', 'metaTitle'));
+        return view('viender.socialite.answerShow::static')->with(compact('transformedAnswer', 'metaTitle', 'headPrefix'));
 	}
 }

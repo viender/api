@@ -94,6 +94,10 @@ export default {
         this.fetchData();
     },
 
+    mounted() {
+        // window.fbAsyncInit();
+    },
+
     methods: {
         fetchData() {
             this.$store.dispatch('feed/fetchData')

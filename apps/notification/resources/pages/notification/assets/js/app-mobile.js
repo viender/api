@@ -14,11 +14,13 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('notification-card', require('viender_notification/core/js/components/notification-card.vue'));
-Vue.component('notification-list', require('viender_notification/core/js/components/notification-list.vue'));
+window.$app = () => {
+    Vue.component('notification-card', require('viender_notification/core/js/components/notification-card.vue'));
+    Vue.component('notification-list', require('viender_notification/core/js/components/notification-list.vue'));
 
-const feed = new Vue({
-    el: '#app',
+    const feed = new Vue({
+        el: '#app',
 
-    store: store,
-});
+        store: store,
+    });
+};

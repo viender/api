@@ -111,8 +111,6 @@ export default {
             p.parentNode.removeChild(p);
         }
 
-        console.log('sadfasdfsdf');
-
         $(document).ready(function() {
             self.summernote = $(self.$refs.editor).summernote({
                 minHeight: 400,

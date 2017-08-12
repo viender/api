@@ -43,7 +43,7 @@ export default {
     },
 
     mounted() {
-    	console.log('hello from postTutoring 1');
+
     },
 
     methods: {

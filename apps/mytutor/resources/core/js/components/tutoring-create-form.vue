@@ -41,7 +41,7 @@
 	    <div class="form-group">
 	    	<label>Schedule</label>
 		    <div class="form-group row" v-for="day in days">
-		    	
+
 		    	<label class="col-md-2 col-form-label" :for="day"><input type="checkbox" :id="day" :name="day">{{ day }}</label>
 		    	<input type="hidden" :name="'schedules[{{' + days.indexOf(day) + '}}][day]'" :value="day">
 				<div class="form-group col-md-10 row">
@@ -121,7 +121,7 @@ export default {
     },
 
     mounted() {
-    	console.log('hello from postTutoring');
+
     },
 
     methods: {

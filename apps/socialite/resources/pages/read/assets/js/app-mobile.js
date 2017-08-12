@@ -14,33 +14,36 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('comment', require('viender_socialite/core/js/components/comment.vue'));
-Vue.component('comment-list', require('viender_socialite/core/js/components/comment-list.vue'));
-Vue.component('comment-create-form', require('viender_socialite/core/js/components/comment-create-form.vue'));
-Vue.component('answer-create-modal', require('viender_socialite/core/js/components/answer-create-modal.vue'));
-Vue.component('answer-preview', require('viender_socialite/core/js/components/answer-preview.vue'));
-Vue.component('feed-list', require('viender_socialite/core/js/components/feed-list.vue'));
-Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
-Vue.component('answer-show-modal', require('viender_socialite/core/js/components/answer-show-modal.vue'));
-Vue.component('more-menu', require('viender_socialite/core/js/components/more-menu.vue'));
-Vue.component('sort-button', require('viender_socialite/core/js/components/sort-button.vue'));
 
-const feed = new Vue({
-    el: '#app',
+window.$app = () => {
+    Vue.component('comment', require('viender_socialite/core/js/components/comment.vue'));
+    Vue.component('comment-list', require('viender_socialite/core/js/components/comment-list.vue'));
+    Vue.component('comment-create-form', require('viender_socialite/core/js/components/comment-create-form.vue'));
+    Vue.component('answer-create-modal', require('viender_socialite/core/js/components/answer-create-modal.vue'));
+    Vue.component('answer-preview', require('viender_socialite/core/js/components/answer-preview.vue'));
+    Vue.component('feed-list', require('viender_socialite/core/js/components/feed-list.vue'));
+    Vue.component('answer', require('viender_socialite/core/js/components/answer.vue'));
+    Vue.component('answer-show-modal', require('viender_socialite/core/js/components/answer-show-modal.vue'));
+    Vue.component('more-menu', require('viender_socialite/core/js/components/more-menu.vue'));
+    Vue.component('sort-button', require('viender_socialite/core/js/components/sort-button.vue'));
 
-    store: store,
+    const feed = new Vue({
+        el: '#app',
 
-    created() {
-        this.$store.commit('questionList/SET_CREATE_MODAL_METHOD', {method: 'PUT'});
-    },
+        store: store,
 
-    mounted() {
-        this.$store.dispatch('navigation/getNotificationCount');
-    },
-
-    methods: {
-        hideActiveMoreMenu() {
-            this.$store.dispatch('moreMenu/closeActiveMoreMenu');
+        created() {
+            this.$store.commit('questionList/SET_CREATE_MODAL_METHOD', {method: 'PUT'});
         },
-    },
-});
+
+        mounted() {
+            this.$store.dispatch('navigation/getNotificationCount');
+        },
+
+        methods: {
+            hideActiveMoreMenu() {
+                this.$store.dispatch('moreMenu/closeActiveMoreMenu');
+            },
+        },
+    });
+};

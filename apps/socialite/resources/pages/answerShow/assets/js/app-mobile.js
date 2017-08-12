@@ -14,15 +14,17 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('question-list', require('viender_socialite/core/js/components/question-list.vue'));
-Vue.component('more-menu', require('viender_socialite/core/js/components/more-menu.vue'));
+window.$app = () => {
+    Vue.component('question-list', require('viender_socialite/core/js/components/question-list.vue'));
+    Vue.component('more-menu', require('viender_socialite/core/js/components/more-menu.vue'));
 
-const feed = new Vue({
-    el: '#app',
+    const feed = new Vue({
+        el: '#app',
 
-    store: store,
+        store: store,
 
-    mounted() {
-        this.$store.dispatch('navigation/getNotificationCount');
-    },
-});
+        mounted() {
+            this.$store.dispatch('navigation/getNotificationCount');
+        },
+    });
+};

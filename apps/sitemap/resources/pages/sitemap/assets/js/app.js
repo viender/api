@@ -15,8 +15,9 @@ require('./bootstrap');
  */
 
 
-const feed = new Vue({
-    el: '#app',
-
-    store: store
-});
+window.$app = () => {
+    const feed = new Vue({
+        el: '#app',
+        store: store,
+    });
+};

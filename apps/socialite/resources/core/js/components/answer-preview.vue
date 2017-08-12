@@ -54,6 +54,12 @@
                             <more-menu-mobile ref="moreMenu" :model="answer" v-else @click-edit="openEditOverlay">
                             </more-menu-mobile>
                         </li>
+                        <li class="card-action-item--right">
+                            <div class="fb-share-button"
+                                :data-href="getUrl('self_html', answer)"
+                                data-type="button">
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>

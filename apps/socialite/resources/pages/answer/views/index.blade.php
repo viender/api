@@ -10,7 +10,7 @@
 			<question-list question-url="{{ route('api.viender.socialite.questions.index') }}"></question-list>
 		</div>
 		<div class="col s3">
-			
+
 		</div>
 	</div>
 </div>
@@ -21,5 +21,17 @@
 @endsection
 
 @section('scripts')
-<script src={{ mix('js/viender/socialite/answer/app.js') }} async defer></script>
+<script>
+    window.$appScript = function() {
+        window.$loadScript({
+            d: document,
+            tag: 'script',
+            id: 'app-script',
+            url: "{{ mix('js/viender/socialite/answer/app.js') }}",
+            onload: function() {
+                window.$app();
+            }
+        });
+    };
+</script>
 @endsection

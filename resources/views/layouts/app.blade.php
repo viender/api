@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head prefix="{{ $headPrefix ?? '' }}">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     @if(!\Agent::isDesktop())
@@ -15,6 +15,8 @@
     @if(isset($metaDescription))
         <meta name="description" content="{{ $metaDescription }}">
     @endif
+
+    @yield('more-meta')
 
     <title>{{ $metaTitle ?? config('app.name', 'Laravel') . (\Agent::isRobot() ? ' -  A place to share knowledge' : '') }}</title>
 
@@ -46,6 +48,17 @@
             ],
         ])
         !!};
+
+        window.$loadScript = function({d, tag, id, url, async = true, onload}){
+            var script, fjs = d.getElementsByTagName(tag)[0];
+            if (d.getElementById(id)) {return;}
+            script = d.createElement(tag); script.id = id;
+            script.type = 'text/javascript';
+            script.async = async;
+            script.onload = onload
+            script.src = url;
+            fjs.parentNode.insertBefore(script, fjs);
+        }
     </script>
 
     {{-- <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
@@ -78,7 +91,7 @@
         }
     </style>
 
-    <script src={{ mix('js/core.js') }}></script>
+    {{-- <script src={{ mix('js/core.js') }}></script> --}}
     @yield('head-scripts')
 </head>
 <body>
@@ -97,5 +110,35 @@
     </div>
     <!-- Scripts -->
     @yield('scripts')
+    <script>
+        // window.fbAsyncInit = function() {
+        //     if (window.app) app();
+        //     FB.init({
+        //         appId            : '{{ config("services.facebook.client_id") }}',
+        //         autoLogAppEvents : true,
+        //         xfbml            : true,
+        //         version          : 'v2.10'
+        //     });
+        //     FB.AppEvents.logPageView();
+        // };
+
+        // (function(d, s, id){
+        //     var js, fjs = d.getElementsByTagName(s)[0];
+        //     if (d.getElementById(id)) {return;}
+        //     js = d.createElement(s); js.id = id;
+        //     js.src = "//connect.facebook.net/en_US/sdk.js";
+        //     fjs.parentNode.insertBefore(js, fjs);
+        // }(document, 'script', 'facebook-jssdk'));
+
+        window.$loadScript({
+            d: document,
+            tag: 'script',
+            id: 'core',
+            url: "{{ mix('js/core.js') }}",
+            onload: function() {
+                window.$appScript();
+            }
+        });
+    </script>
 </body>
 </html>
