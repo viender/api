@@ -25,7 +25,7 @@ class AnswerShowController extends Controller
 	{
         $headPrefix = 'og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#';
 
-        $answer = Answer::where([
+        $answer =  Answer::with(['user', 'question', 'credential'])->where([
             'question_id'   => $question->id,
             'slug'          => $answerSlug,
         ])->firstOrFail();
