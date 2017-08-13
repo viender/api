@@ -41,5 +41,16 @@
 @endsection
 
 @section('scripts')
-<script src={{ mix('js/viender/topic/topic/app.js') }} async defer></script>
+<script>
+    window.$loadScript({
+        d: document,
+        tag: 'script',
+        id: 'app-script',
+        url: "{{ mix('js/viender/topic/topic/app.js') }}",
+        onload: function() {
+            window.$appScriptLoaded = true;
+            window.$runApp();
+        }
+    });
+</script>
 @endsection

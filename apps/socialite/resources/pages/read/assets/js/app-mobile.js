@@ -30,7 +30,7 @@ window.$app = () => {
     const feed = new Vue({
         el: '#app',
 
-        store: store,
+        store: new Vuex.Store(store),
 
         created() {
             this.$store.commit('questionList/SET_CREATE_MODAL_METHOD', {method: 'PUT'});

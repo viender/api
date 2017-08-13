@@ -34,7 +34,7 @@ window.$app = () => {
     const app = new Vue({
         el: '#app',
 
-        store: store,
+        store: new Vuex.Store(store),
 
         filters: filters,
 

@@ -30,11 +30,11 @@
                         <li class="card-action-item">
                             <span style="cursor: pointer;" @click="upvote">
                                 <span style="padding-right: 5px;">{{ answerObj.upvote_count }}</span>
-                                <a class="material-icons dp48" :class="answerObj.upvoted ? 'active' : ''">thumb_up</a>
+                                <a :href="!$viender.user ? '?auth=1' : ''" class="material-icons dp48" :class="answerObj.upvoted ? 'active' : ''">thumb_up</a>
                             </span>
                         </li>
                         <li class="card-action-item">
-                            <a @click="downvote" class="material-icons dp48" :class="answerObj.downvoted ? 'active' : ''">thumb_down</a>
+                            <a :href="!$viender.user ? '?auth=1' : ''" @click="downvote" class="material-icons dp48" :class="answerObj.downvoted ? 'active' : ''">thumb_down</a>
                         </li>
                         <li class="card-action-item">
                             <a @click="toggleComments()">Comments <span>({{ answerObj.comment_count }})</span></a>

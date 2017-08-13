@@ -8,7 +8,7 @@ import feed from 'viender_socialite/core/js/store/modules/feed';
 import userStats from 'viender_profile/core/js/store/modules/userStats';
 import followerList from 'viender_profile/core/js/store/modules/followerList';
 
-export default new Vuex.Store({
+export default {
   modules: Object.assign(coreModules, {
     questionList: questionList,
     editor: editor,
@@ -18,4 +18,4 @@ export default new Vuex.Store({
   }),
 
   actions: require('viender_socialite/core/js/store//actions.js'),
-});
+};

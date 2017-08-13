@@ -58,16 +58,15 @@
 
 @section('scripts')
 <script>
-    window.$appScript = function() {
-        window.$loadScript({
-            d: document,
-            tag: 'script',
-            id: 'app-script',
-            url: "{{ mix('js/viender/profile/profile/app-mobile.js') }}",
-            onload: function() {
-                window.$app();
-            }
-        });
-    };
+    window.$loadScript({
+        d: document,
+        tag: 'script',
+        id: 'app-script',
+        url: "{{ mix('js/viender/profile/profile/app-mobile.js') }}",
+        onload: function() {
+            window.$appScriptLoaded = true;
+            window.$runApp();
+        }
+    });
 </script>
 @endsection

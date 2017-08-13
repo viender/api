@@ -10,7 +10,7 @@ import topicList from 'viender_profile/core/js/store/modules/topicList';
 import credentials from 'viender_credential/core/js/store/modules/credentials';
 import moreMenu from 'viender_socialite/core/js/store/modules/moreMenu';
 
-export default new Vuex.Store({
+export default {
   modules: Object.assign(coreModules, {
     questionList,
     editor,
@@ -24,4 +24,4 @@ export default new Vuex.Store({
   }),
 
   actions: require('viender_socialite/core/js/store//actions.js'),
-});
+};

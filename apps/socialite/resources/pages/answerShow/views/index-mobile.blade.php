@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="mobile">
-    <answer answer-url="/questions/Dolorum-incidunt-est-alias-qui-hic-dolores-dolores/answers/goldencat173"></answer>
     <feed-list :feed-urls="{ answers: '{{ route('api.viender.socialite.answers.index') }}' }"></feed-list>
     <answer-show-modal></answer-show-modal>
 </div>
@@ -16,16 +15,15 @@
 
 @section('scripts')
 <script>
-    window.$appScript = function() {
-        window.$loadScript({
-            d: document,
-            tag: 'script',
-            id: 'app-script',
-            url: "{{ mix('js/viender/socialite/read/app-mobile.js') }}",
-            onload: function() {
-                window.$app();
-            }
-        });
-    };
+    window.$loadScript({
+        d: document,
+        tag: 'script',
+        id: 'app-script',
+        url: "{{ mix('js/viender/socialite/read/app-mobile.js') }}",
+        onload: function() {
+            window.$appScriptLoaded = true;
+            window.$runApp();
+        }
+    });
 </script>
 @endsection

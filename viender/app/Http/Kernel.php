@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\AddVaryHeader::class,
             \Viender\Campaign\Http\Middleware\CheckCampaign::class,
             \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
+            \App\Http\Middleware\IntendedPageAuth::class,
         ],
         'api' => [
             'throttle:60,1',

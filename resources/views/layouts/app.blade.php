@@ -49,15 +49,26 @@
         ])
         !!};
 
-        window.$loadScript = function({d, tag, id, url, async = true, onload}){
+        window.$loadScript = function({d, tag, id, url, async = true, defer=false, onload}){
             var script, fjs = d.getElementsByTagName(tag)[0];
             if (d.getElementById(id)) {return;}
             script = d.createElement(tag); script.id = id;
             script.type = 'text/javascript';
             script.async = async;
+            script.defer = defer;
             script.onload = onload
             script.src = url;
             fjs.parentNode.insertBefore(script, fjs);
+        }
+
+        window.$coreScriptLoaded = false;
+        window.$appScriptLoaded = false;
+        window.$appIsRunning = false;
+        window.$runApp = function() {
+            if ($coreScriptLoaded && $appScriptLoaded && !$appIsRunning) {
+                $appIsRunning = true;
+                window.$app();
+            }
         }
     </script>
 
@@ -136,7 +147,9 @@
             id: 'core',
             url: "{{ mix('js/core.js') }}",
             onload: function() {
-                window.$appScript();
+                console.log('coreScriptLoaded');
+                window.$coreScriptLoaded = true;
+                window.$runApp();
             }
         });
     </script>

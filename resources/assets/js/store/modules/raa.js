@@ -1,4 +1,5 @@
 import * as types from '../mutation-types';
+import helper from 'viender_core/js/helpers/url';
 
 export default {
     namespaced: true,
@@ -7,7 +8,7 @@ export default {
         requesting: false,
         show: false,
         searchResults: [],
-        url: Vue.prototype.$viender.helpers.api('search'),
+        url: helper.api('search'),
     },
 
     mutations: {

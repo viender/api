@@ -21,6 +21,6 @@ window.$app = () => {
     const feed = new Vue({
         el: '#app',
 
-        store: store,
+        store: new Vuex.Store(store),
     });
 };

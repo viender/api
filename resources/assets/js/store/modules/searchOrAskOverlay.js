@@ -1,4 +1,5 @@
 import * as types from '../mutation-types';
+import helper from 'viender_core/js/helpers/url';
 
 export default {
     namespaced: true,
@@ -11,7 +12,7 @@ export default {
         searchResults: [],
         showMoreFields: false,
         selectedTopics: [],
-        postQuestionUrl: Vue.prototype.$viender.helpers.api('/questions'),
+        postQuestionUrl: helper.api('/questions'),
     },
 
     mutations: {
@@ -72,7 +73,7 @@ export default {
                 topics: state.selectedTopics,
             })
             .then(function (response) {
-                document.location = Vue.prototype.$viender.helpers.getUrl('self_html', response.data);
+                document.location = helper.getUrl('self_html', response.data);
                 commit(types.SET_REQUESTING, false);
                 if (window.ga)
                     ga('send', 'event', 'Questions', 'create', 'Question Created');
@@ -80,7 +81,7 @@ export default {
             .catch(function (error) {
                 if (error.response.status === 409) {
                     let slug = state.searchText.replace(/[\s]/g, '-').replace(/[|&;$%@"<>()+,?]/g, "");
-                    const questionUrl = Vue.prototype.$viender.helpers.url(`questions/${slug}`);
+                    const questionUrl = helper.url(`questions/${slug}`);
                     console.log(questionUrl);
                     document.location = questionUrl;
                 }
