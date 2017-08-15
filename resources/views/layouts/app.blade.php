@@ -94,7 +94,7 @@
         }]);
     </script> --}}
     <link rel="manifest" href="/manifest.json">
-    <link rel="icon" sizes="128x128" href="/img/icons/launcher-icon-2x.png">
+    <link rel="icon" sizes="760x760" href="/img/icons/launcher-icon-2x.png">
 
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
