@@ -49,7 +49,15 @@
         ])
         !!};
 
-        window.$loadScript = function({d, tag, id, url, async = true, defer=false, onload}){
+        window.$loadScript = function(args){
+            var d = args.d;
+            var tag = args.tag;
+            var id = args.id;
+            var url = args.url;
+            var async = args.async || true;
+            var defer = args.defer || false;
+            var onload = args.onload;
+
             var script, fjs = d.getElementsByTagName(tag)[0];
             if (d.getElementById(id)) {return;}
             script = d.createElement(tag); script.id = id;
