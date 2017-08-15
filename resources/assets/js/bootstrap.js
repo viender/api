@@ -1,4 +1,6 @@
 import Promise from 'promise-polyfill';
+import Raven from 'raven-js';
+import RavenVue from 'raven-js/plugins/vue';
 
 /**
  * Polyfill
@@ -38,6 +40,15 @@ window.axios.defaults.headers.common = {
 window.Vue = require('vue');
 
 window.Vuex = require('vuex');
+
+window.Raven = Raven;
+
+window.RavenVue = RavenVue;
+
+window.Raven
+    .config('https://31d73064b8a148f49357e023e2e02046@sentry.io/204004')
+    .addPlugin(window.RavenVue, window.Vue)
+    .install();
 
 window.Viender = require('./plugins/viender').default;
 

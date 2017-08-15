@@ -29,6 +29,7 @@
     "materialize-css": "^0.98.0",
     "moment": "^2.18.1",
     "promise-polyfill": "^6.0.2",
+    "raven-js": "^3.17.0",
     "summernote": "^0.8.2",
     "sw-toolbox": "^3.6.0",
     "tinymce": "^4.6.2",
