@@ -50,8 +50,8 @@
         !!};
 
         window.$loadScript = function(args){
-            var d = args.d;
-            var tag = args.tag;
+            var d = args.d || document;
+            var tag = args.tag || 'script';
             var id = args.id;
             var url = args.url;
             var async = args.async || true;
@@ -72,8 +72,9 @@
         window.$coreScriptLoaded = false;
         window.$appScriptLoaded = false;
         window.$appIsRunning = false;
+        window.$polyfillLoaded = false;
         window.$runApp = function() {
-            if ($coreScriptLoaded && $appScriptLoaded && !$appIsRunning) {
+            if ($coreScriptLoaded && $appScriptLoaded && $polyfillLoaded && !$appIsRunning) {
                 $appIsRunning = true;
                 window.$app();
             }
@@ -150,13 +151,19 @@
         // }(document, 'script', 'facebook-jssdk'));
 
         window.$loadScript({
-            d: document,
-            tag: 'script',
             id: 'core',
             url: "{{ mix('js/core.js') }}",
             onload: function() {
-                console.log('coreScriptLoaded');
                 window.$coreScriptLoaded = true;
+                window.$runApp();
+            }
+        });
+
+        window.$loadScript({
+            id: 'polyfill',
+            url: "//cdn.polyfill.io/v2/polyfill.min.js",
+            onload: function() {
+                window.$polyfillLoaded = true;
                 window.$runApp();
             }
         });
