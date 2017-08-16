@@ -45,10 +45,12 @@ window.Raven = Raven;
 
 window.RavenVue = RavenVue;
 
-window.Raven
-    .config('https://31d73064b8a148f49357e023e2e02046@sentry.io/204004')
-    .addPlugin(window.RavenVue, window.Vue)
-    .install();
+if (window.treasure.env.env === 'production') {
+    window.Raven
+        .config('https://31d73064b8a148f49357e023e2e02046@sentry.io/204004')
+        .addPlugin(window.RavenVue, window.Vue)
+        .install();
+}
 
 window.Viender = require('./plugins/viender').default;
 
