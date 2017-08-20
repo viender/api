@@ -1,10 +1,10 @@
 <template>
-    <div class="user-answer-list" @click.stop="">
+    <div class="about-author" @click.stop="">
         <div style="padding: 10px;">
             <span>ABOUT THE AUTHOR</span>
         </div>
         <div>
-            <ul class="collection" style="border-left: 0; border-right: 0; border-bottom: 0; margin-bottom: 0;">
+            <ul class="collection" style="border-left: 0; border-right: 0; border-bottom: 0; margin-bottom: 0; margin-top: 0;">
                 <li class="collection-item avatar" style="min-height: 53px;">
                     <img :src="$viender.helpers.getUrl('avatar', user)" alt="" class="circle">
                     <a :href="$viender.helpers.getUrl('self_html', user)"  style="font-weight: bold;">

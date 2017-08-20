@@ -21,6 +21,16 @@
                     :user="answer ? answer.owner : {}">
                 </about-author>
             </div>
+            <div>
+                <a :href="answer ? getUrl('self_html', answer.question) : '#'">
+                    <ul class="collection" style="padding: 10px; border-left: 0; border-right: 0;">
+                        <li>
+                            <span>Read all answers</span>
+                            <i style="float: right; margin-top: 3px;" class="fa fa-angle-right" aria-hidden="true"></i>
+                        </li>
+                    </ul>
+                </a>
+            </div>
         </div>
         <div class="modal-action center" style="bottom: 0; top: initial;">
             <i style="color: #657786" class="fa fa-times" aria-hidden="true"></i>
