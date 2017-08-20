@@ -17,7 +17,7 @@ class ReadController extends Controller
 
 	public function index()
 	{
-        $metaDescription = "Viender is place to gain and share knowledge. It's a platform to ask questions and get unique insights and quality answers from various people.";
+        $metaDescription = "Viender a is place to gain and share knowledge. It's a platform to ask questions and get unique insights and quality answers from various people.";
 
         if (\Auth::user()) {
             return view('viender.socialite.read::index')->with(compact('metaDescription'));

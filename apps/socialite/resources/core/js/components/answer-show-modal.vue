@@ -15,6 +15,12 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <about-author
+                    ref="aboutAuthor"
+                    :user="answer ? answer.owner : {}">
+                </about-author>
+            </div>
         </div>
         <div class="modal-action center" style="bottom: 0; top: initial;">
             <i style="color: #657786" class="fa fa-times" aria-hidden="true"></i>
@@ -24,9 +30,14 @@
 
 <script>
 import * as types from '../store/mutation-types';
+import AboutAuthor from './about-author';
 
 export default {
     props: [''],
+
+    components: {
+        AboutAuthor,
+    },
 
     mixins: [require('viender_core/js/mixins/urlHelper')],
 
@@ -37,6 +48,12 @@ export default {
 
         showAnswerModal() {
             return this.$store.state.feed.showAnswerModal;
+        },
+    },
+
+    watch: {
+        answer(answer) {
+            this.$refs.aboutAuthor.checkFollowingStatus(answer.owner);
         },
     },
 

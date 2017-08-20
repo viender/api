@@ -1,65 +1,79 @@
 <template>
-	<div class="followButton">
-		<button class="btn" @click="follow()" v-if="! user.followed">Follow</button>
-		<button class="btn followed" @click="unfollow()" v-else>Unfollow</button>
-	</div>
+    <div class="followButton">
+        <button class="btn" @click.stop="follow()" v-if="! user.followed">Follow</button>
+        <button class="btn followed" @click.stop="unfollow()" v-else>Unfollow</button>
+    </div>
 </template>
 
 <script>
 import * as types from 'viender_profile/core/js/store/mutation-types';
 
 export default {
-	props: ['url', 'followee_id', 'followed'],
+    props: ['url', 'followee_id', 'followed'],
 
-	data() {
-		return {
-			requesting: false,
+    data() {
+        return {
+            requesting: false,
 
-			user: {
-				followed: false,
-			}
-		}
-	},
+            user: {
+                followed: false,
+            },
+        };
+    },
 
-	created() {
-		this.user.followed = this.followed ? this.followed : false;
-	},
+    computed: {
+        isFollowed() {
+            return this.followed;
+        },
+    },
 
-	mounted() {
-		this.$emit('mounted');
-	},
+    watch: {
+        isFollowed(followed) {
+            this.user.followed = followed;
+        },
+    },
 
-	methods: {
-		follow() {
-    		var _this = this;
+    created() {
+        this.user.followed = this.followed ? this.followed : false;
+    },
 
-    		if (_this.requesting) return;
+    mounted() {
+        this.$emit('mounted');
+    },
 
-    		_this.requesting = true;
+    methods: {
+        follow() {
+            const self = this;
 
-			axios.post(_this.url, {'followee_id': _this.followee_id})
-				.then(function (response) {
-					_this.user.followed = ! _this.user.followed;
+            if (self.requesting) return;
 
-					if (_this.user.followed) {
-						_this.$store.commit('userStats/' + types.INCREMENT_FOLLOWER_COUNT);
-					} else {
-						_this.$store.commit('userStats/' + types.DECREMENT_FOLLOWER_COUNT);
-					}
+            self.requesting = true;
 
-				    _this.requesting = false;
-				})
-				.catch(function (error) {
-				    if (error.response.status == 401) {
-				    	document.location = url('login');
-				    }
-				    _this.requesting = false;
-			});
-		},
+            axios.post(self.url, {'followee_id': self.followee_id})
+                .then((response) => {
+                    self.user.followed = ! self.user.followed;
 
-		unfollow() {
-			this.follow();
-		},
-	},
-}
+                    if (self.$store.state.userStats) {
+                        if (self.user.followed) {
+                            self.$store.commit('userStats/' + types.INCREMENT_FOLLOWER_COUNT);
+                        } else {
+                            self.$store.commit('userStats/' + types.DECREMENT_FOLLOWER_COUNT);
+                        }
+                    }
+
+                    self.requesting = false;
+                })
+                .catch((error) => {
+                    if (error.response.status == 401) {
+                        document.location = url('login');
+                    }
+                    self.requesting = false;
+            });
+        },
+
+        unfollow() {
+            this.follow();
+        },
+    },
+};
 </script>

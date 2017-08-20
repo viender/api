@@ -30,6 +30,7 @@ class UserTransformer extends Transformer
             'website'               => $user->website,
             'gender'                => $user->gender,
             'tutorial_complete_at'  => $user->tutorial_complete_at,
+            'answer_views'          => $user->answerViews(),
             'links'         => [
                 [
                     'rel' => 'self',

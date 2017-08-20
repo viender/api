@@ -46,6 +46,10 @@
                 'platform'  => \Agent::platform(),
                 'browser'   => \Agent::browser(),
             ],
+            'user' => [
+                'id' => \Auth::user() ? \Auth::user()->id : null,
+                'login' => \Auth::user() ? \Auth::user()->username : null
+            ],
         ])
         !!};
 
@@ -72,7 +76,7 @@
         window.$coreScriptLoaded = false;
         window.$appScriptLoaded = false;
         window.$appIsRunning = false;
-        window.$polyfillLoaded = false;
+        window.$polyfillLoaded = {{ config('app.env') === 'production' ? 'false' : true }};
         window.$runApp = function() {
             if ($coreScriptLoaded && $appScriptLoaded && $polyfillLoaded && !$appIsRunning) {
                 $appIsRunning = true;

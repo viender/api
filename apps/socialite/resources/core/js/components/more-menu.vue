@@ -4,10 +4,10 @@
         <div class="card-action-popup-container" :class="showPopup ? 'active' : ''" @click="$event.stopPropagation()">
             <div class="card-action-popup-content">
                 <ul class="card-action-popup-list">
-                    <li class="card-action-popup-item" v-if="model.owner.id === $viender.user.id" @click="deleteModel()">
+                    <li class="card-action-popup-item" v-if="model.owner.id === authUserId" @click="deleteModel()">
                         <a>Delete</a>
                     </li>
-                    <li class="card-action-popup-item" v-if="model.owner.id !== $viender.user.id">
+                    <li class="card-action-popup-item" v-if="model.owner.id !== authUserId">
                         <a>Report</a>
                     </li>
                 </ul>

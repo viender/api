@@ -53,6 +53,8 @@ class Urls
 
         $this->router->group(array_merge($option, ['domain' => config('viender.api_domain'), 'namespace' => 'Api', 'middleware' => 'api']), function() use ($namePrefix) {
 
+            $this->router->get('users/{follower}/followers/{followee}/check', 'UserFollowingsController@check');
+
             $this->router->resource(
                 'users.followers',
                 'UserFollowersController',

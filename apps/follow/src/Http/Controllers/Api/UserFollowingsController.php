@@ -65,4 +65,22 @@ class UserFollowingsController extends ApiController
 
         return $this->respondDeleted();
     }
+
+    /**
+     * Check following status
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function check(Request $request, User $follower, User $followee) {
+        $followingStatus = $follower->followedUsers()->where([
+            'user_id'           => $follower->id,
+            'followable_id'     => $followee->id,
+            'followable_type'   => User::class,
+        ])->exists();
+
+        return $this->respond([
+            'following_status' => $followingStatus,
+            'status_code' => $this->getStatusCode(),
+        ]);
+    }
 }

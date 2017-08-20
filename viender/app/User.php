@@ -74,6 +74,18 @@ class User extends Authenticatable
         return $array;
     }
 
+    public function answerViews()
+    {
+        $answers = $this->answers;
+        $viewCount = 0;
+
+        foreach ($answers as $answer) {
+            $viewCount += $answer->viewCount();
+        }
+
+        return $viewCount;
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -14,7 +14,7 @@
 
       <loc>{{ url('sitemap-questions.xml.gz') }}</loc>
 
-      <lastmod>2017-07-18T22:49:00+00:00</lastmod>
+      <lastmod>2017-08-20T22:49:00+00:00</lastmod>
 
    </sitemap>
 
@@ -22,7 +22,7 @@
 
       <loc>{{ url('sitemap-topics.xml.gz') }}</loc>
 
-      <lastmod>2017-07-18T22:49:00+00:00</lastmod>
+      <lastmod>2017-08-20T22:49:00+00:00</lastmod>
 
    </sitemap>
 
@@ -30,7 +30,7 @@
 
       <loc>{{ url('sitemap-people.xml.gz') }}</loc>
 
-      <lastmod>2017-07-18T22:49:00+00:00</lastmod>
+      <lastmod>2017-08-20T22:49:00+00:00</lastmod>
 
    </sitemap>
 </sitemapindex>

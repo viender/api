@@ -35,26 +35,32 @@ class AnswersController extends ApiController
      */
     public function index(Request $request)
     {
-        // $paginator = Answer::withCount('upvotes')->orderBy('upvotes_count', 'desc')->paginate();
+        // $paginator = Answer::withCount('upvotes')->orderBy('upvotes_count', 'desc')->paginate($request->per_page ?? 15);
         $paginator = null;
+
+        $params = [];
+
+        if ($request->user_id) array_push($params, ['user_id', $request->user_id]);
 
         if ($request->sort) {
             switch ($request->sort) {
                 case 'latest':
-                    $paginator = Answer::latest('created_at')->paginate();
+                    $paginator = Answer::where($params)->latest('created_at')->paginate($request->per_page ?? 15);
                     break;
 
                 case 'popular':
-                    $paginator = Answer::withCount('upvotes')->orderBy('upvotes_count', 'desc')->paginate();
+                    $paginator = Answer::where($params)->withCount('upvotes')->orderBy('upvotes_count', 'desc')->paginate($request->per_page ?? 15);
                     break;
 
                 default:
-                    $paginator = Answer::latest('created_at')->paginate();
+                    $paginator = Answer::where($params)->latest('created_at')->paginate($request->per_page ?? 15);
                     break;
             }
         } else {
-            $paginator = Answer::latest('created_at')->paginate();
+            $paginator = Answer::where($params)->latest('created_at')->paginate($request->per_page ?? 15);
         }
+
+        if ($request->user_id) $paginator->appends(['user_id' => $request->user_id]);
 
         return $this->respondWithPagination($paginator, new AnswerPreviewTransformer($this->answers));
     }

@@ -8,6 +8,12 @@ export default {
         };
     },
 
+    computed: {
+        authUserId() {
+            return window.treasure.user.id;
+        },
+    },
+
     created() {
         const self = this;
 
