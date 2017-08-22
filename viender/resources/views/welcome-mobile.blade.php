@@ -4,7 +4,7 @@
 <div class="welcome">
     <div class="welcome-content">
         <span class="main-text">Welcome to Viender</span>
-        <span class="sub-text">A place to gain knowlegde and share your ideas and experiences.</span>
+        <span class="sub-text">A place to gain knowledge and share your ideas and experiences.</span>
     </div>
     <div class="welcome-footer">
         <a class="login-action btn google waves-effect waves-light" href="{{ route('web.viender.social.login.google') }}">
